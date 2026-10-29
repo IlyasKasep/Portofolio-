@@ -129,6 +129,16 @@ export default function ContactSection() {
       aria-labelledby="contact-heading"
       className="contact-section relative z-10 w-full bg-subtle text-white flex flex-col justify-between overflow-hidden px-6 py-20 sm:px-10 text-center md:sticky md:bottom-0 md:h-screen md:min-h-[600px] md:px-24 md:py-16"
     >
+      {/* Vibrant Ambient Colorful Aura */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -left-20 top-1/4 h-[28rem] w-[28rem] rounded-full bg-gradient-to-tr from-violet-600/25 via-indigo-500/20 to-sky-400/20 blur-[120px]"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-20 bottom-1/4 h-[30rem] w-[30rem] rounded-full bg-gradient-to-bl from-emerald-500/20 via-teal-500/15 to-cyan-500/20 blur-[120px]"
+      />
+
       {/* Large Background Text */}
       <div
         ref={bgTextRef}
@@ -141,11 +151,11 @@ export default function ContactSection() {
       <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-between items-center gap-12 md:gap-0">
         {/* Top Header */}
         <div className="flex flex-col items-center gap-2">
-          <p className="font-mono text-[0.65rem] uppercase tracking-[0.3em] text-white/55">
+          <p className="font-mono text-[0.65rem] uppercase tracking-[0.3em] text-sky-400">
             Get in touch
           </p>
           {time && (
-            <p className="font-mono text-[0.65rem] uppercase tracking-[0.25em] text-white/55">
+            <p className="font-mono text-[0.65rem] uppercase tracking-[0.25em] text-emerald-400">
               Bandung, ID / {time} WIB
             </p>
           )}
@@ -156,7 +166,7 @@ export default function ContactSection() {
           <h2
             id="contact-heading"
             ref={headingRef}
-            className="text-[clamp(3.5rem,10vw,8.5rem)] font-bold uppercase leading-[0.9] tracking-[-0.055em] text-white"
+            className="text-[clamp(3.5rem,10vw,8.5rem)] font-bold uppercase leading-[0.9] tracking-[-0.055em] bg-gradient-to-r from-white via-indigo-100 to-sky-200 bg-clip-text text-transparent"
           >
             {/* Word-by-word reveal wrapping */}
             <span className="inline-block overflow-hidden mr-[0.2em] py-1">

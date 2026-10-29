@@ -118,8 +118,8 @@ export default async function Home() {
           position="right"
           items={navigationItems}
           socialItems={socialItems}
-          colors={["#aeb8b0", "#3d403f"]}
-          accentColor="#aeb8b0"
+          colors={["#8b5cf6", "#06b6d4"]}
+          accentColor="#38bdf8"
           logoText="Ilyas / Portfolio"
           menuButtonColor="#111114"
           openMenuButtonColor="#111114"

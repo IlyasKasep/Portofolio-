@@ -284,11 +284,21 @@ export default function GithubContributions({
     <section
       ref={sectionRef}
       aria-labelledby="github-heading"
-      className="github-section relative z-20 -mt-8 bg-background px-6 pt-24 pb-32 text-foreground shadow-[0_20px_50px_rgba(0,0,0,0.08)] sm:px-10 lg:px-24"
+      className="github-section relative z-20 -mt-8 overflow-hidden bg-background px-6 pt-24 pb-32 text-foreground shadow-[0_20px_50px_rgba(0,0,0,0.08)] sm:px-10 lg:px-24"
     >
       <h2 id="github-heading" className="sr-only">
         GitHub Contributions
       </h2>
+
+      {/* Vibrant Ambient Colorful Aura */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -left-20 top-1/3 h-80 w-80 rounded-full bg-gradient-to-tr from-emerald-500/15 via-teal-500/10 to-transparent blur-[110px]"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-20 top-1/2 h-80 w-80 rounded-full bg-gradient-to-bl from-sky-500/15 via-indigo-500/10 to-transparent blur-[110px]"
+      />
 
       {/* Large Background Text */}
       <div
@@ -303,14 +313,14 @@ export default function GithubContributions({
         {/* Section Header */}
         <div className="mb-16 flex items-end justify-between gap-6 border-b border-foreground/10 pb-8 lg:mb-20">
           <div>
-            <p className="font-mono text-[0.65rem] uppercase tracking-[0.3em] text-foreground/65">
+            <p className="font-mono text-[0.65rem] uppercase tracking-[0.3em] text-emerald-600 dark:text-emerald-400">
               Coding activity
             </p>
             <p className="mt-3 text-3xl font-semibold uppercase tracking-[-0.035em] text-foreground">
               GitHub Contributions
             </p>
           </div>
-          <p className="hidden max-w-104 text-right text-sm leading-relaxed text-foreground/45 md:block">
+          <p className="hidden max-w-104 text-right text-sm leading-relaxed text-foreground/55 md:block">
             Open-source activity tracker showing commits, pull requests, and code reviews.
           </p>
         </div>
@@ -319,13 +329,13 @@ export default function GithubContributions({
         <div className="grid gap-12 lg:grid-cols-[1fr_2fr] lg:gap-16">
           {/* Stats Cards */}
           <div className="flex flex-col justify-center gap-6">
-            <div className="rounded-2xl border border-foreground/12 bg-card/30 p-6 backdrop-blur-xs">
-              <p className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-foreground/65">
+            <div className="rounded-2xl border border-emerald-500/25 bg-emerald-500/[0.04] p-6 backdrop-blur-xs shadow-lg">
+              <p className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400">
                 Last 365 Days
               </p>
               <div
                 ref={totalCounterRef}
-                className="mt-3 font-serif text-5xl font-bold text-foreground sm:text-6xl"
+                className="mt-3 font-serif text-5xl font-bold bg-gradient-to-r from-foreground via-emerald-600 to-teal-500 bg-clip-text text-transparent sm:text-6xl"
               >
                 {total}
               </div>
@@ -335,24 +345,24 @@ export default function GithubContributions({
             </div>
 
             <div className="grid grid-cols-2 gap-4">
-              <div className="rounded-xl border border-foreground/12 bg-card/20 p-5">
-                <p className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-foreground/65">
+              <div className="rounded-xl border border-amber-500/25 bg-amber-500/[0.04] p-5 shadow-sm">
+                <p className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400">
                   Longest Streak
                 </p>
                 <div
                   ref={streakCounterRef}
-                  className="mt-2 text-2xl font-semibold text-foreground"
+                  className="mt-2 text-2xl font-semibold text-amber-500"
                 >
                   {longestStreak} days
                 </div>
               </div>
-              <div className="rounded-xl border border-foreground/12 bg-card/20 p-5">
-                <p className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-foreground/65">
+              <div className="rounded-xl border border-sky-500/25 bg-sky-500/[0.04] p-5 shadow-sm">
+                <p className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-sky-600 dark:text-sky-400">
                   Active Days
                 </p>
                 <div
                   ref={activeCounterRef}
-                  className="mt-2 text-2xl font-semibold text-foreground"
+                  className="mt-2 text-2xl font-semibold text-sky-500"
                 >
                   {activeDaysPercent}%
                 </div>
@@ -409,13 +419,13 @@ export default function GithubContributions({
                 {/* Contribution Cells */}
                 <g className="contrib-grid" transform="translate(22, 20)">
                   {days.map((day, index) => {
-                    // Cell colors representing different levels matching the light/beige theme
+                    // Vibrant emerald shades matching modern GitHub greens
                     const levelColors = [
-                      "fill-foreground/10", // Level 0: subtle beige grey
-                      "fill-emerald-800/25", // Level 1: light sage/green
-                      "fill-emerald-700/50", // Level 2: medium green
-                      "fill-emerald-600/80", // Level 3: dark green
-                      "fill-emerald-500",    // Level 4: signature emerald green
+                      "fill-foreground/10", // Level 0: subtle grey
+                      "fill-emerald-500/35", // Level 1: light vibrant emerald
+                      "fill-emerald-500/65", // Level 2: medium vibrant emerald
+                      "fill-emerald-500/90", // Level 3: solid emerald
+                      "fill-emerald-400",    // Level 4: glowing signature emerald green
                     ];
 
                     const col = day.weekIndex;

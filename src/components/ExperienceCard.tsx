@@ -14,6 +14,23 @@ function formatCardNumber(value: number) {
   return String(value).padStart(2, "0");
 }
 
+function getTypeBadgeStyle(type: string) {
+  const t = type.toLowerCase();
+  if (t.includes("work")) {
+    return "border-emerald-500/40 bg-emerald-500/15 text-emerald-400";
+  }
+  if (t.includes("intern")) {
+    return "border-amber-500/40 bg-amber-500/15 text-amber-400";
+  }
+  if (t.includes("committee")) {
+    return "border-sky-500/40 bg-sky-500/15 text-sky-400";
+  }
+  if (t.includes("organization")) {
+    return "border-fuchsia-500/40 bg-fuchsia-500/15 text-fuchsia-400";
+  }
+  return "border-violet-500/40 bg-violet-500/15 text-violet-400";
+}
+
 function ExperienceVisual({ experience }: { experience: Experience }) {
   if (experience.image) {
     return (
@@ -22,28 +39,28 @@ function ExperienceVisual({ experience }: { experience: Experience }) {
         alt={experience.imageAlt}
         fill
         sizes="(min-width: 1024px) 440px, 100vw"
-        className="h-full w-full object-cover object-[center_62%] grayscale transition-[filter,scale] duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] lg:group-hover/media:scale-105 group-hover/media:grayscale-0 motion-reduce:transition-none motion-reduce:group-hover/media:scale-100"
+        className="h-full w-full object-cover object-[center_62%] transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] lg:group-hover/media:scale-105 motion-reduce:transition-none motion-reduce:group-hover/media:scale-100"
       />
     );
   }
 
   return (
     <div
-      className="absolute inset-0 overflow-hidden bg-accent"
+      className="absolute inset-0 overflow-hidden bg-gradient-to-br from-slate-950 via-indigo-950/70 to-slate-900"
       aria-hidden="true"
     >
-      <div className="absolute inset-5 border border-card-foreground/12 sm:inset-7" />
-      <div className="absolute -right-20 top-16 h-px w-[130%] -rotate-12 bg-card-foreground/20" />
-      <div className="absolute -left-16 bottom-28 h-px w-[130%] rotate-12 bg-card-foreground/20" />
-      <div className="absolute right-8 top-8 font-mono text-[0.65rem] uppercase tracking-[0.28em] text-card-foreground/50">
+      <div className="absolute inset-5 border border-cyan-500/20 sm:inset-7" />
+      <div className="absolute -right-20 top-16 h-px w-[130%] -rotate-12 bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent" />
+      <div className="absolute -left-16 bottom-28 h-px w-[130%] rotate-12 bg-gradient-to-r from-transparent via-emerald-400/40 to-transparent" />
+      <div className="absolute right-8 top-8 font-mono text-[0.65rem] uppercase tracking-[0.28em] text-cyan-400">
         Selected work
       </div>
 
       <div className="absolute inset-x-8 bottom-8 sm:inset-x-10 sm:bottom-10">
-        <p className="text-[clamp(5.5rem,14vw,10rem)] font-bold leading-[0.72] tracking-[-0.09em] text-card-foreground/10">
+        <p className="bg-gradient-to-br from-cyan-400 via-sky-300 to-emerald-400 bg-clip-text text-[clamp(5.5rem,14vw,10rem)] font-bold leading-[0.72] tracking-[-0.09em] text-transparent drop-shadow-[0_0_35px_rgba(34,211,238,0.25)]">
           {experience.monogram}
         </p>
-        <p className="mt-8 max-w-[24rem] text-sm font-semibold uppercase leading-relaxed tracking-[0.18em] text-card-foreground/70">
+        <p className="mt-8 max-w-[24rem] text-sm font-semibold uppercase leading-relaxed tracking-[0.18em] text-white/90">
           {experience.company}
         </p>
       </div>
@@ -69,7 +86,12 @@ export default function ExperienceCard({
         <header>
           <div className="flex flex-wrap items-center gap-2 font-mono text-[0.55rem] uppercase tracking-[0.24em] text-card-foreground/50 sm:gap-3 sm:text-[0.65rem]">
             <span>Professional experience</span>
-            <span className="rounded-full border border-card-foreground/14 px-2 py-1 text-[0.48rem] font-semibold tracking-[0.18em] text-card-foreground/65 sm:px-2.5 sm:text-[0.58rem]">
+            <span
+              className={cn(
+                "rounded-full border px-2.5 py-1 text-[0.5rem] font-semibold tracking-[0.16em] sm:px-3 sm:text-[0.6rem]",
+                getTypeBadgeStyle(experience.type),
+              )}
+            >
               {experience.type}
             </span>
           </div>
@@ -97,7 +119,7 @@ export default function ExperienceCard({
                 key={highlight}
                 className="flex items-center gap-2 border-t border-card-foreground/18 py-1.5 pr-2 sm:min-h-12 sm:gap-3 sm:py-3 sm:pr-4 lg:min-h-16 lg:gap-4 lg:py-4"
               >
-                <span className="font-mono text-[0.55rem] font-semibold text-card-foreground/45 sm:text-xs">
+                <span className="font-mono text-[0.55rem] font-semibold text-sky-500/80 sm:text-xs">
                   {formatCardNumber(highlightIndex + 1)}
                 </span>
                 <span className="text-[0.58rem] font-semibold uppercase leading-[1.25] tracking-[0.06em] sm:text-[0.72rem] sm:leading-relaxed lg:text-[0.8rem]">

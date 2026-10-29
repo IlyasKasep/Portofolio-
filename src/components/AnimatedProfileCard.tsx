@@ -132,9 +132,12 @@ export default function AnimatedProfile() {
 
   return (
     <div className="profile-card relative z-10 flex w-full justify-center [perspective:1200px] lg:justify-end">
+      {/* Vibrant Ambient Glow Behind Card */}
+      <div className="pointer-events-none absolute -inset-4 rounded-[2.5rem] bg-gradient-to-tr from-violet-600/35 via-sky-400/25 to-emerald-400/35 blur-2xl opacity-75" />
+
       <motion.div
         ref={cardRef}
-        className="relative h-[480px] w-full max-w-[390px] overflow-hidden rounded-[2rem] border border-white/18 bg-[#0b0b0d] will-change-transform sm:h-[560px] sm:max-w-[450px] lg:h-[640px] lg:max-w-[520px]"
+        className="relative h-[480px] w-full max-w-[390px] overflow-hidden rounded-[2rem] border border-white/25 bg-[#0b0b0d] will-change-transform sm:h-[560px] sm:max-w-[450px] lg:h-[640px] lg:max-w-[520px]"
         data-profile-card
         style={{
           boxShadow: cardShadow,
@@ -158,7 +161,7 @@ export default function AnimatedProfile() {
           priority
           unoptimized
           sizes="(min-width: 1024px) 520px, (min-width: 640px) 450px, 90vw"
-          className="relative z-10 object-cover object-bottom rounded-[2rem] grayscale-100 hover:grayscale-50 transition-[filter] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+          className="relative z-10 object-cover object-bottom rounded-[2rem] transition-transform duration-700 ease-out hover:scale-[1.02]"
         />
 
         <div className="absolute inset-x-0 bottom-0 z-20 h-40 rounded-b-[2rem] bg-gradient-to-t from-[#050506] via-[#050506]/80 to-transparent" />
@@ -173,14 +176,17 @@ export default function AnimatedProfile() {
           style={{ background: pressureGlare }}
         />
 
-        <div className="absolute inset-x-5 bottom-5 z-30 flex items-center justify-between gap-4 rounded-2xl border border-white/12 bg-white/[0.075] px-5 py-4 text-white shadow-[0_16px_40px_rgba(0,0,0,0.24)] backdrop-blur-md">
+        <div className="absolute inset-x-5 bottom-5 z-30 flex items-center justify-between gap-4 rounded-2xl border border-white/18 bg-white/[0.1] px-5 py-4 text-white shadow-[0_16px_40px_rgba(0,0,0,0.35)] backdrop-blur-md">
           <div>
-            <p className="text-sm font-semibold leading-none">@IlyasKasep</p>
-            <p className="mt-2 text-sm leading-none text-white/58">
+            <p className="text-sm font-semibold leading-none text-white">@IlyasKasep</p>
+            <p className="mt-2 text-sm leading-none text-emerald-300 font-medium">
               Available for work!
             </p>
           </div>
-          <span className="h-2.5 w-2.5 rounded-full bg-green-400/80 shadow-[0_0_14px_rgba(255,255,255,0.34)]" />
+          <span className="relative flex h-3 w-3">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
+            <span className="relative inline-flex h-3 w-3 rounded-full bg-emerald-500 shadow-[0_0_12px_#10b981]"></span>
+          </span>
         </div>
       </motion.div>
     </div>

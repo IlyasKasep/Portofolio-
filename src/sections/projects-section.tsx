@@ -154,6 +154,16 @@ export default function ProjectsSection({
         Selected projects
       </h2>
 
+      {/* Vibrant Ambient Colorful Aura */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute left-0 top-1/4 h-[32rem] w-[32rem] rounded-full bg-gradient-to-tr from-violet-500/15 via-purple-500/10 to-indigo-500/10 blur-[130px]"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute right-0 top-2/3 h-[30rem] w-[30rem] rounded-full bg-gradient-to-bl from-sky-400/15 via-teal-400/10 to-emerald-400/10 blur-[130px]"
+      />
+
       {/* Large Background Text */}
       <div
         ref={bgTextRef}
@@ -167,7 +177,7 @@ export default function ProjectsSection({
         {/* Section Header */}
         <div className="mb-9 flex flex-col items-start justify-between gap-6 border-b border-foreground/10 pb-6 sm:mb-12 sm:flex-row sm:items-end sm:pb-8 lg:mb-24">
           <div>
-            <p className="font-mono text-[0.65rem] uppercase tracking-[0.3em] text-foreground/65">
+            <p className="font-mono text-[0.65rem] uppercase tracking-[0.3em] text-violet-600 dark:text-violet-400">
               Portfolio showcase
             </p>
             <p className="mt-3 text-3xl font-semibold uppercase tracking-[-0.035em] text-foreground">

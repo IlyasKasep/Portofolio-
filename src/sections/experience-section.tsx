@@ -176,6 +176,16 @@ export default function ExperienceSection({
         Professional experience
       </h2>
 
+      {/* Vibrant Ambient Colorful Aura */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -left-32 top-1/4 h-96 w-96 rounded-full bg-gradient-to-tr from-indigo-600/20 via-purple-600/15 to-pink-500/15 blur-[120px]"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-32 bottom-1/4 h-96 w-96 rounded-full bg-gradient-to-bl from-cyan-500/20 via-teal-500/15 to-emerald-500/20 blur-[120px]"
+      />
+
       <div
         ref={bgTextRef}
         aria-hidden="true"
@@ -190,15 +200,15 @@ export default function ExperienceSection({
           className="mb-4 flex shrink-0 items-end justify-between gap-6 sm:mb-5 lg:mb-8"
         >
           <div>
-            <p className="font-mono text-[0.58rem] uppercase tracking-[0.28em] text-white/45 sm:text-[0.65rem]">
+            <p className="font-mono text-[0.58rem] uppercase tracking-[0.28em] text-emerald-400 sm:text-[0.65rem]">
               Career archive
             </p>
-            <p className="mt-2 text-[clamp(1.9rem,9vw,2.6rem)] font-semibold uppercase leading-none tracking-[-0.035em] text-white sm:mt-3 lg:text-3xl">
+            <p className="mt-2 text-[clamp(1.9rem,9vw,2.6rem)] font-semibold uppercase leading-none tracking-[-0.035em] bg-gradient-to-r from-white via-indigo-100 to-sky-300 bg-clip-text text-transparent sm:mt-3 lg:text-3xl">
               experiences
             </p>
           </div>
 
-          <p className="hidden max-w-104 text-right text-sm leading-relaxed text-white/45 md:block">
+          <p className="hidden max-w-104 text-right text-sm leading-relaxed text-white/55 md:block">
             Roles, systems, and the work behind them.
           </p>
         </div>
@@ -262,11 +272,11 @@ export default function ExperienceSection({
 
         <div
           aria-hidden="true"
-          className="mt-6 hidden h-px shrink-0 overflow-hidden bg-white/12 lg:block motion-reduce:hidden"
+          className="mt-6 hidden h-1 shrink-0 overflow-hidden rounded-full bg-white/10 lg:block motion-reduce:hidden"
         >
           <div
             ref={progressRef}
-            className="h-full w-full origin-left scale-x-0 bg-white/70 will-change-transform"
+            className="h-full w-full origin-left scale-x-0 rounded-full bg-gradient-to-r from-violet-500 via-sky-400 to-emerald-400 will-change-transform shadow-[0_0_12px_rgba(56,189,248,0.5)]"
           />
         </div>
       </div>

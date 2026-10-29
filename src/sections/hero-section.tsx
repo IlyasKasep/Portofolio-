@@ -99,6 +99,11 @@ export default function HeroSection() {
       ref={sectionRef}
       className="hero-section relative mb-10 grid min-h-[calc(100vh-5rem)] content-start items-start gap-8 px-6 pb-10 pt-24 sm:gap-10 sm:px-10 sm:pb-14 sm:pt-28 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.7fr)] lg:content-center lg:items-center lg:gap-12 lg:px-24 lg:py-10"
     >
+      {/* Vibrant Ambient Colorful Aura & Glow */}
+      <div className="pointer-events-none absolute -top-20 -left-20 h-[28rem] w-[28rem] rounded-full bg-gradient-to-tr from-violet-600/25 via-fuchsia-500/20 to-sky-400/20 blur-[100px]" />
+      <div className="pointer-events-none absolute top-1/4 -right-10 h-[32rem] w-[32rem] rounded-full bg-gradient-to-bl from-cyan-400/25 via-teal-400/20 to-emerald-400/25 blur-[120px]" />
+      <div className="pointer-events-none absolute -bottom-10 left-1/3 h-80 w-80 rounded-full bg-gradient-to-r from-amber-400/15 via-rose-500/15 to-purple-600/15 blur-[90px]" />
+
       {/* Background Dotted Grid Overlay */}
       <div
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(rgba(17,17,20,0.05)_1.5px,transparent_1.5px)] [background-size:32px_32px]"
@@ -211,7 +216,7 @@ export default function HeroSection() {
         </p>
 
         <h1 className="greetings mt-4 min-h-[4.5rem] max-w-[11ch] font-serif text-6xl leading-none sm:mt-5 sm:min-h-[7rem] sm:text-8xl lg:min-h-[9rem] lg:text-9xl">
-          Hi, I’m <span className="italic">Ilyas.</span>
+          Hi, I’m <span className="italic bg-gradient-to-r from-violet-600 via-fuchsia-500 to-sky-500 bg-clip-text text-transparent">Ilyas.</span>
         </h1>
         <TextType
           text={["Web Developer"]}

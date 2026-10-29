@@ -4,7 +4,6 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRef } from "react";
-import { cn } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -74,85 +73,47 @@ function getSkillColor(skill: string) {
   return "text-indigo-300 hover:text-indigo-200";
 }
 
-const contextCards = [
-  {
-    index: "01",
-    category: "Pendidikan",
-    code: "INF · 2021",
-    dotColor: "bg-sky-400 shadow-[0_0_8px_rgba(56,189,248,0.8)]",
-    title: "Teknik Informatika",
-    subtitle: "Universitas Muhammadiyah Bandung",
-    description:
-      "Mahasiswa tingkat akhir (Semester 7) dengan antusiasme tinggi pada rekayasa web modern, performa kode, serta arsitektur data sistem.",
-    badge: "Sem. 7 · 2021—2025",
-    accentGlow: "from-sky-500/15 via-cyan-500/10 to-transparent",
-    borderColor: "hover:border-sky-500/40",
-  },
-  {
-    index: "02",
-    category: "Asal & Domisili",
-    code: "BDO · 6.9°S",
-    dotColor: "bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]",
-    title: "Bandung, Indonesia",
-    subtitle: "West Java · UTC+7",
-    description:
-      "Lahir dan berbasis di Bandung. Terbuka penuh untuk peluang kerja full-time, kontrak, maupun freelance secara onsite maupun remote.",
-    badge: "Onsite · Remote",
-    accentGlow: "from-emerald-500/15 via-teal-500/10 to-transparent",
-    borderColor: "hover:border-emerald-500/40",
-  },
-  {
-    index: "03",
-    category: "Fokus & Passion",
-    code: "DEV · SYS",
-    dotColor: "bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.8)]",
-    title: "Web Design & Systems",
-    subtitle: "Frontend & Fullstack Logic",
-    description:
-      "Sangat gemar mengulik website design, interaksi visual yang halus, serta merancang alur logika sistem database yang andal dan aman.",
-    badge: "UI & Architecture",
-    accentGlow: "from-amber-500/15 via-orange-500/10 to-transparent",
-    borderColor: "hover:border-amber-500/40",
-  },
-];
-
 export default function IntroSection({ skills }: { skills: string[] }) {
   const sectionRef = useRef<HTMLElement | null>(null);
+  const textRef = useRef<HTMLParagraphElement | null>(null);
   const shapeRef = useRef<HTMLDivElement | null>(null);
   const marqueeRef = useRef<HTMLDivElement | null>(null);
 
   useGSAP(
     () => {
-      // Snappy and responsive line reveal animation
-      gsap.fromTo(
+      // Smooth, responsive scrubbed reveal directly tied to the text visibility
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: textRef.current,
+          start: "top 85%",
+          end: "bottom 50%",
+          scrub: 0.8,
+        },
+      });
+
+      tl.fromTo(
         ".line",
         {
           opacity: 0,
-          yPercent: 100,
+          yPercent: 120,
         },
         {
           opacity: 1,
           yPercent: 0,
-          duration: 0.75,
-          stagger: 0.1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 78%",
-            toggleActions: "play none none reverse",
-          },
+          stagger: 0.15,
+          ease: "power2.out",
         },
       );
 
       gsap.fromTo(
         shapeRef.current,
         {
-          scaleY: 0.8,
-          y: 20,
+          scaleY: 0.7,
+          y: 40,
         },
         {
-          scaleY: 1.3,
-          y: -30,
+          scaleY: 1.4,
+          y: -40,
           ease: "none",
           scrollTrigger: {
             trigger: sectionRef.current,
@@ -162,31 +123,6 @@ export default function IntroSection({ skills }: { skills: string[] }) {
           },
         },
       );
-
-      const cards = sectionRef.current?.querySelectorAll(".context-card");
-      if (cards && cards.length > 0) {
-        gsap.fromTo(
-          cards,
-          {
-            opacity: 0,
-            y: 35,
-            scale: 0.96,
-          },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            stagger: 0.12,
-            duration: 0.75,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: ".context-cards-grid",
-              start: "top 88%",
-              toggleActions: "play none none reverse",
-            },
-          },
-        );
-      }
     },
     { scope: sectionRef },
   );
@@ -217,7 +153,7 @@ export default function IntroSection({ skills }: { skills: string[] }) {
         className="absolute left-1/2 -top-31 h-[180px] w-[130vw] -translate-x-1/2 rounded-[50%] bg-subtle"
       />
 
-      <p className="max-w-5xl text-center font-sans text-[clamp(1.75rem,3.8vw,3.6rem)] leading-[1.18] tracking-[-0.04em]">
+      <p ref={textRef} className="max-w-5xl text-center font-sans text-[clamp(1.75rem,3.8vw,3.6rem)] leading-[1.18] tracking-[-0.04em]">
         {lines.map((line, lineIndex) => (
           <span key={lineIndex} className="block overflow-hidden">
             <span className="line block will-change-transform">
@@ -299,62 +235,6 @@ export default function IntroSection({ skills }: { skills: string[] }) {
               </div>
             ))}
         </div>
-      </div>
-
-      {/* Profile Context Cards */}
-      <div className="context-cards-grid relative z-10 mt-6 grid w-full max-w-5xl grid-cols-1 gap-5 sm:grid-cols-3 sm:gap-6">
-        {contextCards.map((card) => (
-          <div
-            key={card.index}
-            className={cn(
-              "context-card group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-white/[0.025] p-6 sm:p-7 backdrop-blur-md transition-all duration-500 hover:-translate-y-1.5 hover:bg-white/[0.05] hover:shadow-[0_20px_45px_rgba(0,0,0,0.45)]",
-              card.borderColor,
-            )}
-          >
-            <div>
-              <div className="flex items-center justify-between border-b border-white/10 pb-3.5">
-                <div className="flex items-center gap-2">
-                  <span
-                    className={cn("size-1.5 rounded-full shrink-0", card.dotColor)}
-                    aria-hidden="true"
-                  />
-                  <span className="font-mono text-[0.6rem] font-semibold uppercase tracking-[0.22em] text-white/50 transition-colors group-hover:text-white/80">
-                    {card.index} / {card.category}
-                  </span>
-                </div>
-                <span className="font-mono text-[0.55rem] uppercase tracking-[0.14em] text-white/35 transition-colors group-hover:text-white/60">
-                  {card.badge}
-                </span>
-              </div>
-
-              <div className="mt-5">
-                <h3 className="font-sans text-lg font-bold tracking-[-0.02em] text-white sm:text-xl">
-                  {card.title}
-                </h3>
-                <p className="mt-1 font-mono text-[0.62rem] uppercase tracking-wider text-white/40">
-                  {card.subtitle}
-                </p>
-                <p className="mt-3.5 text-xs leading-relaxed text-white/65 transition-colors group-hover:text-white/80 sm:text-[0.8rem]">
-                  {card.description}
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-6 flex items-center justify-between border-t border-white/5 pt-3 font-mono text-[0.55rem] uppercase tracking-[0.2em] text-white/25">
-              <span>{card.code}</span>
-              <span className="transition-transform duration-300 group-hover:translate-x-1 text-white/40">✦</span>
-            </div>
-
-            {/* Ambient Radial Glow on Hover */}
-            <div
-              aria-hidden="true"
-              className={cn(
-                "pointer-events-none absolute -bottom-10 -right-10 size-36 rounded-full bg-gradient-to-br opacity-0 blur-2xl transition-opacity duration-700 group-hover:opacity-100",
-                card.accentGlow,
-              )}
-            />
-          </div>
-        ))}
       </div>
     </section>
   );

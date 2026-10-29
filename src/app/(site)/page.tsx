@@ -7,6 +7,7 @@ import ContactSection from "@/sections/contact-section";
 import StaggeredMenu from "@/components/StaggeredMenu";
 import { siteConfig } from "@/lib/site";
 import { getPublicHomeContent } from "@/data/content/public-content";
+import { getGithubContributions } from "@/lib/github-contributions";
 
 export const revalidate = 3600;
 
@@ -94,7 +95,10 @@ const socialItems = [
 ];
 
 export default async function Home() {
-  const content = await getPublicHomeContent();
+  const [content, githubContributions] = await Promise.all([
+    getPublicHomeContent(),
+    getGithubContributions("IlyasKasep"),
+  ]);
 
   return (
     <>
@@ -120,7 +124,7 @@ export default async function Home() {
         <IntroSection skills={content.skills.map((skill) => skill.name)} />
         <ExperienceSection experiences={content.experiences} />
         <ProjectsSection projects={content.featuredProjects} />
-        <GithubContributions />
+        <GithubContributions initialData={githubContributions} />
         <ContactSection />
       </main>
     </>

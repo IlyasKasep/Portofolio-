@@ -4,6 +4,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRef, useMemo, useState } from "react";
+import type { ContributionData } from "@/lib/github-contributions";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -133,7 +134,11 @@ function generateContributions(): {
   return { days, total, longestStreak, currentStreak, activeDaysPercent };
 }
 
-export default function GithubContributions() {
+export default function GithubContributions({
+  initialData,
+}: {
+  initialData?: ContributionData;
+} = {}) {
   const sectionRef = useRef<HTMLElement | null>(null);
   const gridRef = useRef<SVGSVGElement | null>(null);
   const totalCounterRef = useRef<HTMLDivElement | null>(null);
@@ -150,8 +155,8 @@ export default function GithubContributions() {
   } | null>(null);
 
   const { days, total, longestStreak, activeDaysPercent } = useMemo(
-    () => generateContributions(),
-    []
+    () => initialData || generateContributions(),
+    [initialData],
   );
 
   // Compute month labels positioning

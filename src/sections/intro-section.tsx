@@ -123,43 +123,36 @@ export default function IntroSection({ skills }: { skills: string[] }) {
 
   useGSAP(
     () => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 40%",
-          end: "bottom 90%",
-          scrub: 1.4,
-        },
-      });
-
-      tl.fromTo(
+      // Snappy and responsive line reveal animation
+      gsap.fromTo(
         ".line",
         {
           opacity: 0,
-          yPercent: 200,
+          yPercent: 100,
         },
         {
           opacity: 1,
           yPercent: 0,
-          duration: 3.2,
-          stagger: {
-            each: 0.55,
-            ease: "power2.out",
-          },
+          duration: 0.75,
+          stagger: 0.1,
           ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 78%",
+            toggleActions: "play none none reverse",
+          },
         },
-        "-=0.1",
       );
 
       gsap.fromTo(
         shapeRef.current,
         {
-          scaleY: 0.6,
-          y: 50,
+          scaleY: 0.8,
+          y: 20,
         },
         {
-          scaleY: 1.5,
-          y: -50,
+          scaleY: 1.3,
+          y: -30,
           ease: "none",
           scrollTrigger: {
             trigger: sectionRef.current,
@@ -176,19 +169,20 @@ export default function IntroSection({ skills }: { skills: string[] }) {
           cards,
           {
             opacity: 0,
-            y: 45,
-            scale: 0.95,
+            y: 35,
+            scale: 0.96,
           },
           {
             opacity: 1,
             y: 0,
             scale: 1,
-            stagger: 0.14,
-            duration: 0.85,
+            stagger: 0.12,
+            duration: 0.75,
             ease: "power3.out",
             scrollTrigger: {
               trigger: ".context-cards-grid",
-              start: "top 86%",
+              start: "top 88%",
+              toggleActions: "play none none reverse",
             },
           },
         );

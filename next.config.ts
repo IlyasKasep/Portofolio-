@@ -1,21 +1,18 @@
 import type { NextConfig } from "next";
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const defaultSupabaseUrl = "https://pmtutukpkosfftlhnrrv.supabase.co";
+const supabaseUrl =
+  process.env.NEXT_PUBLIC_SUPABASE_URL || defaultSupabaseUrl;
 
-if (!supabaseUrl) {
-  throw new Error("NEXT_PUBLIC_SUPABASE_URL is required to configure images.");
-}
-
-let parsedSupabaseUrl: URL;
+let parsedHostname = "pmtutukpkosfftlhnrrv.supabase.co";
 
 try {
-  parsedSupabaseUrl = new URL(supabaseUrl);
+  const parsed = new URL(supabaseUrl);
+  if (parsed.hostname) {
+    parsedHostname = parsed.hostname;
+  }
 } catch {
-  throw new Error("NEXT_PUBLIC_SUPABASE_URL must be a valid URL.");
-}
-
-if (parsedSupabaseUrl.protocol !== "https:") {
-  throw new Error("NEXT_PUBLIC_SUPABASE_URL must use HTTPS.");
+  parsedHostname = "pmtutukpkosfftlhnrrv.supabase.co";
 }
 
 const nextConfig: NextConfig = {
@@ -23,9 +20,15 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: parsedSupabaseUrl.hostname,
+        hostname: parsedHostname,
         port: "",
         pathname: "/storage/v1/object/public/portfolio-media/**",
+      },
+      {
+        protocol: "https",
+        hostname: "*.supabase.co",
+        port: "",
+        pathname: "/storage/v1/object/public/**",
       },
     ],
   },

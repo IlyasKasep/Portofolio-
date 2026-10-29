@@ -81,48 +81,71 @@ export default function IntroSection({ skills }: { skills: string[] }) {
 
   useGSAP(
     () => {
-      // Smooth, responsive scrubbed reveal directly tied to the text visibility
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: textRef.current,
-          start: "top 85%",
-          end: "bottom 50%",
-          scrub: 0.8,
-        },
-      });
+      const text = textRef.current;
+      const section = sectionRef.current;
+      if (!text || !section) return;
 
-      tl.fromTo(
-        ".line",
+      const media = gsap.matchMedia();
+
+      media.add(
         {
-          opacity: 0,
-          yPercent: 120,
+          reduceMotion: "(prefers-reduced-motion: reduce)",
+          all: "(min-width: 0px)",
         },
-        {
-          opacity: 1,
-          yPercent: 0,
-          stagger: 0.15,
-          ease: "power2.out",
+        (context) => {
+          const { reduceMotion } = context.conditions ?? {};
+          const lineEls = text.querySelectorAll(".line");
+
+          if (reduceMotion) {
+            gsap.set(lineEls, { opacity: 1, y: 0, clearProps: "all" });
+            return;
+          }
+
+          // Snappy, early-trigger entrance so text is visible immediately without scrolling deep
+          gsap.fromTo(
+            lineEls,
+            {
+              opacity: 0,
+              y: 28,
+            },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.5,
+              stagger: 0.07,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: text,
+                start: "top 92%",
+                toggleActions: "play none none reverse",
+              },
+            },
+          );
+
+          if (shapeRef.current) {
+            gsap.fromTo(
+              shapeRef.current,
+              {
+                scaleY: 0.8,
+                y: 20,
+              },
+              {
+                scaleY: 1.3,
+                y: -30,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: section,
+                  start: "top bottom",
+                  end: "top 20%",
+                  scrub: 0.6,
+                },
+              },
+            );
+          }
         },
       );
 
-      gsap.fromTo(
-        shapeRef.current,
-        {
-          scaleY: 0.7,
-          y: 40,
-        },
-        {
-          scaleY: 1.4,
-          y: -40,
-          ease: "none",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top bottom",
-            end: "top 20%",
-            scrub: 1,
-          },
-        },
-      );
+      return () => media.revert();
     },
     { scope: sectionRef },
   );

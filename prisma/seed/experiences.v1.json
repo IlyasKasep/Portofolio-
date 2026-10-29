@@ -1,61 +1,104 @@
 [
   {
     "id": "tenumba-sinergi-informatika",
-    "role": "Frontend Developer",
+    "role": "Front End Developer",
     "company": "PT Tenumba Sinergi Informatika",
     "type": "Work",
     "period": "Aug 2023 — Present",
     "duration": "Present",
-    "summary": "Bertanggung jawab mengimplementasikan desain Figma ke dalam antarmuka web modern yang responsif dan interaktif menggunakan Next.js dan Tailwind CSS.",
+    "summary": "Bertanggung jawab mengimplementasikan desain antarmuka web modern yang responsif dan interaktif menggunakan Next.js, React, dan Tailwind CSS.",
     "highlights": [
-      "Berkolaborasi dengan UI/UX designer untuk menerjemahkan desain Figma ke aplikasi web yang responsif",
-      "Mengembangkan komponen modular dengan Next.js dan Tailwind CSS",
-      "Memastikan kompatibilitas lintas browser dan standar aksesibilitas web"
+      "Mengembangkan komponen antarmuka web modular yang responsif menggunakan Next.js dan Tailwind CSS",
+      "Menerjemahkan rancangan antarmuka ke implementasi kode dengan standar aksesibilitas dan performa tinggi",
+      "Memastikan integrasi RESTful API dan arsitektur alur data berjalan optimal di berbagai perangkat"
     ],
+    "image": null,
+    "imageAlt": "Pengalaman kerja PT Tenumba Sinergi Informatika",
     "monogram": "TSI"
   },
   {
-    "id": "core-initiative",
-    "role": "Frontend Developer",
-    "company": "Virtual Internship Core Initiative",
-    "type": "Intern",
-    "period": "May 2023 — Jun 2023",
-    "duration": "2 months",
-    "summary": "Mengembangkan dan meningkatkan fitur antarmuka web menggunakan React.js dan manajemen state Redux.",
+    "id": "goodboom-id",
+    "role": "Content Creator & Creative Visual",
+    "company": "Goodboom.id",
+    "type": "Work",
+    "period": "Jan 2025 — Present",
+    "duration": "Present",
+    "summary": "Bertanggung jawab atas strategi visual branding, konsep photoshoot katalog produk sandal dan sepatu, serta produksi konten promosi media sosial untuk Goodboom.id (sebelumnya boomboom.id).",
     "highlights": [
-      "Bekerja bersama tim developer untuk meningkatkan fitur web aplikasi dengan React.js",
-      "Mengimplementasikan state management menggunakan Redux dan Context API",
-      "Menangani debugging dan penyelesaian isu frontend untuk meningkatkan pengalaman pengguna"
+      "Merancang konsep photoshoot produk dan materi grafis promosi digital marketing",
+      "Memproduksi konten visual kreatif untuk meningkatkan brand awareness dan penjualan produk footwear",
+      "Mengelola materi kampanye promosi dan konten diskon digital untuk media sosial"
     ],
-    "monogram": "VICI"
+    "image": "/certificates/goodboom.jpg",
+    "imageAlt": "Koleksi karya konten kreator dan visual produk Goodboom.id",
+    "monogram": "GDBM"
   },
   {
-    "id": "rakamin-academy",
-    "role": "Frontend Developer",
-    "company": "Virtual Internship Rakamin Academy",
+    "id": "lpk-bandung-youth-entrepreneur",
+    "role": "Content Creator (Magang)",
+    "company": "LPK Bandung Youth Entrepreneur",
     "type": "Intern",
-    "period": "Mar 2023 — Apr 2023",
-    "duration": "2 months",
-    "summary": "Mengembangkan komponen antarmuka responsif dari nol sesuai spesifikasi desain serta melakukan optimasi performa web.",
-    "highlights": [
-      "Mengembangkan komponen UI responsif berdasarkan spesifikasi desain",
-      "Mengoptimasi performa web untuk mempercepat waktu muat halaman"
-    ],
-    "monogram": "VIRA"
-  },
-  {
-    "id": "diskominfo",
-    "role": "IT Support Intern",
-    "company": "Diskominfo",
-    "type": "Intern",
-    "period": "Jan 2021 — Mar 2021",
+    "period": "Feb 2026 — May 2026",
     "duration": "3 months",
-    "summary": "Membantu pemecahan masalah perangkat keras dan lunak serta konfigurasi jaringan lokal kantor.",
+    "summary": "Menjalani program magang sebagai content creator dalam penyediaan jasa pelatihan digital marketing bersertifikasi BNSP di bawah binaan Disnaker dan Kemnaker.",
     "highlights": [
-      "Melakukan troubleshooting perangkat keras dan perangkat lunak komputer kantor",
-      "Mengonfigurasi jaringan lokal dan memastikan konektivitas internet stabil",
-      "Membuat dokumentasi inventaris aset IT dan log bantuan teknis harian"
+      "Memproduksi konten promosi kreatif untuk program pelatihan digital marketing bersertifikasi BNSP",
+      "Berkontribusi dalam publikasi media sosial dan dokumentasi kegiatan pelatihan kerja resmi",
+      "Mendapatkan sertifikat magang resmi terdaftar VIN Kemnaker nomor 2504327308"
     ],
-    "monogram": "DISK"
+    "image": "/certificates/lpk-bye.png",
+    "imageAlt": "Sertifikat Magang Content Creator di LPK Bandung Youth Entrepreneur (BNSP)",
+    "monogram": "LPKB"
+  },
+  {
+    "id": "panitia-rakornas-2026",
+    "role": "Panitia Divisi Logistik",
+    "company": "RAKORNAS DPM PTMA Se-Indonesia",
+    "type": "Committee",
+    "period": "Jul 2026 — Aug 2026",
+    "duration": "2 months",
+    "summary": "Berperan sebagai panitia divisi logistik dalam perhelatan nasional Rapat Koordinasi Nasional (RAKORNAS) 2026 DPM Perguruan Tinggi Muhammadiyah 'Aisyiah se-Indonesia di Universitas Muhammadiyah Bandung.",
+    "highlights": [
+      "Mengelola pengadaan fasilitas, perlengkapan teknis, dan distribusi kebutuhan seluruh rangkaian sidang nasional",
+      "Berkoordinasi dengan tim delegasi mahasiswa dari berbagai perguruan tinggi seluruh Indonesia",
+      "Menerima sertifikat penghargaan atas kelancaran operasional dan logistik kegiatan RAKORNAS 2026"
+    ],
+    "image": "/certificates/rakornas.png",
+    "imageAlt": "Sertifikat Panitia RAKORNAS 2026 DPM PTMA Se-Indonesia",
+    "monogram": "RKNS"
+  },
+  {
+    "id": "hmif-um-bandung",
+    "role": "Anggota Divisi Media & Informasi",
+    "company": "HMIF Universitas Muhammadiyah Bandung",
+    "type": "Organization",
+    "period": "Oct 2024 — Oct 2025",
+    "duration": "1 year",
+    "summary": "Berperan aktif dalam divisi media untuk merancang aset visual, publikasi informasi kegiatan program studi, dan pengelolaan media resmi himpunan mahasiswa.",
+    "highlights": [
+      "Merancang identitas visual, poster kegiatan, dan informasi akademik resmi Teknik Informatika",
+      "Mengelola publikasi media sosial dan dokumentasi kegiatan mahasiswa",
+      "Dianugerahi Sertifikat Penghargaan atas dedikasi dan kontribusi aktif di HMIF UM Bandung"
+    ],
+    "image": "/certificates/hmif.jpg",
+    "imageAlt": "Sertifikat Penghargaan Anggota Media HMIF UM Bandung",
+    "monogram": "HMIF"
+  },
+  {
+    "id": "satrika-2024",
+    "role": "Panitia Divisi Media & Publikasi",
+    "company": "SATRIKA UM Bandung",
+    "type": "Committee",
+    "period": "Aug 2024 — Sep 2024",
+    "duration": "2 months",
+    "summary": "Menjadi bagian dari tim panitia divisi media yang bertugas merancang konsep visual, publikasi, dan siaran dokumentasi orientasi jurusan SATRIKA 24'.",
+    "highlights": [
+      "Membuat konten grafis sambutan dan pengenalan jurusan bagi mahasiswa baru Teknik Informatika",
+      "Mendokumentasikan seluruh rangkaian acara orientasi jurusan secara live dan kreatif",
+      "Menerima sertifikat penghargaan atas partisipasi dan kontribusi aktif kepanitiaan SATRIKA 24'"
+    ],
+    "image": "/certificates/satrika.jpg",
+    "imageAlt": "Sertifikat Panitia SATRIKA 24' HMIF UM Bandung",
+    "monogram": "STRK"
   }
 ]

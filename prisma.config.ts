@@ -1,0 +1,27 @@
+import { config } from "dotenv";
+import { defineConfig } from "prisma/config";
+
+config({ path: ".env.local", quiet: true });
+config({ path: ".env", quiet: true });
+
+const fallbackDatabaseUrl =
+  "postgresql://portfolio:portfolio@127.0.0.1:5432/portfolio";
+const configuredDatabaseUrl =
+  process.env.DIRECT_URL ?? process.env.DATABASE_URL ?? fallbackDatabaseUrl;
+
+function withCmsSchema(databaseUrl: string) {
+  if (/[?&]schema=/.test(databaseUrl)) return databaseUrl;
+  return `${databaseUrl}${databaseUrl.includes("?") ? "&" : "?"}schema=cms`;
+}
+
+export default defineConfig({
+  schema: "prisma/schema.prisma",
+  migrations: {
+    path: "prisma/migrations",
+  },
+  datasource: {
+    // Prisma generate/validate do not need a live database. The fallback keeps
+    // those commands usable before local Supabase credentials are configured.
+    url: withCmsSchema(configuredDatabaseUrl),
+  },
+});

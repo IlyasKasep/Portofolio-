@@ -1,0 +1,118 @@
+[
+  {
+    "id": "pesonamu",
+    "number": "01",
+    "name": "Pesonamu",
+    "role": "Web Developer",
+    "category": "fullstack",
+    "featured": true,
+    "summary": "Platform Sistem Informasi Pesonamu yang dibangun menggunakan framework CodeIgniter 4 untuk pengelolaan data dan administrasi pengguna.",
+    "highlights": [
+      "Pengembangan fitur dan arsitektur modul sistem berbasis CodeIgniter 4",
+      "Perancangan antarmuka responsif dan ramah pengguna",
+      "Integrasi basis data dan manajemen data terstruktur"
+    ],
+    "techStack": [
+      "CodeIgniter 4",
+      "PHP",
+      "Bootstrap",
+      "MySQL",
+      "JavaScript"
+    ],
+    "images": [
+      {
+        "src": "/projects/Pesonamu.png",
+        "alt": "Tampilan platform sistem informasi Pesonamu",
+        "label": "Pesonamu System Overview",
+        "description": "Antarmuka web sistem informasi Pesonamu"
+      }
+    ],
+    "link": null
+  },
+  {
+    "id": "raattajdid",
+    "number": "02",
+    "name": "RA At-Tajdid",
+    "role": "Frontend Developer",
+    "category": "frontend",
+    "featured": true,
+    "summary": "Website profil dan informasi untuk RA At-Tajdid yang dikembangkan secara responsif dan interaktif menggunakan React.js dan integrasi database Firebase.",
+    "highlights": [
+      "Pembuatan komponen antarmuka modern dan interaktif dengan React.js",
+      "Integrasi layanan backend dan database realtime Firebase",
+      "Optimalisasi tata letak responsif dan ramah pengguna di semua perangkat"
+    ],
+    "techStack": [
+      "React.js",
+      "Firebase",
+      "JavaScript",
+      "CSS"
+    ],
+    "images": [
+      {
+        "src": "/projects/Raattajdid.png",
+        "alt": "Tampilan website RA At-Tajdid",
+        "label": "RA At-Tajdid Interface",
+        "description": "Halaman antarmuka website RA At-Tajdid"
+      }
+    ],
+    "link": null
+  },
+  {
+    "id": "olikompresor",
+    "number": "03",
+    "name": "Olikompresor",
+    "role": "Frontend Developer",
+    "category": "frontend",
+    "featured": true,
+    "summary": "Platform web katalog dan manajemen produk Olikompresor dengan antarmuka dinamis dan sinkronisasi data Firebase.",
+    "highlights": [
+      "Penyusunan struktur halaman web dengan semantik HTML dan styling modern CSS",
+      "Logika interaktif dan manipulasi tampilan responsif menggunakan JavaScript",
+      "Integrasi penyimpanan dan pengelolaan data produk menggunakan Firebase"
+    ],
+    "techStack": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Firebase"
+    ],
+    "images": [
+      {
+        "src": "/projects/Olikompresor.png",
+        "alt": "Tampilan platform web Olikompresor",
+        "label": "Olikompresor Catalog Overview",
+        "description": "Antarmuka katalog produk platform Olikompresor"
+      }
+    ],
+    "link": null
+  },
+  {
+    "id": "retro-game",
+    "number": "04",
+    "name": "Retro Game",
+    "role": "Frontend Developer",
+    "category": "frontend",
+    "featured": true,
+    "summary": "Aplikasi game berbasis web interaktif dengan gaya grafis retro yang dibangun murni menggunakan vanilla HTML, CSS, dan JavaScript.",
+    "highlights": [
+      "Implementasi mekanika game interaktif dan game loop dengan JavaScript murni",
+      "Desain visual bertema retro arcade menggunakan animasi dan efek CSS",
+      "Penanganan kontrol dan responsivitas input pengguna yang mulus"
+    ],
+    "techStack": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "images": [
+      {
+        "src": "/projects/Retro_Game.png",
+        "alt": "Tampilan permainan Retro Game",
+        "label": "Retro Game Gameplay",
+        "description": "Tangkapan layar antarmuka permainan Retro Game"
+      }
+    ],
+    "link": null
+  }
+]

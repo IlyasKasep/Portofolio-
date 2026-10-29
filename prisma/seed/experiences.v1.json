@@ -1,0 +1,61 @@
+[
+  {
+    "id": "tenumba-sinergi-informatika",
+    "role": "Frontend Developer",
+    "company": "PT Tenumba Sinergi Informatika",
+    "type": "Work",
+    "period": "Aug 2023 — Present",
+    "duration": "Present",
+    "summary": "Bertanggung jawab mengimplementasikan desain Figma ke dalam antarmuka web modern yang responsif dan interaktif menggunakan Next.js dan Tailwind CSS.",
+    "highlights": [
+      "Berkolaborasi dengan UI/UX designer untuk menerjemahkan desain Figma ke aplikasi web yang responsif",
+      "Mengembangkan komponen modular dengan Next.js dan Tailwind CSS",
+      "Memastikan kompatibilitas lintas browser dan standar aksesibilitas web"
+    ],
+    "monogram": "TSI"
+  },
+  {
+    "id": "core-initiative",
+    "role": "Frontend Developer",
+    "company": "Virtual Internship Core Initiative",
+    "type": "Intern",
+    "period": "May 2023 — Jun 2023",
+    "duration": "2 months",
+    "summary": "Mengembangkan dan meningkatkan fitur antarmuka web menggunakan React.js dan manajemen state Redux.",
+    "highlights": [
+      "Bekerja bersama tim developer untuk meningkatkan fitur web aplikasi dengan React.js",
+      "Mengimplementasikan state management menggunakan Redux dan Context API",
+      "Menangani debugging dan penyelesaian isu frontend untuk meningkatkan pengalaman pengguna"
+    ],
+    "monogram": "VICI"
+  },
+  {
+    "id": "rakamin-academy",
+    "role": "Frontend Developer",
+    "company": "Virtual Internship Rakamin Academy",
+    "type": "Intern",
+    "period": "Mar 2023 — Apr 2023",
+    "duration": "2 months",
+    "summary": "Mengembangkan komponen antarmuka responsif dari nol sesuai spesifikasi desain serta melakukan optimasi performa web.",
+    "highlights": [
+      "Mengembangkan komponen UI responsif berdasarkan spesifikasi desain",
+      "Mengoptimasi performa web untuk mempercepat waktu muat halaman"
+    ],
+    "monogram": "VIRA"
+  },
+  {
+    "id": "diskominfo",
+    "role": "IT Support Intern",
+    "company": "Diskominfo",
+    "type": "Intern",
+    "period": "Jan 2021 — Mar 2021",
+    "duration": "3 months",
+    "summary": "Membantu pemecahan masalah perangkat keras dan lunak serta konfigurasi jaringan lokal kantor.",
+    "highlights": [
+      "Melakukan troubleshooting perangkat keras dan perangkat lunak komputer kantor",
+      "Mengonfigurasi jaringan lokal dan memastikan konektivitas internet stabil",
+      "Membuat dokumentasi inventaris aset IT dan log bantuan teknis harian"
+    ],
+    "monogram": "DISK"
+  }
+]

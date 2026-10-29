@@ -6,11 +6,13 @@
     "role": "Web Developer",
     "category": "fullstack",
     "featured": true,
-    "summary": "Platform Sistem Informasi Pesonamu yang dibangun menggunakan framework CodeIgniter 4 untuk pengelolaan data dan administrasi pengguna.",
+    "summary": "Platform Sistem Informasi Pesonamu untuk mendigitalkan dan mengotomatiskan alur pendataan mahasiswa baru serta rekapitulasi LPJ yang sebelumnya manual dan membebani tim Dataris.",
+    "impactSummary": "Menggantikan sistem pendataan manual yang rentan selisih menjadi platform digital terpusat, mempermudah tim Dataris dalam pelaporan LPJ serta mempercepat proses verifikasi data mahasiswa baru secara signifikan.",
     "highlights": [
-      "Pengembangan fitur dan arsitektur modul sistem berbasis CodeIgniter 4",
-      "Perancangan antarmuka responsif dan ramah pengguna",
-      "Integrasi basis data dan manajemen data terstruktur"
+      "Mengotomatiskan alur pendataan mahasiswa baru dan integrasi data administrasi terpusat",
+      "Menyederhanakan pembuatan Laporan Pertanggungjawaban (LPJ) tim Dataris melalui rekapitulasi data otomatis",
+      "Arsitektur backend modular berbasis CodeIgniter 4 dan database terstruktur MySQL",
+      "Antarmuka web yang intuitif dan responsif untuk kemudahan penginputan data massal"
     ],
     "techStack": [
       "CodeIgniter 4",
@@ -36,11 +38,13 @@
     "role": "Frontend Developer",
     "category": "frontend",
     "featured": true,
-    "summary": "Website profil dan informasi untuk RA At-Tajdid yang dikembangkan secara responsif dan interaktif menggunakan React.js dan integrasi database Firebase.",
+    "summary": "Website profil resmi dan portal informasi interaktif RA At-Tajdid untuk memperkenalkan program kurikulum, transparansi kegiatan belajar, fasilitas, dan lokasi sekolah kepada calon wali murid.",
+    "impactSummary": "Meningkatkan transparansi dan kepercayaan calon orang tua murid melalui sajian profil sekolah digital interaktif, galeri dokumentasi kegiatan siswa, serta kemudahan akses informasi pendaftaran sekolah secara online.",
     "highlights": [
-      "Pembuatan komponen antarmuka modern dan interaktif dengan React.js",
-      "Integrasi layanan backend dan database realtime Firebase",
-      "Optimalisasi tata letak responsif dan ramah pengguna di semua perangkat"
+      "Perancangan antarmuka profil sekolah yang ramah keluarga dan modern menggunakan React.js",
+      "Integrasi penyimpanan data dinamis dan galeri kegiatan realtime berbasis Firebase",
+      "Penyajian informasi kurikulum, fasilitas, dan peta interaktif lokasi sekolah",
+      "Optimalisasi layout responsif agar nyaman diakses langsung dari smartphone orang tua"
     ],
     "techStack": [
       "React.js",
@@ -65,11 +69,13 @@
     "role": "Frontend Developer",
     "category": "frontend",
     "featured": true,
-    "summary": "Platform web katalog dan manajemen produk Olikompresor dengan antarmuka dinamis dan sinkronisasi data Firebase.",
+    "summary": "Platform web katalog produk dan digital presence untuk toko oli & sparepart kompresor industri, mentransformasikan toko fisik ke ranah digital setelah solusi WordPress sebelumnya kurang optimal.",
+    "impactSummary": "Memodernisasi sistem katalog produk dengan performa jauh lebih cepat dibandingkan solusi WordPress sebelumnya, meningkatkan visibilitas toko di pencarian digital dan mempermudah klien menemukan spesifikasi pelumas kompresor yang tepat.",
     "highlights": [
-      "Penyusunan struktur halaman web dengan semantik HTML dan styling modern CSS",
-      "Logika interaktif dan manipulasi tampilan responsif menggunakan JavaScript",
-      "Integrasi penyimpanan dan pengelolaan data produk menggunakan Firebase"
+      "Membangun ulang arsitektur web katalog dari nol dengan performa loading yang sangat cepat",
+      "Menyusun filter dan kategorisasi spesifikasi teknis produk oli kompresor industri yang intuitif",
+      "Integrasi manajemen data produk dinamis berbasis Firebase",
+      "Kemudahan kontak dan pemesanan langsung dari halaman katalog produk"
     ],
     "techStack": [
       "HTML",
@@ -90,15 +96,17 @@
   {
     "id": "retro-game",
     "number": "04",
-    "name": "Retro Game",
+    "name": "Retro Game (Happy Birthday)",
     "role": "Frontend Developer",
     "category": "frontend",
     "featured": true,
-    "summary": "Aplikasi game berbasis web interaktif dengan gaya grafis retro yang dibangun murni menggunakan vanilla HTML, CSS, dan JavaScript.",
+    "summary": "Game web arcade retro interaktif bertema petualangan 8-bit yang dibuat khusus dari nol sebagai hadiah ulang tahun personal dan bukti eksplorasi logika interaksi frontend murni.",
+    "impactSummary": "Membuktikan kemahiran rekayasa frontend interaktif tingkat tinggi dengan merancang seluruh game loop, sistem deteksi benturan (collision), dan animasi piksel secara murni (vanilla) tanpa bantuan framework atau game engine eksternal.",
     "highlights": [
-      "Implementasi mekanika game interaktif dan game loop dengan JavaScript murni",
-      "Desain visual bertema retro arcade menggunakan animasi dan efek CSS",
-      "Penanganan kontrol dan responsivitas input pengguna yang mulus"
+      "Pengembangan game loop, mekanika fisika pergerakan, dan sistem score dengan JavaScript murni",
+      "Desain visual bertema retro arcade 8-bit dengan animasi CSS canvas yang halus",
+      "Penyusunan alur cerita personal interaktif penuh kejutan dan responsivitas input pengguna",
+      "Optimasi performa render hingga 60 FPS di berbagai ukuran layar dan browser"
     ],
     "techStack": [
       "HTML",

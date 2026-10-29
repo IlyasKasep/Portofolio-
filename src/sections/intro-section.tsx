@@ -184,6 +184,45 @@ export default function IntroSection({ skills }: { skills: string[] }) {
             ))}
         </div>
       </div>
+
+      {/* Profile Context Cards */}
+      <div className="relative z-10 mt-4 grid w-full max-w-5xl grid-cols-1 gap-6 sm:grid-cols-3 sm:gap-8 rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8 backdrop-blur-xs">
+        <div className="flex flex-col gap-1.5 sm:border-r sm:border-white/10 sm:pr-6">
+          <span className="font-mono text-[0.62rem] uppercase tracking-[0.25em] text-emerald-400">
+            Pendidikan
+          </span>
+          <p className="font-sans text-base font-semibold text-white">
+            Teknik Informatika
+          </p>
+          <p className="text-xs text-white/60 leading-relaxed">
+            Mahasiswa tingkat akhir (Semester 7) di Universitas Muhammadiyah Bandung dengan antusiasme tinggi pada rekayasa web modern.
+          </p>
+        </div>
+
+        <div className="flex flex-col gap-1.5 sm:border-r sm:border-white/10 sm:pr-6">
+          <span className="font-mono text-[0.62rem] uppercase tracking-[0.25em] text-emerald-400">
+            Asal & Domisili
+          </span>
+          <p className="font-sans text-base font-semibold text-white">
+            Bandung, Indonesia
+          </p>
+          <p className="text-xs text-white/60 leading-relaxed">
+            Lahir dan berbasis di Bandung. Terbuka untuk peluang kerja full-time, kontrak, maupun freelance secara onsite maupun remote.
+          </p>
+        </div>
+
+        <div className="flex flex-col gap-1.5">
+          <span className="font-mono text-[0.62rem] uppercase tracking-[0.25em] text-emerald-400">
+            Fokus & Passion
+          </span>
+          <p className="font-sans text-base font-semibold text-white">
+            Web Design & Systems
+          </p>
+          <p className="text-xs text-white/60 leading-relaxed">
+            Sangat gemar mengulik website design, interaksi visual yang halus, serta merancang alur logika sistem database yang andal.
+          </p>
+        </div>
+      </div>
     </section>
   );
 }

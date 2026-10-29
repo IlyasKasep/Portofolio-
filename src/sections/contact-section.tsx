@@ -178,29 +178,46 @@ export default function ContactSection() {
           </h2>
 
           <div ref={infoRef} className="mt-4 flex flex-col items-center gap-10">
-            <a
-              href="mailto:muhammadilyassatriafauzan@gmail.com"
-              className="group relative inline-flex items-center gap-2 font-sans text-xl font-light text-white/70 transition-colors duration-300 hover:text-white sm:text-2xl lg:text-3xl"
-            >
-              <span>muhammadilyassatriafauzan@gmail.com</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-5 w-5 shrink-0 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
-                aria-hidden="true"
+            <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
+              <a
+                href="mailto:muhammadilyassatriafauzan@gmail.com"
+                className="group relative inline-flex items-center gap-2 font-sans text-lg font-light text-white/70 transition-colors duration-300 hover:text-white sm:text-xl lg:text-2xl"
               >
-                <path d="M7 17 17 7" />
-                <path d="M7 7h10v10" />
-              </svg>
-              <span className="absolute bottom-0 left-0 h-px w-0 bg-white transition-all duration-300 group-hover:w-full" />
-            </a>
+                <span>muhammadilyassatriafauzan@gmail.com</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+                  aria-hidden="true"
+                >
+                  <path d="M7 17 17 7" />
+                  <path d="M7 7h10v10" />
+                </svg>
+                <span className="absolute bottom-0 left-0 h-px w-0 bg-white transition-all duration-300 group-hover:w-full" />
+              </a>
+
+              <span className="hidden sm:inline-block text-white/20 select-none">·</span>
+
+              <a
+                href="https://wa.me/6285722645928?text=Halo%20Ilyas,%20saya%20tertarik%20untuk%20berdiskusi%20dengan%20Anda."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative inline-flex items-center gap-2.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 font-mono text-xs uppercase tracking-wider text-emerald-300 transition-all duration-300 hover:border-emerald-400 hover:bg-emerald-500/20 hover:text-emerald-200"
+              >
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
+                </span>
+                <span>WhatsApp: +62 857-2264-5928</span>
+              </a>
+            </div>
 
             <div className="flex flex-wrap justify-center gap-8 font-mono text-[11px] uppercase tracking-wider text-white/45">
               <a
@@ -210,6 +227,14 @@ export default function ContactSection() {
                 className="hover:text-white transition-colors duration-300"
               >
                 Resume
+              </a>
+              <a
+                href="https://wa.me/6285722645928"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white transition-colors duration-300 text-emerald-400/80"
+              >
+                WhatsApp
               </a>
               <a
                 href="https://github.com/IlyasKasep"

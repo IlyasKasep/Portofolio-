@@ -92,6 +92,7 @@ const navigationItems = [
 
 const socialItems = [
   { label: "Resume", link: "/resume" },
+  { label: "WhatsApp", link: siteConfig.social.whatsapp },
   { label: "GitHub", link: siteConfig.social.github },
   { label: "LinkedIn", link: siteConfig.social.linkedin },
   { label: "Instagram", link: siteConfig.social.instagram },

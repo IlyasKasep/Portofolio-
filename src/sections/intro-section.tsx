@@ -111,13 +111,13 @@ export default function IntroSection({ skills }: { skills: string[] }) {
             lineEls,
             {
               opacity: 0,
-              y: 28,
+              y: 24,
             },
             {
               opacity: 1,
               y: 0,
-              duration: 0.5,
-              stagger: 0.07,
+              duration: 0.38,
+              stagger: 0.045,
               ease: "power3.out",
               scrollTrigger: {
                 trigger: text,
@@ -148,21 +148,21 @@ export default function IntroSection({ skills }: { skills: string[] }) {
             );
           }
 
-          // Elegant fade-in reveal for the personal story section
+          // Elegant fade-in reveal for the personal story section (tuned faster & crisper)
           if (storyRef.current) {
             const storyItems = storyRef.current.querySelectorAll(".story-reveal");
             gsap.fromTo(
               storyItems,
               {
                 opacity: 0,
-                y: 22,
+                y: 18,
               },
               {
                 opacity: 1,
                 y: 0,
-                duration: 0.65,
-                stagger: 0.12,
-                ease: "power2.out",
+                duration: 0.45,
+                stagger: 0.08,
+                ease: "power3.out",
                 scrollTrigger: {
                   trigger: storyRef.current,
                   start: "top 88%",

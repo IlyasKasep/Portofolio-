@@ -77,32 +77,32 @@ export default function ExperienceSection({
           if (isMobileTablet) {
             gsap.fromTo(
               header,
-              { opacity: 0, y: 18 },
+              { opacity: 0, y: 16 },
               {
                 opacity: 1,
                 y: 0,
-                duration: 0.65,
-                ease: "power2.out",
+                duration: 0.45,
+                ease: "power3.out",
                 scrollTrigger: {
                   trigger: section,
-                  start: "top 72%",
+                  start: "top 78%",
                 },
               },
             );
 
             gsap.fromTo(
               mobileCards,
-              { opacity: 0, y: 70, scale: 0.96 },
+              { opacity: 0, y: 50, scale: 0.97 },
               {
                 opacity: 1,
                 y: 0,
                 scale: 1,
-                stagger: 0.12,
-                duration: 0.75,
+                stagger: 0.08,
+                duration: 0.5,
                 ease: "power3.out",
                 scrollTrigger: {
                   trigger: mobileSwiper,
-                  start: "top 78%",
+                  start: "top 82%",
                 },
               },
             );

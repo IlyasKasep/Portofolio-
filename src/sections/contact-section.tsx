@@ -96,23 +96,23 @@ export default function ContactSection() {
               {
                 yPercent: 0,
                 opacity: 1,
-                stagger: 0.15,
-                duration: 1.2,
+                stagger: 0.08,
+                duration: 0.75,
                 ease: "power2.out",
               },
               0,
             )
             .fromTo(
               info,
-              { y: 60, opacity: 0 },
-              { y: 0, opacity: 1, ease: "power1.out", duration: 1 },
-              0.4,
+              { y: 40, opacity: 0 },
+              { y: 0, opacity: 1, ease: "power2.out", duration: 0.65 },
+              0.25,
             )
             .fromTo(
               bottom,
-              { y: 40, opacity: 0 },
-              { y: 0, opacity: 1, ease: "power1.out", duration: 1 },
-              0.65,
+              { y: 30, opacity: 0 },
+              { y: 0, opacity: 1, ease: "power2.out", duration: 0.65 },
+              0.4,
             );
         },
       );

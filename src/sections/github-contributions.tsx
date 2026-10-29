@@ -241,10 +241,10 @@ export default function GithubContributions({
               stagger: {
                 grid: [7, 53],
                 from: "start",
-                amount: 1.5,
+                amount: 0.9,
               },
-              duration: 0.6,
-              ease: "back.out(1.5)",
+              duration: 0.45,
+              ease: "back.out(1.4)",
               scrollTrigger: {
                 trigger: ".contrib-grid-wrapper",
                 start: "top 85%",
@@ -257,7 +257,7 @@ export default function GithubContributions({
             const obj = { val: 0 };
             gsap.to(obj, {
               val: finalValue,
-              duration: 2,
+              duration: 1.2,
               ease: "power2.out",
               scrollTrigger: {
                 trigger: element,

@@ -46,26 +46,26 @@ export default function HeroSection() {
             timeline
               .from(".hero-socials a", {
                 opacity: 0,
-                y: -20,
-                stagger: 0.1,
-                duration: 0.8,
+                y: -14,
+                stagger: 0.06,
+                duration: 0.5,
               })
-              .from(".location", { opacity: 0, x: -200 }, "-=0.6")
-              .from(".greetings", { opacity: 0, x: 200, duration: 2 }, "-=0.8")
+              .from(".location", { opacity: 0, x: -100, duration: 0.5 }, "-=0.4")
+              .from(".greetings", { opacity: 0, x: 100, duration: 0.95 }, "-=0.45")
               .from(
                 ".profile-card",
-                { scale: 0.85, opacity: 0, duration: 1, rotate: 4 },
-                "-=1.7",
+                { scale: 0.9, opacity: 0, duration: 0.75, rotate: 3 },
+                "-=0.7",
               )
               .from(
                 ".hero-resume",
-                { opacity: 0, y: 10, duration: 0.6 },
-                "-=1.1",
+                { opacity: 0, y: 8, duration: 0.45 },
+                "-=0.45",
               )
               .from(
                 ".hero-scroll-indicator",
-                { opacity: 0, y: 15, duration: 1 },
-                "-=1.3",
+                { opacity: 0, y: 10, duration: 0.55 },
+                "-=0.35",
               );
 
             return;
@@ -74,16 +74,16 @@ export default function HeroSection() {
           timeline
             .from(".hero-socials a", {
               opacity: 0,
-              stagger: 0.08,
-              duration: 0.45,
+              stagger: 0.05,
+              duration: 0.35,
             })
-            .from(".location", { opacity: 0, duration: 0.4 }, "-=0.25")
-            .from(".greetings", { opacity: 0, duration: 0.55 }, "-=0.2")
-            .from(".hero-resume", { opacity: 0, duration: 0.35 }, "-=0.1")
+            .from(".location", { opacity: 0, duration: 0.32 }, "-=0.2")
+            .from(".greetings", { opacity: 0, duration: 0.42 }, "-=0.18")
+            .from(".hero-resume", { opacity: 0, duration: 0.28 }, "-=0.1")
             .from(
               ".hero-scroll-indicator",
-              { opacity: 0, duration: 0.35 },
-              "-=0.15",
+              { opacity: 0, duration: 0.28 },
+              "-=0.12",
             );
         },
       );

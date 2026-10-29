@@ -212,21 +212,6 @@ export default function ContactSection() {
                 </svg>
                 <span className="absolute bottom-0 left-0 h-px w-0 bg-white transition-all duration-300 group-hover:w-full" />
               </a>
-
-              <span className="hidden sm:inline-block text-white/20 select-none">·</span>
-
-              <a
-                href="https://wa.me/6285722645928?text=Halo%20Ilyas,%20saya%20tertarik%20untuk%20berdiskusi%20dengan%20Anda."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative inline-flex items-center gap-2.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 font-mono text-xs uppercase tracking-wider text-emerald-300 transition-all duration-300 hover:border-emerald-400 hover:bg-emerald-500/20 hover:text-emerald-200"
-              >
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
-                </span>
-                <span>WhatsApp: +62 857-2264-5928</span>
-              </a>
             </div>
 
             <div className="flex flex-wrap justify-center gap-8 font-mono text-[11px] uppercase tracking-wider text-white/45">

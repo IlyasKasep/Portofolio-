@@ -294,29 +294,20 @@ export default function IntroSection({ skills }: { skills: string[] }) {
         ref={storyRef}
         className="relative z-10 w-full max-w-5xl"
       >
-        {/* Subtle Editorial Top Rule with Section Meta */}
-        <div className="story-reveal flex items-center justify-between border-b border-white/10 pb-4 font-mono text-[0.65rem] tracking-[0.22em] uppercase text-white/45">
-          <div className="flex items-center gap-2.5">
-            <span className="size-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
-            <span>01 // CERITA & LATAR BELAKANG</span>
-          </div>
-          <span className="text-white/30 hidden sm:inline">BANDUNG, ID · 2021—PRESENT</span>
-        </div>
-
         {/* Narrative Prose */}
-        <div className="story-reveal py-8 sm:py-10">
+        <div className="story-reveal pb-10">
           <p className="font-sans text-base sm:text-lg md:text-xl font-light leading-relaxed tracking-[-0.015em] text-white/80">
             Mahasiswa tingkat akhir <span className="font-medium text-white">Teknik Informatika</span> di Universitas Muhammadiyah Bandung (Semester 7) dengan antusiasme tinggi pada rekayasa web modern dan efisiensi kode. Berbasis di Bandung, saya memadukan kepekaan visual desain antarmuka dengan kedalaman logika sistem—membangun produk digital yang interaktif, responsif, dan terstruktur. Terbuka penuh untuk peluang kerja full-time, kontrak, maupun freelance baik secara <span className="font-medium text-white">onsite maupun remote</span>.
           </p>
         </div>
 
-        {/* 3 Editorial Pillars (No AI-slop boxes, pure clean typography with hairline dividers) */}
+        {/* 3 Editorial Pillars - Clean, minimal typography without numbering */}
         <div className="story-reveal grid grid-cols-1 divide-y divide-white/10 border-t border-white/10 pt-2 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
           {/* Pillar 1: Pendidikan */}
           <div className="py-6 sm:py-4 sm:pr-8 sm:first:pl-0">
-            <div className="flex items-center justify-between font-mono text-[0.6rem] tracking-[0.2em] uppercase text-white/40">
-              <span className="text-sky-400/90 font-medium">01 / PENDIDIKAN</span>
-              <span className="text-white/30">SEM. 7 · 2021—2025</span>
+            <div className="flex items-center justify-between text-xs tracking-wider uppercase text-white/40">
+              <span className="font-medium text-white/70">Pendidikan</span>
+              <span className="text-white/30 text-[0.7rem]">Sem. 7 · 2021—2025</span>
             </div>
             <h3 className="mt-3 font-sans text-base sm:text-lg font-bold tracking-tight text-white">
               Teknik Informatika
@@ -331,9 +322,9 @@ export default function IntroSection({ skills }: { skills: string[] }) {
 
           {/* Pillar 2: Asal & Domisili */}
           <div className="py-6 sm:py-4 sm:px-8">
-            <div className="flex items-center justify-between font-mono text-[0.6rem] tracking-[0.2em] uppercase text-white/40">
-              <span className="text-emerald-400/90 font-medium">02 / ASAL & DOMISILI</span>
-              <span className="text-white/30">ONSITE · REMOTE</span>
+            <div className="flex items-center justify-between text-xs tracking-wider uppercase text-white/40">
+              <span className="font-medium text-white/70">Asal & Domisili</span>
+              <span className="text-white/30 text-[0.7rem]">Onsite · Remote</span>
             </div>
             <h3 className="mt-3 font-sans text-base sm:text-lg font-bold tracking-tight text-white">
               Bandung, Indonesia
@@ -348,9 +339,9 @@ export default function IntroSection({ skills }: { skills: string[] }) {
 
           {/* Pillar 3: Fokus & Passion */}
           <div className="py-6 sm:py-4 sm:pl-8 sm:last:pr-0">
-            <div className="flex items-center justify-between font-mono text-[0.6rem] tracking-[0.2em] uppercase text-white/40">
-              <span className="text-amber-400/90 font-medium">03 / FOKUS & PASSION</span>
-              <span className="text-white/30">UI & ARCHITECTURE</span>
+            <div className="flex items-center justify-between text-xs tracking-wider uppercase text-white/40">
+              <span className="font-medium text-white/70">Fokus & Passion</span>
+              <span className="text-white/30 text-[0.7rem]">UI & Architecture</span>
             </div>
             <h3 className="mt-3 font-sans text-base sm:text-lg font-bold tracking-tight text-white">
               Web Design & Systems

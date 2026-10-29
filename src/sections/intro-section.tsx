@@ -78,6 +78,7 @@ export default function IntroSection({ skills }: { skills: string[] }) {
   const textRef = useRef<HTMLParagraphElement | null>(null);
   const shapeRef = useRef<HTMLDivElement | null>(null);
   const marqueeRef = useRef<HTMLDivElement | null>(null);
+  const storyRef = useRef<HTMLDivElement | null>(null);
 
   useGSAP(
     () => {
@@ -98,6 +99,10 @@ export default function IntroSection({ skills }: { skills: string[] }) {
 
           if (reduceMotion) {
             gsap.set(lineEls, { opacity: 1, y: 0, clearProps: "all" });
+            if (storyRef.current) {
+              const storyItems = storyRef.current.querySelectorAll(".story-reveal");
+              gsap.set(storyItems, { opacity: 1, y: 0, clearProps: "all" });
+            }
             return;
           }
 
@@ -142,6 +147,30 @@ export default function IntroSection({ skills }: { skills: string[] }) {
               },
             );
           }
+
+          // Elegant fade-in reveal for the personal story section
+          if (storyRef.current) {
+            const storyItems = storyRef.current.querySelectorAll(".story-reveal");
+            gsap.fromTo(
+              storyItems,
+              {
+                opacity: 0,
+                y: 22,
+              },
+              {
+                opacity: 1,
+                y: 0,
+                duration: 0.65,
+                stagger: 0.12,
+                ease: "power2.out",
+                scrollTrigger: {
+                  trigger: storyRef.current,
+                  start: "top 88%",
+                  toggleActions: "play none none reverse",
+                },
+              },
+            );
+          }
         },
       );
 
@@ -155,7 +184,7 @@ export default function IntroSection({ skills }: { skills: string[] }) {
       id="about"
       ref={sectionRef}
       aria-labelledby="about-heading"
-      className="relative flex h-fit flex-col items-center justify-center gap-20 overflow-hidden bg-subtle px-6 pb-32 pt-20"
+      className="relative flex h-fit flex-col items-center justify-center gap-16 overflow-hidden bg-subtle px-6 pb-32 pt-20 sm:gap-20"
     >
       <h2 id="about-heading" className="sr-only">
         Tentang Muhammad Ilyas Satria Fauzan, Web Developer
@@ -214,7 +243,7 @@ export default function IntroSection({ skills }: { skills: string[] }) {
       {/* Infinite Skills Marquee */}
       <div
         ref={marqueeRef}
-        className="relative z-10 mt-8 w-full max-w-5xl overflow-hidden border-y border-white/10 py-6"
+        className="relative z-10 w-full max-w-5xl overflow-hidden border-y border-white/10 py-6"
         style={{
           maskImage:
             "linear-gradient(to right, transparent, white 20%, white 80%, transparent)",
@@ -257,6 +286,82 @@ export default function IntroSection({ skills }: { skills: string[] }) {
                 <span className="text-white/20 select-none">✦</span>
               </div>
             ))}
+        </div>
+      </div>
+
+      {/* Elegant Narrative Story & Profile Background */}
+      <div
+        ref={storyRef}
+        className="relative z-10 w-full max-w-5xl"
+      >
+        {/* Subtle Editorial Top Rule with Section Meta */}
+        <div className="story-reveal flex items-center justify-between border-b border-white/10 pb-4 font-mono text-[0.65rem] tracking-[0.22em] uppercase text-white/45">
+          <div className="flex items-center gap-2.5">
+            <span className="size-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
+            <span>01 // CERITA & LATAR BELAKANG</span>
+          </div>
+          <span className="text-white/30 hidden sm:inline">BANDUNG, ID · 2021—PRESENT</span>
+        </div>
+
+        {/* Narrative Prose */}
+        <div className="story-reveal py-8 sm:py-10">
+          <p className="font-sans text-base sm:text-lg md:text-xl font-light leading-relaxed tracking-[-0.015em] text-white/80">
+            Mahasiswa tingkat akhir <span className="font-medium text-white">Teknik Informatika</span> di Universitas Muhammadiyah Bandung (Semester 7) dengan antusiasme tinggi pada rekayasa web modern dan efisiensi kode. Berbasis di Bandung, saya memadukan kepekaan visual desain antarmuka dengan kedalaman logika sistem—membangun produk digital yang interaktif, responsif, dan terstruktur. Terbuka penuh untuk peluang kerja full-time, kontrak, maupun freelance baik secara <span className="font-medium text-white">onsite maupun remote</span>.
+          </p>
+        </div>
+
+        {/* 3 Editorial Pillars (No AI-slop boxes, pure clean typography with hairline dividers) */}
+        <div className="story-reveal grid grid-cols-1 divide-y divide-white/10 border-t border-white/10 pt-2 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+          {/* Pillar 1: Pendidikan */}
+          <div className="py-6 sm:py-4 sm:pr-8 sm:first:pl-0">
+            <div className="flex items-center justify-between font-mono text-[0.6rem] tracking-[0.2em] uppercase text-white/40">
+              <span className="text-sky-400/90 font-medium">01 / PENDIDIKAN</span>
+              <span className="text-white/30">SEM. 7 · 2021—2025</span>
+            </div>
+            <h3 className="mt-3 font-sans text-base sm:text-lg font-bold tracking-tight text-white">
+              Teknik Informatika
+            </h3>
+            <p className="mt-1 font-mono text-[0.64rem] uppercase tracking-wider text-white/45">
+              Universitas Muhammadiyah Bandung
+            </p>
+            <p className="mt-3 text-xs sm:text-[0.82rem] leading-relaxed text-white/60">
+              Fokus mendalam pada rekayasa web modern, performa kode, algoritma, serta arsitektur data sistem.
+            </p>
+          </div>
+
+          {/* Pillar 2: Asal & Domisili */}
+          <div className="py-6 sm:py-4 sm:px-8">
+            <div className="flex items-center justify-between font-mono text-[0.6rem] tracking-[0.2em] uppercase text-white/40">
+              <span className="text-emerald-400/90 font-medium">02 / ASAL & DOMISILI</span>
+              <span className="text-white/30">ONSITE · REMOTE</span>
+            </div>
+            <h3 className="mt-3 font-sans text-base sm:text-lg font-bold tracking-tight text-white">
+              Bandung, Indonesia
+            </h3>
+            <p className="mt-1 font-mono text-[0.64rem] uppercase tracking-wider text-white/45">
+              West Java · UTC+7
+            </p>
+            <p className="mt-3 text-xs sm:text-[0.82rem] leading-relaxed text-white/60">
+              Lahir dan berbasis di Bandung. Terbuka penuh untuk kolaborasi profesional full-time, kontrak, maupun freelance.
+            </p>
+          </div>
+
+          {/* Pillar 3: Fokus & Passion */}
+          <div className="py-6 sm:py-4 sm:pl-8 sm:last:pr-0">
+            <div className="flex items-center justify-between font-mono text-[0.6rem] tracking-[0.2em] uppercase text-white/40">
+              <span className="text-amber-400/90 font-medium">03 / FOKUS & PASSION</span>
+              <span className="text-white/30">UI & ARCHITECTURE</span>
+            </div>
+            <h3 className="mt-3 font-sans text-base sm:text-lg font-bold tracking-tight text-white">
+              Web Design & Systems
+            </h3>
+            <p className="mt-1 font-mono text-[0.64rem] uppercase tracking-wider text-white/45">
+              Frontend & Fullstack Logic
+            </p>
+            <p className="mt-3 text-xs sm:text-[0.82rem] leading-relaxed text-white/60">
+              Sangat gemar mengulik website design, interaksi visual yang halus, serta merancang arsitektur sistem database yang andal.
+            </p>
+          </div>
         </div>
       </div>
     </section>

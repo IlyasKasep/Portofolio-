@@ -214,7 +214,7 @@ export default function HeroSection() {
           Hi, I’m <span className="italic">Ilyas.</span>
         </h1>
         <TextType
-          text={["Front End Developer"]}
+          text={["Web Developer"]}
           typingSpeed={75}
           pauseDuration={1500}
           initialDelay={5}
@@ -223,7 +223,7 @@ export default function HeroSection() {
           deletingSpeed={50}
           cursorBlinkDuration={0.5}
           loop={false}
-          aria-label="Front End Developer"
+          aria-label="Web Developer"
           className="role mt-1 block min-h-[2rem] min-w-[18ch] whitespace-nowrap! text-xl font-thin! leading-tight tracking-[0.06em]! sm:mt-2 sm:min-h-[3.5rem] sm:text-4xl lg:mt-3 lg:min-h-[3.75rem] lg:text-5xl"
         />
 

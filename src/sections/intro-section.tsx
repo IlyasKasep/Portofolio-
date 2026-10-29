@@ -99,7 +99,7 @@ export default function IntroSection({ skills }: { skills: string[] }) {
       className="relative flex h-fit flex-col items-center justify-center gap-20 bg-subtle px-6 pb-32 pt-20"
     >
       <h2 id="about-heading" className="sr-only">
-        Tentang Muhammad Ilyas Satria Fauzan, Front End Developer
+        Tentang Muhammad Ilyas Satria Fauzan, Web Developer
       </h2>
 
       <div

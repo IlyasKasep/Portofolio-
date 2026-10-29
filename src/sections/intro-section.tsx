@@ -4,6 +4,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRef } from "react";
+import { cn } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -73,6 +74,48 @@ function getSkillColor(skill: string) {
   return "text-indigo-300 hover:text-indigo-200";
 }
 
+const contextCards = [
+  {
+    index: "01",
+    category: "Pendidikan",
+    code: "INF · 2021",
+    dotColor: "bg-sky-400 shadow-[0_0_8px_rgba(56,189,248,0.8)]",
+    title: "Teknik Informatika",
+    subtitle: "Universitas Muhammadiyah Bandung",
+    description:
+      "Mahasiswa tingkat akhir (Semester 7) dengan antusiasme tinggi pada rekayasa web modern, performa kode, serta arsitektur data sistem.",
+    badge: "Sem. 7 · 2021—2025",
+    accentGlow: "from-sky-500/15 via-cyan-500/10 to-transparent",
+    borderColor: "hover:border-sky-500/40",
+  },
+  {
+    index: "02",
+    category: "Asal & Domisili",
+    code: "BDO · 6.9°S",
+    dotColor: "bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]",
+    title: "Bandung, Indonesia",
+    subtitle: "West Java · UTC+7",
+    description:
+      "Lahir dan berbasis di Bandung. Terbuka penuh untuk peluang kerja full-time, kontrak, maupun freelance secara onsite maupun remote.",
+    badge: "Onsite · Remote",
+    accentGlow: "from-emerald-500/15 via-teal-500/10 to-transparent",
+    borderColor: "hover:border-emerald-500/40",
+  },
+  {
+    index: "03",
+    category: "Fokus & Passion",
+    code: "DEV · SYS",
+    dotColor: "bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.8)]",
+    title: "Web Design & Systems",
+    subtitle: "Frontend & Fullstack Logic",
+    description:
+      "Sangat gemar mengulik website design, interaksi visual yang halus, serta merancang alur logika sistem database yang andal dan aman.",
+    badge: "UI & Architecture",
+    accentGlow: "from-amber-500/15 via-orange-500/10 to-transparent",
+    borderColor: "hover:border-amber-500/40",
+  },
+];
+
 export default function IntroSection({ skills }: { skills: string[] }) {
   const sectionRef = useRef<HTMLElement | null>(null);
   const shapeRef = useRef<HTMLDivElement | null>(null);
@@ -126,6 +169,30 @@ export default function IntroSection({ skills }: { skills: string[] }) {
           },
         },
       );
+
+      const cards = sectionRef.current?.querySelectorAll(".context-card");
+      if (cards && cards.length > 0) {
+        gsap.fromTo(
+          cards,
+          {
+            opacity: 0,
+            y: 45,
+            scale: 0.95,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            stagger: 0.14,
+            duration: 0.85,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: ".context-cards-grid",
+              start: "top 86%",
+            },
+          },
+        );
+      }
     },
     { scope: sectionRef },
   );
@@ -241,42 +308,59 @@ export default function IntroSection({ skills }: { skills: string[] }) {
       </div>
 
       {/* Profile Context Cards */}
-      <div className="relative z-10 mt-4 grid w-full max-w-5xl grid-cols-1 gap-6 sm:grid-cols-3 sm:gap-8 rounded-2xl border border-white/10 bg-white/[0.03] p-6 sm:p-8 backdrop-blur-md shadow-2xl">
-        <div className="flex flex-col gap-2 sm:border-r sm:border-white/10 sm:pr-6">
-          <span className="w-fit rounded-full border border-sky-500/30 bg-sky-500/10 px-2.5 py-0.5 font-mono text-[0.62rem] uppercase tracking-[0.25em] text-sky-400">
-            Pendidikan
-          </span>
-          <p className="font-sans text-base font-semibold bg-gradient-to-r from-white via-sky-100 to-sky-300 bg-clip-text text-transparent">
-            Teknik Informatika
-          </p>
-          <p className="text-xs text-white/65 leading-relaxed">
-            Mahasiswa tingkat akhir (Semester 7) di Universitas Muhammadiyah Bandung dengan antusiasme tinggi pada rekayasa web modern.
-          </p>
-        </div>
+      <div className="context-cards-grid relative z-10 mt-6 grid w-full max-w-5xl grid-cols-1 gap-5 sm:grid-cols-3 sm:gap-6">
+        {contextCards.map((card) => (
+          <div
+            key={card.index}
+            className={cn(
+              "context-card group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-white/[0.025] p-6 sm:p-7 backdrop-blur-md transition-all duration-500 hover:-translate-y-1.5 hover:bg-white/[0.05] hover:shadow-[0_20px_45px_rgba(0,0,0,0.45)]",
+              card.borderColor,
+            )}
+          >
+            <div>
+              <div className="flex items-center justify-between border-b border-white/10 pb-3.5">
+                <div className="flex items-center gap-2">
+                  <span
+                    className={cn("size-1.5 rounded-full shrink-0", card.dotColor)}
+                    aria-hidden="true"
+                  />
+                  <span className="font-mono text-[0.6rem] font-semibold uppercase tracking-[0.22em] text-white/50 transition-colors group-hover:text-white/80">
+                    {card.index} / {card.category}
+                  </span>
+                </div>
+                <span className="font-mono text-[0.55rem] uppercase tracking-[0.14em] text-white/35 transition-colors group-hover:text-white/60">
+                  {card.badge}
+                </span>
+              </div>
 
-        <div className="flex flex-col gap-2 sm:border-r sm:border-white/10 sm:pr-6">
-          <span className="w-fit rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-0.5 font-mono text-[0.62rem] uppercase tracking-[0.25em] text-emerald-400">
-            Asal & Domisili
-          </span>
-          <p className="font-sans text-base font-semibold bg-gradient-to-r from-white via-emerald-100 to-emerald-300 bg-clip-text text-transparent">
-            Bandung, Indonesia
-          </p>
-          <p className="text-xs text-white/65 leading-relaxed">
-            Lahir dan berbasis di Bandung. Terbuka untuk peluang kerja full-time, kontrak, maupun freelance secara onsite maupun remote.
-          </p>
-        </div>
+              <div className="mt-5">
+                <h3 className="font-sans text-lg font-bold tracking-[-0.02em] text-white sm:text-xl">
+                  {card.title}
+                </h3>
+                <p className="mt-1 font-mono text-[0.62rem] uppercase tracking-wider text-white/40">
+                  {card.subtitle}
+                </p>
+                <p className="mt-3.5 text-xs leading-relaxed text-white/65 transition-colors group-hover:text-white/80 sm:text-[0.8rem]">
+                  {card.description}
+                </p>
+              </div>
+            </div>
 
-        <div className="flex flex-col gap-2">
-          <span className="w-fit rounded-full border border-amber-500/30 bg-amber-500/10 px-2.5 py-0.5 font-mono text-[0.62rem] uppercase tracking-[0.25em] text-amber-400">
-            Fokus & Passion
-          </span>
-          <p className="font-sans text-base font-semibold bg-gradient-to-r from-white via-amber-100 to-amber-300 bg-clip-text text-transparent">
-            Web Design & Systems
-          </p>
-          <p className="text-xs text-white/65 leading-relaxed">
-            Sangat gemar mengulik website design, interaksi visual yang halus, serta merancang alur logika sistem database yang andal.
-          </p>
-        </div>
+            <div className="mt-6 flex items-center justify-between border-t border-white/5 pt-3 font-mono text-[0.55rem] uppercase tracking-[0.2em] text-white/25">
+              <span>{card.code}</span>
+              <span className="transition-transform duration-300 group-hover:translate-x-1 text-white/40">✦</span>
+            </div>
+
+            {/* Ambient Radial Glow on Hover */}
+            <div
+              aria-hidden="true"
+              className={cn(
+                "pointer-events-none absolute -bottom-10 -right-10 size-36 rounded-full bg-gradient-to-br opacity-0 blur-2xl transition-opacity duration-700 group-hover:opacity-100",
+                card.accentGlow,
+              )}
+            />
+          </div>
+        ))}
       </div>
     </section>
   );

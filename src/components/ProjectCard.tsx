@@ -9,38 +9,6 @@ interface ProjectCardProps {
   index: number;
 }
 
-function getTechBadgeStyle(tech: string) {
-  const t = tech.toLowerCase();
-  if (t.includes("react") || t.includes("next")) {
-    return "border-sky-500/30 bg-sky-500/10 text-sky-600 dark:text-sky-300";
-  }
-  if (t.includes("tailwind")) {
-    return "border-cyan-500/30 bg-cyan-500/10 text-cyan-600 dark:text-cyan-300";
-  }
-  if (t.includes("typescript") || t.includes("ts")) {
-    return "border-blue-500/30 bg-blue-500/10 text-blue-600 dark:text-blue-300";
-  }
-  if (t.includes("javascript") || t.includes("js")) {
-    return "border-amber-500/30 bg-amber-500/10 text-amber-600 dark:text-amber-300";
-  }
-  if (t.includes("php") || t.includes("codeigniter") || t.includes("laravel")) {
-    return "border-rose-500/30 bg-rose-500/10 text-rose-600 dark:text-rose-300";
-  }
-  if (t.includes("mysql") || t.includes("postgres") || t.includes("database")) {
-    return "border-indigo-500/30 bg-indigo-500/10 text-indigo-600 dark:text-indigo-300";
-  }
-  if (t.includes("firebase") || t.includes("auth")) {
-    return "border-orange-500/30 bg-orange-500/10 text-orange-600 dark:text-orange-300";
-  }
-  if (t.includes("bootstrap")) {
-    return "border-purple-500/30 bg-purple-500/10 text-purple-600 dark:text-purple-300";
-  }
-  if (t.includes("node") || t.includes("express")) {
-    return "border-emerald-500/30 bg-emerald-500/10 text-emerald-600 dark:text-emerald-300";
-  }
-  return "border-violet-500/30 bg-violet-500/10 text-violet-600 dark:text-violet-300";
-}
-
 export default function ProjectCard({ project, index }: ProjectCardProps) {
   const isReversed = index % 2 !== 0;
 
@@ -60,12 +28,12 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       {/* Content */}
       <div className="flex flex-col justify-center lg:[direction:ltr]">
         <div>
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="font-mono text-[0.65rem] uppercase tracking-[0.26em] text-foreground/50">
-              {project.role}
-            </span>
-            <span className="rounded-full border border-violet-500/30 bg-violet-500/10 px-2.5 py-0.5 font-mono text-[0.55rem] font-semibold uppercase tracking-[0.16em] text-violet-600 dark:text-violet-300">
-              {project.category}
+          <div className="flex flex-wrap items-center gap-2.5 font-mono text-[0.62rem] uppercase tracking-[0.24em] text-foreground/50">
+            <span>{project.role}</span>
+            <span className="text-foreground/25" aria-hidden="true">/</span>
+            <span className="inline-flex items-center gap-1.5 font-medium tracking-[0.16em] text-foreground/85">
+              <span className="size-1.5 rounded-full bg-violet-400 shadow-[0_0_8px_rgba(167,139,250,0.7)]" aria-hidden="true" />
+              <span>{project.category}</span>
             </span>
           </div>
 
@@ -112,9 +80,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           {project.techStack.map((tech) => (
             <span
               key={tech}
-              className={`rounded-full border px-3 py-1 text-[0.6rem] font-semibold uppercase tracking-[0.1em] transition-transform duration-200 hover:scale-105 sm:text-xs ${getTechBadgeStyle(
-                tech,
-              )}`}
+              className="rounded-md border border-foreground/12 bg-foreground/[0.03] px-2.5 py-1 font-mono text-[0.62rem] font-medium uppercase tracking-[0.12em] text-foreground/75 transition-all duration-200 hover:border-foreground/30 hover:text-foreground sm:text-xs"
             >
               {tech}
             </span>

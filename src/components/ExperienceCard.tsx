@@ -14,21 +14,21 @@ function formatCardNumber(value: number) {
   return String(value).padStart(2, "0");
 }
 
-function getTypeBadgeStyle(type: string) {
+function getTypeDotColor(type: string) {
   const t = type.toLowerCase();
   if (t.includes("work")) {
-    return "border-emerald-500/40 bg-emerald-500/15 text-emerald-400";
+    return "bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]";
   }
   if (t.includes("intern")) {
-    return "border-amber-500/40 bg-amber-500/15 text-amber-400";
+    return "bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.8)]";
   }
   if (t.includes("committee")) {
-    return "border-sky-500/40 bg-sky-500/15 text-sky-400";
+    return "bg-sky-400 shadow-[0_0_8px_rgba(56,189,248,0.8)]";
   }
   if (t.includes("organization")) {
-    return "border-fuchsia-500/40 bg-fuchsia-500/15 text-fuchsia-400";
+    return "bg-fuchsia-400 shadow-[0_0_8px_rgba(232,121,249,0.8)]";
   }
-  return "border-violet-500/40 bg-violet-500/15 text-violet-400";
+  return "bg-violet-400 shadow-[0_0_8px_rgba(167,139,250,0.8)]";
 }
 
 function ExperienceVisual({ experience }: { experience: Experience }) {
@@ -84,15 +84,15 @@ export default function ExperienceCard({
     >
       <div className="flex min-h-0 flex-col overflow-hidden px-5 py-4 sm:px-8 sm:py-6 lg:px-14 lg:py-12">
         <header>
-          <div className="flex flex-wrap items-center gap-2 font-mono text-[0.55rem] uppercase tracking-[0.24em] text-card-foreground/50 sm:gap-3 sm:text-[0.65rem]">
-            <span>Professional experience</span>
-            <span
-              className={cn(
-                "rounded-full border px-2.5 py-1 text-[0.5rem] font-semibold tracking-[0.16em] sm:px-3 sm:text-[0.6rem]",
-                getTypeBadgeStyle(experience.type),
-              )}
-            >
-              {experience.type}
+          <div className="flex flex-wrap items-center gap-2 font-mono text-[0.58rem] uppercase tracking-[0.24em] text-card-foreground/50 sm:gap-2.5 sm:text-[0.65rem]">
+            <span>Experience</span>
+            <span className="text-card-foreground/25" aria-hidden="true">/</span>
+            <span className="inline-flex items-center gap-1.5 font-medium tracking-[0.18em] text-card-foreground/85">
+              <span
+                className={cn("size-1.5 rounded-full shrink-0", getTypeDotColor(experience.type))}
+                aria-hidden="true"
+              />
+              <span>{experience.type}</span>
             </span>
           </div>
 

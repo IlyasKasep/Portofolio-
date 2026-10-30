@@ -283,6 +283,7 @@ export async function getGithubContributions(
           Accept: "application/json",
           "User-Agent": "portfolio-github-contributions",
         },
+        signal: AbortSignal.timeout(2000),
         next: { revalidate: 3600 },
       },
     );

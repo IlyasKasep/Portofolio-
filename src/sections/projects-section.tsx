@@ -59,15 +59,15 @@ export default function ProjectsSection({
             cards.forEach((card) => {
               gsap.fromTo(
                 card,
-                { opacity: 0, y: 24 },
+                { opacity: 0, y: 16 },
                 {
                   opacity: 1,
                   y: 0,
-                  duration: 0.45,
+                  duration: 0.38,
                   ease: "power2.out",
                   scrollTrigger: {
                     trigger: card,
-                    start: "top 90%",
+                    start: "top 98%",
                     toggleActions: "play none none reverse",
                   },
                 },

@@ -74,16 +74,16 @@ export default function HeroSection() {
           timeline
             .from(".hero-socials a", {
               opacity: 0,
-              stagger: 0.05,
-              duration: 0.35,
+              stagger: 0.03,
+              duration: 0.25,
             })
-            .from(".location", { opacity: 0, duration: 0.32 }, "-=0.2")
-            .from(".greetings", { opacity: 0, duration: 0.42 }, "-=0.18")
-            .from(".hero-resume", { opacity: 0, duration: 0.28 }, "-=0.1")
+            .from(".location", { opacity: 0, duration: 0.22 }, "-=0.15")
+            .from(".greetings", { opacity: 0, duration: 0.3 }, "-=0.15")
+            .from(".hero-resume", { opacity: 0, duration: 0.2 }, "-=0.1")
             .from(
               ".hero-scroll-indicator",
-              { opacity: 0, duration: 0.28 },
-              "-=0.12",
+              { opacity: 0, duration: 0.2 },
+              "-=0.1",
             );
         },
       );

@@ -62,19 +62,19 @@ export default function ContactSection() {
           }
 
           if (isMobile) {
-            // Clean one-shot reveal on mobile (avoids continuous scroll lag)
+            // Clean early reveal on mobile (avoids blank delay or continuous scroll lag)
             gsap.fromTo(
               words,
-              { yPercent: 40, opacity: 0 },
+              { yPercent: 25, opacity: 0 },
               {
                 yPercent: 0,
                 opacity: 1,
-                duration: 0.45,
-                stagger: 0.05,
+                duration: 0.38,
+                stagger: 0.04,
                 ease: "power2.out",
                 scrollTrigger: {
                   trigger: section,
-                  start: "top 85%",
+                  start: "top 95%",
                   toggleActions: "play none none reverse",
                 },
               },
@@ -82,16 +82,16 @@ export default function ContactSection() {
 
             gsap.fromTo(
               [info, bottom],
-              { y: 20, opacity: 0 },
+              { y: 14, opacity: 0 },
               {
                 y: 0,
                 opacity: 1,
-                duration: 0.45,
-                stagger: 0.1,
+                duration: 0.38,
+                stagger: 0.08,
                 ease: "power2.out",
                 scrollTrigger: {
                   trigger: section,
-                  start: "top 75%",
+                  start: "top 90%",
                   toggleActions: "play none none reverse",
                 },
               },

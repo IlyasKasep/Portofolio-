@@ -258,15 +258,15 @@ export default function GithubContributions({
             // Light single wrapper reveal on mobile (preserves 60fps on touch devices)
             gsap.fromTo(
               ".contrib-grid-wrapper",
-              { opacity: 0, y: 20 },
+              { opacity: 0, y: 16 },
               {
                 opacity: 1,
                 y: 0,
-                duration: 0.45,
+                duration: 0.38,
                 ease: "power2.out",
                 scrollTrigger: {
                   trigger: ".contrib-grid-wrapper",
-                  start: "top 90%",
+                  start: "top 98%",
                   toggleActions: "play none none reverse",
                 },
               }
@@ -278,11 +278,11 @@ export default function GithubContributions({
             const obj = { val: 0 };
             gsap.to(obj, {
               val: finalValue,
-              duration: 1.2,
+              duration: 1.0,
               ease: "power2.out",
               scrollTrigger: {
                 trigger: element,
-                start: "top 90%",
+                start: "top 96%",
               },
               onUpdate: () => {
                 element.innerText = Math.floor(obj.val).toLocaleString() + suffix;

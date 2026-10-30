@@ -79,15 +79,15 @@ export default function ExperienceSection({
           if (isMobileTablet) {
             gsap.fromTo(
               bgText,
-              { opacity: 0, scale: 0.88 },
+              { opacity: 0, scale: 0.92 },
               {
                 opacity: 1,
                 scale: 1,
-                duration: 0.5,
+                duration: 0.4,
                 ease: "power2.out",
                 scrollTrigger: {
                   trigger: section,
-                  start: "top 80%",
+                  start: "top 96%",
                   toggleActions: "play none none reverse",
                 },
               },
@@ -95,32 +95,34 @@ export default function ExperienceSection({
 
             gsap.fromTo(
               header,
-              { opacity: 0, y: 16 },
+              { opacity: 0, y: 12 },
               {
                 opacity: 1,
                 y: 0,
-                duration: 0.45,
+                duration: 0.4,
                 ease: "power3.out",
                 scrollTrigger: {
                   trigger: section,
-                  start: "top 78%",
+                  start: "top 96%",
+                  toggleActions: "play none none reverse",
                 },
               },
             );
 
             gsap.fromTo(
               mobileCards,
-              { opacity: 0, y: 50, scale: 0.97 },
+              { opacity: 0, y: 24, scale: 0.98 },
               {
                 opacity: 1,
                 y: 0,
                 scale: 1,
-                stagger: 0.08,
-                duration: 0.5,
+                stagger: 0.06,
+                duration: 0.4,
                 ease: "power3.out",
                 scrollTrigger: {
                   trigger: mobileSwiper,
-                  start: "top 82%",
+                  start: "top 95%",
+                  toggleActions: "play none none reverse",
                 },
               },
             );

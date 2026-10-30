@@ -106,22 +106,22 @@ export default function IntroSection({ skills }: { skills: string[] }) {
             return;
           }
 
-          // Snappy, early-trigger entrance so text is visible immediately without scrolling deep
+          // Trigger early as soon as top edge touches viewport bottom (no blank delay)
           gsap.fromTo(
             lineEls,
             {
               opacity: 0,
-              y: 24,
+              y: 18,
             },
             {
               opacity: 1,
               y: 0,
-              duration: 0.38,
-              stagger: 0.045,
+              duration: 0.35,
+              stagger: 0.04,
               ease: "power3.out",
               scrollTrigger: {
                 trigger: text,
-                start: "top 92%",
+                start: "top 98%",
                 toggleActions: "play none none reverse",
               },
             },
@@ -148,24 +148,24 @@ export default function IntroSection({ skills }: { skills: string[] }) {
             );
           }
 
-          // Elegant fade-in reveal for the personal story section (tuned faster & crisper)
+          // Trigger story early so it is already visible when scrolling to it
           if (storyRef.current) {
             const storyItems = storyRef.current.querySelectorAll(".story-reveal");
             gsap.fromTo(
               storyItems,
               {
                 opacity: 0,
-                y: 18,
+                y: 14,
               },
               {
                 opacity: 1,
                 y: 0,
-                duration: 0.45,
-                stagger: 0.08,
+                duration: 0.4,
+                stagger: 0.06,
                 ease: "power3.out",
                 scrollTrigger: {
                   trigger: storyRef.current,
-                  start: "top 88%",
+                  start: "top 96%",
                   toggleActions: "play none none reverse",
                 },
               },

@@ -61,6 +61,52 @@ export default function ExperienceSection({
             return;
           }
 
+          if (isMobileTablet) {
+            gsap.set(bgText, { opacity: 0.15, filter: "blur(4px)", scale: 1 });
+
+            // Lightweight, snappy entrance with once: true so content never vanishes on scroll up
+            gsap.fromTo(
+              header,
+              { opacity: 0, y: 14 },
+              {
+                opacity: 1,
+                y: 0,
+                duration: 0.45,
+                ease: "power2.out",
+                scrollTrigger: {
+                  trigger: section,
+                  start: "top 88%",
+                  once: true,
+                },
+              },
+            );
+
+            gsap.fromTo(
+              mobileCards,
+              { opacity: 0, y: 20 },
+              {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                stagger: 0.06,
+                duration: 0.45,
+                ease: "power2.out",
+                scrollTrigger: {
+                  trigger: mobileSwiper,
+                  start: "top 88%",
+                  once: true,
+                },
+              },
+            );
+
+            return;
+          }
+
+          if (!isDesktop || !viewport || !track || !progress) {
+            return;
+          }
+
+          // Desktop-only parallax background text
           ScrollTrigger.create({
             trigger: section,
             start: "top bottom",
@@ -73,46 +119,6 @@ export default function ExperienceSection({
             ),
             invalidateOnRefresh: true,
           });
-
-          if (isMobileTablet) {
-            gsap.fromTo(
-              header,
-              { opacity: 0, y: 18 },
-              {
-                opacity: 1,
-                y: 0,
-                duration: 0.65,
-                ease: "power2.out",
-                scrollTrigger: {
-                  trigger: section,
-                  start: "top 72%",
-                },
-              },
-            );
-
-            gsap.fromTo(
-              mobileCards,
-              { opacity: 0, y: 70, scale: 0.96 },
-              {
-                opacity: 1,
-                y: 0,
-                scale: 1,
-                stagger: 0.12,
-                duration: 0.75,
-                ease: "power3.out",
-                scrollTrigger: {
-                  trigger: mobileSwiper,
-                  start: "top 78%",
-                },
-              },
-            );
-
-            return;
-          }
-
-          if (!isDesktop || !viewport || !track || !progress) {
-            return;
-          }
 
           const getScrollDistance = () =>
             Math.max(0, track.scrollWidth - viewport.clientWidth);
@@ -179,11 +185,11 @@ export default function ExperienceSection({
       {/* Vibrant Ambient Colorful Aura */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -left-32 top-1/4 h-96 w-96 rounded-full bg-gradient-to-tr from-indigo-600/20 via-purple-600/15 to-pink-500/15 blur-[120px]"
+        className="pointer-events-none absolute -left-32 top-1/4 h-96 w-96 rounded-full bg-gradient-to-tr from-indigo-600/20 via-purple-600/15 to-pink-500/15 blur-[60px] sm:blur-[120px] transform-gpu"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-32 bottom-1/4 h-96 w-96 rounded-full bg-gradient-to-bl from-cyan-500/20 via-teal-500/15 to-emerald-500/20 blur-[120px]"
+        className="pointer-events-none absolute -right-32 bottom-1/4 h-96 w-96 rounded-full bg-gradient-to-bl from-cyan-500/20 via-teal-500/15 to-emerald-500/20 blur-[60px] sm:blur-[120px] transform-gpu"
       />
 
       <div

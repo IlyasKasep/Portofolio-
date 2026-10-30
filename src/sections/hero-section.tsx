@@ -74,16 +74,16 @@ export default function HeroSection() {
           timeline
             .from(".hero-socials a", {
               opacity: 0,
-              stagger: 0.08,
-              duration: 0.45,
+              stagger: 0.04,
+              duration: 0.35,
             })
-            .from(".location", { opacity: 0, duration: 0.4 }, "-=0.25")
-            .from(".greetings", { opacity: 0, duration: 0.55 }, "-=0.2")
-            .from(".hero-resume", { opacity: 0, duration: 0.35 }, "-=0.1")
+            .from(".location", { opacity: 0, duration: 0.25 }, "-=0.2")
+            .from(".greetings", { opacity: 0, duration: 0.35 }, "-=0.15")
+            .from(".hero-resume", { opacity: 0, duration: 0.25 }, "-=0.1")
             .from(
               ".hero-scroll-indicator",
-              { opacity: 0, duration: 0.35 },
-              "-=0.15",
+              { opacity: 0, duration: 0.25 },
+              "-=0.1",
             );
         },
       );
@@ -100,9 +100,9 @@ export default function HeroSection() {
       className="hero-section relative mb-10 grid min-h-[calc(100vh-5rem)] content-start items-start gap-8 px-6 pb-10 pt-24 sm:gap-10 sm:px-10 sm:pb-14 sm:pt-28 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.7fr)] lg:content-center lg:items-center lg:gap-12 lg:px-24 lg:py-10"
     >
       {/* Vibrant Ambient Colorful Aura & Glow */}
-      <div className="pointer-events-none absolute -top-20 -left-20 h-[28rem] w-[28rem] rounded-full bg-gradient-to-tr from-violet-600/25 via-fuchsia-500/20 to-sky-400/20 blur-[100px]" />
-      <div className="pointer-events-none absolute top-1/4 -right-10 h-[32rem] w-[32rem] rounded-full bg-gradient-to-bl from-cyan-400/25 via-teal-400/20 to-emerald-400/25 blur-[120px]" />
-      <div className="pointer-events-none absolute -bottom-10 left-1/3 h-80 w-80 rounded-full bg-gradient-to-r from-amber-400/15 via-rose-500/15 to-purple-600/15 blur-[90px]" />
+      <div className="pointer-events-none absolute -top-20 -left-20 h-72 w-72 sm:h-[28rem] sm:w-[28rem] rounded-full bg-gradient-to-tr from-violet-600/25 via-fuchsia-500/20 to-sky-400/20 blur-[50px] sm:blur-[100px] transform-gpu" />
+      <div className="pointer-events-none absolute top-1/4 -right-10 h-72 w-72 sm:h-[32rem] sm:w-[32rem] rounded-full bg-gradient-to-bl from-cyan-400/25 via-teal-400/20 to-emerald-400/25 blur-[60px] sm:blur-[120px] transform-gpu" />
+      <div className="pointer-events-none absolute -bottom-10 left-1/3 h-64 w-64 sm:h-80 sm:w-80 rounded-full bg-gradient-to-r from-amber-400/15 via-rose-500/15 to-purple-600/15 blur-[50px] sm:blur-[90px] transform-gpu" />
 
       {/* Background Dotted Grid Overlay */}
       <div

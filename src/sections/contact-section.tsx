@@ -46,21 +46,23 @@ export default function ContactSection() {
 
       media.add(
         {
-          isAll: "(min-width: 0px)",
+          isDesktop: "(min-width: 768px)",
+          isMobile: "(max-width: 767px)",
           reduceMotion: "(prefers-reduced-motion: reduce)",
         },
         (context) => {
-          const { reduceMotion } = context.conditions ?? {};
+          const { isMobile, reduceMotion } = context.conditions ?? {};
           const words = heading.querySelectorAll(".contact-word");
 
-          if (reduceMotion) {
+          if (reduceMotion || isMobile) {
+            // Keep mobile clean, instant, and 100% visible: no lag, no scrub, never disappears when scrolling back up
             gsap.set([heading, bgText, info, bottom, words], {
               clearProps: "all",
             });
             return;
           }
 
-          // Parallax shift for the background "CONTACT" text
+          // Parallax shift for the background "CONTACT" text on desktop
           gsap.fromTo(
             bgText,
             { yPercent: -15, opacity: 0 },
@@ -77,14 +79,12 @@ export default function ContactSection() {
             },
           );
 
-          // Scrubbed staggered reveal timeline for the footer contents
+          // Desktop reveal timeline with once: true so it never vanishes on scroll up
           const timeline = gsap.timeline({
             scrollTrigger: {
               trigger: section,
-              start: "top bottom",
-              end: "bottom bottom",
-              scrub: 0.85,
-              invalidateOnRefresh: true,
+              start: "top 80%",
+              once: true,
             },
           });
 
@@ -96,23 +96,23 @@ export default function ContactSection() {
               {
                 yPercent: 0,
                 opacity: 1,
-                stagger: 0.15,
-                duration: 1.2,
+                stagger: 0.1,
+                duration: 0.8,
                 ease: "power2.out",
               },
               0,
             )
             .fromTo(
               info,
-              { y: 60, opacity: 0 },
-              { y: 0, opacity: 1, ease: "power1.out", duration: 1 },
-              0.4,
+              { y: 40, opacity: 0 },
+              { y: 0, opacity: 1, ease: "power1.out", duration: 0.7 },
+              0.3,
             )
             .fromTo(
               bottom,
-              { y: 40, opacity: 0 },
-              { y: 0, opacity: 1, ease: "power1.out", duration: 1 },
-              0.65,
+              { y: 30, opacity: 0 },
+              { y: 0, opacity: 1, ease: "power1.out", duration: 0.7 },
+              0.5,
             );
         },
       );
@@ -132,11 +132,11 @@ export default function ContactSection() {
       {/* Vibrant Ambient Colorful Aura */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -left-20 top-1/4 h-[28rem] w-[28rem] rounded-full bg-gradient-to-tr from-violet-600/25 via-indigo-500/20 to-sky-400/20 blur-[120px]"
+        className="pointer-events-none absolute -left-20 top-1/4 h-[28rem] w-[28rem] rounded-full bg-gradient-to-tr from-violet-600/25 via-indigo-500/20 to-sky-400/20 blur-[60px] sm:blur-[120px] transform-gpu"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-20 bottom-1/4 h-[30rem] w-[30rem] rounded-full bg-gradient-to-bl from-emerald-500/20 via-teal-500/15 to-cyan-500/20 blur-[120px]"
+        className="pointer-events-none absolute -right-20 bottom-1/4 h-[30rem] w-[30rem] rounded-full bg-gradient-to-bl from-emerald-500/20 via-teal-500/15 to-cyan-500/20 blur-[60px] sm:blur-[120px] transform-gpu"
       />
 
       {/* Large Background Text */}

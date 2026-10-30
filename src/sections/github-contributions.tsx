@@ -203,18 +203,42 @@ export default function GithubContributions({
 
       media.add(
         {
-          isAll: "(min-width: 0px)",
+          isDesktop: "(min-width: 768px)",
+          isMobile: "(max-width: 767px)",
           reduceMotion: "(prefers-reduced-motion: reduce)",
         },
         (context) => {
-          const { reduceMotion } = context.conditions ?? {};
+          const { isMobile, reduceMotion } = context.conditions ?? {};
 
-          if (reduceMotion) {
-            gsap.set(".contrib-cell", { scale: 1, opacity: 1 });
+          if (reduceMotion || isMobile) {
+            // Keep mobile ultra-fast: 371 cells are rendered static without stagger delay/recalculation
+            gsap.set(".contrib-cell", { scale: 1, opacity: 1, clearProps: "transform" });
+            if (bgText) gsap.set(bgText, { clearProps: "all" });
+
+            const animateCounter = (element: HTMLElement, finalValue: number, suffix = "") => {
+              const obj = { val: 0 };
+              gsap.to(obj, {
+                val: finalValue,
+                duration: 1.2,
+                ease: "power2.out",
+                scrollTrigger: {
+                  trigger: element,
+                  start: "top 95%",
+                  once: true,
+                },
+                onUpdate: () => {
+                  element.innerText = Math.floor(obj.val).toLocaleString() + suffix;
+                },
+              });
+            };
+
+            animateCounter(totalCounter, total);
+            animateCounter(streakCounter, longestStreak, " days");
+            animateCounter(activeCounter, activeDaysPercent, "%");
             return;
           }
 
-          // Parallax background text
+          // Desktop Parallax background text
           gsap.fromTo(
             bgText,
             { y: -50, opacity: 0 },
@@ -231,7 +255,7 @@ export default function GithubContributions({
             }
           );
 
-          // Staggered grid cell entry reveal
+          // Desktop Staggered grid cell entry reveal with once: true
           gsap.fromTo(
             ".contrib-cell",
             { scale: 0, opacity: 0, transformOrigin: "center center" },
@@ -241,27 +265,29 @@ export default function GithubContributions({
               stagger: {
                 grid: [7, 53],
                 from: "start",
-                amount: 1.5,
+                amount: 1.2,
               },
-              duration: 0.6,
-              ease: "back.out(1.5)",
+              duration: 0.5,
+              ease: "back.out(1.2)",
               scrollTrigger: {
                 trigger: ".contrib-grid-wrapper",
                 start: "top 85%",
+                once: true,
               },
             }
           );
 
-          // Counter animations
+          // Desktop Counter animations with once: true
           const animateCounter = (element: HTMLElement, finalValue: number, suffix = "") => {
             const obj = { val: 0 };
             gsap.to(obj, {
               val: finalValue,
-              duration: 2,
+              duration: 1.8,
               ease: "power2.out",
               scrollTrigger: {
                 trigger: element,
                 start: "top 90%",
+                once: true,
               },
               onUpdate: () => {
                 element.innerText = Math.floor(obj.val).toLocaleString() + suffix;
@@ -293,11 +319,11 @@ export default function GithubContributions({
       {/* Vibrant Ambient Colorful Aura */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -left-20 top-1/3 h-80 w-80 rounded-full bg-gradient-to-tr from-emerald-500/15 via-teal-500/10 to-transparent blur-[110px]"
+        className="pointer-events-none absolute -left-20 top-1/3 h-80 w-80 rounded-full bg-gradient-to-tr from-emerald-500/15 via-teal-500/10 to-transparent blur-[60px] sm:blur-[110px] transform-gpu"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-20 top-1/2 h-80 w-80 rounded-full bg-gradient-to-bl from-sky-500/15 via-indigo-500/10 to-transparent blur-[110px]"
+        className="pointer-events-none absolute -right-20 top-1/2 h-80 w-80 rounded-full bg-gradient-to-bl from-sky-500/15 via-indigo-500/10 to-transparent blur-[60px] sm:blur-[110px] transform-gpu"
       />
 
       {/* Large Background Text */}

@@ -54,27 +54,8 @@ export default function ProjectsSection({
           }
 
           if (isMobile) {
-            gsap.set([section, bgText], { clearProps: "all" });
-
-            cards.forEach((card) => {
-              gsap.fromTo(
-                card,
-                { opacity: 0, y: 36 },
-                {
-                  opacity: 1,
-                  y: 0,
-                  ease: "none",
-                  scrollTrigger: {
-                    trigger: card,
-                    start: "top 92%",
-                    end: "top 62%",
-                    scrub: 0.25,
-                    invalidateOnRefresh: true,
-                  },
-                },
-              );
-            });
-
+            // Keep mobile clean, instant 60-120fps native scroll, cards never disappear when scrolling back up
+            gsap.set([section, bgText, cards], { clearProps: "all" });
             return;
           }
 
@@ -84,7 +65,7 @@ export default function ProjectsSection({
 
           gsap.fromTo(
             section,
-            { yPercent: 16 },
+            { yPercent: 12 },
             {
               yPercent: 0,
               ease: "power2.out",
@@ -92,7 +73,7 @@ export default function ProjectsSection({
                 trigger: section,
                 start: "top bottom",
                 end: "top 58%",
-                scrub: 0.65,
+                scrub: 0.5,
                 invalidateOnRefresh: true,
               },
             },
@@ -101,9 +82,9 @@ export default function ProjectsSection({
           // --- 2. Parallax background text ---
           gsap.fromTo(
             bgText,
-            { y: -100, opacity: 0 },
+            { y: -80, opacity: 0 },
             {
-              y: 100,
+              y: 80,
               opacity: 1,
               ease: "none",
               scrollTrigger: {
@@ -115,22 +96,21 @@ export default function ProjectsSection({
             },
           );
 
-          // --- 3. Scroll Reveal for Project Cards ---
+          // --- 3. Scroll Reveal for Project Cards with once: true so they never disappear on scroll up ---
           cards.forEach((card) => {
             gsap.fromTo(
               card,
-              { opacity: 0, y: 56, scale: 0.97 },
+              { opacity: 0, y: 36, scale: 0.98 },
               {
                 opacity: 1,
                 y: 0,
                 scale: 1,
-                duration: 0.75,
+                duration: 0.6,
                 ease: "power2.out",
                 scrollTrigger: {
                   trigger: card,
-                  start: "top 112%",
-                  end: "top 72%",
-                  scrub: 0.35,
+                  start: "top 90%",
+                  once: true,
                 },
               },
             );
@@ -157,11 +137,11 @@ export default function ProjectsSection({
       {/* Vibrant Ambient Colorful Aura */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute left-0 top-1/4 h-[32rem] w-[32rem] rounded-full bg-gradient-to-tr from-violet-500/15 via-purple-500/10 to-indigo-500/10 blur-[130px]"
+        className="pointer-events-none absolute left-0 top-1/4 h-[32rem] w-[32rem] rounded-full bg-gradient-to-tr from-violet-500/15 via-purple-500/10 to-indigo-500/10 blur-[60px] sm:blur-[130px] transform-gpu"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute right-0 top-2/3 h-[30rem] w-[30rem] rounded-full bg-gradient-to-bl from-sky-400/15 via-teal-400/10 to-emerald-400/10 blur-[130px]"
+        className="pointer-events-none absolute right-0 top-2/3 h-[30rem] w-[30rem] rounded-full bg-gradient-to-bl from-sky-400/15 via-teal-400/10 to-emerald-400/10 blur-[60px] sm:blur-[130px] transform-gpu"
       />
 
       {/* Large Background Text */}

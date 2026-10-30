@@ -90,39 +90,44 @@ export default function IntroSection({ skills }: { skills: string[] }) {
 
       media.add(
         {
+          isDesktop: "(min-width: 768px)",
+          isMobile: "(max-width: 767px)",
           reduceMotion: "(prefers-reduced-motion: reduce)",
-          all: "(min-width: 0px)",
         },
         (context) => {
-          const { reduceMotion } = context.conditions ?? {};
+          const { isMobile, reduceMotion } = context.conditions ?? {};
           const lineEls = text.querySelectorAll(".line");
+          const storyItems = storyRef.current?.querySelectorAll(".story-reveal");
 
-          if (reduceMotion) {
+          if (reduceMotion || isMobile) {
+            // Keep mobile clean, instant, and 100% visible: no lag, no scroll scrub, never disappears when scrolling back up
             gsap.set(lineEls, { opacity: 1, y: 0, clearProps: "all" });
-            if (storyRef.current) {
-              const storyItems = storyRef.current.querySelectorAll(".story-reveal");
+            if (storyItems) {
               gsap.set(storyItems, { opacity: 1, y: 0, clearProps: "all" });
+            }
+            if (shapeRef.current) {
+              gsap.set(shapeRef.current, { clearProps: "all" });
             }
             return;
           }
 
-          // Snappy, early-trigger entrance so text is visible immediately without scrolling deep
+          // Desktop entrance: smooth reveal with once: true so content NEVER disappears when scrolling back up
           gsap.fromTo(
             lineEls,
             {
               opacity: 0,
-              y: 28,
+              y: 24,
             },
             {
               opacity: 1,
               y: 0,
               duration: 0.5,
-              stagger: 0.07,
-              ease: "power3.out",
+              stagger: 0.06,
+              ease: "power2.out",
               scrollTrigger: {
                 trigger: text,
-                start: "top 92%",
-                toggleActions: "play none none reverse",
+                start: "top 90%",
+                once: true,
               },
             },
           );
@@ -148,25 +153,24 @@ export default function IntroSection({ skills }: { skills: string[] }) {
             );
           }
 
-          // Elegant fade-in reveal for the personal story section
-          if (storyRef.current) {
-            const storyItems = storyRef.current.querySelectorAll(".story-reveal");
+          // Reveal for the personal story section on desktop (once: true keeps it permanently visible)
+          if (storyItems && storyRef.current) {
             gsap.fromTo(
               storyItems,
               {
                 opacity: 0,
-                y: 22,
+                y: 20,
               },
               {
                 opacity: 1,
                 y: 0,
-                duration: 0.65,
-                stagger: 0.12,
+                duration: 0.6,
+                stagger: 0.1,
                 ease: "power2.out",
                 scrollTrigger: {
                   trigger: storyRef.current,
                   start: "top 88%",
-                  toggleActions: "play none none reverse",
+                  once: true,
                 },
               },
             );
@@ -193,11 +197,11 @@ export default function IntroSection({ skills }: { skills: string[] }) {
       {/* Vibrant Ambient Glow Behind Intro */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -top-24 left-1/2 h-[350px] w-[600px] -translate-x-1/2 rounded-full bg-gradient-to-b from-indigo-500/20 via-purple-500/15 to-transparent blur-[120px]"
+        className="pointer-events-none absolute -top-24 left-1/2 h-[350px] w-[600px] -translate-x-1/2 rounded-full bg-gradient-to-b from-indigo-500/20 via-purple-500/15 to-transparent blur-[60px] sm:blur-[120px] transform-gpu"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute top-1/2 -right-28 h-80 w-80 rounded-full bg-gradient-to-bl from-cyan-500/15 via-sky-500/10 to-transparent blur-[100px]"
+        className="pointer-events-none absolute top-1/2 -right-28 h-80 w-80 rounded-full bg-gradient-to-bl from-cyan-500/15 via-sky-500/10 to-transparent blur-[50px] sm:blur-[100px] transform-gpu"
       />
 
       <div

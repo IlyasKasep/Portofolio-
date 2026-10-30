@@ -137,7 +137,7 @@ export default function ProjectsSection({
       {/* Vibrant Ambient Colorful Aura */}
       <div
         aria-hidden="true"
-        className="pointer-events-none transform-gpu absolute left-0 top-1/4 h-48 w-48 sm:h-[32rem] sm:w-[32rem] rounded-full bg-gradient-to-tr from-violet-500/15 via-purple-500/10 to-indigo-500/10 blur-3xl sm:blur-[130px]"
+        className="pointer-events-none transform-gpu absolute left-0 top-1/4 hidden sm:block h-[32rem] w-[32rem] rounded-full bg-gradient-to-tr from-violet-500/15 via-purple-500/10 to-indigo-500/10 blur-[130px]"
       />
       <div
         aria-hidden="true"

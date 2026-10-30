@@ -194,7 +194,7 @@ export default function IntroSection({ skills }: { skills: string[] }) {
       {/* Vibrant Ambient Glow Behind Intro */}
       <div
         aria-hidden="true"
-        className="pointer-events-none transform-gpu absolute -top-12 sm:-top-24 left-1/2 h-48 w-72 sm:h-[350px] sm:w-[600px] -translate-x-1/2 rounded-full bg-gradient-to-b from-indigo-500/20 via-purple-500/15 to-transparent blur-3xl sm:blur-[120px]"
+        className="pointer-events-none transform-gpu absolute -top-12 sm:-top-24 left-1/2 hidden sm:block h-[350px] w-[600px] -translate-x-1/2 rounded-full bg-gradient-to-b from-indigo-500/20 via-purple-500/15 to-transparent blur-[120px]"
       />
       <div
         aria-hidden="true"

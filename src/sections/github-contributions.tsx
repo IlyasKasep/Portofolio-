@@ -303,7 +303,7 @@ export default function GithubContributions({
       {/* Vibrant Ambient Colorful Aura */}
       <div
         aria-hidden="true"
-        className="pointer-events-none transform-gpu absolute -left-10 sm:-left-20 top-1/3 h-48 w-48 sm:h-80 sm:w-80 rounded-full bg-gradient-to-tr from-emerald-500/15 via-teal-500/10 to-transparent blur-3xl sm:blur-[110px]"
+        className="pointer-events-none transform-gpu absolute -left-10 sm:-left-20 top-1/3 hidden sm:block h-80 sm:w-80 rounded-full bg-gradient-to-tr from-emerald-500/15 via-teal-500/10 to-transparent blur-[110px]"
       />
       <div
         aria-hidden="true"
@@ -314,7 +314,7 @@ export default function GithubContributions({
       <div
         ref={bgTextRef}
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-12 flex select-none items-center justify-center text-center text-[clamp(4rem,15vw,15rem)] font-bold leading-none tracking-[-0.075em] text-foreground/4.5 blur-[3px]"
+        className="pointer-events-none absolute inset-x-0 top-12 hidden select-none items-center justify-center text-center text-[clamp(4rem,15vw,15rem)] font-bold leading-none tracking-[-0.075em] text-foreground/4.5 blur-[3px] md:flex"
       >
         CONTRIBUTIONS
       </div>

@@ -138,7 +138,7 @@ export default function ContactSection() {
       {/* Vibrant Ambient Colorful Aura */}
       <div
         aria-hidden="true"
-        className="pointer-events-none transform-gpu absolute -left-10 sm:-left-20 top-1/4 h-48 w-48 sm:h-[28rem] sm:w-[28rem] rounded-full bg-gradient-to-tr from-violet-600/25 via-indigo-500/20 to-sky-400/20 blur-3xl sm:blur-[120px]"
+        className="pointer-events-none transform-gpu absolute -left-10 sm:-left-20 top-1/4 hidden sm:block h-[28rem] w-[28rem] rounded-full bg-gradient-to-tr from-violet-600/25 via-indigo-500/20 to-sky-400/20 blur-[120px]"
       />
       <div
         aria-hidden="true"
@@ -149,7 +149,7 @@ export default function ContactSection() {
       <div
         ref={bgTextRef}
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 flex select-none items-center justify-center text-center text-[clamp(6rem,22vw,22rem)] font-bold leading-none tracking-[-0.075em] text-white/3 select-none blur-[3px]"
+        className="pointer-events-none absolute inset-0 hidden select-none items-center justify-center text-center text-[clamp(6rem,22vw,22rem)] font-bold leading-none tracking-[-0.075em] text-white/3 select-none blur-[3px] md:flex"
       >
         CONTACT
       </div>

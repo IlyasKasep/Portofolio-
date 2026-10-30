@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   motion,
   useMotionTemplate,
@@ -21,6 +21,7 @@ const springConfig = {
 export default function AnimatedProfile() {
   const cardRef = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useReducedMotion();
+  const [canHover, setCanHover] = useState(false);
 
   const cursorX = useMotionValue(50);
   const cursorY = useMotionValue(50);
@@ -59,12 +60,16 @@ export default function AnimatedProfile() {
       cursorY.set(50);
     }
 
-    if (
-      prefersReducedMotion ||
-      !window.matchMedia("(hover: hover) and (pointer: fine)").matches
-    ) {
+    const hoverQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
+    setCanHover(hoverQuery.matches);
+    const handleQueryChange = (e: MediaQueryListEvent) => setCanHover(e.matches);
+    hoverQuery.addEventListener("change", handleQueryChange);
+
+    if (prefersReducedMotion || !hoverQuery.matches) {
       resetCard();
-      return;
+      return () => {
+        hoverQuery.removeEventListener("change", handleQueryChange);
+      };
     }
 
     function handleMouseMove(event: MouseEvent) {
@@ -113,6 +118,7 @@ export default function AnimatedProfile() {
     window.addEventListener("mouseup", handleMouseUp);
 
     return () => {
+      hoverQuery.removeEventListener("change", handleQueryChange);
       card.removeEventListener("mouseenter", handleMouseEnter);
       card.removeEventListener("mouseleave", resetCard);
       card.removeEventListener("mousemove", handleMouseMove);
@@ -131,20 +137,20 @@ export default function AnimatedProfile() {
   ]);
 
   return (
-    <div className="profile-card relative z-10 flex w-full justify-center [perspective:1200px] lg:justify-end">
+    <div className="profile-card relative z-10 flex w-full justify-center lg:[perspective:1200px] lg:justify-end">
       {/* Vibrant Ambient Glow Behind Card */}
-      <div className="pointer-events-none absolute -inset-4 rounded-[2.5rem] bg-gradient-to-tr from-violet-600/35 via-sky-400/25 to-emerald-400/35 blur-2xl opacity-75" />
+      <div className="pointer-events-none absolute -inset-4 hidden sm:block rounded-[2.5rem] bg-gradient-to-tr from-violet-600/35 via-sky-400/25 to-emerald-400/35 blur-2xl opacity-75" />
 
       <motion.div
         ref={cardRef}
-        className="relative h-[480px] w-full max-w-[390px] overflow-hidden rounded-[2rem] border border-white/25 bg-[#0b0b0d] will-change-transform sm:h-[560px] sm:max-w-[450px] lg:h-[640px] lg:max-w-[520px]"
+        className="relative h-[480px] w-full max-w-[390px] overflow-hidden rounded-[2rem] border border-white/25 bg-[#0b0b0d] lg:will-change-transform sm:h-[560px] sm:max-w-[450px] lg:h-[640px] lg:max-w-[520px]"
         data-profile-card
         style={{
           boxShadow: cardShadow,
           rotateX,
           rotateY,
           scale,
-          transformStyle: "preserve-3d",
+          transformStyle: canHover ? "preserve-3d" : "flat",
         }}
       >
         <div className="absolute inset-0 rounded-[2rem] bg-[linear-gradient(180deg,rgba(255,255,255,0.12),rgba(255,255,255,0)_34%),linear-gradient(180deg,#25252a_0%,#131418_48%,#050506_100%)]" />

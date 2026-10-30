@@ -25,7 +25,7 @@ export default function HeroSection() {
         (context) => {
           const { isDesktop, reduceMotion } = context.conditions ?? {};
 
-          if (reduceMotion) {
+          if (reduceMotion || !isDesktop) {
             gsap.set(
               [
                 ".hero-socials a",
@@ -35,51 +35,48 @@ export default function HeroSection() {
                 ".hero-resume",
                 ".hero-scroll-indicator",
               ],
-              { clearProps: "all" },
+              { opacity: 1, x: 0, y: 0, scale: 1, clearProps: "all" },
             );
             return;
           }
 
           const timeline = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-          if (!isDesktop) {
-            gsap.set(
-              [
-                ".hero-socials a",
-                ".location",
-                ".greetings",
-                ".profile-card",
-                ".hero-resume",
-                ".hero-scroll-indicator",
-              ],
-              { opacity: 1, clearProps: "all" },
-            );
-            return;
-          }
-
           timeline
-            .from(".hero-socials a", {
-              opacity: 0,
-              y: -14,
-              stagger: 0.06,
-              duration: 0.5,
-            })
-            .from(".location", { opacity: 0, x: -100, duration: 0.5 }, "-=0.4")
-            .from(".greetings", { opacity: 0, x: 100, duration: 0.95 }, "-=0.45")
-            .from(
-              ".profile-card",
-              { scale: 0.9, opacity: 0, duration: 0.75, rotate: 3 },
-              "-=0.7",
+            .fromTo(
+              ".hero-socials a",
+              { opacity: 0, y: -14 },
+              { opacity: 1, y: 0, stagger: 0.05, duration: 0.45 },
             )
-            .from(
-              ".hero-resume",
-              { opacity: 0, y: 8, duration: 0.45 },
+            .fromTo(
+              ".location",
+              { opacity: 0, x: -60 },
+              { opacity: 1, x: 0, duration: 0.45 },
+              "-=0.35",
+            )
+            .fromTo(
+              ".greetings",
+              { opacity: 0, x: 60 },
+              { opacity: 1, x: 0, duration: 0.55 },
+              "-=0.35",
+            )
+            .fromTo(
+              ".profile-card",
+              { opacity: 0, y: 20 },
+              { opacity: 1, y: 0, duration: 0.6 },
               "-=0.45",
             )
-            .from(
-              ".hero-scroll-indicator",
-              { opacity: 0, y: 10, duration: 0.55 },
+            .fromTo(
+              ".hero-resume",
+              { opacity: 0, y: 8 },
+              { opacity: 1, y: 0, duration: 0.4 },
               "-=0.35",
+            )
+            .fromTo(
+              ".hero-scroll-indicator",
+              { opacity: 0, y: 10 },
+              { opacity: 0.45, y: 0, duration: 0.45 },
+              "-=0.3",
             );
         },
       );
@@ -96,7 +93,7 @@ export default function HeroSection() {
       className="hero-section relative mb-10 grid min-h-[calc(100vh-5rem)] content-start items-start gap-8 px-6 pb-10 pt-24 sm:gap-10 sm:px-10 sm:pb-14 sm:pt-28 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.7fr)] lg:content-center lg:items-center lg:gap-12 lg:px-24 lg:py-10"
     >
       {/* Vibrant Ambient Colorful Aura & Glow */}
-      <div className="pointer-events-none transform-gpu absolute -top-10 -left-10 sm:-top-20 sm:-left-20 h-48 w-48 sm:h-[28rem] sm:w-[28rem] rounded-full bg-gradient-to-tr from-violet-600/25 via-fuchsia-500/20 to-sky-400/20 blur-3xl sm:blur-[100px]" />
+      <div className="pointer-events-none transform-gpu absolute -top-10 -left-10 sm:-top-20 sm:-left-20 hidden sm:block h-[28rem] w-[28rem] rounded-full bg-gradient-to-tr from-violet-600/25 via-fuchsia-500/20 to-sky-400/20 blur-[100px]" />
       <div className="pointer-events-none transform-gpu absolute top-1/4 -right-10 hidden sm:block h-[32rem] w-[32rem] rounded-full bg-gradient-to-bl from-cyan-400/25 via-teal-400/20 to-emerald-400/25 blur-[120px]" />
       <div className="pointer-events-none transform-gpu absolute -bottom-10 left-1/3 hidden sm:block h-80 w-80 rounded-full bg-gradient-to-r from-amber-400/15 via-rose-500/15 to-purple-600/15 blur-[90px]" />
 

@@ -150,7 +150,7 @@ export default function ExperienceSection({
       {/* Vibrant Ambient Colorful Aura */}
       <div
         aria-hidden="true"
-        className="pointer-events-none transform-gpu absolute -left-16 sm:-left-32 top-1/4 h-48 w-48 sm:h-96 sm:w-96 rounded-full bg-gradient-to-tr from-indigo-600/20 via-purple-600/15 to-pink-500/15 blur-3xl sm:blur-[120px]"
+        className="pointer-events-none transform-gpu absolute -left-16 sm:-left-32 top-1/4 hidden sm:block h-96 w-96 rounded-full bg-gradient-to-tr from-indigo-600/20 via-purple-600/15 to-pink-500/15 blur-[120px]"
       />
       <div
         aria-hidden="true"
@@ -160,7 +160,7 @@ export default function ExperienceSection({
       <div
         ref={bgTextRef}
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 flex select-none items-center justify-center text-center text-[clamp(5rem,17vw,17rem)] font-bold leading-none tracking-[-0.075em] text-white/4.5 blur-[3px]"
+        className="pointer-events-none absolute inset-0 hidden select-none items-center justify-center text-center text-[clamp(5rem,17vw,17rem)] font-bold leading-none tracking-[-0.075em] text-white/4.5 blur-[3px] md:flex"
       >
         EXPERIENCES
       </div>

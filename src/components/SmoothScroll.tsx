@@ -14,7 +14,7 @@ export default function SmoothScroll({
 }) {
   useEffect(() => {
     if (
-      window.matchMedia("(pointer: coarse), (max-width: 767px)").matches ||
+      window.matchMedia("(pointer: coarse), (max-width: 1023px)").matches ||
       window.matchMedia("(prefers-reduced-motion: reduce)").matches
     ) {
       return;

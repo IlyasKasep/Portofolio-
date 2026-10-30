@@ -293,11 +293,11 @@ export default function GithubContributions({
       {/* Vibrant Ambient Colorful Aura */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -left-20 top-1/3 h-80 w-80 rounded-full bg-gradient-to-tr from-emerald-500/15 via-teal-500/10 to-transparent blur-[110px]"
+        className="pointer-events-none transform-gpu absolute -left-20 top-1/3 h-80 w-80 rounded-full bg-gradient-to-tr from-emerald-500/15 via-teal-500/10 to-transparent blur-[110px]"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-20 top-1/2 h-80 w-80 rounded-full bg-gradient-to-bl from-sky-500/15 via-indigo-500/10 to-transparent blur-[110px]"
+        className="pointer-events-none transform-gpu absolute -right-20 top-1/2 h-80 w-80 rounded-full bg-gradient-to-bl from-sky-500/15 via-indigo-500/10 to-transparent blur-[110px]"
       />
 
       {/* Large Background Text */}

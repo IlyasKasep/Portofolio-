@@ -132,11 +132,11 @@ export default function ContactSection() {
       {/* Vibrant Ambient Colorful Aura */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -left-20 top-1/4 h-[28rem] w-[28rem] rounded-full bg-gradient-to-tr from-violet-600/25 via-indigo-500/20 to-sky-400/20 blur-[120px]"
+        className="pointer-events-none transform-gpu absolute -left-20 top-1/4 h-[28rem] w-[28rem] rounded-full bg-gradient-to-tr from-violet-600/25 via-indigo-500/20 to-sky-400/20 blur-[120px]"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-20 bottom-1/4 h-[30rem] w-[30rem] rounded-full bg-gradient-to-bl from-emerald-500/20 via-teal-500/15 to-cyan-500/20 blur-[120px]"
+        className="pointer-events-none transform-gpu absolute -right-20 bottom-1/4 h-[30rem] w-[30rem] rounded-full bg-gradient-to-bl from-emerald-500/20 via-teal-500/15 to-cyan-500/20 blur-[120px]"
       />
 
       {/* Large Background Text */}

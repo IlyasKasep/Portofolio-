@@ -179,11 +179,11 @@ export default function ExperienceSection({
       {/* Vibrant Ambient Colorful Aura */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -left-32 top-1/4 h-96 w-96 rounded-full bg-gradient-to-tr from-indigo-600/20 via-purple-600/15 to-pink-500/15 blur-[120px]"
+        className="pointer-events-none transform-gpu absolute -left-32 top-1/4 h-96 w-96 rounded-full bg-gradient-to-tr from-indigo-600/20 via-purple-600/15 to-pink-500/15 blur-[120px]"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-32 bottom-1/4 h-96 w-96 rounded-full bg-gradient-to-bl from-cyan-500/20 via-teal-500/15 to-emerald-500/20 blur-[120px]"
+        className="pointer-events-none transform-gpu absolute -right-32 bottom-1/4 h-96 w-96 rounded-full bg-gradient-to-bl from-cyan-500/20 via-teal-500/15 to-emerald-500/20 blur-[120px]"
       />
 
       <div

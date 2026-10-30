@@ -159,7 +159,6 @@ export default function AnimatedProfile() {
           alt="Portrait of Muhammad Ilyas Satria Fauzan"
           fill
           priority
-          unoptimized
           sizes="(min-width: 1024px) 520px, (min-width: 640px) 450px, 90vw"
           className="relative z-10 object-cover object-bottom rounded-[2rem] transition-transform duration-700 ease-out hover:scale-[1.02]"
         />

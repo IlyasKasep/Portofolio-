@@ -103,9 +103,9 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
       preLayerElsRef.current = preLayers;
 
       const offscreen = position === 'left' ? -100 : 100;
-      gsap.set([panel, ...preLayers], { xPercent: offscreen, opacity: 1, visibility: 'hidden' });
+      gsap.set([panel, ...preLayers], { xPercent: offscreen, opacity: 1, visibility: 'visible' });
       if (preContainer) {
-        gsap.set(preContainer, { xPercent: 0, opacity: 1, visibility: 'hidden' });
+        gsap.set(preContainer, { xPercent: 0, opacity: 1, visibility: 'visible' });
       }
 
       gsap.set(plusH, { transformOrigin: '50% 50%', rotate: 0 });
@@ -150,10 +150,6 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     if (numberEls.length) gsap.set(numberEls, { '--sm-num-opacity': 0 });
     if (socialTitle) gsap.set(socialTitle, { opacity: 0 });
     if (socialLinks.length) gsap.set(socialLinks, { y: 25, opacity: 0 });
-
-    const preContainer = preLayersRef.current;
-    if (preContainer) gsap.set(preContainer, { visibility: 'visible' });
-    gsap.set([panel, ...layers], { visibility: 'visible' });
 
     const tl = gsap.timeline({ paused: true });
 
@@ -263,10 +259,6 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
         const socialLinks = Array.from(panel.querySelectorAll('.sm-socials-link')) as HTMLElement[];
         if (socialTitle) gsap.set(socialTitle, { opacity: 0 });
         if (socialLinks.length) gsap.set(socialLinks, { y: 25, opacity: 0 });
-
-        gsap.set([panel, ...layers], { visibility: 'hidden' });
-        const preContainer = preLayersRef.current;
-        if (preContainer) gsap.set(preContainer, { visibility: 'hidden' });
 
         busyRef.current = false;
       }
@@ -411,19 +403,17 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
       if (!ticking) {
         window.requestAnimationFrame(() => {
           const currentScrollY = window.scrollY;
-          const delta = currentScrollY - lastScrollY.current;
 
           if (currentScrollY <= 50) {
             setVisible(true);
-            lastScrollY.current = currentScrollY;
-          } else if (Math.abs(delta) > 20) {
-            if (delta > 0) {
+          } else {
+            if (currentScrollY > lastScrollY.current) {
               setVisible(false);
             } else {
               setVisible(true);
             }
-            lastScrollY.current = currentScrollY;
           }
+          lastScrollY.current = currentScrollY;
           ticking = false;
         });
         ticking = true;
@@ -491,7 +481,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   return (
     <div
       ref={rootRef}
-      className={`sm-scope pointer-events-none z-40 ${isFixed ? (open ? 'fixed inset-0 h-dvh w-screen overflow-hidden' : 'fixed top-0 left-0 right-0') : 'w-full h-full'}`}
+      className={`sm-scope pointer-events-none z-40 ${isFixed ? 'fixed inset-0 h-dvh w-screen overflow-hidden' : 'w-full h-full'}`}
     >
       <div
         className={

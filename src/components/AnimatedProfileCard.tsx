@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import {
   motion,
   useMotionTemplate,
@@ -21,7 +21,6 @@ const springConfig = {
 export default function AnimatedProfile() {
   const cardRef = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useReducedMotion();
-  const [canHover, setCanHover] = useState(false);
 
   const cursorX = useMotionValue(50);
   const cursorY = useMotionValue(50);
@@ -60,16 +59,12 @@ export default function AnimatedProfile() {
       cursorY.set(50);
     }
 
-    const hoverQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
-    setCanHover(hoverQuery.matches);
-    const handleQueryChange = (e: MediaQueryListEvent) => setCanHover(e.matches);
-    hoverQuery.addEventListener("change", handleQueryChange);
-
-    if (prefersReducedMotion || !hoverQuery.matches) {
+    if (
+      prefersReducedMotion ||
+      !window.matchMedia("(hover: hover) and (pointer: fine)").matches
+    ) {
       resetCard();
-      return () => {
-        hoverQuery.removeEventListener("change", handleQueryChange);
-      };
+      return;
     }
 
     function handleMouseMove(event: MouseEvent) {
@@ -118,7 +113,6 @@ export default function AnimatedProfile() {
     window.addEventListener("mouseup", handleMouseUp);
 
     return () => {
-      hoverQuery.removeEventListener("change", handleQueryChange);
       card.removeEventListener("mouseenter", handleMouseEnter);
       card.removeEventListener("mouseleave", resetCard);
       card.removeEventListener("mousemove", handleMouseMove);
@@ -137,19 +131,20 @@ export default function AnimatedProfile() {
   ]);
 
   return (
-    <div className="profile-card relative z-10 flex w-full justify-center lg:[perspective:1200px] lg:justify-end">
+    <div className="profile-card relative z-10 flex w-full justify-center [perspective:1200px] lg:justify-end">
       {/* Vibrant Ambient Glow Behind Card */}
-      <div className="pointer-events-none absolute -inset-4 hidden sm:block rounded-[2.5rem] bg-gradient-to-tr from-violet-600/35 via-sky-400/25 to-emerald-400/35 blur-2xl opacity-75" />
+      <div className="pointer-events-none absolute -inset-4 rounded-[2.5rem] bg-gradient-to-tr from-violet-600/35 via-sky-400/25 to-emerald-400/35 blur-2xl opacity-75" />
 
       <motion.div
         ref={cardRef}
-        className="relative h-[480px] w-full max-w-[390px] overflow-hidden rounded-[2rem] border border-white/25 bg-[#0b0b0d] lg:will-change-transform sm:h-[560px] sm:max-w-[450px] lg:h-[640px] lg:max-w-[520px]"
+        className="relative h-[480px] w-full max-w-[390px] overflow-hidden rounded-[2rem] border border-white/25 bg-[#0b0b0d] will-change-transform sm:h-[560px] sm:max-w-[450px] lg:h-[640px] lg:max-w-[520px]"
         data-profile-card
         style={{
           boxShadow: cardShadow,
           rotateX,
           rotateY,
           scale,
+          transformStyle: "preserve-3d",
         }}
       >
         <div className="absolute inset-0 rounded-[2rem] bg-[linear-gradient(180deg,rgba(255,255,255,0.12),rgba(255,255,255,0)_34%),linear-gradient(180deg,#25252a_0%,#131418_48%,#050506_100%)]" />
@@ -166,22 +161,22 @@ export default function AnimatedProfile() {
           priority
           unoptimized
           sizes="(min-width: 1024px) 520px, (min-width: 640px) 450px, 90vw"
-          className="z-10 object-cover object-bottom rounded-[2rem] transition-transform duration-700 ease-out hover:scale-[1.02]"
+          className="relative z-10 object-cover object-bottom rounded-[2rem] transition-transform duration-700 ease-out hover:scale-[1.02]"
         />
 
         <div className="absolute inset-x-0 bottom-0 z-20 h-40 rounded-b-[2rem] bg-gradient-to-t from-[#050506] via-[#050506]/80 to-transparent" />
         <motion.div
           aria-hidden="true"
-          className="pointer-events-none hidden lg:block absolute inset-0 z-20 mix-blend-multiply rounded-[2rem]"
+          className="pointer-events-none absolute inset-0 z-20 mix-blend-multiply rounded-[2rem]"
           style={{ background: pressureShadow }}
         />
         <motion.div
           aria-hidden="true"
-          className="pointer-events-none hidden lg:block absolute inset-0 z-20 rounded-[2rem]"
+          className="pointer-events-none absolute inset-0 z-20 rounded-[2rem]"
           style={{ background: pressureGlare }}
         />
 
-        <div className="absolute inset-x-5 bottom-5 z-30 flex items-center justify-between gap-4 rounded-2xl border border-white/18 bg-[#111114]/90 px-5 py-4 text-white shadow-[0_16px_40px_rgba(0,0,0,0.35)] lg:bg-white/[0.1] lg:backdrop-blur-md">
+        <div className="absolute inset-x-5 bottom-5 z-30 flex items-center justify-between gap-4 rounded-2xl border border-white/18 bg-white/[0.1] px-5 py-4 text-white shadow-[0_16px_40px_rgba(0,0,0,0.35)] backdrop-blur-md">
           <div>
             <p className="text-sm font-semibold leading-none text-white">@IlyasKasep</p>
             <p className="mt-2 text-sm leading-none text-emerald-300 font-medium">

@@ -61,23 +61,52 @@ export default function ExperienceSection({
             return;
           }
 
-          if (isDesktop) {
-            ScrollTrigger.create({
-              trigger: section,
-              start: "top bottom",
-              end: "top top",
-              scrub: true,
-              animation: gsap.fromTo(
-                bgText,
-                { opacity: 0, filter: "blur(20px)", scale: 0.8 },
-                { opacity: 1, filter: "blur(3px)", scale: 1, ease: "none" },
-              ),
-              invalidateOnRefresh: true,
-            });
-          }
+          ScrollTrigger.create({
+            trigger: section,
+            start: "top bottom",
+            end: "top top",
+            scrub: true,
+            animation: gsap.fromTo(
+              bgText,
+              { opacity: 0, filter: "blur(20px)", scale: 0.8 },
+              { opacity: 1, filter: "blur(3px)", scale: 1, ease: "none" },
+            ),
+            invalidateOnRefresh: true,
+          });
 
           if (isMobileTablet) {
-            gsap.set([bgText, header, mobileCards], { opacity: 1, clearProps: "all" });
+            gsap.fromTo(
+              header,
+              { opacity: 0, y: 18 },
+              {
+                opacity: 1,
+                y: 0,
+                duration: 0.65,
+                ease: "power2.out",
+                scrollTrigger: {
+                  trigger: section,
+                  start: "top 72%",
+                },
+              },
+            );
+
+            gsap.fromTo(
+              mobileCards,
+              { opacity: 0, y: 70, scale: 0.96 },
+              {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                stagger: 0.12,
+                duration: 0.75,
+                ease: "power3.out",
+                scrollTrigger: {
+                  trigger: mobileSwiper,
+                  start: "top 78%",
+                },
+              },
+            );
+
             return;
           }
 
@@ -141,7 +170,7 @@ export default function ExperienceSection({
       id="experience"
       ref={sectionRef}
       aria-labelledby="experience-heading"
-      className="relative z-20 h-auto min-h-fit overflow-visible bg-subtle px-4 py-16 sm:px-8 sm:py-20 lg:h-svh lg:overflow-hidden lg:px-24 lg:py-10 motion-reduce:h-auto motion-reduce:min-h-svh motion-reduce:overflow-visible"
+      className="relative z-20 h-svh overflow-hidden bg-subtle px-4 py-5 sm:px-8 sm:py-7 lg:px-24 lg:py-10 motion-reduce:h-auto motion-reduce:min-h-svh motion-reduce:overflow-visible"
     >
       <h2 id="experience-heading" className="sr-only">
         Professional experience
@@ -150,17 +179,17 @@ export default function ExperienceSection({
       {/* Vibrant Ambient Colorful Aura */}
       <div
         aria-hidden="true"
-        className="pointer-events-none transform-gpu absolute -left-16 sm:-left-32 top-1/4 hidden sm:block h-96 w-96 rounded-full bg-gradient-to-tr from-indigo-600/20 via-purple-600/15 to-pink-500/15 blur-[120px]"
+        className="pointer-events-none absolute -left-32 top-1/4 h-96 w-96 rounded-full bg-gradient-to-tr from-indigo-600/20 via-purple-600/15 to-pink-500/15 blur-[120px]"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none transform-gpu absolute -right-32 bottom-1/4 hidden sm:block h-96 w-96 rounded-full bg-gradient-to-bl from-cyan-500/20 via-teal-500/15 to-emerald-500/20 blur-[120px]"
+        className="pointer-events-none absolute -right-32 bottom-1/4 h-96 w-96 rounded-full bg-gradient-to-bl from-cyan-500/20 via-teal-500/15 to-emerald-500/20 blur-[120px]"
       />
 
       <div
         ref={bgTextRef}
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 hidden select-none items-center justify-center text-center text-[clamp(5rem,17vw,17rem)] font-bold leading-none tracking-[-0.075em] text-white/4.5 blur-[3px] md:flex"
+        className="pointer-events-none absolute inset-0 flex select-none items-center justify-center text-center text-[clamp(5rem,17vw,17rem)] font-bold leading-none tracking-[-0.075em] text-white/4.5 blur-[3px]"
       >
         EXPERIENCES
       </div>
@@ -187,7 +216,7 @@ export default function ExperienceSection({
         <div
           ref={mobileSwiperRef}
           data-experience-swiper
-          className="w-full overflow-hidden lg:hidden"
+          className="min-h-0 flex-1 overflow-hidden lg:hidden"
         >
           <Swiper
             modules={[Pagination, A11y, Keyboard]}

@@ -14,7 +14,7 @@ export default function SmoothScroll({
 }) {
   useEffect(() => {
     if (
-      window.matchMedia("(pointer: coarse), (max-width: 1023px)").matches ||
+      window.matchMedia("(pointer: coarse), (max-width: 767px)").matches ||
       window.matchMedia("(prefers-reduced-motion: reduce)").matches
     ) {
       return;
@@ -35,17 +35,16 @@ export default function SmoothScroll({
       }
 
       lenis = new LenisClass({
-        duration: 0.85,
+        duration: 1.2,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         orientation: "vertical",
         gestureOrientation: "vertical",
         smoothWheel: true,
-        wheelMultiplier: 1.05,
       });
 
       lenis.on("scroll", ScrollTrigger.update);
       gsap.ticker.add(updateLenis);
-      gsap.ticker.lagSmoothing(500, 33);
+      gsap.ticker.lagSmoothing(0);
     }
 
     setupLenis();

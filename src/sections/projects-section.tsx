@@ -54,7 +54,27 @@ export default function ProjectsSection({
           }
 
           if (isMobile) {
-            gsap.set([section, bgText, cards], { opacity: 1, clearProps: "all" });
+            gsap.set([section, bgText], { clearProps: "all" });
+
+            cards.forEach((card) => {
+              gsap.fromTo(
+                card,
+                { opacity: 0, y: 36 },
+                {
+                  opacity: 1,
+                  y: 0,
+                  ease: "none",
+                  scrollTrigger: {
+                    trigger: card,
+                    start: "top 92%",
+                    end: "top 62%",
+                    scrub: 0.25,
+                    invalidateOnRefresh: true,
+                  },
+                },
+              );
+            });
+
             return;
           }
 
@@ -137,11 +157,11 @@ export default function ProjectsSection({
       {/* Vibrant Ambient Colorful Aura */}
       <div
         aria-hidden="true"
-        className="pointer-events-none transform-gpu absolute left-0 top-1/4 hidden sm:block h-[32rem] w-[32rem] rounded-full bg-gradient-to-tr from-violet-500/15 via-purple-500/10 to-indigo-500/10 blur-[130px]"
+        className="pointer-events-none absolute left-0 top-1/4 h-[32rem] w-[32rem] rounded-full bg-gradient-to-tr from-violet-500/15 via-purple-500/10 to-indigo-500/10 blur-[130px]"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none transform-gpu absolute right-0 top-2/3 hidden sm:block h-[30rem] w-[30rem] rounded-full bg-gradient-to-bl from-sky-400/15 via-teal-400/10 to-emerald-400/10 blur-[130px]"
+        className="pointer-events-none absolute right-0 top-2/3 h-[30rem] w-[30rem] rounded-full bg-gradient-to-bl from-sky-400/15 via-teal-400/10 to-emerald-400/10 blur-[130px]"
       />
 
       {/* Large Background Text */}

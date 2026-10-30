@@ -46,12 +46,11 @@ export default function ContactSection() {
 
       media.add(
         {
-          isDesktop: "(min-width: 768px)",
-          isMobile: "(max-width: 767px)",
+          isAll: "(min-width: 0px)",
           reduceMotion: "(prefers-reduced-motion: reduce)",
         },
         (context) => {
-          const { isDesktop, isMobile, reduceMotion } = context.conditions ?? {};
+          const { reduceMotion } = context.conditions ?? {};
           const words = heading.querySelectorAll(".contact-word");
 
           if (reduceMotion) {
@@ -61,12 +60,7 @@ export default function ContactSection() {
             return;
           }
 
-          if (isMobile) {
-            gsap.set([heading, bgText, info, bottom, words], { opacity: 1, clearProps: "all" });
-            return;
-          }
-
-          // Desktop: Parallax shift for the background "CONTACT" text
+          // Parallax shift for the background "CONTACT" text
           gsap.fromTo(
             bgText,
             { yPercent: -15, opacity: 0 },
@@ -83,7 +77,7 @@ export default function ContactSection() {
             },
           );
 
-          // Desktop: Scrubbed staggered reveal timeline for the sticky footer
+          // Scrubbed staggered reveal timeline for the footer contents
           const timeline = gsap.timeline({
             scrollTrigger: {
               trigger: section,
@@ -102,23 +96,23 @@ export default function ContactSection() {
               {
                 yPercent: 0,
                 opacity: 1,
-                stagger: 0.08,
-                duration: 0.75,
+                stagger: 0.15,
+                duration: 1.2,
                 ease: "power2.out",
               },
               0,
             )
             .fromTo(
               info,
-              { y: 40, opacity: 0 },
-              { y: 0, opacity: 1, ease: "power2.out", duration: 0.65 },
-              0.25,
+              { y: 60, opacity: 0 },
+              { y: 0, opacity: 1, ease: "power1.out", duration: 1 },
+              0.4,
             )
             .fromTo(
               bottom,
-              { y: 30, opacity: 0 },
-              { y: 0, opacity: 1, ease: "power2.out", duration: 0.65 },
-              0.4,
+              { y: 40, opacity: 0 },
+              { y: 0, opacity: 1, ease: "power1.out", duration: 1 },
+              0.65,
             );
         },
       );
@@ -138,18 +132,18 @@ export default function ContactSection() {
       {/* Vibrant Ambient Colorful Aura */}
       <div
         aria-hidden="true"
-        className="pointer-events-none transform-gpu absolute -left-10 sm:-left-20 top-1/4 hidden sm:block h-[28rem] w-[28rem] rounded-full bg-gradient-to-tr from-violet-600/25 via-indigo-500/20 to-sky-400/20 blur-[120px]"
+        className="pointer-events-none absolute -left-20 top-1/4 h-[28rem] w-[28rem] rounded-full bg-gradient-to-tr from-violet-600/25 via-indigo-500/20 to-sky-400/20 blur-[120px]"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none transform-gpu absolute -right-20 bottom-1/4 hidden sm:block h-[30rem] w-[30rem] rounded-full bg-gradient-to-bl from-emerald-500/20 via-teal-500/15 to-cyan-500/20 blur-[120px]"
+        className="pointer-events-none absolute -right-20 bottom-1/4 h-[30rem] w-[30rem] rounded-full bg-gradient-to-bl from-emerald-500/20 via-teal-500/15 to-cyan-500/20 blur-[120px]"
       />
 
       {/* Large Background Text */}
       <div
         ref={bgTextRef}
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 hidden select-none items-center justify-center text-center text-[clamp(6rem,22vw,22rem)] font-bold leading-none tracking-[-0.075em] text-white/3 select-none blur-[3px] md:flex"
+        className="pointer-events-none absolute inset-0 flex select-none items-center justify-center text-center text-[clamp(6rem,22vw,22rem)] font-bold leading-none tracking-[-0.075em] text-white/3 select-none blur-[3px]"
       >
         CONTACT
       </div>

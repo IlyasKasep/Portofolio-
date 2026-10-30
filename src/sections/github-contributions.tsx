@@ -214,64 +214,54 @@ export default function GithubContributions({
             return;
           }
 
-          const isMobile = window.innerWidth < 768;
+          // Parallax background text
+          gsap.fromTo(
+            bgText,
+            { y: -50, opacity: 0 },
+            {
+              y: 50,
+              opacity: 1,
+              ease: "none",
+              scrollTrigger: {
+                trigger: section,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true,
+              },
+            }
+          );
 
-          // Parallax background text: scrub on desktop, simple reveal on mobile
-          if (!isMobile) {
-            gsap.fromTo(
-              bgText,
-              { y: -50, opacity: 0 },
-              {
-                y: 50,
-                opacity: 1,
-                ease: "none",
-                scrollTrigger: {
-                  trigger: section,
-                  start: "top bottom",
-                  end: "bottom top",
-                  scrub: true,
-                },
-              }
-            );
+          // Staggered grid cell entry reveal
+          gsap.fromTo(
+            ".contrib-cell",
+            { scale: 0, opacity: 0, transformOrigin: "center center" },
+            {
+              scale: 1,
+              opacity: 1,
+              stagger: {
+                grid: [7, 53],
+                from: "start",
+                amount: 1.5,
+              },
+              duration: 0.6,
+              ease: "back.out(1.5)",
+              scrollTrigger: {
+                trigger: ".contrib-grid-wrapper",
+                start: "top 85%",
+              },
+            }
+          );
 
-            // Staggered grid cell entry reveal on desktop
-            gsap.fromTo(
-              ".contrib-cell",
-              { scale: 0, opacity: 0, transformOrigin: "center center" },
-              {
-                scale: 1,
-                opacity: 1,
-                stagger: {
-                  grid: [7, 53],
-                  from: "start",
-                  amount: 0.9,
-                },
-                duration: 0.45,
-                ease: "back.out(1.4)",
-                scrollTrigger: {
-                  trigger: ".contrib-grid-wrapper",
-                  start: "top 85%",
-                },
-              }
-            );
-          } else {
-            gsap.set([bgText, ".contrib-grid-wrapper", ".contrib-cell"], { opacity: 1, clearProps: "all" });
-            totalCounter.innerText = total.toLocaleString();
-            streakCounter.innerText = `${longestStreak} days`;
-            activeCounter.innerText = `${activeDaysPercent}%`;
-            return;
-          }
-
-          // Counter animations (desktop)
+          // Counter animations
           const animateCounter = (element: HTMLElement, finalValue: number, suffix = "") => {
             const obj = { val: 0 };
             gsap.to(obj, {
               val: finalValue,
-              duration: 1.0,
+              duration: 2,
               ease: "power2.out",
               scrollTrigger: {
                 trigger: element,
-                start: "top 96%",
+                start: "top 90%",
               },
               onUpdate: () => {
                 element.innerText = Math.floor(obj.val).toLocaleString() + suffix;
@@ -303,18 +293,18 @@ export default function GithubContributions({
       {/* Vibrant Ambient Colorful Aura */}
       <div
         aria-hidden="true"
-        className="pointer-events-none transform-gpu absolute -left-10 sm:-left-20 top-1/3 hidden sm:block h-80 sm:w-80 rounded-full bg-gradient-to-tr from-emerald-500/15 via-teal-500/10 to-transparent blur-[110px]"
+        className="pointer-events-none absolute -left-20 top-1/3 h-80 w-80 rounded-full bg-gradient-to-tr from-emerald-500/15 via-teal-500/10 to-transparent blur-[110px]"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none transform-gpu absolute -right-20 top-1/2 hidden sm:block h-80 w-80 rounded-full bg-gradient-to-bl from-sky-500/15 via-indigo-500/10 to-transparent blur-[110px]"
+        className="pointer-events-none absolute -right-20 top-1/2 h-80 w-80 rounded-full bg-gradient-to-bl from-sky-500/15 via-indigo-500/10 to-transparent blur-[110px]"
       />
 
       {/* Large Background Text */}
       <div
         ref={bgTextRef}
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-12 hidden select-none items-center justify-center text-center text-[clamp(4rem,15vw,15rem)] font-bold leading-none tracking-[-0.075em] text-foreground/4.5 blur-[3px] md:flex"
+        className="pointer-events-none absolute inset-x-0 top-12 flex select-none items-center justify-center text-center text-[clamp(4rem,15vw,15rem)] font-bold leading-none tracking-[-0.075em] text-foreground/4.5 blur-[3px]"
       >
         CONTRIBUTIONS
       </div>

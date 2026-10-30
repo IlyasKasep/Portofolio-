@@ -25,66 +25,65 @@ export default function HeroSection() {
         (context) => {
           const { isDesktop, reduceMotion } = context.conditions ?? {};
 
-          if (reduceMotion || !isDesktop) {
+          if (reduceMotion) {
             gsap.set(
               [
                 ".hero-socials a",
                 ".location",
                 ".greetings",
-                ".role",
-                ".hero-bio",
                 ".profile-card",
                 ".hero-resume",
                 ".hero-scroll-indicator",
               ],
-              { opacity: 1, x: 0, y: 0, scale: 1, clearProps: "all" },
+              { clearProps: "all" },
             );
             return;
           }
 
           const timeline = gsap.timeline({ defaults: { ease: "power3.out" } });
 
+          if (isDesktop) {
+            timeline
+              .from(".hero-socials a", {
+                opacity: 0,
+                y: -20,
+                stagger: 0.1,
+                duration: 0.8,
+              })
+              .from(".location", { opacity: 0, x: -200 }, "-=0.6")
+              .from(".greetings", { opacity: 0, x: 200, duration: 2 }, "-=0.8")
+              .from(
+                ".profile-card",
+                { scale: 0.85, opacity: 0, duration: 1, rotate: 4 },
+                "-=1.7",
+              )
+              .from(
+                ".hero-resume",
+                { opacity: 0, y: 10, duration: 0.6 },
+                "-=1.1",
+              )
+              .from(
+                ".hero-scroll-indicator",
+                { opacity: 0, y: 15, duration: 1 },
+                "-=1.3",
+              );
+
+            return;
+          }
+
           timeline
-            .fromTo(
-              ".hero-socials a",
-              { opacity: 0, y: -14 },
-              { opacity: 1, y: 0, stagger: 0.05, duration: 0.45 },
-            )
-            .fromTo(
-              ".location",
-              { opacity: 0, x: -60 },
-              { opacity: 1, x: 0, duration: 0.45 },
-              "-=0.35",
-            )
-            .fromTo(
-              ".greetings",
-              { opacity: 0, x: 60 },
-              { opacity: 1, x: 0, duration: 0.55 },
-              "-=0.35",
-            )
-            .fromTo(
-              ".hero-bio",
-              { opacity: 0, y: 14 },
-              { opacity: 1, y: 0, duration: 0.45 },
-              "-=0.35",
-            )
-            .fromTo(
-              ".profile-card",
-              { opacity: 0, y: 20 },
-              { opacity: 1, y: 0, duration: 0.6 },
-              "-=0.45",
-            )
-            .fromTo(
-              ".hero-resume",
-              { opacity: 0, y: 8 },
-              { opacity: 1, y: 0, duration: 0.4 },
-              "-=0.35",
-            )
-            .fromTo(
+            .from(".hero-socials a", {
+              opacity: 0,
+              stagger: 0.08,
+              duration: 0.45,
+            })
+            .from(".location", { opacity: 0, duration: 0.4 }, "-=0.25")
+            .from(".greetings", { opacity: 0, duration: 0.55 }, "-=0.2")
+            .from(".hero-resume", { opacity: 0, duration: 0.35 }, "-=0.1")
+            .from(
               ".hero-scroll-indicator",
-              { opacity: 0, y: 10 },
-              { opacity: 0.45, y: 0, duration: 0.45 },
-              "-=0.3",
+              { opacity: 0, duration: 0.35 },
+              "-=0.15",
             );
         },
       );
@@ -101,9 +100,9 @@ export default function HeroSection() {
       className="hero-section relative mb-10 grid min-h-[calc(100vh-5rem)] content-start items-start gap-8 px-6 pb-10 pt-24 sm:gap-10 sm:px-10 sm:pb-14 sm:pt-28 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.7fr)] lg:content-center lg:items-center lg:gap-12 lg:px-24 lg:py-10"
     >
       {/* Vibrant Ambient Colorful Aura & Glow */}
-      <div className="pointer-events-none transform-gpu absolute -top-10 -left-10 sm:-top-20 sm:-left-20 hidden sm:block h-[28rem] w-[28rem] rounded-full bg-gradient-to-tr from-violet-600/25 via-fuchsia-500/20 to-sky-400/20 blur-[100px]" />
-      <div className="pointer-events-none transform-gpu absolute top-1/4 -right-10 hidden sm:block h-[32rem] w-[32rem] rounded-full bg-gradient-to-bl from-cyan-400/25 via-teal-400/20 to-emerald-400/25 blur-[120px]" />
-      <div className="pointer-events-none transform-gpu absolute -bottom-10 left-1/3 hidden sm:block h-80 w-80 rounded-full bg-gradient-to-r from-amber-400/15 via-rose-500/15 to-purple-600/15 blur-[90px]" />
+      <div className="pointer-events-none absolute -top-20 -left-20 h-[28rem] w-[28rem] rounded-full bg-gradient-to-tr from-violet-600/25 via-fuchsia-500/20 to-sky-400/20 blur-[100px]" />
+      <div className="pointer-events-none absolute top-1/4 -right-10 h-[32rem] w-[32rem] rounded-full bg-gradient-to-bl from-cyan-400/25 via-teal-400/20 to-emerald-400/25 blur-[120px]" />
+      <div className="pointer-events-none absolute -bottom-10 left-1/3 h-80 w-80 rounded-full bg-gradient-to-r from-amber-400/15 via-rose-500/15 to-purple-600/15 blur-[90px]" />
 
       {/* Background Dotted Grid Overlay */}
       <div
@@ -251,11 +250,7 @@ export default function HeroSection() {
           className="role mt-1 block min-h-[2rem] min-w-[18ch] whitespace-nowrap! text-xl font-thin! leading-tight tracking-[0.06em]! sm:mt-2 sm:min-h-[3.5rem] sm:text-4xl lg:mt-3 lg:min-h-[3.75rem] lg:text-5xl"
         />
 
-        <p className="hero-bio mt-4 max-w-xl font-sans text-sm sm:text-base leading-relaxed text-foreground/75 font-normal sm:mt-5">
-          Mahasiswa tingkat akhir Teknik Informatika (Semester 7) di Universitas Muhammadiyah Bandung yang berfokus merancang &amp; membangun antarmuka web modern, interaktif, desain responsif, serta performa kode yang optimal.
-        </p>
-
-        <div className="hero-resume mt-5 flex items-center gap-4 sm:mt-6 lg:mt-7">
+        <div className="hero-resume mt-4 flex sm:mt-5 lg:mt-6">
           <a
             href="/resume"
             target="_blank"
@@ -263,12 +258,6 @@ export default function HeroSection() {
             className="inline-flex w-fit items-center rounded-full border border-foreground/15 bg-foreground px-5 py-3 font-mono text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-background transition-colors duration-300 hover:bg-transparent hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground"
           >
             Resume
-          </a>
-          <a
-            href="#about"
-            className="inline-flex w-fit items-center rounded-full border border-foreground/20 bg-transparent px-5 py-3 font-mono text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-foreground transition-colors duration-300 hover:border-foreground hover:bg-foreground/[0.05] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground"
-          >
-            Tentang Saya
           </a>
         </div>
       </div>

@@ -90,15 +90,14 @@ export default function IntroSection({ skills }: { skills: string[] }) {
 
       media.add(
         {
-          isDesktop: "(min-width: 1024px)",
-          isMobileTablet: "(max-width: 1023px)",
           reduceMotion: "(prefers-reduced-motion: reduce)",
+          all: "(min-width: 0px)",
         },
         (context) => {
-          const { isDesktop, reduceMotion } = context.conditions ?? {};
+          const { reduceMotion } = context.conditions ?? {};
           const lineEls = text.querySelectorAll(".line");
 
-          if (reduceMotion || !isDesktop) {
+          if (reduceMotion) {
             gsap.set(lineEls, { opacity: 1, y: 0, clearProps: "all" });
             if (storyRef.current) {
               const storyItems = storyRef.current.querySelectorAll(".story-reveal");
@@ -107,22 +106,22 @@ export default function IntroSection({ skills }: { skills: string[] }) {
             return;
           }
 
-          // Desktop: Snappy, early-trigger entrance
+          // Snappy, early-trigger entrance so text is visible immediately without scrolling deep
           gsap.fromTo(
             lineEls,
             {
               opacity: 0,
-              y: 18,
+              y: 28,
             },
             {
               opacity: 1,
               y: 0,
-              duration: 0.35,
-              stagger: 0.04,
+              duration: 0.5,
+              stagger: 0.07,
               ease: "power3.out",
               scrollTrigger: {
                 trigger: text,
-                start: "top 95%",
+                start: "top 92%",
                 toggleActions: "play none none reverse",
               },
             },
@@ -149,24 +148,24 @@ export default function IntroSection({ skills }: { skills: string[] }) {
             );
           }
 
-          // Desktop: Story reveal
+          // Elegant fade-in reveal for the personal story section
           if (storyRef.current) {
             const storyItems = storyRef.current.querySelectorAll(".story-reveal");
             gsap.fromTo(
               storyItems,
               {
                 opacity: 0,
-                y: 14,
+                y: 22,
               },
               {
                 opacity: 1,
                 y: 0,
-                duration: 0.4,
-                stagger: 0.06,
-                ease: "power3.out",
+                duration: 0.65,
+                stagger: 0.12,
+                ease: "power2.out",
                 scrollTrigger: {
                   trigger: storyRef.current,
-                  start: "top 92%",
+                  start: "top 88%",
                   toggleActions: "play none none reverse",
                 },
               },
@@ -194,11 +193,11 @@ export default function IntroSection({ skills }: { skills: string[] }) {
       {/* Vibrant Ambient Glow Behind Intro */}
       <div
         aria-hidden="true"
-        className="pointer-events-none transform-gpu absolute -top-12 sm:-top-24 left-1/2 hidden sm:block h-[350px] w-[600px] -translate-x-1/2 rounded-full bg-gradient-to-b from-indigo-500/20 via-purple-500/15 to-transparent blur-[120px]"
+        className="pointer-events-none absolute -top-24 left-1/2 h-[350px] w-[600px] -translate-x-1/2 rounded-full bg-gradient-to-b from-indigo-500/20 via-purple-500/15 to-transparent blur-[120px]"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none transform-gpu absolute top-1/2 -right-28 hidden sm:block h-80 w-80 rounded-full bg-gradient-to-bl from-cyan-500/15 via-sky-500/10 to-transparent blur-[100px]"
+        className="pointer-events-none absolute top-1/2 -right-28 h-80 w-80 rounded-full bg-gradient-to-bl from-cyan-500/15 via-sky-500/10 to-transparent blur-[100px]"
       />
 
       <div

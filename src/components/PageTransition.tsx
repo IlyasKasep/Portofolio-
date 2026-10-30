@@ -147,24 +147,26 @@ export default function PageTransition({
       {children}
 
       <LazyMotion features={domAnimation}>
-        {phase !== "idle" && (
-          <m.div
-            aria-hidden="true"
-            data-page-transition
-            className="fixed inset-0 z-[9999] bg-[#111114]"
-            initial={{ clipPath: "circle(0vmax at 100% 100%)" }}
-            animate={{ clipPath }}
-            transition={{
-              duration: phase === "covering" ? 0.72 : 0.78,
-              ease: transitionEase,
-            }}
-            onAnimationComplete={handleAnimationComplete}
-            style={{
-              pointerEvents: "auto",
-              willChange: "clip-path",
-            }}
-          />
-        )}
+        <m.div
+          aria-hidden="true"
+          data-page-transition
+          className="pointer-events-none fixed inset-0 z-[9999] bg-[#111114]"
+          initial={false}
+          animate={{ clipPath }}
+          transition={
+            phase === "idle"
+              ? { duration: 0 }
+              : {
+                  duration: phase === "covering" ? 0.72 : 0.78,
+                  ease: transitionEase,
+                }
+          }
+          onAnimationComplete={handleAnimationComplete}
+          style={{
+            pointerEvents: phase === "idle" ? "none" : "auto",
+            willChange: "clip-path",
+          }}
+        />
       </LazyMotion>
     </>
   );

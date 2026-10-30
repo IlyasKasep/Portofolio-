@@ -3,8 +3,9 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useRef, useMemo, useState } from "react";
+import { useRef, useMemo, useState, useEffect } from "react";
 import type { ContributionData } from "@/lib/github-contributions";
+import { generateFallbackContributions } from "@/lib/github-contributions";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -15,123 +16,6 @@ interface DayData {
   dayOfWeek: number;
   weekIndex: number;
   monthName: string;
-}
-
-// Helper to format date
-function formatDate(date: Date): string {
-  const options: Intl.DateTimeFormatOptions = { year: "numeric", month: "short", day: "numeric" };
-  return date.toLocaleDateString("en-US", options);
-}
-
-// Generate deterministic contributions for the past year (53 weeks * 7 days)
-function generateContributions(): {
-  days: DayData[];
-  total: number;
-  longestStreak: number;
-  currentStreak: number;
-  activeDaysPercent: number;
-} {
-  const days: DayData[] = [];
-  const today = new Date();
-  
-  // Start from 53 weeks ago, aligned to the starting Sunday
-  const startDate = new Date(today);
-  startDate.setDate(today.getDate() - 364 - today.getDay());
-
-  let total = 0;
-  let currentStreak = 0;
-  let longestStreak = 0;
-  let activeDays = 0;
-  let tempStreak = 0;
-
-  // Let's create a seedable-like random function to keep it deterministic
-  let seed = 42;
-  const random = () => {
-    const x = Math.sin(seed++) * 10000;
-    return x - Math.floor(x);
-  };
-
-  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
-  for (let w = 0; w < 53; w++) {
-    for (let d = 0; d < 7; d++) {
-      const currentDate = new Date(startDate);
-      currentDate.setDate(startDate.getDate() + (w * 7) + d);
-      
-      if (currentDate > today) break;
-
-      const dayOfWeek = currentDate.getDay();
-      const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
-      
-      // Determine contribution probability & count based on day of week and season
-      let prob = isWeekend ? 0.25 : 0.75;
-      
-      // Add simulated seasonal/release activity cycles
-      const month = currentDate.getMonth();
-      if (month === 9 || month === 10) prob += 0.15; // High activity in Oct/Nov (simulated release)
-      if (month === 11 && currentDate.getDate() > 20) prob -= 0.5; // Holiday season dip
-
-      let count = 0;
-      let level = 0;
-
-      if (random() < prob) {
-        const randVal = random();
-        if (randVal < 0.5) {
-          count = Math.floor(random() * 3) + 1; // 1-3
-          level = 1;
-        } else if (randVal < 0.8) {
-          count = Math.floor(random() * 3) + 4; // 4-6
-          level = 2;
-        } else if (randVal < 0.95) {
-          count = Math.floor(random() * 4) + 7; // 7-10
-          level = 3;
-        } else {
-          count = Math.floor(random() * 5) + 11; // 11-15
-          level = 4;
-        }
-      }
-
-      total += count;
-
-      // Calculate streak stats
-      if (count > 0) {
-        activeDays++;
-        tempStreak++;
-        if (tempStreak > longestStreak) {
-          longestStreak = tempStreak;
-        }
-      } else {
-        tempStreak = 0;
-      }
-
-      days.push({
-        date: formatDate(currentDate),
-        count,
-        level,
-        dayOfWeek,
-        weekIndex: w,
-        monthName: months[month],
-      });
-    }
-  }
-
-  // Calculate current streak from the end
-  let tempCurrent = 0;
-  for (let i = days.length - 1; i >= 0; i--) {
-    if (days[i].count > 0) {
-      tempCurrent++;
-    } else {
-      // If today or yesterday is 0, streak is broken
-      if (i < days.length - 2) {
-        break;
-      }
-    }
-  }
-  currentStreak = tempCurrent;
-
-  const activeDaysPercent = Math.round((activeDays / days.length) * 100);
-
-  return { days, total, longestStreak, currentStreak, activeDaysPercent };
 }
 
 export default function GithubContributions({
@@ -147,6 +31,35 @@ export default function GithubContributions({
   const bgTextRef = useRef<HTMLDivElement | null>(null);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
 
+  const [data, setData] = useState<ContributionData>(
+    () => initialData || generateFallbackContributions(),
+  );
+
+  useEffect(() => {
+    if (initialData) {
+      setData(initialData);
+    }
+  }, [initialData]);
+
+  // Client-side hydration / sync: if initialData was missing or fallback, fetch live data
+  useEffect(() => {
+    if (!initialData || initialData.isFallback || initialData.total === 1025) {
+      fetch("/api/github-contributions")
+        .then((res) => {
+          if (res.ok) return res.json();
+          throw new Error("Failed to fetch GitHub contributions");
+        })
+        .then((freshData: ContributionData) => {
+          if (freshData && Array.isArray(freshData.days) && freshData.days.length > 0) {
+            setData(freshData);
+          }
+        })
+        .catch(() => {
+          // Graceful silent fallback
+        });
+    }
+  }, [initialData]);
+
   const [hoveredCell, setHoveredCell] = useState<{
     date: string;
     count: number;
@@ -154,10 +67,7 @@ export default function GithubContributions({
     y: number;
   } | null>(null);
 
-  const { days, total, longestStreak, activeDaysPercent } = useMemo(
-    () => initialData || generateContributions(),
-    [initialData],
-  );
+  const { days, total, longestStreak, activeDaysPercent } = data;
 
   // Compute month labels positioning
   const monthLabels = useMemo(() => {
@@ -303,7 +213,7 @@ export default function GithubContributions({
 
       return () => media.revert();
     },
-    { scope: sectionRef }
+    { scope: sectionRef, dependencies: [total, longestStreak, activeDaysPercent] }
   );
 
   return (

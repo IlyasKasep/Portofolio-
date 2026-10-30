@@ -42,48 +42,44 @@ export default function HeroSection() {
 
           const timeline = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-          if (isDesktop) {
-            timeline
-              .from(".hero-socials a", {
-                opacity: 0,
-                y: -14,
-                stagger: 0.06,
-                duration: 0.5,
-              })
-              .from(".location", { opacity: 0, x: -100, duration: 0.5 }, "-=0.4")
-              .from(".greetings", { opacity: 0, x: 100, duration: 0.95 }, "-=0.45")
-              .from(
+          if (!isDesktop) {
+            gsap.set(
+              [
+                ".hero-socials a",
+                ".location",
+                ".greetings",
                 ".profile-card",
-                { scale: 0.9, opacity: 0, duration: 0.75, rotate: 3 },
-                "-=0.7",
-              )
-              .from(
                 ".hero-resume",
-                { opacity: 0, y: 8, duration: 0.45 },
-                "-=0.45",
-              )
-              .from(
                 ".hero-scroll-indicator",
-                { opacity: 0, y: 10, duration: 0.55 },
-                "-=0.35",
-              );
-
+              ],
+              { opacity: 1, clearProps: "all" },
+            );
             return;
           }
 
           timeline
             .from(".hero-socials a", {
               opacity: 0,
-              stagger: 0.03,
-              duration: 0.25,
+              y: -14,
+              stagger: 0.06,
+              duration: 0.5,
             })
-            .from(".location", { opacity: 0, duration: 0.22 }, "-=0.15")
-            .from(".greetings", { opacity: 0, duration: 0.3 }, "-=0.15")
-            .from(".hero-resume", { opacity: 0, duration: 0.2 }, "-=0.1")
+            .from(".location", { opacity: 0, x: -100, duration: 0.5 }, "-=0.4")
+            .from(".greetings", { opacity: 0, x: 100, duration: 0.95 }, "-=0.45")
+            .from(
+              ".profile-card",
+              { scale: 0.9, opacity: 0, duration: 0.75, rotate: 3 },
+              "-=0.7",
+            )
+            .from(
+              ".hero-resume",
+              { opacity: 0, y: 8, duration: 0.45 },
+              "-=0.45",
+            )
             .from(
               ".hero-scroll-indicator",
-              { opacity: 0, duration: 0.2 },
-              "-=0.1",
+              { opacity: 0, y: 10, duration: 0.55 },
+              "-=0.35",
             );
         },
       );

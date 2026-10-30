@@ -255,25 +255,14 @@ export default function GithubContributions({
               }
             );
           } else {
-            // Light single wrapper reveal on mobile (preserves 60fps on touch devices)
-            gsap.fromTo(
-              ".contrib-grid-wrapper",
-              { opacity: 0, y: 16 },
-              {
-                opacity: 1,
-                y: 0,
-                duration: 0.38,
-                ease: "power2.out",
-                scrollTrigger: {
-                  trigger: ".contrib-grid-wrapper",
-                  start: "top 98%",
-                  toggleActions: "play none none reverse",
-                },
-              }
-            );
+            gsap.set([bgText, ".contrib-grid-wrapper", ".contrib-cell"], { opacity: 1, clearProps: "all" });
+            totalCounter.innerText = total.toLocaleString();
+            streakCounter.innerText = `${longestStreak} days`;
+            activeCounter.innerText = `${activeDaysPercent}%`;
+            return;
           }
 
-          // Counter animations
+          // Counter animations (desktop)
           const animateCounter = (element: HTMLElement, finalValue: number, suffix = "") => {
             const obj = { val: 0 };
             gsap.to(obj, {

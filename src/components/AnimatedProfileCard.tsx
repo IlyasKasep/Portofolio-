@@ -166,16 +166,16 @@ export default function AnimatedProfile() {
         <div className="absolute inset-x-0 bottom-0 z-20 h-40 rounded-b-[2rem] bg-gradient-to-t from-[#050506] via-[#050506]/80 to-transparent" />
         <motion.div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 z-20 mix-blend-multiply rounded-[2rem]"
+          className="pointer-events-none hidden lg:block absolute inset-0 z-20 mix-blend-multiply rounded-[2rem]"
           style={{ background: pressureShadow }}
         />
         <motion.div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 z-20 rounded-[2rem]"
+          className="pointer-events-none hidden lg:block absolute inset-0 z-20 rounded-[2rem]"
           style={{ background: pressureGlare }}
         />
 
-        <div className="absolute inset-x-5 bottom-5 z-30 flex items-center justify-between gap-4 rounded-2xl border border-white/18 bg-white/[0.1] px-5 py-4 text-white shadow-[0_16px_40px_rgba(0,0,0,0.35)] backdrop-blur-md">
+        <div className="absolute inset-x-5 bottom-5 z-30 flex items-center justify-between gap-4 rounded-2xl border border-white/18 bg-[#111114]/90 px-5 py-4 text-white shadow-[0_16px_40px_rgba(0,0,0,0.35)] lg:bg-white/[0.1] lg:backdrop-blur-md">
           <div>
             <p className="text-sm font-semibold leading-none text-white">@IlyasKasep</p>
             <p className="mt-2 text-sm leading-none text-emerald-300 font-medium">

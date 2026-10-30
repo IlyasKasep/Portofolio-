@@ -90,14 +90,15 @@ export default function IntroSection({ skills }: { skills: string[] }) {
 
       media.add(
         {
+          isDesktop: "(min-width: 1024px)",
+          isMobileTablet: "(max-width: 1023px)",
           reduceMotion: "(prefers-reduced-motion: reduce)",
-          all: "(min-width: 0px)",
         },
         (context) => {
-          const { reduceMotion } = context.conditions ?? {};
+          const { isDesktop, reduceMotion } = context.conditions ?? {};
           const lineEls = text.querySelectorAll(".line");
 
-          if (reduceMotion) {
+          if (reduceMotion || !isDesktop) {
             gsap.set(lineEls, { opacity: 1, y: 0, clearProps: "all" });
             if (storyRef.current) {
               const storyItems = storyRef.current.querySelectorAll(".story-reveal");
@@ -106,7 +107,7 @@ export default function IntroSection({ skills }: { skills: string[] }) {
             return;
           }
 
-          // Trigger early as soon as top edge touches viewport bottom (no blank delay)
+          // Desktop: Snappy, early-trigger entrance
           gsap.fromTo(
             lineEls,
             {
@@ -121,7 +122,7 @@ export default function IntroSection({ skills }: { skills: string[] }) {
               ease: "power3.out",
               scrollTrigger: {
                 trigger: text,
-                start: "top 98%",
+                start: "top 95%",
                 toggleActions: "play none none reverse",
               },
             },
@@ -148,7 +149,7 @@ export default function IntroSection({ skills }: { skills: string[] }) {
             );
           }
 
-          // Trigger story early so it is already visible when scrolling to it
+          // Desktop: Story reveal
           if (storyRef.current) {
             const storyItems = storyRef.current.querySelectorAll(".story-reveal");
             gsap.fromTo(
@@ -165,7 +166,7 @@ export default function IntroSection({ skills }: { skills: string[] }) {
                 ease: "power3.out",
                 scrollTrigger: {
                   trigger: storyRef.current,
-                  start: "top 96%",
+                  start: "top 92%",
                   toggleActions: "play none none reverse",
                 },
               },

@@ -112,7 +112,7 @@ export default async function Home() {
           __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
         }}
       />
-      <main className="relative isolate min-h-dvh overflow-hidden bg-background text-foreground">
+      <main className="relative isolate min-h-dvh overflow-x-clip bg-background text-foreground">
         <StaggeredMenu
           isFixed
           position="right"

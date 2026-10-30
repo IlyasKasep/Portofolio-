@@ -54,26 +54,7 @@ export default function ProjectsSection({
           }
 
           if (isMobile) {
-            gsap.set([section, bgText], { clearProps: "all" });
-
-            cards.forEach((card) => {
-              gsap.fromTo(
-                card,
-                { opacity: 0, y: 16 },
-                {
-                  opacity: 1,
-                  y: 0,
-                  duration: 0.38,
-                  ease: "power2.out",
-                  scrollTrigger: {
-                    trigger: card,
-                    start: "top 98%",
-                    toggleActions: "play none none reverse",
-                  },
-                },
-              );
-            });
-
+            gsap.set([section, bgText, cards], { opacity: 1, clearProps: "all" });
             return;
           }
 

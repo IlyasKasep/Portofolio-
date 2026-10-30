@@ -403,17 +403,19 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
       if (!ticking) {
         window.requestAnimationFrame(() => {
           const currentScrollY = window.scrollY;
+          const delta = currentScrollY - lastScrollY.current;
 
           if (currentScrollY <= 50) {
             setVisible(true);
-          } else {
-            if (currentScrollY > lastScrollY.current) {
+            lastScrollY.current = currentScrollY;
+          } else if (Math.abs(delta) > 20) {
+            if (delta > 0) {
               setVisible(false);
             } else {
               setVisible(true);
             }
+            lastScrollY.current = currentScrollY;
           }
-          lastScrollY.current = currentScrollY;
           ticking = false;
         });
         ticking = true;

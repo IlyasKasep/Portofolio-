@@ -77,56 +77,7 @@ export default function ExperienceSection({
           }
 
           if (isMobileTablet) {
-            gsap.fromTo(
-              bgText,
-              { opacity: 0, scale: 0.92 },
-              {
-                opacity: 1,
-                scale: 1,
-                duration: 0.4,
-                ease: "power2.out",
-                scrollTrigger: {
-                  trigger: section,
-                  start: "top 96%",
-                  toggleActions: "play none none reverse",
-                },
-              },
-            );
-
-            gsap.fromTo(
-              header,
-              { opacity: 0, y: 12 },
-              {
-                opacity: 1,
-                y: 0,
-                duration: 0.4,
-                ease: "power3.out",
-                scrollTrigger: {
-                  trigger: section,
-                  start: "top 96%",
-                  toggleActions: "play none none reverse",
-                },
-              },
-            );
-
-            gsap.fromTo(
-              mobileCards,
-              { opacity: 0, y: 24, scale: 0.98 },
-              {
-                opacity: 1,
-                y: 0,
-                scale: 1,
-                stagger: 0.06,
-                duration: 0.4,
-                ease: "power3.out",
-                scrollTrigger: {
-                  trigger: mobileSwiper,
-                  start: "top 95%",
-                  toggleActions: "play none none reverse",
-                },
-              },
-            );
-
+            gsap.set([bgText, header, mobileCards], { opacity: 1, clearProps: "all" });
             return;
           }
 
@@ -190,7 +141,7 @@ export default function ExperienceSection({
       id="experience"
       ref={sectionRef}
       aria-labelledby="experience-heading"
-      className="relative z-20 h-svh overflow-hidden bg-subtle px-4 py-5 sm:px-8 sm:py-7 lg:px-24 lg:py-10 motion-reduce:h-auto motion-reduce:min-h-svh motion-reduce:overflow-visible"
+      className="relative z-20 h-auto min-h-fit overflow-visible bg-subtle px-4 py-16 sm:px-8 sm:py-20 lg:h-svh lg:overflow-hidden lg:px-24 lg:py-10 motion-reduce:h-auto motion-reduce:min-h-svh motion-reduce:overflow-visible"
     >
       <h2 id="experience-heading" className="sr-only">
         Professional experience
@@ -236,7 +187,7 @@ export default function ExperienceSection({
         <div
           ref={mobileSwiperRef}
           data-experience-swiper
-          className="min-h-0 flex-1 overflow-hidden lg:hidden"
+          className="w-full overflow-hidden lg:hidden"
         >
           <Swiper
             modules={[Pagination, A11y, Keyboard]}

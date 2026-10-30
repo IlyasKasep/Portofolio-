@@ -100,9 +100,9 @@ export default function HeroSection() {
       className="hero-section relative mb-10 grid min-h-[calc(100vh-5rem)] content-start items-start gap-8 px-6 pb-10 pt-24 sm:gap-10 sm:px-10 sm:pb-14 sm:pt-28 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.7fr)] lg:content-center lg:items-center lg:gap-12 lg:px-24 lg:py-10"
     >
       {/* Vibrant Ambient Colorful Aura & Glow */}
-      <div className="pointer-events-none transform-gpu absolute -top-20 -left-20 h-[28rem] w-[28rem] rounded-full bg-gradient-to-tr from-violet-600/25 via-fuchsia-500/20 to-sky-400/20 blur-[100px]" />
-      <div className="pointer-events-none transform-gpu absolute top-1/4 -right-10 h-[32rem] w-[32rem] rounded-full bg-gradient-to-bl from-cyan-400/25 via-teal-400/20 to-emerald-400/25 blur-[120px]" />
-      <div className="pointer-events-none transform-gpu absolute -bottom-10 left-1/3 h-80 w-80 rounded-full bg-gradient-to-r from-amber-400/15 via-rose-500/15 to-purple-600/15 blur-[90px]" />
+      <div className="pointer-events-none transform-gpu absolute -top-10 -left-10 sm:-top-20 sm:-left-20 h-48 w-48 sm:h-[28rem] sm:w-[28rem] rounded-full bg-gradient-to-tr from-violet-600/25 via-fuchsia-500/20 to-sky-400/20 blur-3xl sm:blur-[100px]" />
+      <div className="pointer-events-none transform-gpu absolute top-1/4 -right-10 hidden sm:block h-[32rem] w-[32rem] rounded-full bg-gradient-to-bl from-cyan-400/25 via-teal-400/20 to-emerald-400/25 blur-[120px]" />
+      <div className="pointer-events-none transform-gpu absolute -bottom-10 left-1/3 hidden sm:block h-80 w-80 rounded-full bg-gradient-to-r from-amber-400/15 via-rose-500/15 to-purple-600/15 blur-[90px]" />
 
       {/* Background Dotted Grid Overlay */}
       <div

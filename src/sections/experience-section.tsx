@@ -61,20 +61,38 @@ export default function ExperienceSection({
             return;
           }
 
-          ScrollTrigger.create({
-            trigger: section,
-            start: "top bottom",
-            end: "top top",
-            scrub: true,
-            animation: gsap.fromTo(
-              bgText,
-              { opacity: 0, filter: "blur(20px)", scale: 0.8 },
-              { opacity: 1, filter: "blur(3px)", scale: 1, ease: "none" },
-            ),
-            invalidateOnRefresh: true,
-          });
+          if (isDesktop) {
+            ScrollTrigger.create({
+              trigger: section,
+              start: "top bottom",
+              end: "top top",
+              scrub: true,
+              animation: gsap.fromTo(
+                bgText,
+                { opacity: 0, filter: "blur(20px)", scale: 0.8 },
+                { opacity: 1, filter: "blur(3px)", scale: 1, ease: "none" },
+              ),
+              invalidateOnRefresh: true,
+            });
+          }
 
           if (isMobileTablet) {
+            gsap.fromTo(
+              bgText,
+              { opacity: 0, scale: 0.88 },
+              {
+                opacity: 1,
+                scale: 1,
+                duration: 0.5,
+                ease: "power2.out",
+                scrollTrigger: {
+                  trigger: section,
+                  start: "top 80%",
+                  toggleActions: "play none none reverse",
+                },
+              },
+            );
+
             gsap.fromTo(
               header,
               { opacity: 0, y: 16 },
@@ -179,11 +197,11 @@ export default function ExperienceSection({
       {/* Vibrant Ambient Colorful Aura */}
       <div
         aria-hidden="true"
-        className="pointer-events-none transform-gpu absolute -left-32 top-1/4 h-96 w-96 rounded-full bg-gradient-to-tr from-indigo-600/20 via-purple-600/15 to-pink-500/15 blur-[120px]"
+        className="pointer-events-none transform-gpu absolute -left-16 sm:-left-32 top-1/4 h-48 w-48 sm:h-96 sm:w-96 rounded-full bg-gradient-to-tr from-indigo-600/20 via-purple-600/15 to-pink-500/15 blur-3xl sm:blur-[120px]"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none transform-gpu absolute -right-32 bottom-1/4 h-96 w-96 rounded-full bg-gradient-to-bl from-cyan-500/20 via-teal-500/15 to-emerald-500/20 blur-[120px]"
+        className="pointer-events-none transform-gpu absolute -right-32 bottom-1/4 hidden sm:block h-96 w-96 rounded-full bg-gradient-to-bl from-cyan-500/20 via-teal-500/15 to-emerald-500/20 blur-[120px]"
       />
 
       <div

@@ -46,11 +46,12 @@ export default function ContactSection() {
 
       media.add(
         {
-          isAll: "(min-width: 0px)",
+          isDesktop: "(min-width: 768px)",
+          isMobile: "(max-width: 767px)",
           reduceMotion: "(prefers-reduced-motion: reduce)",
         },
         (context) => {
-          const { reduceMotion } = context.conditions ?? {};
+          const { isDesktop, isMobile, reduceMotion } = context.conditions ?? {};
           const words = heading.querySelectorAll(".contact-word");
 
           if (reduceMotion) {
@@ -60,7 +61,46 @@ export default function ContactSection() {
             return;
           }
 
-          // Parallax shift for the background "CONTACT" text
+          if (isMobile) {
+            // Clean one-shot reveal on mobile (avoids continuous scroll lag)
+            gsap.fromTo(
+              words,
+              { yPercent: 40, opacity: 0 },
+              {
+                yPercent: 0,
+                opacity: 1,
+                duration: 0.45,
+                stagger: 0.05,
+                ease: "power2.out",
+                scrollTrigger: {
+                  trigger: section,
+                  start: "top 85%",
+                  toggleActions: "play none none reverse",
+                },
+              },
+            );
+
+            gsap.fromTo(
+              [info, bottom],
+              { y: 20, opacity: 0 },
+              {
+                y: 0,
+                opacity: 1,
+                duration: 0.45,
+                stagger: 0.1,
+                ease: "power2.out",
+                scrollTrigger: {
+                  trigger: section,
+                  start: "top 75%",
+                  toggleActions: "play none none reverse",
+                },
+              },
+            );
+
+            return;
+          }
+
+          // Desktop: Parallax shift for the background "CONTACT" text
           gsap.fromTo(
             bgText,
             { yPercent: -15, opacity: 0 },
@@ -77,7 +117,7 @@ export default function ContactSection() {
             },
           );
 
-          // Scrubbed staggered reveal timeline for the footer contents
+          // Desktop: Scrubbed staggered reveal timeline for the sticky footer
           const timeline = gsap.timeline({
             scrollTrigger: {
               trigger: section,
@@ -132,11 +172,11 @@ export default function ContactSection() {
       {/* Vibrant Ambient Colorful Aura */}
       <div
         aria-hidden="true"
-        className="pointer-events-none transform-gpu absolute -left-20 top-1/4 h-[28rem] w-[28rem] rounded-full bg-gradient-to-tr from-violet-600/25 via-indigo-500/20 to-sky-400/20 blur-[120px]"
+        className="pointer-events-none transform-gpu absolute -left-10 sm:-left-20 top-1/4 h-48 w-48 sm:h-[28rem] sm:w-[28rem] rounded-full bg-gradient-to-tr from-violet-600/25 via-indigo-500/20 to-sky-400/20 blur-3xl sm:blur-[120px]"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none transform-gpu absolute -right-20 bottom-1/4 h-[30rem] w-[30rem] rounded-full bg-gradient-to-bl from-emerald-500/20 via-teal-500/15 to-cyan-500/20 blur-[120px]"
+        className="pointer-events-none transform-gpu absolute -right-20 bottom-1/4 hidden sm:block h-[30rem] w-[30rem] rounded-full bg-gradient-to-bl from-emerald-500/20 via-teal-500/15 to-cyan-500/20 blur-[120px]"
       />
 
       {/* Large Background Text */}

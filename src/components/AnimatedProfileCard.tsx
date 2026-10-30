@@ -150,7 +150,6 @@ export default function AnimatedProfile() {
           rotateX,
           rotateY,
           scale,
-          transformStyle: canHover ? "preserve-3d" : "flat",
         }}
       >
         <div className="absolute inset-0 rounded-[2rem] bg-[linear-gradient(180deg,rgba(255,255,255,0.12),rgba(255,255,255,0)_34%),linear-gradient(180deg,#25252a_0%,#131418_48%,#050506_100%)]" />
@@ -165,8 +164,9 @@ export default function AnimatedProfile() {
           alt="Portrait of Muhammad Ilyas Satria Fauzan"
           fill
           priority
+          unoptimized
           sizes="(min-width: 1024px) 520px, (min-width: 640px) 450px, 90vw"
-          className="relative z-10 object-cover object-bottom rounded-[2rem] transition-transform duration-700 ease-out hover:scale-[1.02]"
+          className="z-10 object-cover object-bottom rounded-[2rem] transition-transform duration-700 ease-out hover:scale-[1.02]"
         />
 
         <div className="absolute inset-x-0 bottom-0 z-20 h-40 rounded-b-[2rem] bg-gradient-to-t from-[#050506] via-[#050506]/80 to-transparent" />

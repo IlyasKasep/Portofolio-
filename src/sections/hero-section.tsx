@@ -31,6 +31,8 @@ export default function HeroSection() {
                 ".hero-socials a",
                 ".location",
                 ".greetings",
+                ".role",
+                ".hero-bio",
                 ".profile-card",
                 ".hero-resume",
                 ".hero-scroll-indicator",
@@ -58,6 +60,12 @@ export default function HeroSection() {
               ".greetings",
               { opacity: 0, x: 60 },
               { opacity: 1, x: 0, duration: 0.55 },
+              "-=0.35",
+            )
+            .fromTo(
+              ".hero-bio",
+              { opacity: 0, y: 14 },
+              { opacity: 1, y: 0, duration: 0.45 },
               "-=0.35",
             )
             .fromTo(
@@ -243,7 +251,11 @@ export default function HeroSection() {
           className="role mt-1 block min-h-[2rem] min-w-[18ch] whitespace-nowrap! text-xl font-thin! leading-tight tracking-[0.06em]! sm:mt-2 sm:min-h-[3.5rem] sm:text-4xl lg:mt-3 lg:min-h-[3.75rem] lg:text-5xl"
         />
 
-        <div className="hero-resume mt-4 flex sm:mt-5 lg:mt-6">
+        <p className="hero-bio mt-4 max-w-xl font-sans text-sm sm:text-base leading-relaxed text-foreground/75 font-normal sm:mt-5">
+          Mahasiswa tingkat akhir Teknik Informatika (Semester 7) di Universitas Muhammadiyah Bandung yang berfokus merancang &amp; membangun antarmuka web modern, interaktif, desain responsif, serta performa kode yang optimal.
+        </p>
+
+        <div className="hero-resume mt-5 flex items-center gap-4 sm:mt-6 lg:mt-7">
           <a
             href="/resume"
             target="_blank"
@@ -251,6 +263,12 @@ export default function HeroSection() {
             className="inline-flex w-fit items-center rounded-full border border-foreground/15 bg-foreground px-5 py-3 font-mono text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-background transition-colors duration-300 hover:bg-transparent hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground"
           >
             Resume
+          </a>
+          <a
+            href="#about"
+            className="inline-flex w-fit items-center rounded-full border border-foreground/20 bg-transparent px-5 py-3 font-mono text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-foreground transition-colors duration-300 hover:border-foreground hover:bg-foreground/[0.05] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground"
+          >
+            Tentang Saya
           </a>
         </div>
       </div>

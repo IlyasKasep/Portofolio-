@@ -124,10 +124,11 @@ export default function DigitalGiftSection({
 
   return (
     <section
-      id="katalog"
+      id="kado-digital"
       aria-labelledby="kado-digital-heading"
-      className="digital-gift-section relative z-20 w-full overflow-hidden bg-background px-6 py-20 text-foreground sm:px-10 sm:py-28 lg:px-24"
+      className="digital-gift-section relative z-20 w-full overflow-hidden bg-background px-6 py-20 text-foreground sm:px-10 sm:py-28 lg:px-24 scroll-mt-8"
     >
+      <span id="katalog" className="pointer-events-none absolute -top-8 block h-0 w-0 opacity-0" aria-hidden="true" />
       <div className="relative z-10 mx-auto max-w-7xl">
         {/* ======================================================== */}
         {/* 1. SECTION HEADER (Clean & Minimalist)                   */}

@@ -383,17 +383,23 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
       return;
     }
 
+    if (typeof window !== 'undefined' && window.location.pathname !== '/') {
+      closeMenu();
+      window.location.href = `/${link}`;
+      return;
+    }
+
     event.preventDefault();
     closeMenu();
 
-    window.requestAnimationFrame(() => {
+    setTimeout(() => {
       const target = document.querySelector(link);
       target?.scrollIntoView({
         behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
         block: 'start',
       });
       window.history.pushState(null, '', link);
-    });
+    }, 100);
   };
 
   React.useEffect(() => {
@@ -714,7 +720,8 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   .sm-scope .staggered-menu-header { padding: 1.25rem 1.5rem; }
   .sm-scope .staggered-menu-panel,
   .sm-scope .sm-prelayers { width: 100%; left: 0; right: 0; }
-  .sm-scope .staggered-menu-panel { padding-inline: 1.5rem; }
+  .sm-scope .staggered-menu-panel { padding-inline: 1.5rem; padding-top: clamp(5.2rem, 12vh, 6.5rem); }
+  .sm-scope .sm-panel-item { font-size: clamp(1.85rem, 5.5vw, 2.5rem); padding-right: 2.25rem; }
   .sm-scope .staggered-menu-wrapper[data-open] .sm-logo-copy { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {

@@ -91,7 +91,7 @@ const navigationItems = [
   {
     label: "Kado Digital",
     ariaLabel: "Go to digital gift service section",
-    link: "#katalog",
+    link: "#kado-digital",
   },
   { label: "Contact", ariaLabel: "Go to contact section", link: "#contact" },
 ];

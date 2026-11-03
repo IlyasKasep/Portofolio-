@@ -75,7 +75,8 @@ export default function DigitalGiftSection({
       tag: "Neon Edition",
       strikePrice: "Rp 200.000",
       promoPrice: "Rp 129.000",
-      demoUrl: "https://demo.kadodigital.site/cyberpunk-y2k",
+      demoUrl: "/templates/cyberpunk-y2k/index.html",
+      imageUrl: "/templates/cyberpunk-y2k/preview.png",
       features: [
         "Neon audio visualizer interaktif",
         "Kartu ucapan hologram modern",

@@ -57,7 +57,8 @@ export default function DigitalGiftSection({
       tag: "Classic Edition",
       strikePrice: "Rp 150.000",
       promoPrice: "Rp 89.000",
-      demoUrl: "https://demo.kadodigital.site/aesthetic-minimalis",
+      demoUrl: "/templates/aesthetic-minimalis/index.html",
+      imageUrl: "/templates/aesthetic-minimalis/preview.png",
       features: [
         "Background music kustom pilihanmu",
         "Love letter tipografi halus",

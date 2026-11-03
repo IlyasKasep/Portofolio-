@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>A Story of Us • Aesthetic Minimalist Digital Gift</title>
+
+  <!-- Google Fonts: Playfair Display (Serif Elegan) & Plus Jakarta Sans (Sans-Serif Clean) & Caveat (Handwritten Signature) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ========================================================
+       1. CSS RESET & COLOR PALETTE (Warm, Soft, & Premium)
+       ======================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    :root {
+      /* Warm Beige / Editorial Off-White Palette */
+      --bg-warm: #faf7f2;
+      --bg-card: #ffffff;
+      --bg-subtle: #f3ede2;
+      
+      --text-main: #2b2826;
+      --text-muted: #756f6a;
+      --text-light: #9e9790;
+      
+      --accent-rose: #b57a74;
+      --accent-rose-soft: #f2e3e1;
+      --accent-gold: #c29d5b;
+      --accent-gold-soft: #fbf5ea;
+      
+      --border-soft: rgba(43, 40, 38, 0.08);
+      --border-accent: rgba(181, 122, 116, 0.25);
+      
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-script: 'Caveat', cursive;
+
+      --shadow-soft: 0 12px 36px rgba(43, 40, 38, 0.05), 0 2px 6px rgba(43, 40, 38, 0.03);
+      --shadow-polaroid: 0 16px 40px rgba(43, 40, 38, 0.08), 0 4px 12px rgba(43, 40, 38, 0.04);
+      --shadow-hover: 0 24px 48px rgba(43, 40, 38, 0.12), 0 6px 16px rgba(43, 40, 38, 0.06);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-warm);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.8;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Selection Color */
+    ::selection {
+      background-color: var(--accent-rose-soft);
+      color: var(--accent-rose);
+    }
+
+    /* Ambient Subtle Paper Texture Pattern */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.025;
+      background-image: radial-gradient(#2b2826 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+
+    /* ========================================================
+       2. FLOATING BGM BUTTON (Fixed Top-Right)
+       ======================================================== */
+    .bgm-fixed-control {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border-soft);
+      border-radius: 999px;
+      padding: 8px 16px 8px 10px;
+      box-shadow: 0 8px 24px rgba(43, 40, 38, 0.08);
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .bgm-fixed-control:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(43, 40, 38, 0.12);
+      border-color: var(--border-accent);
+    }
+    .bgm-fixed-control:active {
+      transform: scale(0.96);
+    }
+
+    /* Disc / Note Icon with gentle rotation when active */
+    .bgm-disc {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--accent-rose-soft);
+      color: var(--accent-rose);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      transition: transform 0.3s ease;
+    }
+    .bgm-fixed-control.is-playing .bgm-disc {
+      animation: spin-disc 4s linear infinite;
+      background: var(--accent-rose);
+      color: #fff;
+    }
+    @keyframes spin-disc {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .bgm-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-main);
+    }
+
+    /* Equalizer Wave Bars */
+    .bgm-wave {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      height: 12px;
+    }
+    .bgm-wave span {
+      width: 2px;
+      height: 4px;
+      background: var(--accent-rose);
+      border-radius: 1px;
+      transition: height 0.2s ease;
+    }
+    .bgm-fixed-control.is-playing .bgm-wave span:nth-child(1) {
+      animation: wave-bounce 0.8s ease-in-out infinite alternate;
+    }
+    .bgm-fixed-control.is-playing .bgm-wave span:nth-child(2) {
+      animation: wave-bounce 0.8s ease-in-out 0.2s infinite alternate;
+    }
+    .bgm-fixed-control.is-playing .bgm-wave span:nth-child(3) {
+      animation: wave-bounce 0.8s ease-in-out 0.4s infinite alternate;
+    }
+    @keyframes wave-bounce {
+      from { height: 3px; }
+      to { height: 12px; }
+    }
+
+    /* ========================================================
+       3. FLOATING PETALS CANVAS
+       ======================================================== */
+    #petals-canvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      opacity: 0.65;
+    }
+
+    /* ========================================================
+       4. HERO SECTION (Serene Opening Screen)
+       ======================================================== */
+    .hero-section {
+      position: relative;
+      z-index: 10;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 24px;
+      text-align: center;
+    }
+
+    .hero-content {
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--accent-rose);
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fade-down 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(34px, 8vw, 54px);
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.2;
+      color: var(--text-main);
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+      opacity: 0;
+      animation: fade-up 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(14px, 3.8vw, 16px);
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.8;
+      max-width: 440px;
+      margin: 0 auto;
+      opacity: 0;
+      animation: fade-up 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+    }
+
+    .hero-date-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 28px;
+      padding: 6px 18px;
+      border-radius: 999px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+      box-shadow: 0 4px 16px rgba(43, 40, 38, 0.04);
+      opacity: 0;
+      animation: fade-up 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards;
+    }
+
+    /* Bouncing Chevron Prompt */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: var(--text-light);
+      opacity: 0;
+      animation: fade-in 1.4s ease 1.2s forwards;
+      cursor: pointer;
+    }
+    .scroll-indicator span {
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+    .chevron-icon {
+      width: 20px;
+      height: 20px;
+      animation: bounce-chevron 2s infinite ease-in-out;
+    }
+    @keyframes bounce-chevron {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(6px); }
+    }
+
+    @keyframes fade-down {
+      from { opacity: 0; transform: translateY(-16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fade-in {
+      from { opacity: 0; }
+      to { opacity: 0.8; }
+    }
+
+    /* ========================================================
+       5. SCROLL STORY CONTAINER (Mobile-First Layout)
+       ======================================================== */
+    .story-container {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 620px;
+      margin: 0 auto;
+      padding: 40px 24px 100px;
+    }
+
+    /* Vertical Storyline Spine */
+    .story-spine {
+      position: absolute;
+      top: 0;
+      bottom: 80px;
+      left: 50%;
+      width: 1px;
+      background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(181, 122, 116, 0.25) 10%,
+        rgba(181, 122, 116, 0.25) 90%,
+        transparent
+      );
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+
+    /* Story Item Block */
+    .story-item {
+      position: relative;
+      margin-bottom: 72px;
+      width: 100%;
+    }
+
+    /* Chapter Indicator Badge */
+    .chapter-tag {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .chapter-pill {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent-rose);
+      background: rgba(181, 122, 116, 0.08);
+      border: 1px solid var(--border-accent);
+      padding: 4px 14px;
+      border-radius: 999px;
+    }
+
+    /* ========================================================
+       6. POLAROID PHOTO CARD STYLING
+       ======================================================== */
+    .polaroid-card {
+      position: relative;
+      background: var(--bg-card);
+      padding: 14px 14px 24px;
+      border-radius: 4px;
+      box-shadow: var(--shadow-polaroid);
+      border: 1px solid rgba(43, 40, 38, 0.04);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+    .polaroid-card:hover {
+      transform: scale(1.02) rotate(0deg) !important;
+      box-shadow: var(--shadow-hover);
+    }
+
+    /* Subtle decorative Washi Tape */
+    .polaroid-tape {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 24px;
+      background: rgba(242, 227, 225, 0.85);
+      border-left: 2px dashed rgba(181, 122, 116, 0.4);
+      border-right: 2px dashed rgba(181, 122, 116, 0.4);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+      backdrop-filter: blur(2px);
+      z-index: 5;
+    }
+
+    .polaroid-image-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      border-radius: 2px;
+      background: var(--bg-subtle);
+    }
+    .polaroid-image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .polaroid-card:hover .polaroid-image-wrapper img {
+      transform: scale(1.04);
+    }
+
+    /* Polaroid Bottom Caption */
+    .polaroid-caption {
+      margin-top: 16px;
+      text-align: center;
+      font-family: var(--font-script);
+      font-size: 22px;
+      color: var(--text-main);
+      line-height: 1.3;
+      letter-spacing: 0.02em;
+    }
+    .polaroid-date {
+      display: block;
+      margin-top: 4px;
+      font-family: var(--font-sans);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-light);
+    }
+
+    /* Slight organic tilts */
+    .tilt-left {
+      transform: rotate(-1.6deg);
+    }
+    .tilt-right {
+      transform: rotate(1.8deg);
+    }
+    .tilt-slight-left {
+      transform: rotate(-0.8deg);
+    }
+
+    /* ========================================================
+       7. ROMANTIC NARRATIVE TEXT CARD
+       ======================================================== */
+    .narrative-card {
+      position: relative;
+      background: var(--bg-card);
+      border-radius: 16px;
+      padding: 32px 28px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid var(--border-soft);
+      max-width: 480px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .narrative-quote-mark {
+      font-family: var(--font-serif);
+      font-size: 38px;
+      line-height: 1;
+      color: var(--accent-rose);
+      opacity: 0.45;
+      margin-bottom: 8px;
+    }
+    .narrative-heading {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 14px;
+      letter-spacing: -0.01em;
+    }
+    .narrative-body {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.85;
+      font-weight: 300;
+    }
+    .narrative-signature {
+      margin-top: 20px;
+      font-family: var(--font-script);
+      font-size: 24px;
+      color: var(--accent-rose);
+    }
+
+    /* ========================================================
+       8. DAYS OF LOVE COUNTER
+       ======================================================== */
+    .counter-section {
+      text-align: center;
+      padding: 36px 20px;
+      background: var(--accent-gold-soft);
+      border: 1px solid rgba(194, 157, 91, 0.2);
+      border-radius: 16px;
+      margin: 40px auto 60px;
+      max-width: 480px;
+    }
+    .counter-label {
+      font-size: 11px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+      font-weight: 600;
+    }
+    .counter-number {
+      font-family: var(--font-serif);
+      font-size: clamp(38px, 9vw, 56px);
+      font-weight: 600;
+      color: var(--text-main);
+      line-height: 1.1;
+      margin: 10px 0;
+    }
+    .counter-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    /* ========================================================
+       9. CLOSING LETTER & WHATSAPP REPLY
+       ======================================================== */
+    .closing-letter-card {
+      background: var(--bg-card);
+      border-radius: 20px;
+      padding: 40px 30px;
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-polaroid);
+      max-width: 500px;
+      margin: 40px auto 0;
+      text-align: center;
+      position: relative;
+    }
+    .closing-stamp {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 2px dashed var(--accent-rose);
+      color: var(--accent-rose);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      margin: 0 auto 20px;
+    }
+    .closing-title {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      font-style: italic;
+      margin-bottom: 16px;
+    }
+    .closing-text {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.85;
+      font-weight: 300;
+      margin-bottom: 28px;
+      white-space: pre-wrap;
+    }
+
+    /* Romantic WhatsApp CTA Button */
+    .reply-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--accent-rose);
+      color: #ffffff;
+      padding: 14px 28px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      box-shadow: 0 8px 24px rgba(181, 122, 116, 0.35);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reply-btn:hover {
+      background: #a36963;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(181, 122, 116, 0.45);
+    }
+    .reply-btn:active {
+      transform: scale(0.97);
+    }
+
+    .footer-note {
+      margin-top: 48px;
+      text-align: center;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-light);
+    }
+
+    /* ========================================================
+       10. SCROLL REVEAL ANIMATIONS (Intersection Observer)
+       ======================================================== */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(35px);
+      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Ambient Canvas: Gentle Rose Petals -->
+  <canvas id="petals-canvas" aria-hidden="true"></canvas>
+
+  <!-- ========================================================
+       1. FIXED BGM AUDIO PLAYER CONTROL (Top-Right)
+       ======================================================== -->
+  <div class="bgm-fixed-control" id="bgm-button" role="button" aria-label="Putar Musik Latar Belakang" tabindex="0">
+    <div class="bgm-disc">🎵</div>
+    <span class="bgm-label" id="bgm-status-text">PLAY MUSIC</span>
+    <div class="bgm-wave">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+
+  <!-- Native Audio Tag -->
+  <audio id="bgm-audio" loop preload="auto">
+    <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-moment-piano-love-112196.mp3" type="audio/mpeg" />
+  </audio>
+
+  <!-- ========================================================
+       2. HERO SECTION (Layar Pembuka)
+       ======================================================== -->
+  <header class="hero-section" id="hero">
+    <div class="hero-content">
+      <p class="hero-tag" id="hero-tag-text">CHAPTER I • A BEAUTIFUL JOURNEY</p>
+      <h1 class="hero-title" id="hero-title-text">Happy Anniversary,<br>Sayangku.</h1>
+      <p class="hero-subtitle" id="hero-subtitle-text">
+        Setiap detik bersamamu adalah puisi terindah yang pernah kutulis. Terima kasih telah hadir dan membuat duniaku terasa begitu hangat.
+      </p>
+      <div class="hero-date-pill">
+        <span>✨</span>
+        <span id="hero-anniversary-date">24 OKTOBER 2022 — SELAMANYA</span>
+      </div>
+    </div>
+
+    <!-- Bouncing Chevron Hint -->
+    <a href="#story" class="scroll-indicator" aria-label="Scroll ke cerita kita">
+      <span>SCROLL CERITA KITA</span>
+      <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </a>
+  </header>
+
+  <!-- ========================================================
+       3. STORYTELLING TIMELINE (Scrolling Story)
+       ======================================================== -->
+  <main class="story-container" id="story">
+    <div class="story-spine" aria-hidden="true"></div>
+
+    <!-- ITEM 1: Polaroid Memory Pertama -->
+    <article class="story-item reveal-on-scroll">
+      <div class="chapter-tag">
+        <span class="chapter-pill">01 • THE FIRST SMILE</span>
+      </div>
+      <div class="polaroid-card tilt-left">
+        <div class="polaroid-tape" aria-hidden="true"></div>
+        <div class="polaroid-image-wrapper">
+          <img 
+            id="photo-1"
+            src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=800&q=80" 
+            alt="Momen Awal Bertemu" 
+          />
+        </div>
+        <p class="polaroid-caption" id="caption-1">"Hari saat pertama kali melihat senyum manismu."</p>
+        <span class="polaroid-date" id="date-1">Bandung, Pertemuan Pertama</span>
+      </div>
+    </article>
+
+    <!-- ITEM 2: Narrative Text Card -->
+    <article class="story-item reveal-on-scroll">
+      <div class="narrative-card">
+        <div class="narrative-quote-mark">“</div>
+        <h2 class="narrative-heading">Bukan Sekadar Waktu</h2>
+        <p class="narrative-body" id="narrative-text-1">
+          Banyak orang bilang waktu berjalan sangat cepat saat kita bahagia. Tapi bersamamu, aku justru belajar menikmati setiap detik kecilnya: obrolan larut malam, tawa tanpa alasan, hingga secangkir kopi hangat di sore hari.
+        </p>
+        <div class="narrative-signature">— Always you, always us.</div>
+      </div>
+    </article>
+
+    <!-- ITEM 3: Polaroid Memory Kedua -->
+    <article class="story-item reveal-on-scroll">
+      <div class="chapter-tag">
+        <span class="chapter-pill">02 • FAVORITE ADVENTURE</span>
+      </div>
+      <div class="polaroid-card tilt-right">
+        <div class="polaroid-tape" aria-hidden="true"></div>
+        <div class="polaroid-image-wrapper">
+          <img 
+            id="photo-2"
+            src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=800&q=80" 
+            alt="Petualangan Bersama" 
+          />
+        </div>
+        <p class="polaroid-caption" id="caption-2">"Ke mana pun arahnya, asalkan bersamamu."</p>
+        <span class="polaroid-date" id="date-2">Sunset Walk • Our Little Secret Place</span>
+      </div>
+    </article>
+
+    <!-- ITEM 4: Days of Love Counter -->
+    <section class="story-item reveal-on-scroll">
+      <div class="counter-section">
+        <span class="counter-label">WE HAVE BEEN TOGETHER FOR</span>
+        <div class="counter-number" id="counter-days">730</div>
+        <p class="counter-desc" id="counter-text">Hari penuh cinta, tawa, dan rasa syukur bersamamu.</p>
+      </div>
+    </section>
+
+    <!-- ITEM 5: Polaroid Memory Ketiga -->
+    <article class="story-item reveal-on-scroll">
+      <div class="chapter-tag">
+        <span class="chapter-pill">03 • GROWING TOGETHER</span>
+      </div>
+      <div class="polaroid-card tilt-slight-left">
+        <div class="polaroid-tape" aria-hidden="true"></div>
+        <div class="polaroid-image-wrapper">
+          <img 
+            id="photo-3"
+            src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=800&q=80" 
+            alt="Tumbuh Bersama" 
+          />
+        </div>
+        <p class="polaroid-caption" id="caption-3">"Menjadi rumah paling nyaman untuk satu sama lain."</p>
+        <span class="polaroid-date" id="date-3">Everyday Life • Home in Your Heart</span>
+      </div>
+    </article>
+
+    <!-- ITEM 6: Final Love Letter Card -->
+    <article class="story-item reveal-on-scroll">
+      <div class="closing-letter-card">
+        <div class="closing-stamp">💌</div>
+        <h2 class="closing-title" id="closing-heading">Surat Kecil Untukmu</h2>
+        <p class="closing-text" id="closing-message">
+Terima kasih ya sudah menjadi orang yang paling sabar, paling perhatian, dan selalu ada di hari-hari baik maupun sulit.
+
+Semoga langkah kita selalu beriringan, mimpi-mimpi kita saling menguatkan, dan rasa sayang ini selalu bertumbuh lebih dalam di setiap hembusan nafas.
+
+I love you more than words could ever describe, today, tomorrow, and endlessly.
+        </p>
+
+        <!-- WhatsApp Reply Button -->
+        <a href="#" id="reply-wa-btn" target="_blank" rel="noopener noreferrer" class="reply-btn">
+          <span>💌 Balas Surat Romantis Ini</span>
+        </a>
+      </div>
+    </article>
+
+    <footer class="footer-note">
+      FOREVER & ALWAYS • CRAFTED WITH ELEGANCE & LOVE
+    </footer>
+  </main>
+
+  <!-- ========================================================
+       11. JAVASCRIPT LOGIC & USER CONFIGURATION
+       ======================================================== */
+  -->
+  <script>
+    // ========================================================
+    // ⚙️ KONFIGURASI KADO (UBAH DATA DI BAWAH INI SESUAI KEINGINAN)
+    // ========================================================
+    const CONFIG = {
+      // 1. Nama Pasangan
+      namaPanggilan: "Sayangku",
+      namaPengirim: "Ilyas Satria",
+
+      // 2. Teks di Hero Section
+      heroTag: "CHAPTER I • A BEAUTIFUL JOURNEY",
+      heroTitle: "Happy Anniversary,<br>Sayangku.",
+      heroSubtitle: "Setiap detik bersamamu adalah puisi terindah yang pernah kutulis. Terima kasih telah hadir dan membuat duniaku terasa begitu hangat.",
+      tanggalAnniversary: "24 OKTOBER 2022 — SELAMANYA",
+
+      // 3. Foto Polaroid & Caption (Ganti link gambar dengan fotomu)
+      foto1: {
+        url: "https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=800&q=80",
+        caption: `"Hari saat pertama kali melihat senyum manismu."`,
+        date: "Bandung, Pertemuan Pertama"
+      },
+      foto2: {
+        url: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=800&q=80",
+        caption: `"Ke mana pun arahnya, asalkan bersamamu."`,
+        date: "Sunset Walk • Our Little Secret Place"
+      },
+      foto3: {
+        url: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=800&q=80",
+        caption: `"Menjadi rumah paling nyaman untuk satu sama lain."`,
+        date: "Everyday Life • Home in Your Heart"
+      },
+
+      // 4. Hitungan Hari Bersama (Bisa diisi angka manual atau hitung otomatis)
+      jumlahHariBersama: 730,
+      teksHari: "Hari penuh cinta, tawa, dan rasa syukur bersamamu.",
+
+      // 5. Pesan Surat Penutup
+      suratPenutup: 
+`Terima kasih ya sudah menjadi orang yang paling sabar, paling perhatian, dan selalu ada di hari-hari baik maupun sulit.
+
+Semoga langkah kita selalu beriringan, mimpi-mimpi kita saling menguatkan, dan rasa sayang ini selalu bertumbuh lebih dalam di setiap hembusan nafas.
+
+I love you more than words could ever describe, today, tomorrow, and endlessly.`,
+
+      // 6. Link Musik Latar Belakang (MP3 Instrumental Lembut / Piano)
+      urlMusik: "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-moment-piano-love-112196.mp3",
+
+      // 7. Nomor WhatsApp Pengirim (untuk tombol balas)
+      nomorWaPengirim: "6285722645928",
+      pesanBalasanWa: "Sayang, aku sudah baca suratnya! Terharu banget... I love you more! ❤️✨"
+    };
+
+    // ========================================================
+    // INITIALIZATION & DOM BINDING
+    // ========================================================
+    document.addEventListener("DOMContentLoaded", () => {
+      // Pasang Data dari CONFIG
+      document.getElementById("hero-tag-text").textContent = CONFIG.heroTag;
+      document.getElementById("hero-title-text").innerHTML = CONFIG.heroTitle;
+      document.getElementById("hero-subtitle-text").textContent = CONFIG.heroSubtitle;
+      document.getElementById("hero-anniversary-date").textContent = CONFIG.tanggalAnniversary;
+
+      // Foto 1
+      document.getElementById("photo-1").src = CONFIG.foto1.url;
+      document.getElementById("caption-1").textContent = CONFIG.foto1.caption;
+      document.getElementById("date-1").textContent = CONFIG.foto1.date;
+
+      // Foto 2
+      document.getElementById("photo-2").src = CONFIG.foto2.url;
+      document.getElementById("caption-2").textContent = CONFIG.foto2.caption;
+      document.getElementById("date-2").textContent = CONFIG.foto2.date;
+
+      // Foto 3
+      document.getElementById("photo-3").src = CONFIG.foto3.url;
+      document.getElementById("caption-3").textContent = CONFIG.foto3.caption;
+      document.getElementById("date-3").textContent = CONFIG.foto3.date;
+
+      // Counter
+      document.getElementById("counter-days").textContent = CONFIG.jumlahHariBersama;
+      document.getElementById("counter-text").textContent = CONFIG.teksHari;
+
+      // Surat Penutup
+      document.getElementById("closing-message").textContent = CONFIG.suratPenutup;
+
+      // WhatsApp Button
+      const waLink = `https://wa.me/${CONFIG.nomorWaPengirim}?text=${encodeURIComponent(CONFIG.pesanBalasanWa)}`;
+      document.getElementById("reply-wa-btn").href = waLink;
+
+      // ========================================================
+      // BGM AUDIO PLAYER CONTROLLER
+      // ========================================================
+      const audio = document.getElementById("bgm-audio");
+      const bgmBtn = document.getElementById("bgm-button");
+      const bgmText = document.getElementById("bgm-status-text");
+      let isPlaying = false;
+
+      if (CONFIG.urlMusik) {
+        audio.src = CONFIG.urlMusik;
+      }
+
+      function toggleAudio() {
+        if (!audio) return;
+        if (isPlaying) {
+          audio.pause();
+          isPlaying = false;
+          bgmBtn.classList.remove("is-playing");
+          bgmText.textContent = "PLAY MUSIC";
+        } else {
+          audio.play().then(() => {
+            isPlaying = true;
+            bgmBtn.classList.add("is-playing");
+            bgmText.textContent = "PAUSE";
+          }).catch((err) => {
+            console.warn("Audio play prevented:", err);
+          });
+        }
+      }
+
+      bgmBtn.addEventListener("click", toggleAudio);
+
+      // Mulai audio halus pada sentuhan/interaksi pertama jika diizinkan
+      const handleFirstInteraction = () => {
+        if (!isPlaying) {
+          audio.play().then(() => {
+            isPlaying = true;
+            bgmBtn.classList.add("is-playing");
+            bgmText.textContent = "PAUSE";
+          }).catch(() => {});
+        }
+        window.removeEventListener("click", handleFirstInteraction);
+        window.removeEventListener("touchstart", handleFirstInteraction);
+      };
+      window.addEventListener("click", handleFirstInteraction, { once: true });
+      window.addEventListener("touchstart", handleFirstInteraction, { once: true });
+
+      // ========================================================
+      // INTERSECTION OBSERVER (Scroll Story Animations)
+      // ========================================================
+      const revealElements = document.querySelectorAll(".reveal-on-scroll");
+
+      if ("IntersectionObserver" in window) {
+        const observerOptions = {
+          root: null,
+          rootMargin: "0px 0px -60px 0px", // Memicu animasi sedikit sebelum elemen berada di tengah viewport
+          threshold: 0.12
+        };
+
+        const observer = new IntersectionObserver((entries, obs) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              obs.unobserve(entry.target); // Hanya animasikan sekali
+            }
+          });
+        }, observerOptions);
+
+        revealElements.forEach((el) => observer.observe(el));
+      } else {
+        // Fallback jika browser sangat lama
+        revealElements.forEach((el) => el.classList.add("is-visible"));
+      }
+
+      // ========================================================
+      // FLOATING ROSE PETALS CANVAS (Soft Aesthetic Particles)
+      // ========================================================
+      initPetals();
+    });
+
+    function initPetals() {
+      const canvas = document.getElementById("petals-canvas");
+      if (!canvas) return;
+      const ctx = canvas.getContext("2d");
+
+      let width = (canvas.width = window.innerWidth);
+      let height = (canvas.height = window.innerHeight);
+
+      window.addEventListener("resize", () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      });
+
+      const petalColors = [
+        "rgba(181, 122, 116, 0.45)",
+        "rgba(242, 227, 225, 0.65)",
+        "rgba(194, 157, 91, 0.35)",
+        "rgba(217, 169, 163, 0.45)"
+      ];
+
+      const petals = [];
+      const petalCount = window.innerWidth < 768 ? 16 : 28;
+
+      for (let i = 0; i < petalCount; i++) {
+        petals.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          size: Math.random() * 8 + 6,
+          speedX: Math.random() * 0.8 - 0.4,
+          speedY: Math.random() * 0.6 + 0.4,
+          rotation: Math.random() * Math.PI * 2,
+          rotationSpeed: (Math.random() - 0.5) * 0.02,
+          color: petalColors[Math.floor(Math.random() * petalColors.length)],
+          swaySpeed: Math.random() * 0.02 + 0.01,
+          swayOffset: Math.random() * Math.PI * 2
+        });
+      }
+
+      let tick = 0;
+      function animate() {
+        ctx.clearRect(0, 0, width, height);
+        tick += 0.02;
+
+        petals.forEach((p) => {
+          p.y += p.speedY;
+          p.x += p.speedX + Math.sin(tick + p.swayOffset) * 0.5;
+          p.rotation += p.rotationSpeed;
+
+          // Wrap around edges
+          if (p.y > height + 20) {
+            p.y = -20;
+            p.x = Math.random() * width;
+          }
+          if (p.x > width + 20) p.x = -20;
+          if (p.x < -20) p.x = width + 20;
+
+          // Draw organic petal oval
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rotation);
+          ctx.beginPath();
+          ctx.ellipse(0, 0, p.size, p.size * 0.65, 0, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.fill();
+          ctx.restore();
+        });
+
+        requestAnimationFrame(animate);
+      }
+      animate();
+    }
+  </script>
+</body>
+</html>

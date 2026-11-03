@@ -6,7 +6,6 @@ import ProjectsSection from "@/sections/projects-section";
 import GithubContributions from "@/sections/github-contributions";
 import ContactSection from "@/sections/contact-section";
 import StaggeredMenu from "@/components/StaggeredMenu";
-import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import { siteConfig } from "@/lib/site";
 import { getPublicHomeContent } from "@/data/content/public-content";
 import { getGithubContributions } from "@/lib/github-contributions";
@@ -73,7 +72,6 @@ const structuredData = {
 
 const navigationItems = [
   { label: "Home", ariaLabel: "Go to home section", link: "#home" },
-  { label: "Kado Digital", ariaLabel: "Go to digital gift catalog section", link: "#katalog" },
   { label: "About", ariaLabel: "Go to about section", link: "#about" },
   {
     label: "Experience",
@@ -89,6 +87,11 @@ const navigationItems = [
     label: "All Projects",
     ariaLabel: "View all projects",
     link: "/projects",
+  },
+  {
+    label: "Kado Digital",
+    ariaLabel: "Go to digital gift service section",
+    link: "#katalog",
   },
   { label: "Contact", ariaLabel: "Go to contact section", link: "#contact" },
 ];
@@ -128,13 +131,12 @@ export default async function Home() {
           openMenuButtonColor="#111114"
         />
         <HeroSection />
-        <DigitalGiftSection />
         <IntroSection skills={content.skills.map((skill) => skill.name)} />
         <ExperienceSection experiences={content.experiences} />
         <ProjectsSection projects={content.featuredProjects} />
         <GithubContributions initialData={githubContributions} />
+        <DigitalGiftSection />
         <ContactSection />
-        <FloatingWhatsApp />
       </main>
     </>
   );

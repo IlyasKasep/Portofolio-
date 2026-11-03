@@ -675,6 +675,178 @@
       white-space: nowrap;
     }
 
+    /* ========================================================
+       CYBER MINI-GAME: CORE FIREWALL TAP
+       ======================================================== */
+    .cyber-game-container {
+      background: var(--bg-panel);
+      border: 1px solid var(--neon-cyan);
+      box-shadow: 0 0 16px rgba(0, 255, 255, 0.25);
+      padding: 16px;
+      margin-bottom: 28px;
+      text-align: center;
+    }
+    .game-hud-stats {
+      display: flex;
+      justify-content: space-between;
+      font-size: 9px;
+      color: var(--neon-cyan);
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px dashed rgba(0, 255, 255, 0.3);
+    }
+    .game-grid-arena {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 14px 0;
+      min-height: 180px;
+    }
+    .cyber-node-target {
+      aspect-ratio: 1;
+      background: rgba(0, 255, 255, 0.05);
+      border: 1px solid rgba(0, 255, 255, 0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.15s ease;
+      font-family: var(--font-hud);
+      font-size: 8px;
+      color: var(--text-dim);
+    }
+    .cyber-node-target.active-target {
+      background: rgba(255, 0, 127, 0.2);
+      border-color: var(--neon-magenta);
+      box-shadow: 0 0 16px rgba(255, 0, 127, 0.6);
+      color: #fff;
+      animation: pulse-node 0.4s infinite alternate;
+    }
+    @keyframes pulse-node {
+      from { transform: scale(0.96); box-shadow: 0 0 10px rgba(255, 0, 127, 0.4); }
+      to { transform: scale(1.04); box-shadow: 0 0 22px rgba(255, 0, 127, 0.9); }
+    }
+    .node-icon {
+      font-size: 20px;
+      margin-bottom: 4px;
+    }
+    .overload-bar-wrap {
+      width: 100%;
+      height: 14px;
+      background: #000;
+      border: 1px solid var(--neon-green);
+      margin: 12px 0 6px;
+      overflow: hidden;
+      position: relative;
+    }
+    .overload-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
+      transition: width 0.2s ease;
+      box-shadow: 0 0 10px var(--neon-magenta);
+    }
+
+    /* ========================================================
+       AI GOMBALAN COMPILER.exe
+       ======================================================== */
+    .compiler-widget {
+      background: #000000;
+      border: 1px solid var(--neon-green);
+      box-shadow: 0 0 16px rgba(0, 255, 102, 0.2);
+      padding: 16px;
+      margin-bottom: 28px;
+      text-align: left;
+    }
+    .compiler-terminal-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px dashed rgba(0, 255, 102, 0.3);
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+      font-size: 8px;
+      color: var(--neon-green);
+      font-family: var(--font-mono);
+    }
+    .compiler-output-box {
+      min-height: 70px;
+      font-size: 12px;
+      color: #a3ffc7;
+      line-height: 1.7;
+      margin-bottom: 14px;
+      font-family: var(--font-mono);
+      word-break: break-word;
+    }
+    .cyber-btn-green {
+      background: var(--neon-green);
+      color: #000;
+      border-color: var(--neon-green);
+      box-shadow: 0 0 12px rgba(0, 255, 102, 0.4);
+      font-weight: 700;
+    }
+    .cyber-btn-green:hover {
+      background: #4dff88;
+      box-shadow: 0 0 20px rgba(0, 255, 102, 0.8);
+    }
+
+    /* ========================================================
+       CYBER COMPATIBILITY QUIZ
+       ======================================================== */
+    .cyber-quiz-box {
+      background: var(--bg-panel);
+      border: 1px solid var(--neon-yellow);
+      box-shadow: 0 0 16px rgba(252, 238, 10, 0.2);
+      padding: 18px 16px;
+      margin-bottom: 28px;
+    }
+    .quiz-q-title {
+      font-family: var(--font-hud);
+      font-size: 11px;
+      color: var(--neon-yellow);
+      margin-bottom: 12px;
+      letter-spacing: 0.08em;
+    }
+    .cyber-quiz-opts {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .cyber-quiz-opt {
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid var(--text-dim);
+      color: #d6eaff;
+      padding: 10px 12px;
+      font-size: 10px;
+      font-family: var(--font-mono);
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .cyber-quiz-opt:hover {
+      border-color: var(--neon-cyan);
+      background: rgba(0, 255, 255, 0.1);
+      color: #fff;
+    }
+    .cyber-quiz-opt.opt-selected {
+      border-color: var(--neon-magenta);
+      background: rgba(255, 0, 127, 0.25);
+      color: #fff;
+      box-shadow: 0 0 10px rgba(255, 0, 127, 0.5);
+    }
+    .quiz-sync-result {
+      display: none;
+      margin-top: 14px;
+      padding: 12px;
+      background: #000;
+      border: 1px solid var(--neon-cyan);
+      font-size: 9px;
+      color: var(--neon-cyan);
+      line-height: 1.6;
+    }
+
     /* Actions Bottom Grid */
     .hud-actions-grid {
       display: grid;
@@ -820,6 +992,126 @@ Di antara milyaran data dan algoritma acak dunia, probabilitas bertemu denganmu 
           &gt; EMOTIONAL RESONANCE: CRITICAL HIGH<br>
           &gt; SECURITY RISK: IRREVERSIBLY IN LOVE WITH PLAYER 2.<br>
           &gt; PROTOCOL: TOGETHER UNTIL END OF TIMELINE.
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. CYBER MINI-GAME: HACK THE LOVE CORE (FIREWALL OVERLOAD) -->
+    <div class="hud-section">
+      <div class="hud-section-header">
+        <span class="hud-section-title">MINI-GAME // FIREWALL BREACH</span>
+        <span class="hud-section-meta">[TIME: 15S]</span>
+      </div>
+      <div class="cyber-game-container hud-cut-corners">
+        <div class="game-hud-stats">
+          <span>TARGETS: <strong id="game-nodes-hit" style="color: var(--neon-magenta);">0</strong> HITS</span>
+          <span>OVERLOAD: <strong id="game-overload-pct" style="color: var(--neon-cyan);">0%</strong></span>
+          <span>TIMER: <strong id="game-timer" style="color: var(--neon-yellow);">15s</strong></span>
+        </div>
+
+        <div class="overload-bar-wrap">
+          <div class="overload-bar-fill" id="overload-bar"></div>
+        </div>
+
+        <div class="game-grid-arena" id="game-grid">
+          <div class="cyber-node-target" data-node="0"><span class="node-icon">⚡</span><span>NODE_01</span></div>
+          <div class="cyber-node-target" data-node="1"><span class="node-icon">📡</span><span>SYNC_02</span></div>
+          <div class="cyber-node-target" data-node="2"><span class="node-icon">💖</span><span>CORE_03</span></div>
+          <div class="cyber-node-target" data-node="3"><span class="node-icon">🔐</span><span>KEY_04</span></div>
+          <div class="cyber-node-target" data-node="4"><span class="node-icon">⚡</span><span>NODE_05</span></div>
+          <div class="cyber-node-target" data-node="5"><span class="node-icon">🧬</span><span>GEN_06</span></div>
+          <div class="cyber-node-target" data-node="6"><span class="node-icon">💖</span><span>CORE_07</span></div>
+          <div class="cyber-node-target" data-node="7"><span class="node-icon">📡</span><span>SYNC_08</span></div>
+          <div class="cyber-node-target" data-node="8"><span class="node-icon">⚡</span><span>NODE_09</span></div>
+        </div>
+
+        <button type="button" class="cyber-btn" id="start-game-btn" style="width: 100%;">
+          <span>⚡ START FIREWALL OVERLOAD // 15S</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- 5. AI GOMBALAN COMPILER.exe -->
+    <div class="hud-section">
+      <div class="hud-section-header">
+        <span class="hud-section-title">TERMINAL // AI_SWEET_TALK.exe</span>
+        <span class="hud-section-meta">[CYBER GOMBALAN]</span>
+      </div>
+      <div class="compiler-widget hud-cut-corners">
+        <div class="compiler-terminal-bar">
+          <span>&gt; EXEC: GOMBALAN_MAUT_COMPILER_V3.8</span>
+          <span style="color: var(--neon-cyan);">[READY]</span>
+        </div>
+        <div class="compiler-output-box" id="compiler-output">
+          &gt; Error 404: Alasan untuk berhenti mencintaimu tidak ditemukan di seluruh database semesta digital.
+        </div>
+        <button type="button" class="cyber-btn cyber-btn-green" id="compiler-btn" style="width: 100%;">
+          <span>⚡ COMPILE NEW GOMBALAN.exe</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- 6. CYBER COMPATIBILITY QUIZ -->
+    <div class="hud-section">
+      <div class="hud-section-header">
+        <span class="hud-section-title">NEURAL FREQUENCY QUIZ</span>
+        <span class="hud-section-meta">[3 PROTOCOLS]</span>
+      </div>
+      <div class="cyber-quiz-box hud-cut-corners">
+        <div id="cyber-quiz-wrap">
+          <!-- Question 1 -->
+          <div class="cyber-q-block" id="cq-1">
+            <h4 class="quiz-q-title">1. Ketika Player 1 low battery / butuh boost:</h4>
+            <div class="cyber-quiz-opts">
+              <button type="button" class="cyber-quiz-opt" data-cqid="1">
+                [A] Supply makanan favorit &amp; boba segera (Boost +100%)
+              </button>
+              <button type="button" class="cyber-quiz-opt" data-cqid="1">
+                [B] Peluk hangat &amp; dengarkan ceritanya sampai tuntas
+              </button>
+              <button type="button" class="cyber-quiz-opt" data-cqid="1">
+                [C] Ajak night drive santai keliling kota
+              </button>
+            </div>
+          </div>
+
+          <!-- Question 2 -->
+          <div class="cyber-q-block" id="cq-2" style="display: none;">
+            <h4 class="quiz-q-title">2. Status keamanan firewall hati kita:</h4>
+            <div class="cyber-quiz-opts">
+              <button type="button" class="cyber-quiz-opt" data-cqid="2">
+                [A] 256-Bit Quantum Anti-Pelakor Shield [ACTIVE]
+              </button>
+              <button type="button" class="cyber-quiz-opt" data-cqid="2">
+                [B] Unbreakable Neural Love Bond [MAX]
+              </button>
+              <button type="button" class="cyber-quiz-opt" data-cqid="2">
+                [C] Mutually Assured Cuteness [ALWAYS]
+              </button>
+            </div>
+          </div>
+
+          <!-- Question 3 -->
+          <div class="cyber-q-block" id="cq-3" style="display: none;">
+            <h4 class="quiz-q-title">3. Protokol kencan akhir pekan ideal:</h4>
+            <div class="cyber-quiz-opts">
+              <button type="button" class="cyber-quiz-opt" data-cqid="3">
+                [A] Gaming bareng &amp; nonton film larut malam
+              </button>
+              <button type="button" class="cyber-quiz-opt" data-cqid="3">
+                [B] Wisata kuliner jajanan hits berdua
+              </button>
+              <button type="button" class="cyber-quiz-opt" data-cqid="3">
+                [C] Deep talk santai merencanakan masa depan kita
+              </button>
+            </div>
+          </div>
+
+          <!-- Quiz Result -->
+          <div class="quiz-sync-result" id="cyber-quiz-result">
+            &gt; NEURAL SYNC COMPLETE: 100% IDENTICAL FREQUENCY!<br>
+            &gt; COMPATIBILITY REPORT: Kamu dan Player 1 adalah kombinasi paling sempurna di seluruh timeline semesta. Data terkunci permanen! ⚡💖
+          </div>
         </div>
       </div>
     </div>
@@ -1066,6 +1358,161 @@ Di antara milyaran data dan algoritma acak dunia, probabilitas bertemu denganmu 
           scanResult.style.display = "block";
           playHackGlitchSound();
         }, 600);
+      });
+
+      // 4. Cyber Mini-Game: FIREWALL TAP (Love Engine Overload)
+      const startGameBtn = document.getElementById("start-game-btn");
+      const gameTimer = document.getElementById("game-timer");
+      const gameNodesHit = document.getElementById("game-nodes-hit");
+      const gameOverloadPct = document.getElementById("game-overload-pct");
+      const overloadBar = document.getElementById("overload-bar");
+      const nodes = document.querySelectorAll(".cyber-node-target");
+
+      let gameRunning = false;
+      let gameTimeLeft = 15;
+      let hits = 0;
+      let activeNodeIdx = null;
+      let gameInterval = null;
+
+      function pickRandomNode() {
+        nodes.forEach(n => n.classList.remove("active-target"));
+        let nextIdx;
+        do {
+          nextIdx = Math.floor(Math.random() * nodes.length);
+        } while (nextIdx === activeNodeIdx && nodes.length > 1);
+        activeNodeIdx = nextIdx;
+        nodes[activeNodeIdx].classList.add("active-target");
+      }
+
+      nodes.forEach((node, idx) => {
+        node.addEventListener("click", () => {
+          if (!gameRunning) return;
+          if (idx === activeNodeIdx) {
+            hits++;
+            gameNodesHit.textContent = hits;
+            const pct = Math.min(100, hits * 8);
+            gameOverloadPct.textContent = `${pct}%`;
+            overloadBar.style.width = `${pct}%`;
+            playHackGlitchSound();
+
+            if (pct >= 100) {
+              endGame(true);
+            } else {
+              pickRandomNode();
+            }
+          }
+        });
+      });
+
+      function endGame(isOverloadMax = false) {
+        gameRunning = false;
+        clearInterval(gameInterval);
+        nodes.forEach(n => n.classList.remove("active-target"));
+        startGameBtn.disabled = false;
+        startGameBtn.innerHTML = "<span>⚡ RE-BREACH FIREWALL // MAIN LAGI</span>";
+        playHackGlitchSound();
+        screenFlash.classList.add("flash-now");
+        setTimeout(() => screenFlash.classList.remove("flash-now"), 350);
+
+        setTimeout(() => {
+          if (isOverloadMax) {
+            alert(`🚨 CRITICAL OVERLOAD 100%! Kamu berhasil membobol firewall cinta dengan ${hits} hits! Koneksi cinta Player 1 & Player 2: UNSTOPPABLE & INFINITE! ❤️⚡`);
+          } else {
+            alert(`⚡ WAKTU HABIS! Kamu berhasil mengumpulkan ${hits} hits dengan Overload ${Math.min(100, hits * 8)}%! Hebat banget refleksmu, Player 1 makin bangga! 💖`);
+          }
+        }, 200);
+      }
+
+      startGameBtn.addEventListener("click", () => {
+        if (gameRunning) return;
+        gameRunning = true;
+        hits = 0;
+        gameTimeLeft = 15;
+        gameNodesHit.textContent = "0";
+        gameOverloadPct.textContent = "0%";
+        overloadBar.style.width = "0%";
+        gameTimer.textContent = "15s";
+        startGameBtn.disabled = true;
+        startGameBtn.innerHTML = "<span>⚡ HACKING IN PROGRESS...</span>";
+        playHackGlitchSound();
+
+        pickRandomNode();
+
+        gameInterval = setInterval(() => {
+          gameTimeLeft--;
+          gameTimer.textContent = `${gameTimeLeft}s`;
+          if (gameTimeLeft <= 0) {
+            endGame(false);
+          }
+        }, 1000);
+      });
+
+      // 5. AI GOMBALAN COMPILER.exe
+      const cyberGombalanList = [
+        "> Error 404: Alasan untuk berhenti mencintaimu tidak ditemukan di seluruh database semesta digital.",
+        "> CPU otakku bottleneck 100% setiap kali melihat senyumanmu yang mempesona.",
+        "> Kamu bukan cuma IP Address di jaringanku, kamu adalah default gateway seluruh hidupku.",
+        "> Mau ada jutaan malware menyerang, antivirus terbaikku tetap pelukan hangatmu.",
+        "> Kalau cinta kita adalah source code, aku bakal commit ke repository hidupku selamanya tanpa rollback.",
+        "> Sinyal Wi-Fi bisa down, tapi sinyal neural hatiku ke kamu selalu 5G ultra speed dengan latency nol.",
+        "> Sistem operasi hidupku langsung crash kalau kamu nggak online di hariku.",
+        "> Hatiku nggak butuh reboot, cuma butuh kehadiranmu di setiap baris kodingan takdir.",
+        "> Kamu bagaikan GPU RTX 5090: bikin duniaku terasa begitu nyata, jernih, dan penuh warna indah.",
+        "> Aku nggak butuh query SQL yang rumit, karena satu-satunya hasil pencarian terindah di hidupku adalah KAMU."
+      ];
+      const compilerBtn = document.getElementById("compiler-btn");
+      const compilerOutput = document.getElementById("compiler-output");
+      let lastCompilerIdx = 0;
+
+      compilerBtn.addEventListener("click", () => {
+        playHackGlitchSound();
+        compilerBtn.disabled = true;
+        compilerBtn.innerHTML = "<span>⚡ COMPILING...</span>";
+
+        let nextIdx;
+        do {
+          nextIdx = Math.floor(Math.random() * cyberGombalanList.length);
+        } while (nextIdx === lastCompilerIdx);
+        lastCompilerIdx = nextIdx;
+
+        compilerOutput.textContent = "> COMPILING NEURAL_SWEET_TALK.exe... [OK]";
+        setTimeout(() => {
+          compilerOutput.textContent = cyberGombalanList[nextIdx];
+          compilerBtn.disabled = false;
+          compilerBtn.innerHTML = "<span>⚡ COMPILE NEW GOMBALAN.exe</span>";
+          playHackGlitchSound();
+        }, 400);
+      });
+
+      // 6. Cyber Compatibility Quiz
+      const cqOpts = document.querySelectorAll(".cyber-quiz-opt");
+      const cq1 = document.getElementById("cq-1");
+      const cq2 = document.getElementById("cq-2");
+      const cq3 = document.getElementById("cq-3");
+      const cqResult = document.getElementById("cyber-quiz-result");
+
+      cqOpts.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const qid = btn.dataset.cqid;
+          btn.classList.add("opt-selected");
+          playHackGlitchSound();
+
+          setTimeout(() => {
+            if (qid === "1") {
+              cq1.style.display = "none";
+              cq2.style.display = "block";
+            } else if (qid === "2") {
+              cq2.style.display = "none";
+              cq3.style.display = "block";
+            } else if (qid === "3") {
+              cq3.style.display = "none";
+              cqResult.style.display = "block";
+              playHackGlitchSound();
+              screenFlash.classList.add("flash-now");
+              setTimeout(() => screenFlash.classList.remove("flash-now"), 350);
+            }
+          }, 350);
+        });
       });
     });
   </script>

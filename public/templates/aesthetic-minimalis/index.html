@@ -526,6 +526,276 @@
       line-height: 1.6;
     }
 
+    /* ========================================================
+       INTERACTIVE GOMBALAN ENVELOPES & 3D FLIP CARDS
+       ======================================================== */
+    .envelopes-section {
+      max-width: 500px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .envelopes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+      perspective: 1000px;
+    }
+    .envelope-card {
+      background: transparent;
+      height: 160px;
+      cursor: pointer;
+    }
+    .envelope-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      transform-style: preserve-3d;
+      border-radius: 14px;
+      box-shadow: var(--shadow-soft);
+    }
+    .envelope-card.is-flipped .envelope-inner {
+      transform: rotateY(180deg);
+    }
+    .envelope-front, .envelope-back {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      border-radius: 14px;
+      padding: 14px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .envelope-front {
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-top: 3px solid var(--accent-rose);
+    }
+    .envelope-icon {
+      font-size: 26px;
+      margin-bottom: 6px;
+    }
+    .envelope-title {
+      font-family: var(--font-serif);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-main);
+      line-height: 1.3;
+    }
+    .envelope-hint {
+      margin-top: 6px;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-rose);
+      font-weight: 600;
+    }
+    .envelope-back {
+      background: var(--accent-rose-soft);
+      border: 1px solid var(--border-accent);
+      transform: rotateY(180deg);
+      overflow-y: auto;
+    }
+    .envelope-quote {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      line-height: 1.55;
+      color: var(--text-main);
+      font-weight: 400;
+    }
+
+    /* Gombalan Generator Bar */
+    .gombalan-generator-box {
+      margin-top: 20px;
+      background: var(--bg-card);
+      border: 1px dashed var(--accent-rose);
+      border-radius: 14px;
+      padding: 20px 18px;
+      box-shadow: var(--shadow-soft);
+    }
+    .gombalan-text-display {
+      font-family: var(--font-serif);
+      font-size: 15px;
+      font-style: italic;
+      color: var(--text-main);
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1.6;
+      transition: opacity 0.3s ease;
+    }
+    .action-pill-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 14px;
+      background: var(--accent-rose);
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(181, 122, 116, 0.3);
+      transition: all 0.25s ease;
+    }
+    .action-pill-btn:hover {
+      background: #a36963;
+      transform: translateY(-2px);
+    }
+
+    /* ========================================================
+       INTERACTIVE COUPLE CHALLENGE GENERATOR
+       ======================================================== */
+    .challenge-card-box {
+      background: var(--bg-card);
+      border-radius: 18px;
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+      padding: 30px 24px;
+      max-width: 480px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .challenge-card-box::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent-rose), var(--accent-gold));
+    }
+    .challenge-pill {
+      display: inline-block;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--accent-gold);
+      background: var(--accent-gold-soft);
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+    .challenge-display-text {
+      font-family: var(--font-serif);
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--text-main);
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 12px 0;
+      padding: 10px;
+      background: var(--bg-warm);
+      border-radius: 10px;
+      border: 1px solid var(--border-soft);
+    }
+
+    /* ========================================================
+       INTERACTIVE COUPLE CHEMISTRY QUIZ
+       ======================================================== */
+    .quiz-card-box {
+      background: var(--bg-card);
+      border-radius: 18px;
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+      padding: 30px 24px;
+      max-width: 480px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .quiz-question-title {
+      font-family: var(--font-serif);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-main);
+      margin: 14px 0 16px;
+      line-height: 1.5;
+    }
+    .quiz-options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-align: left;
+    }
+    .quiz-option-btn {
+      background: var(--bg-warm);
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-size: 13px;
+      color: var(--text-main);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s ease;
+      font-family: var(--font-sans);
+    }
+    .quiz-option-btn:hover {
+      border-color: var(--accent-rose);
+      background: var(--accent-rose-soft);
+    }
+    .quiz-option-btn.selected {
+      border-color: var(--accent-rose);
+      background: var(--accent-rose-soft);
+      font-weight: 600;
+      color: var(--accent-rose);
+    }
+    .quiz-result-banner {
+      display: none;
+      margin-top: 18px;
+      padding: 16px;
+      background: var(--accent-rose-soft);
+      border: 1px solid var(--border-accent);
+      border-radius: 12px;
+      font-size: 13px;
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+      border-radius: 12px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      box-shadow: 0 4px 14px rgba(43, 40, 38, 0.03);
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+    .reason-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--border-accent);
+      box-shadow: 0 8px 24px rgba(181, 122, 116, 0.1);
+    }
+    .reason-num {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-style: italic;
+      color: var(--accent-rose);
+      flex-shrink: 0;
+      line-height: 1.2;
+    }
+    .reason-text {
+      font-size: 13px;
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
     /* Bucket List Section */
     .bucketlist-card {
       background: var(--bg-card);
@@ -859,6 +1129,154 @@
       </div>
     </section>
 
+    <!-- INTERACTIVE 1: LOVE FORTUNE ENVELOPES (GOMBALAN & SURAT RAHASIA) -->
+    <section class="story-item reveal-on-scroll">
+      <div class="envelopes-section">
+        <div class="chapter-tag">
+          <span class="chapter-pill">SPECIAL INTERACTIVE • TAP TO OPEN</span>
+        </div>
+        <h3 class="reasons-title">Amplop Rahasia &amp; Pujian Manis</h3>
+        <p class="reasons-subtitle">Ketuk amplop di bawah untuk membalik kartu dan membaca rahasianya.</p>
+
+        <div class="envelopes-grid">
+          <!-- Card 1 -->
+          <div class="envelope-card" data-envelope="1">
+            <div class="envelope-inner">
+              <div class="envelope-front">
+                <span class="envelope-icon">💌</span>
+                <h4 class="envelope-title">Untuk Mata Manismu</h4>
+                <span class="envelope-hint">Buka Kartu ▸</span>
+              </div>
+              <div class="envelope-back">
+                <p class="envelope-quote">"Kamu tahu kenapa aku nggak butuh peta? Karena kemana pun aku melangkah, tujuan akhirnya selalu kembali ke pelukanmu."</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="envelope-card" data-envelope="2">
+            <div class="envelope-inner">
+              <div class="envelope-front">
+                <span class="envelope-icon">☕</span>
+                <h4 class="envelope-title">Hari Melelahkan</h4>
+                <span class="envelope-hint">Buka Kartu ▸</span>
+              </div>
+              <div class="envelope-back">
+                <p class="envelope-quote">"Dunia mungkin berisik dan menuntut banyak hal, tapi di mataku kamu sudah lebih dari cukup. Kamu hebat banget hari ini."</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="envelope-card" data-envelope="3">
+            <div class="envelope-inner">
+              <div class="envelope-front">
+                <span class="envelope-icon">💫</span>
+                <h4 class="envelope-title">Gombalan Maut</h4>
+                <span class="envelope-hint">Buka Kartu ▸</span>
+              </div>
+              <div class="envelope-back">
+                <p class="envelope-quote">"Kalau mencintaimu adalah ujian sekolah, aku bakal sengaja nggak kumpulin kertas ujiannya biar bisa remedial terus di sampingmu."</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Random Gombalan Generator -->
+        <div class="gombalan-generator-box">
+          <p class="reasons-subtitle" style="margin-bottom: 8px;">KOTAK GOMBALAN MAUT ESTETIK</p>
+          <div class="gombalan-text-display" id="gombalan-display">
+            "Bintang di langit mungkin ada milyaran, tapi cuma senyumanmu yang sanggup menerangi hariku."
+          </div>
+          <button type="button" class="action-pill-btn" id="generate-gombalan-btn">
+            <span>✨ Kocok Gombalan Lainnya</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE 2: COUPLE SWEET CHALLENGE / DATE NIGHT GENERATOR -->
+    <section class="story-item reveal-on-scroll">
+      <div class="challenge-card-box">
+        <span class="challenge-pill">MINI GAME • DATE NIGHT CHALLENGE</span>
+        <h3 class="reasons-title">Tantangan Kencan Romantis Kita</h3>
+        <p class="reasons-subtitle">Putar tombol di bawah untuk mendapatkan tantangan manis hari ini!</p>
+        <div class="challenge-display-text" id="challenge-display">
+          👉 Klik tombol di bawah untuk mengundi tantangan cinta kita berdua!
+        </div>
+        <button type="button" class="action-pill-btn" id="spin-challenge-btn" style="background: var(--accent-gold);">
+          <span>🎲 Putar Tantangan Romantis</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE 3: COUPLE CHEMISTRY & MEMORY QUIZ -->
+    <section class="story-item reveal-on-scroll">
+      <div class="quiz-card-box">
+        <span class="challenge-pill" style="color: var(--accent-rose); background: var(--accent-rose-soft);">INTERACTIVE QUIZ</span>
+        <h3 class="reasons-title">Seberapa Dekat Frekuensi Hati Kita?</h3>
+        <p class="reasons-subtitle">Jawab 3 pertanyaan manis ini dan lihat seberapa klop chemistry kita!</p>
+
+        <div id="quiz-container">
+          <!-- Question 1 -->
+          <div class="quiz-question-block" id="quiz-q1">
+            <h4 class="quiz-question-title">1. Waktu berdua paling ideal menurut kamu:</h4>
+            <div class="quiz-options-list">
+              <button type="button" class="quiz-option-btn" data-qid="1" data-val="A">
+                <span>🛋️</span> <span>Marathon film favorit sambil delivery camilan enak</span>
+              </button>
+              <button type="button" class="quiz-option-btn" data-qid="1" data-val="B">
+                <span>🌅</span> <span>Roadtrip santai keliling kota sambil nonton senja</span>
+              </button>
+              <button type="button" class="quiz-option-btn" data-qid="1" data-val="C">
+                <span>☕</span> <span>Deep talk berdua di cafe tenang sambil ngobrol masa depan</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Question 2 -->
+          <div class="quiz-question-block" id="quiz-q2" style="display: none;">
+            <h4 class="quiz-question-title">2. Hal apa yang paling sering bikin kamu kangen saat jauh?</h4>
+            <div class="quiz-options-list">
+              <button type="button" class="quiz-option-btn" data-qid="2" data-val="A">
+                <span>🤍</span> <span>Obrolan random larut malam dan suara ketawamu</span>
+              </button>
+              <button type="button" class="quiz-option-btn" data-qid="2" data-val="B">
+                <span>🫂</span> <span>Pelukan hangat dan tatapan matamu yang menenangkan</span>
+              </button>
+              <button type="button" class="quiz-option-btn" data-qid="2" data-val="C">
+                <span>✨</span> <span>Semua hal tentang kamu tanpa terkecuali!</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Question 3 -->
+          <div class="quiz-question-block" id="quiz-q3" style="display: none;">
+            <h4 class="quiz-question-title">3. Kalimat apa yang paling ingin kamu dengar dari Player 1 hari ini?</h4>
+            <div class="quiz-options-list">
+              <button type="button" class="quiz-option-btn" data-qid="3" data-val="A">
+                <span>🍔</span> <span>"Aku udah siapin makanan favoritmu, yuk makan bareng!"</span>
+              </button>
+              <button type="button" class="quiz-option-btn" data-qid="3" data-val="B">
+                <span>💪</span> <span>"Jangan lelah ya, ada aku yang selalu bangga sama kamu."</span>
+              </button>
+              <button type="button" class="quiz-option-btn" data-qid="3" data-val="C">
+                <span>❤️</span> <span>"I love you more than words could ever describe."</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Quiz Result Banner -->
+          <div class="quiz-result-banner" id="quiz-result-box">
+            <strong>🎉 Chemistry Score: 100% PERFECT MATCH!</strong>
+            <p style="margin-top: 6px;" id="quiz-result-feedback">
+              Frekuensi hati kita benar-benar selaras! Nggak ada keraguan lagi, kamu dan aku adalah perpaduan terbaik di semesta ini. ❤️
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- FINAL LOVE LETTER -->
     <article class="story-item reveal-on-scroll">
       <div class="closing-letter-card">
@@ -987,6 +1405,159 @@ I love you more than words could ever describe, today, tomorrow, and endlessly.`
       }
       bgmBtn.addEventListener("click", toggleAudio);
 
+      // Web Audio API Soft Chime
+      let softAudioCtx = null;
+      function playSoftChime(type = "bell") {
+        try {
+          const AudioClass = window.AudioContext || window.webkitAudioContext;
+          if (!AudioClass) return;
+          if (!softAudioCtx) softAudioCtx = new AudioClass();
+          if (softAudioCtx.state === 'suspended') softAudioCtx.resume();
+
+          const now = softAudioCtx.currentTime;
+          const osc = softAudioCtx.createOscillator();
+          const gain = softAudioCtx.createGain();
+
+          if (type === "fanfare") {
+            osc.type = "sine";
+            osc.frequency.setValueAtTime(523.25, now); // C5
+            osc.frequency.setValueAtTime(659.25, now + 0.1); // E5
+            osc.frequency.setValueAtTime(783.99, now + 0.2); // G5
+            osc.frequency.setValueAtTime(1046.50, now + 0.3); // C6
+            gain.gain.setValueAtTime(0.08, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.7);
+            osc.connect(gain);
+            gain.connect(softAudioCtx.destination);
+            osc.start(now);
+            osc.stop(now + 0.72);
+          } else {
+            osc.type = "sine";
+            osc.frequency.setValueAtTime(880, now); // A5
+            osc.frequency.exponentialRampToValueAtTime(1174.66, now + 0.15); // D6
+            gain.gain.setValueAtTime(0.06, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+            osc.connect(gain);
+            gain.connect(softAudioCtx.destination);
+            osc.start(now);
+            osc.stop(now + 0.42);
+          }
+        } catch (e) {}
+      }
+
+      // 1. Amplop Rahasia 3D Flip
+      const envelopeCards = document.querySelectorAll(".envelope-card");
+      envelopeCards.forEach((card) => {
+        card.addEventListener("click", () => {
+          card.classList.toggle("is-flipped");
+          playSoftChime("bell");
+        });
+      });
+
+      // 2. Gombalan Maut Generator
+      const gombalanList = [
+        `"Bintang di langit mungkin ada milyaran, tapi cuma senyumanmu yang sanggup menerangi hariku."`,
+        `"Kalau mencintaimu adalah hobi, aku nggak bakal butuh hari libur seumur hidup."`,
+        `"Kamu itu kayak playlist lagu favorit: mau diputar ratusan kali pun nggak pernah bikin bosan."`,
+        `"Aku nggak jago merangkai kata puitis, tapi jantungku selalu berdebar lebih kencang tiap namamu muncul di layar."`,
+        `"Banyak orang takut ketinggian, tapi aku cuma takut satu hal: kehilangan senyuman manismu."`,
+        `"Tahu nggak bedanya kamu sama Wi-Fi? Kalau Wi-Fi bisa disconnect, tapi hatiku ke kamu selalu terhubung 24/7."`,
+        `"Orang bilang rumah itu tempat tinggal, tapi buat aku rumah ternyaman itu adalah saat ada di sampingmu."`,
+        `"Kamu itu ibarat secangkir teh madu hangat di sore yang sejuk: manis, menenangkan, dan bikin nyaman."`,
+        `"Aku nggak butuh kopi mahal, cukup liat senyum manismu udah bikin hariku langsung bersemangat."`,
+        `"Di dunia yang serba terburu-buru ini, bersamamu adalah satu-satunya momen di mana aku ingin waktu berhenti."`,
+        `"Kamu tahu kenapa gravitasi bumi begitu kuat? Supaya hatiku nggak bisa kabur kemana-mana selain jatuh cinta padamu."`,
+        `"Kalau ada jutaan alasan untuk menyerah, senyumanmu adalah satu-satunya alasan terkuat untuk selalu berjuang."`
+      ];
+      const gombalanDisplay = document.getElementById("gombalan-display");
+      const gombalanBtn = document.getElementById("generate-gombalan-btn");
+      let lastGombalanIdx = 0;
+      gombalanBtn.addEventListener("click", () => {
+        playSoftChime("bell");
+        let nextIdx;
+        do {
+          nextIdx = Math.floor(Math.random() * gombalanList.length);
+        } while (nextIdx === lastGombalanIdx);
+        lastGombalanIdx = nextIdx;
+
+        gombalanDisplay.style.opacity = "0";
+        setTimeout(() => {
+          gombalanDisplay.textContent = gombalanList[nextIdx];
+          gombalanDisplay.style.opacity = "1";
+        }, 200);
+      });
+
+      // 3. Couple Challenge / Date Night Generator
+      const challengeList = [
+        "Tatap mata pasanganmu selama 15 detik tanpa boleh tertawa atau kedip! (Yang ketawa duluan wajib peluk erat ❤️)",
+        "Peluk hangat pasanganmu selama 30 detik tanpa boleh bicara apa-apa.",
+        "Kecup kening pasanganmu dan bisikkan satu doa paling tulus untuknya hari ini.",
+        "Sebutkan 3 hal kecil dari kebiasaannya yang paling sering bikin kamu tersenyum sendiri.",
+        "Ceritakan kembali momen pertama kali kamu sadar kalau kamu beneran jatuh cinta padanya.",
+        "Tiru suara atau gaya tertawanya yang paling khas dan menggemaskan!",
+        "Genggam tangannya, lalu nyanyikan 1 bait lagu favorit kalian berdua.",
+        "Buat janji manis satu hal seru yang wajib kalian berdua lakukan di akhir pekan ini!",
+        "Suapkan satu gigitan camilan / minuman favorit ke pasanganmu sambil tersenyum paling manis.",
+        "Katakan: 'Terima kasih ya sudah selalu ada dan nemenin aku sampai hari ini' sambil menatap matanya."
+      ];
+      const challengeDisplay = document.getElementById("challenge-display");
+      const spinChallengeBtn = document.getElementById("spin-challenge-btn");
+      let isSpinningChallenge = false;
+      spinChallengeBtn.addEventListener("click", () => {
+        if (isSpinningChallenge) return;
+        isSpinningChallenge = true;
+        spinChallengeBtn.disabled = true;
+        spinChallengeBtn.innerHTML = "<span>🎲 Mengundi Tantangan...</span>";
+
+        let ticks = 0;
+        const interval = setInterval(() => {
+          const rand = Math.floor(Math.random() * challengeList.length);
+          challengeDisplay.textContent = `🎲 ${challengeList[rand]}`;
+          playSoftChime("bell");
+          ticks++;
+          if (ticks > 8) {
+            clearInterval(interval);
+            const finalChoice = challengeList[Math.floor(Math.random() * challengeList.length)];
+            challengeDisplay.innerHTML = `<strong>✨ TANTANGAN KITA:</strong><br>${finalChoice}`;
+            spinChallengeBtn.disabled = false;
+            spinChallengeBtn.innerHTML = "<span>🎲 Putar Tantangan Lain</span>";
+            isSpinningChallenge = false;
+            playSoftChime("fanfare");
+          }
+        }, 120);
+      });
+
+      // 4. Couple Chemistry Quiz
+      const optionButtons = document.querySelectorAll(".quiz-option-btn");
+      const q1 = document.getElementById("quiz-q1");
+      const q2 = document.getElementById("quiz-q2");
+      const q3 = document.getElementById("quiz-q3");
+      const resultBox = document.getElementById("quiz-result-box");
+      const resultFeedback = document.getElementById("quiz-result-feedback");
+
+      optionButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const qid = btn.dataset.qid;
+          btn.classList.add("selected");
+          playSoftChime("bell");
+
+          setTimeout(() => {
+            if (qid === "1") {
+              q1.style.display = "none";
+              q2.style.display = "block";
+            } else if (qid === "2") {
+              q2.style.display = "none";
+              q3.style.display = "block";
+            } else if (qid === "3") {
+              q3.style.display = "none";
+              resultBox.style.display = "block";
+              playSoftChime("fanfare");
+              // Trigger flower petals flourish
+              if (window.triggerPetalFlourish) window.triggerPetalFlourish();
+            }
+          }, 350);
+        });
+      });
+
       // Intersection Observer
       const revealElements = document.querySelectorAll(".reveal-on-scroll");
       if ("IntersectionObserver" in window) {
@@ -1042,6 +1613,23 @@ I love you more than words could ever describe, today, tomorrow, and endlessly.`
           swayOffset: Math.random() * Math.PI * 2
         });
       }
+
+      window.triggerPetalFlourish = () => {
+        for (let i = 0; i < 35; i++) {
+          petals.push({
+            x: Math.random() * width,
+            y: -10,
+            size: Math.random() * 12 + 8,
+            speedX: Math.random() * 2 - 1,
+            speedY: Math.random() * 2 + 1.5,
+            rotation: Math.random() * Math.PI * 2,
+            rotationSpeed: (Math.random() - 0.5) * 0.05,
+            color: petalColors[Math.floor(Math.random() * petalColors.length)],
+            swaySpeed: Math.random() * 0.04 + 0.02,
+            swayOffset: Math.random() * Math.PI * 2
+          });
+        }
+      };
 
       let tick = 0;
       function animate() {

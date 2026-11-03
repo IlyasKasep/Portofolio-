@@ -3,17 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>8-Bit Retro Gift 🎁 | Special Quest & Memory Game</title>
+  <title>8-Bit Retro Gift 🎁 | Special Quest, Mini Game &amp; Gombalan</title>
 
-  <!-- Google Fonts: Press Start 2P (Headings/Arcade) & VT323 (Readable RPG Dialogue) -->
+  <!-- Google Fonts: Press Start 2P & VT323 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
 
   <style>
-    /* ========================================================
-       1. RESET & CSS VARIABLES
-       ======================================================== */
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
@@ -50,7 +47,6 @@
       image-rendering: crisp-edges;
     }
 
-    /* Scanline & CRT Screen Effect */
     .crt-overlay {
       position: fixed;
       inset: 0;
@@ -69,7 +65,6 @@
       box-shadow: inset 0 0 70px rgba(0, 0, 0, 0.75);
     }
 
-    /* Ambient Floating Retro Stars */
     .star-bg {
       position: fixed;
       inset: 0;
@@ -91,7 +86,6 @@
       50% { opacity: 0.95; transform: scale(1.5); }
     }
 
-    /* Canvas for Confetti */
     #confetti-canvas {
       position: fixed;
       inset: 0;
@@ -101,7 +95,6 @@
       height: 100%;
     }
 
-    /* Top Arcade Header Bar */
     .arcade-header {
       position: relative;
       z-index: 20;
@@ -122,53 +115,6 @@
     .arcade-header .score-tag {
       color: var(--neon-cyan);
       text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
-    }
-
-    /* ========================================================
-       2. PIXEL ART UTILITIES & BORDERS
-       ======================================================== */
-    .pixel-box {
-      background: var(--bg-card);
-      border: 4px solid var(--pixel-white);
-      box-shadow: 
-        0 -4px 0 0 var(--pixel-white),
-        0 4px 0 0 var(--pixel-white),
-        -4px 0 0 0 var(--pixel-white),
-        4px 0 0 0 var(--pixel-white),
-        0 6px 20px rgba(0, 0, 0, 0.7);
-    }
-
-    .pixel-box-green {
-      background: var(--bg-card);
-      border: 4px solid var(--neon-green);
-      box-shadow: 
-        0 -4px 0 0 var(--neon-green),
-        0 4px 0 0 var(--neon-green),
-        -4px 0 0 0 var(--neon-green),
-        4px 0 0 0 var(--neon-green),
-        0 0 16px rgba(57, 255, 20, 0.25);
-    }
-
-    .pixel-box-cyan {
-      background: var(--bg-card);
-      border: 4px solid var(--neon-cyan);
-      box-shadow: 
-        0 -4px 0 0 var(--neon-cyan),
-        0 4px 0 0 var(--neon-cyan),
-        -4px 0 0 0 var(--neon-cyan),
-        4px 0 0 0 var(--neon-cyan),
-        0 0 16px rgba(0, 240, 255, 0.25);
-    }
-
-    .pixel-box-pink {
-      background: var(--bg-card);
-      border: 4px solid var(--neon-pink);
-      box-shadow: 
-        0 -4px 0 0 var(--neon-pink),
-        0 4px 0 0 var(--neon-pink),
-        -4px 0 0 0 var(--neon-pink),
-        4px 0 0 0 var(--neon-pink),
-        0 0 16px rgba(255, 0, 127, 0.25);
     }
 
     /* Chunky Pixel Button */
@@ -196,10 +142,7 @@
         4px 0 0 0 var(--pixel-black);
       transition: transform 0.08s ease;
     }
-    .pixel-btn:hover {
-      background: #4dff2b;
-      transform: translateY(-2px);
-    }
+    .pixel-btn:hover { background: #4dff2b; transform: translateY(-2px); }
     .pixel-btn:active {
       transform: translateY(2px);
       box-shadow: 
@@ -222,9 +165,7 @@
         -4px 0 0 0 var(--pixel-black),
         4px 0 0 0 var(--pixel-black);
     }
-    .pixel-btn-pink:hover {
-      background: #ff2a8e;
-    }
+    .pixel-btn-pink:hover { background: #ff2a8e; }
 
     .pixel-btn-cyan {
       background: var(--neon-cyan);
@@ -238,7 +179,18 @@
         4px 0 0 0 var(--pixel-black);
     }
 
-    /* Small Pill Badge */
+    .pixel-btn-yellow {
+      background: var(--neon-yellow);
+      color: #000;
+      box-shadow: 
+        inset -4px -4px 0 0 #b3a000,
+        inset 4px 4px 0 0 #fff380,
+        0 -4px 0 0 var(--pixel-black),
+        0 4px 0 0 var(--pixel-black),
+        -4px 0 0 0 var(--pixel-black),
+        4px 0 0 0 var(--pixel-black);
+    }
+
     .retro-badge {
       display: inline-block;
       font-size: 8px;
@@ -250,9 +202,7 @@
       margin-bottom: 12px;
     }
 
-    /* ========================================================
-       3. STATE 1: THE HOOK (Menunggu Klik Kotak Kado)
-       ======================================================== */
+    /* STATE 1: THE HOOK */
     #state-hook {
       position: relative;
       z-index: 10;
@@ -280,7 +230,6 @@
       margin-bottom: 24px;
       letter-spacing: 1px;
     }
-
     .hook-title {
       font-size: clamp(14px, 4vw, 18px);
       line-height: 1.6;
@@ -288,8 +237,6 @@
       margin-bottom: 32px;
       text-shadow: 2px 2px 0 var(--neon-pink);
     }
-
-    /* The Pixel Gift Box */
     .gift-container {
       position: relative;
       cursor: pointer;
@@ -302,7 +249,6 @@
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-10px); }
     }
-
     .gift-box {
       width: 140px;
       height: 140px;
@@ -310,7 +256,6 @@
       transition: transform 0.15s ease;
       filter: drop-shadow(0 12px 24px rgba(255, 0, 127, 0.45));
     }
-
     .gift-container:hover .gift-box,
     .gift-box.shake-it {
       animation: retro-shake 0.4s ease infinite;
@@ -336,7 +281,6 @@
       0%, 49% { opacity: 1; }
       50%, 100% { opacity: 0.15; }
     }
-
     .tap-subtext {
       font-size: 8px;
       color: var(--pixel-gray);
@@ -344,9 +288,7 @@
       letter-spacing: 1px;
     }
 
-    /* ========================================================
-       4. STATE 2: THE REVEAL (Main Story & Game Experience)
-       ======================================================== */
+    /* STATE 2: THE REVEAL */
     #state-reveal {
       display: none;
       position: relative;
@@ -367,7 +309,6 @@
       transform: translateY(0);
     }
 
-    /* Banner Level Up */
     .reveal-header {
       text-align: center;
       margin-bottom: 24px;
@@ -380,7 +321,6 @@
       text-shadow: 2px 2px 0 var(--neon-pink);
     }
 
-    /* Section Separator Block */
     .retro-section {
       width: 100%;
       margin-bottom: 32px;
@@ -403,9 +343,7 @@
       color: var(--neon-yellow);
     }
 
-    /* ========================================================
-       4A. RPG DIALOGUE SYSTEM (Multi-Page Conversation)
-       ======================================================== */
+    /* RPG Dialogue Box */
     .dialogue-wrapper {
       position: relative;
       width: 100%;
@@ -487,9 +425,7 @@
       border-color: var(--neon-yellow);
     }
 
-    /* ========================================================
-       4B. CHARACTER STATS HUD (Pixel RPG Sheet)
-       ======================================================== */
+    /* Player 2 Stats */
     .stats-card {
       padding: 18px 16px;
       background: var(--bg-card);
@@ -549,12 +485,8 @@
       font-weight: bold;
     }
 
-    /* ========================================================
-       4C. WORLD QUEST: MEMORY GALLERY (Photo Worlds)
-       ======================================================== */
-    .world-gallery {
-      margin-bottom: 28px;
-    }
+    /* World Gallery */
+    .world-gallery { margin-bottom: 28px; }
     .world-tabs {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -578,7 +510,6 @@
       background: rgba(0, 240, 255, 0.12);
       box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
     }
-
     .world-display-card {
       position: relative;
       background: #000;
@@ -623,9 +554,76 @@
       line-height: 1.4;
     }
 
-    /* ========================================================
-       4D. MINI QUIZ GAME (Uji Ingatan Player 2)
-       ======================================================== */
+    /* MINI GAME: HEART CATCHER */
+    .game-box-wrap {
+      background: #000;
+      border: 4px solid var(--neon-pink);
+      box-shadow: 0 0 18px rgba(255, 0, 127, 0.3);
+      padding: 12px;
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .game-dashboard {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 9px;
+      color: var(--neon-yellow);
+      margin-bottom: 10px;
+      padding: 0 6px;
+    }
+    #game-canvas {
+      width: 100%;
+      height: 240px;
+      background: #090918;
+      border: 2px solid var(--pixel-gray);
+      display: block;
+      cursor: crosshair;
+    }
+    .game-controls {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .game-control-btn {
+      font-family: var(--font-arcade);
+      font-size: 9px;
+      padding: 10px 18px;
+      background: var(--neon-pink);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 0 #99004d;
+    }
+    .game-control-btn:active { transform: translateY(2px); box-shadow: none; }
+
+    /* GOMBALAN MAUT GENERATOR 8-BIT */
+    .gombalan-box {
+      background: var(--bg-card);
+      border: 4px solid var(--neon-yellow);
+      box-shadow: 0 0 18px rgba(255, 230, 0, 0.25);
+      padding: 20px 16px;
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .gombalan-display {
+      min-height: 80px;
+      padding: 14px;
+      background: #000;
+      border: 2px dashed var(--neon-yellow);
+      font-family: var(--font-rpg);
+      font-size: 22px;
+      line-height: 1.45;
+      color: #fff8b3;
+      margin: 16px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    /* Mini Quiz */
     .quiz-card {
       background: var(--bg-card);
       border: 4px solid var(--neon-green);
@@ -674,9 +672,7 @@
       line-height: 1.5;
     }
 
-    /* ========================================================
-       4E. SECRET CHEAT CODE BOX (Easter Egg)
-       ======================================================== */
+    /* Secret Cheat Code */
     .cheat-box {
       background: rgba(255, 0, 127, 0.08);
       border: 2px dashed var(--neon-pink);
@@ -741,7 +737,6 @@
       letter-spacing: 1px;
       white-space: nowrap;
     }
-
     .sound-toggle-btn {
       font-family: var(--font-arcade);
       font-size: 8px;
@@ -750,12 +745,10 @@
       color: var(--pixel-black);
       border: none;
       cursor: pointer;
-      box-shadow: 
-        inset -2px -2px 0 0 #008899,
-        inset 2px 2px 0 0 #88ffff;
+      box-shadow: inset -2px -2px 0 0 #008899, inset 2px 2px 0 0 #88ffff;
     }
 
-    /* Bottom Action Buttons */
+    /* Bottom Actions */
     .action-panel {
       width: 100%;
       display: flex;
@@ -773,7 +766,6 @@
       font-size: 8px;
       padding: 12px 10px;
     }
-
     .retro-footer {
       margin-top: 36px;
       text-align: center;
@@ -786,20 +778,16 @@
 </head>
 <body>
 
-  <!-- CRT Overlay & Stars -->
   <div class="crt-overlay" aria-hidden="true"></div>
   <div class="star-bg" id="star-bg" aria-hidden="true"></div>
   <canvas id="confetti-canvas"></canvas>
 
-  <!-- Arcade Top Header -->
   <header class="arcade-header">
     <div class="player-tag">P1: <span id="header-sender">SPECIAL GUEST</span></div>
     <div class="score-tag">SCORE: 99999 ❤️</div>
   </header>
 
-  <!-- ========================================================
-       STATE 1: THE HOOK (Menunggu Klik Kotak Kado)
-       ======================================================== -->
+  <!-- STATE 1: THE HOOK -->
   <main id="state-hook">
     <div class="hook-badge">✦ LEVEL 1: SURPRISE BOX ✦</div>
     <h1 class="hook-title" id="hook-title-text">
@@ -837,17 +825,14 @@
     </div>
   </main>
 
-  <!-- ========================================================
-       STATE 2: THE REVEAL (Main Story & Experience)
-       ======================================================== -->
+  <!-- STATE 2: THE REVEAL -->
   <section id="state-reveal" aria-live="polite">
-    <!-- Header Level Up -->
     <div class="reveal-header">
       <span class="retro-badge" style="color: var(--neon-green);">⭐ QUEST COMPLETED ⭐</span>
       <h2 class="reveal-title" id="reveal-title-text">HAPPY LEVEL UP DAY! 🎮</h2>
     </div>
 
-    <!-- 1. MULTI-CHAPTER RPG DIALOGUE BOX -->
+    <!-- 1. MULTI-CHAPTER RPG DIALOGUE -->
     <div class="dialogue-wrapper">
       <div class="dialogue-box" id="dialogue-box-container">
         <div class="dialogue-speaker-tag" id="dialogue-speaker">NPC: PLAYER 1</div>
@@ -862,7 +847,45 @@
       </div>
     </div>
 
-    <!-- 2. CHARACTER STATS HUD (RPG Status Sheet) -->
+    <!-- 2. MINI ARCADE GAME: HEART CATCHER -->
+    <div class="retro-section">
+      <div class="section-title-wrap">
+        <span class="section-title">MINI GAME: CATCH THE HEARTS</span>
+        <span class="section-num">[PLAYABLE]</span>
+      </div>
+      <div class="game-box-wrap">
+        <div class="game-dashboard">
+          <span>TIME: <strong id="game-time" style="color: var(--neon-yellow);">20s</strong></span>
+          <span>HEARTS: <strong id="game-score" style="color: var(--neon-pink);">0</strong></span>
+        </div>
+        <canvas id="game-canvas" width="400" height="240"></canvas>
+        <div class="game-controls">
+          <button type="button" class="game-control-btn" id="game-start-btn">▶ START GAME</button>
+        </div>
+        <p style="font-size: 7px; color: var(--pixel-gray); margin-top: 8px;">
+          [ GESER KIRI/KANAN / SENTUH LAYAR UNTUK TANGKAP HATI! ]
+        </p>
+      </div>
+    </div>
+
+    <!-- 3. GOMBALAN MAUT GENERATOR 8-BIT -->
+    <div class="retro-section">
+      <div class="section-title-wrap">
+        <span class="section-title">MESIN GOMBALAN 10.000 WATT</span>
+        <span class="section-num">[RANDOM]</span>
+      </div>
+      <div class="gombalan-box">
+        <p style="font-size: 8px; color: var(--neon-yellow);">KLIK TOMBOL UNTUK GENERATE GOMBALAN MAUT:</p>
+        <div class="gombalan-display" id="gombalan-text">
+          "Kamu tau bedanya kamu sama game Mario Bros? Kalau Mario nyari bendera di istana, kalau kamu udah jadi pemenang di hatiku."
+        </div>
+        <button type="button" class="pixel-btn pixel-btn-yellow" id="random-gombal-btn">
+          🎲 TARIK GOMBALAN LAIN!
+        </button>
+      </div>
+    </div>
+
+    <!-- 4. PLAYER 2 STATS SHEET -->
     <div class="retro-section">
       <div class="section-title-wrap">
         <span class="section-title">PLAYER 2 STATUS SHEET</span>
@@ -897,21 +920,19 @@
       </div>
     </div>
 
-    <!-- 3. WORLD QUEST: MEMORY GALLERY (3 Stages) -->
+    <!-- 5. WORLD QUEST: MEMORY GALLERY -->
     <div class="retro-section world-gallery">
       <div class="section-title-wrap">
         <span class="section-title">WORLD QUEST: OUR JOURNEY</span>
         <span class="section-num">[3 STAGES]</span>
       </div>
       
-      <!-- World Stage Tabs -->
       <div class="world-tabs">
         <button type="button" class="world-tab-btn active" data-world="0">STAGE 1-1</button>
         <button type="button" class="world-tab-btn" data-world="1">STAGE 1-2</button>
         <button type="button" class="world-tab-btn" data-world="2">STAGE BOSS</button>
       </div>
 
-      <!-- World Photo & Description Display -->
       <div class="world-display-card">
         <div class="world-photo-frame">
           <img id="world-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80" alt="Memory Photo" />
@@ -923,7 +944,7 @@
       </div>
     </div>
 
-    <!-- 4. MINI QUIZ: UJI INGATAN PLAYER 2 -->
+    <!-- 6. MINI QUIZ: UJI INGATAN -->
     <div class="retro-section">
       <div class="section-title-wrap">
         <span class="section-title">MINI QUIZ: UJI INGATAN</span>
@@ -944,7 +965,7 @@
       </div>
     </div>
 
-    <!-- 5. SECRET CHEAT CODE BOX (Easter Egg) -->
+    <!-- 7. SECRET CHEAT CODE BOX -->
     <div class="cheat-box" id="cheat-box-trigger">
       <div class="cheat-label">★ SECRET CHEAT CODE DETECTED ★</div>
       <div class="cheat-instruction">[ TAP BOX 3 KALI UNTUK BUKA PESAN RAHASIA ]</div>
@@ -964,7 +985,7 @@
       </button>
     </div>
 
-    <!-- Actions Panel -->
+    <!-- Bottom Actions -->
     <div class="action-panel">
       <div class="secondary-actions">
         <button type="button" class="pixel-btn pixel-btn-pink" id="replay-btn">
@@ -981,25 +1002,17 @@
     </footer>
   </section>
 
-  <!-- Native Audio Tag -->
   <audio id="bgm-audio" loop preload="auto">
     <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3?filename=8-bit-arcade-138828.mp3" type="audio/mpeg" />
   </audio>
 
-  <!-- ========================================================
-       5. JAVASCRIPT LOGIC & USER CONFIGURATION
-       ======================================================== -->
   <script>
-    // ========================================================
-    // ⚙️ KONFIGURASI KADO (UBAH DATA DI BAWAH INI SESUAI KEINGINAN)
-    // ========================================================
     const CONFIG = {
       namaPenerima: "Aulia Putri",
       namaPengirim: "Ilyas Satria",
       judulLayarAwal: "ADA KADO RAHASIA UNTUKMU!",
       judulLayarUtama: "HAPPY LEVEL UP DAY! 🎮",
 
-      // Multi-Page RPG Dialogues (Cerita Bercabang)
       dialogues: [
         {
           speaker: "NPC: PLAYER 1 [ILYAS]",
@@ -1015,7 +1028,15 @@
         }
       ],
 
-      // World Quest Photo Memories (3 Stages)
+      gombalanList: [
+        "Kamu tau bedanya kamu sama game Mario Bros? Kalau Mario nyari bendera di istana, kalau kamu udah jadi pemenang di hatiku. 🏆💖",
+        "Bapak kamu teknisi listrik ya? Soalnya tatapan matamu bikin detak jantungku korslet 10.000 volt! ⚡💘",
+        "Main game tanpa kamu tuh ibarat main RPG tanpa save point: bikin putus asa dan hampa. 🎮🥺",
+        "Kamu punya peta nggak? Soalnya aku tersesat di dalam matamu dan nggak pernah mau keluar lagi. 🗺️✨",
+        "Level di game boleh tamat, tapi sayangnya aku ke kamu nggak bakal pernah ada kata 'Game Over'! 👾❤️",
+        "Kamu itu kayak power-up jamur di Mario: bikin hariku langsung tumbuh seratus kali lebih bahagia! 🍄✨"
+      ],
+
       worldMemories: [
         {
           tag: "STAGE 1-1: FIRST SPAWN POINT",
@@ -1034,35 +1055,26 @@
         }
       ],
 
-      // Mini Quiz Question
       quiz: {
         question: "QUEST: Apa menu jajanan pertama kali yang kita makan berdua pas nge-date?",
-        correctOption: 0, // Indeks 0 = opsi pertama
+        correctOption: 0,
         feedbackSuccess: "✨ JAWABAN BENAR! +1000 LOVE EXP! Ingatanmu luar biasa, Player 2! ❤️",
         feedbackFail: "❌ SALAH! Tapi tetep dapet cinta dari Player 1 kok hehe~ Coba lagi!"
       },
 
-      // Audio BGM
       urlMusik: "https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3?filename=8-bit-arcade-138828.mp3",
       judulMusik: "BGM: 8-BIT ARCADE VIBES",
-
-      // WhatsApp Balasan
       nomorWaBalasan: "6285722645928",
-      pesanWaBalasan: "Makasih kado 8-bitnya sayang! Suka banget sama quest ceritanya! ❤️👾"
+      pesanWaBalasan: "Makasih kado 8-bitnya sayang! Suka banget sama mini game dan gombalannya! ❤️👾"
     };
 
-    // ========================================================
-    // SYNTHETIC 8-BIT SOUNDS (Web Audio API)
-    // ========================================================
     let audioCtx = null;
     function getAudioContext() {
       if (!audioCtx) {
         const AudioClass = window.AudioContext || window.webkitAudioContext;
         if (AudioClass) audioCtx = new AudioClass();
       }
-      if (audioCtx && audioCtx.state === 'suspended') {
-        audioCtx.resume();
-      }
+      if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
       return audioCtx;
     }
 
@@ -1103,9 +1115,6 @@
       } catch (e) {}
     }
 
-    // ========================================================
-    // APP INITIALIZATION
-    // ========================================================
     document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("header-sender").textContent = CONFIG.namaPengirim.toUpperCase();
       document.getElementById("stat-name").textContent = CONFIG.namaPenerima.toUpperCase();
@@ -1116,7 +1125,6 @@
       document.getElementById("reveal-title-text").textContent = CONFIG.judulLayarUtama;
       document.getElementById("bgm-title").textContent = CONFIG.judulMusik;
 
-      // DOM Elements
       const stateHook = document.getElementById("state-hook");
       const stateReveal = document.getElementById("state-reveal");
       const giftBoxBtn = document.getElementById("gift-box-btn");
@@ -1129,11 +1137,9 @@
       const replayBtn = document.getElementById("replay-btn");
       const shareBtn = document.getElementById("share-btn");
 
-      // BGM Audio Setup
       const bgmAudio = document.getElementById("bgm-audio");
       const bgmToggleBtn = document.getElementById("bgm-toggle-btn");
       let isPlayingBgm = false;
-
       if (CONFIG.urlMusik) bgmAudio.src = CONFIG.urlMusik;
 
       function toggleBgm() {
@@ -1151,7 +1157,6 @@
       }
       bgmToggleBtn.addEventListener("click", toggleBgm);
 
-      // Multi-Page Dialogue Controller
       let currentDialogueIndex = 0;
       let typewriterTimer = null;
       let isTyping = false;
@@ -1199,22 +1204,18 @@
         }
       });
 
-      // Buka Kado
       function openGift() {
         giftSvg.classList.add("shake-it");
         play8BitChime();
-
         if (!isPlayingBgm) {
           bgmAudio.play().then(() => {
             isPlayingBgm = true;
             bgmToggleBtn.textContent = "⏸ PAUSE BGM";
           }).catch(() => {});
         }
-
         setTimeout(() => {
           stateHook.classList.add("fade-out");
           firePixelConfetti();
-
           setTimeout(() => {
             stateHook.style.display = "none";
             stateReveal.classList.add("active");
@@ -1223,10 +1224,8 @@
           }, 450);
         }, 500);
       }
-
       giftBoxBtn.addEventListener("click", openGift);
 
-      // Replay
       replayBtn.addEventListener("click", () => {
         clearInterval(typewriterTimer);
         stateReveal.classList.remove("active");
@@ -1237,11 +1236,19 @@
         window.scrollTo({ top: 0, behavior: "smooth" });
       });
 
-      // WhatsApp Share
       shareBtn.addEventListener("click", () => {
         const text = encodeURIComponent(CONFIG.pesanWaBalasan);
         const waUrl = `https://wa.me/${CONFIG.nomorWaBalasan}?text=${text}`;
         window.open(waUrl, "_blank");
+      });
+
+      // Gombalan Maut Generator
+      const gombalBtn = document.getElementById("random-gombal-btn");
+      const gombalText = document.getElementById("gombalan-text");
+      gombalBtn.addEventListener("click", () => {
+        playTypeBlip();
+        const rand = CONFIG.gombalanList[Math.floor(Math.random() * CONFIG.gombalanList.length)];
+        gombalText.textContent = rand;
       });
 
       // World Gallery Tabs
@@ -1263,10 +1270,9 @@
         });
       });
 
-      // Mini Quiz Game
+      // Mini Quiz
       const quizOptionBtns = document.querySelectorAll(".quiz-option-btn");
       const quizFeedback = document.getElementById("quiz-feedback-box");
-
       quizOptionBtns.forEach((btn) => {
         btn.addEventListener("click", () => {
           const chosen = parseInt(btn.dataset.opt);
@@ -1282,11 +1288,10 @@
         });
       });
 
-      // Secret Cheat Code Box (Tap 3 times)
+      // Cheat Code
       const cheatBox = document.getElementById("cheat-box-trigger");
       const secretBox = document.getElementById("secret-message-box");
       let tapCount = 0;
-
       cheatBox.addEventListener("click", () => {
         tapCount++;
         playTypeBlip();
@@ -1295,6 +1300,9 @@
           play8BitChime();
         }
       });
+
+      // Mini Arcade Game Logic
+      initHeartGame();
 
       // Stars
       const starBg = document.getElementById("star-bg");
@@ -1312,7 +1320,128 @@
       }
     });
 
-    // Pixel Confetti
+    // Heart Catcher Canvas Game
+    function initHeartGame() {
+      const canvas = document.getElementById("game-canvas");
+      if (!canvas) return;
+      const ctx = canvas.getContext("2d");
+      const startBtn = document.getElementById("game-start-btn");
+      const scoreDisplay = document.getElementById("game-score");
+      const timeDisplay = document.getElementById("game-time");
+
+      let isRunning = false;
+      let score = 0;
+      let timeLeft = 20;
+      let timerInterval = null;
+      let animFrameId = null;
+
+      const basket = {
+        x: canvas.width / 2 - 25,
+        y: canvas.height - 30,
+        width: 50,
+        height: 16,
+        color: "#39ff14"
+      };
+
+      let items = [];
+
+      function spawnItem() {
+        items.push({
+          x: Math.random() * (canvas.width - 20) + 10,
+          y: -10,
+          size: 14,
+          speed: Math.random() * 2 + 2,
+          char: Math.random() > 0.2 ? "❤️" : "⭐"
+        });
+      }
+
+      function updateAndRender() {
+        ctx.fillStyle = "#090918";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Draw Player Basket (8-bit cart)
+        ctx.fillStyle = basket.color;
+        ctx.fillRect(basket.x, basket.y, basket.width, basket.height);
+        ctx.fillStyle = "#ffffff";
+        ctx.font = "10px monospace";
+        ctx.fillText("BASKET", basket.x + 6, basket.y + 12);
+
+        // Move and draw items
+        for (let i = items.length - 1; i >= 0; i--) {
+          const item = items[i];
+          item.y += item.speed;
+
+          ctx.font = "16px monospace";
+          ctx.fillText(item.char, item.x - 8, item.y);
+
+          // Check collision
+          if (
+            item.y >= basket.y &&
+            item.y <= basket.y + basket.height + 10 &&
+            item.x >= basket.x - 10 &&
+            item.x <= basket.x + basket.width + 10
+          ) {
+            score += (item.char === "⭐" ? 3 : 1);
+            scoreDisplay.textContent = score;
+            playTypeBlip();
+            items.splice(i, 1);
+            continue;
+          }
+
+          if (item.y > canvas.height + 20) {
+            items.splice(i, 1);
+          }
+        }
+
+        if (Math.random() < 0.05) spawnItem();
+
+        if (isRunning) animFrameId = requestAnimationFrame(updateAndRender);
+      }
+
+      function handleMove(clientX) {
+        const rect = canvas.getBoundingClientRect();
+        const scaleX = canvas.width / rect.width;
+        const targetX = (clientX - rect.left) * scaleX - basket.width / 2;
+        basket.x = Math.max(0, Math.min(canvas.width - basket.width, targetX));
+      }
+
+      canvas.addEventListener("mousemove", (e) => { if (isRunning) handleMove(e.clientX); });
+      canvas.addEventListener("touchmove", (e) => {
+        if (isRunning && e.touches[0]) {
+          handleMove(e.touches[0].clientX);
+          e.preventDefault();
+        }
+      }, { passive: false });
+
+      startBtn.addEventListener("click", () => {
+        if (isRunning) return;
+        isRunning = true;
+        score = 0;
+        timeLeft = 20;
+        items = [];
+        scoreDisplay.textContent = "0";
+        timeDisplay.textContent = "20s";
+        startBtn.textContent = "BERMAIN...";
+        startBtn.disabled = true;
+
+        timerInterval = setInterval(() => {
+          timeLeft--;
+          timeDisplay.textContent = `${timeLeft}s`;
+          if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            isRunning = false;
+            cancelAnimationFrame(animFrameId);
+            startBtn.disabled = false;
+            startBtn.textContent = "MAIN LAGI!";
+            play8BitChime();
+            alert(`🎉 GAME OVER! Kamu berhasil mengumpulkan ${score} hati cinta! Player 1 makin sayang sama kamu! ❤️`);
+          }
+        }, 1000);
+
+        updateAndRender();
+      });
+    }
+
     function firePixelConfetti() {
       const canvas = document.getElementById("confetti-canvas");
       const ctx = canvas.getContext("2d");

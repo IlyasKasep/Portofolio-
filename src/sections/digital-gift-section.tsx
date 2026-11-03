@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import {
   MessageSquare,
   FolderUp,
@@ -39,6 +40,7 @@ export default function DigitalGiftSection({
       strikePrice: "Rp 150.000",
       promoPrice: "Rp 89.000",
       demoUrl: "/templates/retro-8bit/index.html",
+      imageUrl: "/templates/retro-8bit/preview.png",
       features: [
         "Mini quiz interaktif kenangan",
         "Efek audio chiptune retro",
@@ -163,26 +165,44 @@ export default function DigitalGiftSection({
             >
               <div>
                 {/* Thumbnail / Mockup Window Container */}
-                <div className="relative mb-5 aspect-video w-full overflow-hidden rounded-xl border border-foreground/10 bg-subtle/50">
+                <a
+                  href={item.demoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative mb-5 block aspect-video w-full overflow-hidden rounded-xl border border-foreground/10 bg-subtle/50 transition-all duration-300 hover:border-foreground/30"
+                  aria-label={`Lihat demo tema ${item.title}`}
+                >
                   {/* Browser Window Header Dots */}
-                  <div className="flex items-center gap-1.5 border-b border-foreground/10 bg-foreground/[0.03] px-3 py-2">
+                  <div className="relative z-10 flex items-center gap-1.5 border-b border-foreground/10 bg-foreground/[0.04] px-3 py-2 backdrop-blur-sm">
                     <span className="h-2 w-2 rounded-full bg-foreground/20" />
                     <span className="h-2 w-2 rounded-full bg-foreground/20" />
                     <span className="h-2 w-2 rounded-full bg-foreground/20" />
-                    <span className="ml-2 font-mono text-[9px] uppercase tracking-wider text-foreground/40">
+                    <span className="ml-2 font-mono text-[9px] uppercase tracking-wider text-foreground/50">
                       {item.tag}
                     </span>
                   </div>
 
                   {/* Thumbnail Content Area */}
-                  <div
-                    className={`flex h-[calc(100%-25px)] w-full items-center justify-center p-4 text-center ${item.previewColor}`}
-                  >
-                    <span className="font-mono text-xs font-semibold tracking-wider text-foreground/70">
-                      {item.previewLabel}
-                    </span>
-                  </div>
-                </div>
+                  {item.imageUrl ? (
+                    <div className="relative h-[calc(100%-25px)] w-full overflow-hidden bg-black">
+                      <Image
+                        src={item.imageUrl}
+                        alt={`Screenshot live demo tema ${item.title}`}
+                        fill
+                        className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      />
+                    </div>
+                  ) : (
+                    <div
+                      className={`flex h-[calc(100%-25px)] w-full items-center justify-center p-4 text-center ${item.previewColor}`}
+                    >
+                      <span className="font-mono text-xs font-semibold tracking-wider text-foreground/70">
+                        {item.previewLabel}
+                      </span>
+                    </div>
+                  )}
+                </a>
 
                 {/* Title & Subtitle */}
                 <h3 className="text-xl font-bold tracking-tight text-foreground sm:text-2xl">

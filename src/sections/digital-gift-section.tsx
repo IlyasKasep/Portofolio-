@@ -38,7 +38,7 @@ export default function DigitalGiftSection({
       tag: "Arcade Edition",
       strikePrice: "Rp 150.000",
       promoPrice: "Rp 89.000",
-      demoUrl: "https://demo.kadodigital.site/retro-8bit",
+      demoUrl: "/templates/retro-8bit/index.html",
       features: [
         "Mini quiz interaktif kenangan",
         "Efek audio chiptune retro",

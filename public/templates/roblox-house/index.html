@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Blox Memory House 🏡 | Roblox 3D Interactive Anniversary & Birthday Gift</title>
 
-  <!-- Google Fonts: Fredoka (Roblox style friendly font) & Plus Jakarta Sans -->
+  <!-- Google Fonts: Fredoka & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -27,7 +27,7 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
-      background: #87ceeb;
+      background: #7ec0ee;
       font-family: 'Fredoka', 'Plus Jakarta Sans', sans-serif;
     }
 
@@ -41,7 +41,7 @@
     }
 
     /* ========================================================
-       ROBLOX STYLE HUD GUI
+       AUTHENTIC ROBLOX HUD & TOP BAR
        ======================================================== */
     .roblox-hud {
       position: absolute;
@@ -51,7 +51,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 16px;
+      padding: 14px 16px;
     }
 
     /* Top Bar */
@@ -59,48 +59,87 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      gap: 12px;
+      gap: 10px;
     }
 
-    /* Health & Player Badge */
+    .top-left-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Iconic Roblox Silver Hexagon Button */
+    .roblox-logo-btn {
+      width: 44px;
+      height: 44px;
+      background: #191b22;
+      border: 3px solid #3d4458;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: auto;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      transition: transform 0.15s, border-color 0.15s;
+    }
+    .roblox-logo-btn:hover {
+      transform: scale(1.05);
+      border-color: #00e676;
+    }
+    .roblox-square-tilt {
+      width: 18px;
+      height: 18px;
+      background: #ffffff;
+      transform: rotate(18deg);
+      border-radius: 3px;
+      position: relative;
+    }
+    .roblox-square-tilt::after {
+      content: '';
+      position: absolute;
+      inset: 5px;
+      background: #191b22;
+      border-radius: 1px;
+    }
+
+    /* Player Badge */
     .player-badge-card {
-      background: rgba(25, 27, 34, 0.85);
+      background: rgba(25, 27, 34, 0.88);
       backdrop-filter: blur(8px);
       border: 3px solid #3a3f50;
       border-radius: 14px;
-      padding: 10px 14px;
+      padding: 6px 12px;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
       pointer-events: auto;
     }
     .player-avatar-circle {
-      width: 38px;
-      height: 38px;
-      background: #ffcc00;
-      border: 3px solid #ffffff;
+      width: 34px;
+      height: 34px;
+      background: #ffd200;
+      border: 2px solid #ffffff;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 20px;
-      box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.2);
+      font-size: 18px;
     }
     .player-info {
       display: flex;
       flex-direction: column;
-      gap: 3px;
+      gap: 2px;
     }
     .player-name {
       color: #ffffff;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
-      letter-spacing: 0.02em;
     }
     .health-bar-container {
-      width: 120px;
-      height: 10px;
+      width: 90px;
+      height: 7px;
       background: #11141a;
       border-radius: 999px;
       overflow: hidden;
@@ -110,61 +149,169 @@
       width: 100%;
       height: 100%;
       background: linear-gradient(90deg, #00e676, #00c853);
-      border-radius: 999px;
     }
 
-    /* Star Memory Quest Counter */
-    .star-counter-card {
-      background: rgba(25, 27, 34, 0.85);
-      backdrop-filter: blur(8px);
-      border: 3px solid #ffaa00;
-      border-radius: 14px;
-      padding: 8px 14px;
+    /* Top Right Buttons */
+    .top-right-group {
       display: flex;
       align-items: center;
       gap: 8px;
-      color: #ffcc00;
-      font-size: 14px;
-      font-weight: 700;
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
-      pointer-events: auto;
+      flex-wrap: wrap;
+      justify-content: flex-end;
     }
 
-    /* BGM floating button */
-    .bgm-btn {
-      background: rgba(25, 27, 34, 0.85);
-      border: 3px solid #3a3f50;
+    .hud-pill-btn {
+      background: rgba(25, 27, 34, 0.88);
+      backdrop-filter: blur(8px);
+      border: 2px solid #3a3f50;
       border-radius: 12px;
-      color: #fff;
+      color: #ffffff;
       font-family: inherit;
       font-size: 11px;
       font-weight: 700;
-      padding: 8px 12px;
+      padding: 7px 12px;
       display: flex;
       align-items: center;
       gap: 6px;
       cursor: pointer;
       pointer-events: auto;
-      transition: all 0.2s;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      transition: all 0.15s;
     }
-    .bgm-btn:hover {
+    .hud-pill-btn:hover {
       transform: translateY(-2px);
-      border-color: #00e676;
+      border-color: #00b0ff;
+    }
+    .hud-pill-btn:active {
+      transform: translateY(1px);
+    }
+    .hud-pill-btn.gold {
+      border-color: #ffaa00;
+      color: #ffea00;
     }
 
-    /* Center Interaction Prompt */
+    /* Mission Quest Banner in Top Center */
+    .mission-banner {
+      position: absolute;
+      top: 68px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(18, 20, 28, 0.92);
+      border: 2px solid #00b0ff;
+      border-radius: 999px;
+      padding: 6px 18px;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 8px 20px rgba(0, 176, 255, 0.25);
+      pointer-events: auto;
+      white-space: nowrap;
+      animation: pulse-mission 2s infinite ease-in-out;
+    }
+    @keyframes pulse-mission {
+      0%, 100% { box-shadow: 0 4px 16px rgba(0, 176, 255, 0.2); }
+      50% { box-shadow: 0 6px 24px rgba(0, 176, 255, 0.5); }
+    }
+
+    /* In-Game 3D Chat Overlay System */
+    .chat-box-container {
+      position: absolute;
+      top: 70px;
+      left: 16px;
+      width: 280px;
+      pointer-events: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .quick-chat-row {
+      display: flex;
+      gap: 4px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+      scrollbar-width: none;
+    }
+    .quick-chat-row::-webkit-scrollbar { display: none; }
+    .chat-quick-pill {
+      background: rgba(25, 27, 34, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 999px;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 4px 8px;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .chat-quick-pill:hover {
+      background: #00b0ff;
+      color: #000;
+    }
+    .chat-input-row {
+      display: flex;
+      gap: 4px;
+    }
+    .chat-input {
+      flex: 1;
+      background: rgba(18, 20, 28, 0.85);
+      border: 2px solid #3a3f50;
+      border-radius: 10px;
+      padding: 6px 10px;
+      color: #fff;
+      font-family: inherit;
+      font-size: 11px;
+      outline: none;
+    }
+    .chat-input:focus {
+      border-color: #00b0ff;
+    }
+    .chat-send-btn {
+      background: #00b0ff;
+      border: none;
+      border-radius: 10px;
+      color: #000;
+      font-weight: 800;
+      font-size: 11px;
+      padding: 0 10px;
+      cursor: pointer;
+    }
+
+    /* Controls Helper (Desktop) */
+    .controls-hint {
+      position: absolute;
+      bottom: 24px;
+      left: 16px;
+      background: rgba(25, 27, 34, 0.82);
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      border-radius: 14px;
+      padding: 10px 14px;
+      color: #e0e6ed;
+      font-size: 11px;
+      line-height: 1.6;
+      max-width: 220px;
+      pointer-events: none;
+    }
+    .controls-hint strong {
+      color: #ffea00;
+    }
+
+    /* Center Proximity Interaction Prompt */
     .interaction-prompt {
       align-self: center;
       margin-bottom: 24px;
-      background: rgba(15, 17, 24, 0.92);
+      background: rgba(15, 17, 24, 0.94);
       border: 3px solid #00b0ff;
-      border-radius: 16px;
+      border-radius: 18px;
       padding: 12px 24px;
       display: none;
       align-items: center;
       gap: 12px;
-      box-shadow: 0 8px 24px rgba(0, 176, 255, 0.4);
-      animation: bounce-prompt 1s infinite alternate ease-in-out;
+      box-shadow: 0 8px 26px rgba(0, 176, 255, 0.45);
+      animation: bounce-prompt 0.9s infinite alternate ease-in-out;
       pointer-events: auto;
       cursor: pointer;
     }
@@ -185,26 +332,6 @@
       color: #ffffff;
       font-size: 14px;
       font-weight: 700;
-      letter-spacing: 0.02em;
-    }
-
-    /* Desktop Controls Helper */
-    .controls-hint {
-      position: absolute;
-      top: 80px;
-      left: 16px;
-      background: rgba(25, 27, 34, 0.75);
-      border: 2px solid rgba(255, 255, 255, 0.15);
-      border-radius: 12px;
-      padding: 10px 14px;
-      color: #e0e6ed;
-      font-size: 11px;
-      line-height: 1.6;
-      max-width: 200px;
-      pointer-events: none;
-    }
-    .controls-hint strong {
-      color: #ffcc00;
     }
 
     /* Mobile Controls */
@@ -214,17 +341,19 @@
       justify-content: space-between;
       align-items: flex-end;
       pointer-events: none;
-      padding-bottom: 10px;
+      padding-bottom: 6px;
     }
     @media (pointer: coarse), (max-width: 900px) {
       .mobile-controls { display: flex; }
       .controls-hint { display: none; }
+      .chat-box-container { width: 220px; }
+      .mission-banner { font-size: 10px; padding: 4px 12px; top: 62px; }
     }
 
     /* Virtual Joystick */
     .joystick-zone {
-      width: 130px;
-      height: 130px;
+      width: 124px;
+      height: 124px;
       background: rgba(255, 255, 255, 0.15);
       border: 2px dashed rgba(255, 255, 255, 0.4);
       border-radius: 50%;
@@ -234,8 +363,8 @@
       backdrop-filter: blur(4px);
     }
     .joystick-knob {
-      width: 50px;
-      height: 50px;
+      width: 48px;
+      height: 48px;
       background: #00b0ff;
       border: 3px solid #fff;
       border-radius: 50%;
@@ -247,23 +376,23 @@
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
     }
 
-    /* Mobile Action Buttons (Jump & Action) */
+    /* Mobile Action Buttons (Jump & Action & Dance) */
     .mobile-action-btns {
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 10px;
       align-items: flex-end;
       pointer-events: auto;
     }
     .mobile-btn {
-      width: 64px;
-      height: 64px;
+      width: 58px;
+      height: 58px;
       border-radius: 50%;
       border: 3px solid #ffffff;
       color: #ffffff;
       font-family: inherit;
       font-weight: 800;
-      font-size: 13px;
+      font-size: 11px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -282,9 +411,45 @@
       background: #00e676;
       box-shadow: 0 5px 0 #00a152;
     }
+    .dance-btn {
+      background: #ab47bc;
+      box-shadow: 0 5px 0 #7b1fa2;
+      width: 50px;
+      height: 50px;
+    }
+
+    /* Floating Speech Bubble Billboard in 3D Screen Space */
+    #speech-bubble {
+      position: absolute;
+      background: #ffffff;
+      border: 3px solid #111;
+      border-radius: 14px;
+      padding: 6px 14px;
+      color: #111;
+      font-size: 12px;
+      font-weight: 700;
+      pointer-events: none;
+      z-index: 20;
+      display: none;
+      transform: translate(-50%, -100%);
+      white-space: nowrap;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    #speech-bubble::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 10px 8px 0;
+      border-style: solid;
+      border-color: #ffffff transparent;
+      display: block;
+      width: 0;
+    }
 
     /* ========================================================
-       POPUP MODALS (Memories, Birthday Wish, Secret Letter)
+       MODAL POPUPS (Memories, Mailbox, Cake, Secret Chest, Quiz)
        ======================================================== */
     .modal-overlay {
       position: fixed;
@@ -295,7 +460,7 @@
       display: none;
       align-items: center;
       justify-content: center;
-      padding: 20px;
+      padding: 18px;
     }
     .modal-overlay.active {
       display: flex;
@@ -388,12 +553,8 @@
       margin-bottom: 20px;
     }
 
-    .modal-actions {
-      display: flex;
-      gap: 10px;
-    }
     .roblox-btn {
-      flex: 1;
+      width: 100%;
       background: #00e676;
       border: 3px solid #ffffff;
       border-radius: 14px;
@@ -420,17 +581,43 @@
       transform: translateY(2px);
       box-shadow: 0 1px 0 #00a152;
     }
-
     .roblox-btn-blue {
       background: #29b6f6;
       color: #fff;
       box-shadow: 0 4px 0 #0288d1;
     }
-    .roblox-btn-blue:hover {
-      background: #81d4fa;
+
+    /* Quiz Option Buttons */
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .quiz-opt-btn {
+      background: #1f2330;
+      border: 2px solid #3d4458;
+      border-radius: 12px;
+      padding: 10px 14px;
+      color: #fff;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .quiz-opt-btn:hover {
+      background: #2d3345;
+      border-color: #00b0ff;
+    }
+    .quiz-opt-btn.correct {
+      background: #00e676;
+      color: #000;
+      border-color: #fff;
     }
 
-    /* Confetti Canvas */
+    /* Canvas Confetti */
     #confetti-canvas {
       position: fixed;
       inset: 0;
@@ -445,6 +632,9 @@
   <canvas id="webgl-canvas"></canvas>
   <canvas id="confetti-canvas"></canvas>
 
+  <!-- 3D Speech Bubble -->
+  <div id="speech-bubble">Halo sayang! ❤️</div>
+
   <!-- Audio Player -->
   <audio id="bgm-audio" loop preload="auto">
     <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3?filename=cozy-lofi-song-10904.mp3" type="audio/mpeg" />
@@ -456,36 +646,71 @@
   <div class="roblox-hud">
     <!-- Top Bar -->
     <header class="hud-topbar">
-      <!-- Player Badge -->
-      <div class="player-badge-card">
-        <div class="player-avatar-circle">😀</div>
-        <div class="player-info">
-          <span class="player-name" id="hud-player-name">Player 2 ❤️</span>
-          <div class="health-bar-container" title="Love Health Bar">
-            <div class="health-bar-fill"></div>
+      <div class="top-left-group">
+        <!-- Iconic Roblox Silver Square Logo -->
+        <button type="button" class="roblox-logo-btn" id="roblox-logo-btn" title="Roblox Menu & Respawn">
+          <div class="roblox-square-tilt"></div>
+        </button>
+
+        <!-- Player Badge -->
+        <div class="player-badge-card">
+          <div class="player-avatar-circle">😀</div>
+          <div class="player-info">
+            <span class="player-name" id="hud-player-name">Player 2 ❤️</span>
+            <div class="health-bar-container" title="Love Health Bar">
+              <div class="health-bar-fill"></div>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Memory Quest Stars & BGM Button -->
-      <div style="display: flex; gap: 8px; align-items: center;">
-        <div class="star-counter-card">
+      <!-- Top Right Action Pills -->
+      <div class="top-right-group">
+        <div class="hud-pill-btn gold">
           <span>⭐</span>
-          <span id="star-count-text">0 / 4 Ditemukan</span>
+          <span id="star-count-text">0 / 7 Eksplorasi</span>
         </div>
-        <button type="button" class="bgm-btn" id="bgm-toggle-btn">
+        <button type="button" class="hud-pill-btn" id="hat-toggle-btn" title="Ganti Aksesoris Topi">
+          <span id="hat-btn-icon">👒</span>
+          <span id="hat-btn-label">Topi</span>
+        </button>
+        <button type="button" class="hud-pill-btn" id="dance-hud-btn" title="Roblox Emote Dance">
+          <span>🕺 Dance</span>
+        </button>
+        <button type="button" class="hud-pill-btn" id="bgm-toggle-btn">
           <span>🎵 Musik</span>
         </button>
       </div>
     </header>
 
-    <!-- Controls Helper (Desktop) -->
+    <!-- Mission Objective Floating Banner -->
+    <div class="mission-banner" id="mission-banner">
+      <span>🎯</span>
+      <span id="mission-text">Misi 1: Masuk ke dalam rumah lewat jalan setapak depan 🏡</span>
+    </div>
+
+    <!-- Quick Chat Box System -->
+    <div class="chat-box-container">
+      <div class="quick-chat-row">
+        <button type="button" class="chat-quick-pill" onclick="sendChatMessage('Aku sayang kamu! ❤️')">❤️ Cinta</button>
+        <button type="button" class="chat-quick-pill" onclick="sendChatMessage('Happy Birthday / Anniv! 🎉')">🎉 HBD</button>
+        <button type="button" class="chat-quick-pill" onclick="sendChatMessage('Rumah kita lucu banget! 🏡')">🏡 Gemes</button>
+        <button type="button" class="chat-quick-pill" onclick="sendChatMessage('Kuenya manis banget 🎂')">🎂 Kue</button>
+      </div>
+      <div class="chat-input-row">
+        <input type="text" id="chat-input" class="chat-input" placeholder="Ketik pesan chat avatar..." maxlength="35" />
+        <button type="button" class="chat-send-btn" id="chat-send-btn">KIRIM</button>
+      </div>
+    </div>
+
+    <!-- Desktop Controls Helper -->
     <div class="controls-hint">
-      <strong>KONTROL DESKTOP:</strong><br>
-      • <strong>W, A, S, D</strong> / Panah: Jalan<br>
-      • <strong>Spasi</strong>: Lompat<br>
-      • <strong>Drag Mouse</strong>: Putar Kamera<br>
-      • <strong>E</strong>: Buka Kenangan / Interaksi
+      <strong>KONTROL THIRD-PERSON:</strong><br>
+      • <strong>W, A, S, D</strong>: Jalan (Mengikuti Arah Kamera)<br>
+      • <strong>Drag Mouse</strong>: Putar Kamera 360°<br>
+      • <strong>Scroll Mouse</strong>: Zoom In / Zoom Out<br>
+      • <strong>Spasi</strong>: Melompat<br>
+      • <strong>E</strong>: Buka Interaksi / Kenangan
     </div>
 
     <!-- Center Interaction Prompt -->
@@ -496,13 +721,16 @@
 
     <!-- Mobile Virtual Controls -->
     <div class="mobile-controls">
-      <!-- Left Joystick -->
+      <!-- Virtual Joystick -->
       <div class="joystick-zone" id="joystick-zone">
         <div class="joystick-knob" id="joystick-knob"></div>
       </div>
 
-      <!-- Right Action & Jump Buttons -->
+      <!-- Mobile Action Buttons -->
       <div class="mobile-action-btns">
+        <button type="button" class="mobile-btn dance-btn" id="mobile-dance-btn" title="Dance">
+          🕺
+        </button>
         <button type="button" class="mobile-btn action-btn" id="mobile-action-btn">
           AKSI
         </button>
@@ -514,7 +742,7 @@
   </div>
 
   <!-- ========================================================
-       MODAL 1: MEMORY PHOTO FRAME VIEWER
+       MODAL 1: MEMORY PHOTO FRAME VIEWER (5 Frames)
        ======================================================== -->
   <div class="modal-overlay" id="photo-modal">
     <div class="roblox-modal-card">
@@ -530,16 +758,39 @@
         Hari itu adalah momen pertama kita bertemu. Senyum manismu waktu itu langsung mengunci hatiku dan membuat hari-hariku terasa jauh lebih berwarna.
       </div>
 
-      <div class="modal-actions">
-        <button type="button" class="roblox-btn roblox-btn-blue" id="like-memory-btn">
-          <span>❤️ Kasih Love (+100 XP)</span>
-        </button>
-      </div>
+      <button type="button" class="roblox-btn roblox-btn-blue" id="like-memory-btn">
+        <span>❤️ Simpan di Hati (+100 Love XP)</span>
+      </button>
     </div>
   </div>
 
   <!-- ========================================================
-       MODAL 2: BIRTHDAY / ANNIVERSARY CAKE & WISH
+       MODAL 2: FRONT YARD MAILBOX (Kotak Surat Depan Rumah)
+       ======================================================== -->
+  <div class="modal-overlay" id="mailbox-modal">
+    <div class="roblox-modal-card">
+      <button type="button" class="modal-close-btn" id="mailbox-modal-close">✕</button>
+      <span class="modal-header-tag" style="background: #29b6f6; color: #fff;">UNDANGAN SPESIAL 📬</span>
+      <h3 class="modal-title">Surat Masuk di Kotak Pos</h3>
+
+      <div class="modal-photo-wrapper" style="aspect-ratio: 16 / 9;">
+        <img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=800&q=80" alt="Special Invitation" />
+      </div>
+
+      <div class="modal-desc-box">
+        <strong>Halo Sayang! ❤️</strong><br><br>
+        Selamat datang di Rumah Kenangan 3D kita! Di dalam rumah ini tersimpan memori perjalanan cinta kita, kue perayaan yang siap ditiup, kuis cinta rahasia, serta peti hadiah di sudut ruangan.<br><br>
+        Ayo langkahkan avatarmu masuk melalui pintu depan ya!
+      </div>
+
+      <button type="button" class="roblox-btn" id="mailbox-continue-btn">
+        <span>🏡 Masuk ke Dalam Rumah!</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       MODAL 3: BIRTHDAY & ANNIVERSARY CAKE
        ======================================================== -->
   <div class="modal-overlay" id="cake-modal">
     <div class="roblox-modal-card">
@@ -555,22 +806,43 @@
         Selamat hari spesial, kesayanganku! Semoga setiap langkahmu selalu dipenuhi senyum ceria, impian-impian indahmu tercapai, dan kita terus bersama melewati ribuan petualangan seru ke depan! 🎉❤️
       </div>
 
-      <div class="modal-actions">
-        <button type="button" class="roblox-btn" id="blow-candle-btn">
-          <span>🎂 Tiup Lilin &amp; Nyalakan Kembang Api!</span>
-        </button>
+      <button type="button" class="roblox-btn" id="blow-candle-btn">
+        <span>🎂 Tiup Lilin &amp; Ledakkan Confetti!</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       MODAL 4: ARCADE / TV LOVE CHEMISTRY QUIZ
+       ======================================================== -->
+  <div class="modal-overlay" id="arcade-modal">
+    <div class="roblox-modal-card">
+      <button type="button" class="modal-close-btn" id="arcade-modal-close">✕</button>
+      <span class="modal-header-tag" style="background: #ab47bc; color: #fff;">BLOX ARCADE 🕹️</span>
+      <h3 class="modal-title" id="quiz-question-title">Kuis Chemistry Cinta</h3>
+
+      <div class="modal-desc-box" id="quiz-question-text">
+        Pertanyaan: Hal apa yang paling bikin pasanganmu auto bahagia kalau lagi bete?
+      </div>
+
+      <div class="quiz-options" id="quiz-options-container">
+        <!-- Rendered by JS -->
+      </div>
+
+      <div id="quiz-feedback" style="display:none; margin-bottom:14px; font-weight:700; color:#00e676; font-size:13px; text-align:center;">
+        Jawaban kamu 100% bener! Kamu emang paling peka sedunia! ❤️
       </div>
     </div>
   </div>
 
   <!-- ========================================================
-       MODAL 3: SECRET GIFT CHEST & SURAT CINTA
+       MODAL 5: SECRET GIFT CHEST & SURAT CINTA
        ======================================================== -->
   <div class="modal-overlay" id="chest-modal">
     <div class="roblox-modal-card">
       <button type="button" class="modal-close-btn" id="chest-modal-close">✕</button>
-      <span class="modal-header-tag" style="background: #ffcc00; color: #000;">PETI RAHASIA DITEMUKAN 🎁</span>
-      <h3 class="modal-title">Surat Kecil dari Lubuk Hati</h3>
+      <span class="modal-header-tag" style="background: #ffcc00; color: #000;">PETI RAHASIA TERBUKA 🎁</span>
+      <h3 class="modal-title">Surat Cinta dari Lubuk Hati</h3>
 
       <div class="modal-desc-box" style="white-space: pre-wrap; font-size: 14px; line-height: 1.8;">
 Terima kasih ya sudah hadir dan jadi orang paling spesial di duniaku.
@@ -580,16 +852,37 @@ Bersamamu, setiap hari biasa berubah jadi petualangan yang menyenangkan. Jangan 
 Happy Anniversary / Birthday, my favorite player! Let's explore forever together! ❤️✨
       </div>
 
-      <div class="modal-actions">
-        <a href="https://wa.me/6285722645928?text=Sayang%20aku%20sudah%20tamatkan%20game%20Roblox%20rumahnya!%20Keren%20dan%20terharu%20banget%20makasih%20yaaa%20%E2%9D%A4%EF%B8%8F" target="_blank" rel="noopener noreferrer" class="roblox-btn" style="background: #25d366; color: #fff;">
-          <span>💬 Balas Surat Ini di WhatsApp</span>
-        </a>
+      <a href="https://wa.me/6285722645928?text=Sayang%20aku%20sudah%20tamatkan%20game%20Roblox%20rumahnya!%20Keren%20dan%20terharu%20banget%20makasih%20yaaa%20%E2%9D%A4%EF%B8%8F" target="_blank" rel="noopener noreferrer" class="roblox-btn" style="background: #25d366; color: #fff;">
+        <span>💬 Balas Surat Ini di WhatsApp</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       MODAL 6: ROBLOX PAUSE & RESPAWN MENU
+       ======================================================== -->
+  <div class="modal-overlay" id="roblox-menu-modal">
+    <div class="roblox-modal-card" style="max-width: 380px; text-align: center;">
+      <button type="button" class="modal-close-btn" id="menu-modal-close">✕</button>
+      <div style="font-size: 40px; margin-bottom: 8px;">🎮</div>
+      <h3 class="modal-title">Roblox Experience Menu</h3>
+      <p style="color: #9aa5b8; font-size: 13px; margin-bottom: 20px;">
+        Blox Memory House Edition v2.0
+      </p>
+
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <button type="button" class="roblox-btn roblox-btn-blue" id="respawn-btn">
+          <span>🔄 Respawn ke Halaman Depan</span>
+        </button>
+        <button type="button" class="roblox-btn" id="resume-game-btn" style="background: #3d4458; color: #fff; box-shadow: none;">
+          <span>▶ Lanjutkan Eksplorasi</span>
+        </button>
       </div>
     </div>
   </div>
 
   <!-- ========================================================
-       THREE.JS ROBLOX GAME LOGIC SCRIPT
+       THREE.JS ROBLOX 3D GAME ENGINE
        ======================================================== -->
   <script>
     // --- Configuration Data ---
@@ -601,7 +894,7 @@ Happy Anniversary / Birthday, my favorite player! Let's explore forever together
           tag: "MEMORI BINGKAI #1 • THE FIRST SPARK",
           title: "Pertemuan Pertama Kita",
           img: "https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=800&q=80",
-          desc: "Hari pertama kita bertatap muka. Masih ingat betul betapa groginya kita berdua, tapi senyuman manismu langsung bikin duniaku terasa tenang."
+          desc: "Hari pertama kita bertatap muka. Masih ingat betul betapa groginya kita berdua, tapi senyuman manismu waktu itu langsung bikin duniaku terasa tenang."
         },
         {
           id: 2,
@@ -619,15 +912,22 @@ Happy Anniversary / Birthday, my favorite player! Let's explore forever together
         },
         {
           id: 4,
-          tag: "MEMORI BINGKAI #4 • TOGETHER FOREVER",
-          title: "Menatap Masa Depan",
+          tag: "MEMORI BINGKAI #4 • SILLY MOMENTS",
+          title: "Tawa &amp; Momen Lucu Kita",
+          img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
+          desc: "Foto absurd saat kita kehujanan dan berburu gorengan hangat. Nggak peduli betapa berantakannya hari itu, kalau bareng kamu semuanya jadi seru!"
+        },
+        {
+          id: 5,
+          tag: "MEMORI BINGKAI #5 • FOREVER &amp; BEYOND",
+          title: "Menatap Masa Depan Bersama",
           img: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=800&q=80",
-          desc: "Membicarakan mimpi-mimpi besar kita di bawah taburan bintang malam. Bersamamu, aku yakin masa depan kita akan penuh tawa dan kebahagiaan."
+          desc: "Membicarakan mimpi-mimpi besar kita di bawah taburan bintang malam. Bersamamu, aku yakin masa depan kita akan selalu dipenuhi cinta dan kebahagiaan."
         }
       ]
     };
 
-    // --- Web Audio Synthesizer (Zero External Sound Assets Needed!) ---
+    // --- Web Audio Synthesizer (Procedural Native Audio - No broken links) ---
     let audioCtx = null;
     function getAudioCtx() {
       if (!audioCtx) {
@@ -638,6 +938,24 @@ Happy Anniversary / Birthday, my favorite player! Let's explore forever together
       return audioCtx;
     }
 
+    function playSoundTone(freq, type, duration, gainVal = 0.15) {
+      try {
+        const ctx = getAudioCtx();
+        if (!ctx) return;
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, now);
+        gain.gain.setValueAtTime(gainVal, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + duration);
+      } catch (e) {}
+    }
+
     function playJumpSound() {
       try {
         const ctx = getAudioCtx();
@@ -646,14 +964,33 @@ Happy Anniversary / Birthday, my favorite player! Let's explore forever together
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
         osc.type = 'triangle';
-        osc.frequency.setValueAtTime(160, now);
-        osc.frequency.exponentialRampToValueAtTime(380, now + 0.15);
+        osc.frequency.setValueAtTime(180, now);
+        osc.frequency.exponentialRampToValueAtTime(420, now + 0.16);
         gain.gain.setValueAtTime(0.2, now);
-        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.15);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.16);
         osc.connect(gain);
         gain.connect(ctx.destination);
         osc.start(now);
-        osc.stop(now + 0.16);
+        osc.stop(now + 0.17);
+      } catch (e) {}
+    }
+
+    function playOofSound() {
+      try {
+        const ctx = getAudioCtx();
+        if (!ctx) return;
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(320, now);
+        osc.frequency.exponentialRampToValueAtTime(140, now + 0.22);
+        gain.gain.setValueAtTime(0.25, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.23);
       } catch (e) {}
     }
 
@@ -677,7 +1014,7 @@ Happy Anniversary / Birthday, my favorite player! Let's explore forever together
       } catch (e) {}
     }
 
-    // --- Three.js Procedural Canvas Textures ---
+    // --- Procedural Canvas Textures ---
     function createWoodFloorTexture() {
       const c = document.createElement('canvas');
       c.width = 512;
@@ -686,14 +1023,11 @@ Happy Anniversary / Birthday, my favorite player! Let's explore forever together
       ctx.fillStyle = '#b57a48';
       ctx.fillRect(0, 0, 512, 512);
 
-      // Draw planks
       const plankHeight = 64;
       for (let y = 0; y < 512; y += plankHeight) {
         ctx.strokeStyle = '#6e431f';
         ctx.lineWidth = 3;
         ctx.strokeRect(0, y, 512, plankHeight);
-
-        // Sub planks
         ctx.beginPath();
         ctx.moveTo(180 + (y % 120), y);
         ctx.lineTo(180 + (y % 120), y + plankHeight);
@@ -716,7 +1050,6 @@ Happy Anniversary / Birthday, my favorite player! Let's explore forever together
       ctx.fillStyle = '#fff9f0';
       ctx.fillRect(0, 0, 512, 512);
 
-      // Cute pastel dots
       ctx.fillStyle = '#ffd1dc';
       for (let x = 32; x < 512; x += 64) {
         for (let y = 32; y < 512; y += 64) {
@@ -737,7 +1070,7 @@ Happy Anniversary / Birthday, my favorite player! Let's explore forever together
       c.width = 256;
       c.height = 256;
       const ctx = c.getContext('2d');
-      ctx.fillStyle = '#ffd200'; // Roblox yellow head
+      ctx.fillStyle = '#ffd200';
       ctx.fillRect(0, 0, 256, 256);
 
       // Eyes
@@ -761,7 +1094,7 @@ Happy Anniversary / Birthday, my favorite player! Let's explore forever together
       ctx.ellipse(191, 135, 16, 10, 0, 0, Math.PI * 2);
       ctx.fill();
 
-      // Big cute Roblox smile
+      // Big friendly Roblox smile
       ctx.lineWidth = 10;
       ctx.strokeStyle = '#111';
       ctx.lineCap = 'round';
@@ -780,12 +1113,11 @@ Happy Anniversary / Birthday, my favorite player! Let's explore forever together
       ctx.fillStyle = '#f48fb1';
       ctx.fillRect(0, 0, 512, 512);
 
-      // Border
       ctx.strokeStyle = '#ffffff';
       ctx.lineWidth = 16;
       ctx.strokeRect(16, 16, 480, 480);
 
-      // Big heart in middle
+      // Heart
       ctx.fillStyle = '#ffffff';
       ctx.beginPath();
       ctx.moveTo(256, 360);
@@ -801,9 +1133,13 @@ Happy Anniversary / Birthday, my favorite player! Let's explore forever together
     // --- Scene Setup ---
     let scene, camera, renderer;
     let player, playerBody, head, leftArm, rightArm, leftLeg, rightLeg;
-    const colliders = [];
+    let hatGroup;
+    let currentHatIndex = 0; // 0: None, 1: Party Cone, 2: Flower Halo, 3: Cat Ears, 4: Fedora
     const interactiveObjects = [];
     const discoveredMemories = new Set();
+    let isInsideHouse = false;
+    let isDancing = false;
+    let danceTimer = 0;
 
     const canvas = document.getElementById('webgl-canvas');
     renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
@@ -813,115 +1149,302 @@ Happy Anniversary / Birthday, my favorite player! Let's explore forever together
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
     scene = new THREE.Scene();
-    scene.background = new THREE.Color('#87ceeb');
-    scene.fog = new THREE.FogExp2('#b8e2f2', 0.025);
+    scene.background = new THREE.Color('#7ec0ee');
+    scene.fog = new THREE.FogExp2('#a0d2f5', 0.018);
 
-    camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 100);
+    camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 150);
 
     // --- Lighting ---
-    const ambientLight = new THREE.AmbientLight(0xfff5ea, 0.7);
+    const ambientLight = new THREE.AmbientLight(0xfff5ea, 0.75);
     scene.add(ambientLight);
 
-    const sunLight = new THREE.DirectionalLight(0xfffaed, 0.85);
-    sunLight.position.set(20, 35, 15);
+    const sunLight = new THREE.DirectionalLight(0xfffaed, 0.95);
+    sunLight.position.set(25, 45, 30);
     sunLight.castShadow = true;
     sunLight.shadow.mapSize.width = 1024;
     sunLight.shadow.mapSize.height = 1024;
     sunLight.shadow.camera.near = 0.5;
-    sunLight.shadow.camera.far = 60;
-    sunLight.shadow.camera.left = -25;
-    sunLight.shadow.camera.right = 25;
-    sunLight.shadow.camera.top = 25;
-    sunLight.shadow.camera.bottom = -25;
+    sunLight.shadow.camera.far = 100;
+    sunLight.shadow.camera.left = -35;
+    sunLight.shadow.camera.right = 35;
+    sunLight.shadow.camera.top = 35;
+    sunLight.shadow.camera.bottom = -35;
     scene.add(sunLight);
 
-    // Cozy warm interior chandeliers / lights
-    const roomPointLight = new THREE.PointLight(0xffaa44, 1.2, 18);
-    roomPointLight.position.set(0, 6.5, 0);
+    // Warm chandelier light inside the house
+    const roomPointLight = new THREE.PointLight(0xffaa44, 1.4, 22);
+    roomPointLight.position.set(0, 6.2, 0);
     roomPointLight.castShadow = true;
     scene.add(roomPointLight);
 
-    // --- Build Roblox House & Environment ---
+    // Warm garden lamp light outside
+    const outdoorLampLight = new THREE.PointLight(0xffcc66, 1.1, 14);
+    outdoorLampLight.position.set(4, 3.8, 18);
+    scene.add(outdoorLampLight);
+
+    // --- Build Roblox World (Yard, House, Furniture, Interactive Objects) ---
     function buildWorld() {
-      // 1. Outside Yard / Grass
-      const grassGeo = new THREE.PlaneGeometry(80, 80);
+      const texLoader = new THREE.TextureLoader();
+
+      // 1. Outside Yard / Grass Plane
+      const grassGeo = new THREE.PlaneGeometry(120, 120);
       const grassMat = new THREE.MeshLambertMaterial({ color: '#55b838' });
       const grass = new THREE.Mesh(grassGeo, grassMat);
       grass.rotation.x = -Math.PI / 2;
       grass.receiveShadow = true;
       scene.add(grass);
 
-      // Low poly cubic trees outside
-      for (let i = 0; i < 18; i++) {
-        const treeGroup = new THREE.Group();
-        const angle = Math.random() * Math.PI * 2;
-        const dist = 18 + Math.random() * 18;
-        const x = Math.cos(angle) * dist;
-        const z = Math.sin(angle) * dist;
+      // 2. Stone Pathway leading to the front porch
+      // Pathway from z = 26 down to z = 10
+      const pathGeo = new THREE.PlaneGeometry(3.2, 17);
+      const pathMat = new THREE.MeshStandardMaterial({ color: '#c7b299', roughness: 0.9 });
+      const path = new THREE.Mesh(pathGeo, pathMat);
+      path.rotation.x = -Math.PI / 2;
+      path.position.set(0, 0.02, 18);
+      path.receiveShadow = true;
+      scene.add(path);
 
-        // Trunk
-        const trunkGeo = new THREE.BoxGeometry(0.8, 3.5, 0.8);
-        const trunkMat = new THREE.MeshLambertMaterial({ color: '#6d4c41' });
-        const trunk = new THREE.Mesh(trunkGeo, trunkMat);
+      // Stepping stones details on the path
+      for (let z = 11; z <= 25; z += 2.5) {
+        const stepGeo = new THREE.BoxGeometry(1.6, 0.05, 1.2);
+        const stepMat = new THREE.MeshLambertMaterial({ color: '#8d7b68' });
+        const step = new THREE.Mesh(stepGeo, stepMat);
+        step.position.set((Math.sin(z) * 0.3), 0.03, z);
+        step.receiveShadow = true;
+        scene.add(step);
+      }
+
+      // 3. Front Porch Deck & Steps
+      const porchGeo = new THREE.BoxGeometry(8, 0.4, 4);
+      const porchMat = new THREE.MeshStandardMaterial({ color: '#8d5524', roughness: 0.7 });
+      const porch = new THREE.Mesh(porchGeo, porchMat);
+      porch.position.set(0, 0.2, 9.8);
+      porch.receiveShadow = true;
+      porch.castShadow = true;
+      scene.add(porch);
+
+      // Porch Step
+      const porchStepGeo = new THREE.BoxGeometry(4.5, 0.2, 1.2);
+      const porchStep = new THREE.Mesh(porchStepGeo, porchMat);
+      porchStep.position.set(0, 0.1, 12.2);
+      porchStep.receiveShadow = true;
+      scene.add(porchStep);
+
+      // Welcome Door Mat
+      const matGeo = new THREE.BoxGeometry(2.4, 0.04, 1.4);
+      const matMat = new THREE.MeshStandardMaterial({ color: '#d81b60', roughness: 0.8 });
+      const mat = new THREE.Mesh(matGeo, matMat);
+      mat.position.set(0, 0.42, 8.8);
+      scene.add(mat);
+
+      // Porch Pillars (Left & Right)
+      const pillarGeo = new THREE.BoxGeometry(0.5, 6.5, 0.5);
+      const pillarMat = new THREE.MeshStandardMaterial({ color: '#ffffff' });
+      const leftPillar = new THREE.Mesh(pillarGeo, pillarMat);
+      leftPillar.position.set(-3.5, 3.45, 11.5);
+      leftPillar.castShadow = true;
+      scene.add(leftPillar);
+
+      const rightPillar = new THREE.Mesh(pillarGeo, pillarMat);
+      rightPillar.position.set(3.5, 3.45, 11.5);
+      rightPillar.castShadow = true;
+      scene.add(rightPillar);
+
+      // Porch Roof Canopy
+      const canopyGeo = new THREE.BoxGeometry(8.8, 0.4, 4.4);
+      const canopyMat = new THREE.MeshLambertMaterial({ color: '#5d4037' });
+      const canopy = new THREE.Mesh(canopyGeo, canopyMat);
+      canopy.position.set(0, 6.7, 9.8);
+      canopy.castShadow = true;
+      scene.add(canopy);
+
+      // Welcome Banner above Porch
+      const bannerGeo = new THREE.BoxGeometry(7.2, 1.1, 0.1);
+      const bannerCanvas = document.createElement('canvas');
+      bannerCanvas.width = 512;
+      bannerCanvas.height = 90;
+      const bCtx = bannerCanvas.getContext('2d');
+      bCtx.fillStyle = '#ff3d71';
+      bCtx.fillRect(0, 0, 512, 90);
+      bCtx.strokeStyle = '#ffffff';
+      bCtx.lineWidth = 6;
+      bCtx.strokeRect(4, 4, 504, 82);
+      bCtx.fillStyle = '#ffffff';
+      bCtx.font = 'bold 30px "Fredoka", sans-serif';
+      bCtx.textAlign = 'center';
+      bCtx.textBaseline = 'middle';
+      bCtx.fillText('HAPPY BIRTHDAY & ANNIVERSARY ❤️', 256, 45);
+
+      const bannerTex = new THREE.CanvasTexture(bannerCanvas);
+      const bannerMat = new THREE.MeshBasicMaterial({ map: bannerTex });
+      const bannerMesh = new THREE.Mesh(bannerGeo, bannerMat);
+      bannerMesh.position.set(0, 6.0, 11.8);
+      scene.add(bannerMesh);
+
+      // 4. White Picket Fences & Garden Archway
+      const fenceMat = new THREE.MeshLambertMaterial({ color: '#f5f5f5' });
+      function createPicketFence(x, z, rotY) {
+        const fenceGroup = new THREE.Group();
+        const rail = new THREE.Mesh(new THREE.BoxGeometry(4.0, 0.1, 0.1), fenceMat);
+        rail.position.y = 0.8;
+        fenceGroup.add(rail);
+
+        const lowerRail = new THREE.Mesh(new THREE.BoxGeometry(4.0, 0.1, 0.1), fenceMat);
+        lowerRail.position.y = 0.4;
+        fenceGroup.add(lowerRail);
+
+        for (let i = -1.8; i <= 1.8; i += 0.5) {
+          const picket = new THREE.Mesh(new THREE.BoxGeometry(0.18, 1.2, 0.08), fenceMat);
+          picket.position.set(i, 0.6, 0);
+          picket.castShadow = true;
+          fenceGroup.add(picket);
+        }
+        fenceGroup.position.set(x, 0, z);
+        fenceGroup.rotation.y = rotY;
+        scene.add(fenceGroup);
+      }
+
+      // Front yard fences
+      createPicketFence(-5.0, 26, 0);
+      createPicketFence(-9.0, 26, 0);
+      createPicketFence(-13.0, 26, 0);
+      createPicketFence(5.0, 26, 0);
+      createPicketFence(9.0, 26, 0);
+      createPicketFence(13.0, 26, 0);
+      // Side yard fences
+      createPicketFence(-15.0, 24, Math.PI / 2);
+      createPicketFence(-15.0, 20, Math.PI / 2);
+      createPicketFence(-15.0, 16, Math.PI / 2);
+      createPicketFence(15.0, 24, Math.PI / 2);
+      createPicketFence(15.0, 20, Math.PI / 2);
+      createPicketFence(15.0, 16, Math.PI / 2);
+
+      // Garden Entrance Arch at (0, 0, 26)
+      const archMat = new THREE.MeshLambertMaterial({ color: '#6d4c41' });
+      const archL = new THREE.Mesh(new THREE.BoxGeometry(0.4, 3.6, 0.4), archMat);
+      archL.position.set(-2.0, 1.8, 26);
+      scene.add(archL);
+      const archR = new THREE.Mesh(new THREE.BoxGeometry(0.4, 3.6, 0.4), archMat);
+      archR.position.set(2.0, 1.8, 26);
+      scene.add(archR);
+      const archTop = new THREE.Mesh(new THREE.BoxGeometry(4.4, 0.4, 0.5), archMat);
+      archTop.position.set(0, 3.6, 26);
+      scene.add(archTop);
+
+      // 5. Interactive Mailbox by the Garden Gate
+      const mailboxGroup = new THREE.Group();
+      const post = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 1.6, 8), archMat);
+      post.position.y = 0.8;
+      mailboxGroup.add(post);
+
+      const boxGeo = new THREE.BoxGeometry(0.6, 0.5, 0.9);
+      const boxMat = new THREE.MeshStandardMaterial({ color: '#e53935' });
+      const box = new THREE.Mesh(boxGeo, boxMat);
+      box.position.set(0, 1.6, 0);
+      mailboxGroup.add(box);
+
+      const flag = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.35, 0.15), new THREE.MeshBasicMaterial({ color: '#ffea00' }));
+      flag.position.set(0.33, 1.7, 0.2);
+      mailboxGroup.add(flag);
+
+      mailboxGroup.position.set(2.8, 0, 25);
+      scene.add(mailboxGroup);
+
+      interactiveObjects.push({
+        type: 'mailbox',
+        position: new THREE.Vector3(2.8, 1.5, 25),
+        prompt: "📬 Buka Kotak Surat Undangan!"
+      });
+
+      // 6. Garden Street Lamp
+      const lampGroup = new THREE.Group();
+      const lampPost = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.14, 3.8, 8), new THREE.MeshStandardMaterial({ color: '#263238' }));
+      lampPost.position.y = 1.9;
+      lampGroup.add(lampPost);
+      const lantern = new THREE.Mesh(new THREE.OctahedronGeometry(0.4, 0), new THREE.MeshBasicMaterial({ color: '#ffeb3b' }));
+      lantern.position.y = 3.8;
+      lampGroup.add(lantern);
+      lampGroup.position.set(4, 0, 18);
+      scene.add(lampGroup);
+
+      // 7. Garden Bench under a tree
+      const benchGroup = new THREE.Group();
+      const benchMat = new THREE.MeshStandardMaterial({ color: '#795548', roughness: 0.6 });
+      const benchSeat = new THREE.Mesh(new THREE.BoxGeometry(2.4, 0.12, 0.8), benchMat);
+      benchSeat.position.y = 0.6;
+      benchGroup.add(benchSeat);
+      const benchBack = new THREE.Mesh(new THREE.BoxGeometry(2.4, 0.8, 0.1), benchMat);
+      benchBack.position.set(0, 1.0, -0.38);
+      benchGroup.add(benchBack);
+      benchGroup.position.set(-6, 0, 18);
+      scene.add(benchGroup);
+
+      // Low Poly Pine Trees outside
+      for (let i = 0; i < 22; i++) {
+        const treeGroup = new THREE.Group();
+        const angle = (i / 22) * Math.PI * 2;
+        const dist = 22 + (i % 4) * 6;
+        const tx = Math.cos(angle) * dist;
+        const tz = Math.sin(angle) * dist + 10;
+
+        const trunk = new THREE.Mesh(new THREE.BoxGeometry(0.8, 3.5, 0.8), new THREE.MeshLambertMaterial({ color: '#5d4037' }));
         trunk.position.y = 1.75;
         trunk.castShadow = true;
         treeGroup.add(trunk);
 
-        // Leaves (Cubic blocky tree)
-        const leavesGeo = new THREE.BoxGeometry(3, 3, 3);
-        const leavesMat = new THREE.MeshLambertMaterial({ color: '#2e7d32' });
-        const leaves = new THREE.Mesh(leavesGeo, leavesMat);
+        const leaves = new THREE.Mesh(new THREE.BoxGeometry(3.2, 3.2, 3.2), new THREE.MeshLambertMaterial({ color: i % 2 === 0 ? '#2e7d32' : '#388e3c' }));
         leaves.position.y = 4.2;
         leaves.castShadow = true;
         treeGroup.add(leaves);
 
-        treeGroup.position.set(x, 0, z);
+        treeGroup.position.set(tx, 0, tz);
         scene.add(treeGroup);
       }
 
-      // 2. House Dimensions
-      const roomW = 16;
+      // 8. House Building
+      const roomW = 18;
       const roomD = 16;
       const wallH = 7.5;
       const wallThick = 0.5;
 
-      // Floor
+      // Interior Floor
       const floorGeo = new THREE.BoxGeometry(roomW, 0.4, roomD);
-      const floorMat = new THREE.MeshStandardMaterial({
-        map: createWoodFloorTexture(),
-        roughness: 0.6,
-        metalness: 0.1
-      });
+      const floorMat = new THREE.MeshStandardMaterial({ map: createWoodFloorTexture(), roughness: 0.6 });
       const floor = new THREE.Mesh(floorGeo, floorMat);
       floor.position.set(0, 0.2, 0);
       floor.receiveShadow = true;
       scene.add(floor);
 
-      // Carpet in center
-      const carpetGeo = new THREE.PlaneGeometry(7.5, 7.5);
-      const carpetMat = new THREE.MeshStandardMaterial({
-        map: createCarpetTexture(),
-        roughness: 0.8
-      });
+      // Interior Living Room Heart Carpet
+      const carpetGeo = new THREE.PlaneGeometry(8, 8);
+      const carpetMat = new THREE.MeshStandardMaterial({ map: createCarpetTexture(), roughness: 0.8 });
       const carpet = new THREE.Mesh(carpetGeo, carpetMat);
       carpet.rotation.x = -Math.PI / 2;
-      carpet.position.set(0, 0.41, 0);
+      carpet.position.set(-4, 0.41, 0);
       carpet.receiveShadow = true;
       scene.add(carpet);
 
-      // Ceiling / Roof
+      // Ceiling
       const ceilingGeo = new THREE.BoxGeometry(roomW + 1, 0.4, roomD + 1);
-      const ceilingMat = new THREE.MeshLambertMaterial({ color: '#ffffff' });
-      const ceiling = new THREE.Mesh(ceilingGeo, ceilingMat);
+      const ceiling = new THREE.Mesh(ceilingGeo, new THREE.MeshLambertMaterial({ color: '#ffffff' }));
       ceiling.position.set(0, wallH, 0);
       scene.add(ceiling);
 
-      // Walls (North, South, East, West)
-      const wallMat = new THREE.MeshStandardMaterial({
-        map: createWallpaperTexture(),
-        roughness: 0.7
-      });
+      // House Gable Roof on Top
+      const roofPeakGeo = new THREE.ConeGeometry(14, 4.5, 4);
+      const roofPeakMat = new THREE.MeshLambertMaterial({ color: '#8d2b0b' });
+      const roof = new THREE.Mesh(roofPeakGeo, roofPeakMat);
+      roof.rotation.y = Math.PI / 4;
+      roof.position.set(0, wallH + 2.25, 0);
+      scene.add(roof);
 
+      // Chimney with blocky smoke
+      const chimney = new THREE.Mesh(new THREE.BoxGeometry(1.2, 3.2, 1.2), new THREE.MeshLambertMaterial({ color: '#a1887f' }));
+      chimney.position.set(5.5, wallH + 2.5, -3.5);
+      scene.add(chimney);
+
+      // Walls
+      const wallMat = new THREE.MeshStandardMaterial({ map: createWallpaperTexture(), roughness: 0.7 });
       function addWall(w, h, d, x, y, z) {
         const wallGeo = new THREE.BoxGeometry(w, h, d);
         const wall = new THREE.Mesh(wallGeo, wallMat);
@@ -929,7 +1452,6 @@ Happy Anniversary / Birthday, my favorite player! Let's explore forever together
         wall.receiveShadow = true;
         wall.castShadow = true;
         scene.add(wall);
-        colliders.push(new THREE.Box3().setFromObject(wall));
         return wall;
       }
 
@@ -939,25 +1461,24 @@ Happy Anniversary / Birthday, my favorite player! Let's explore forever together
       addWall(wallThick, wallH, roomD, roomW / 2, wallH / 2, 0);
       // West Wall (Left)
       addWall(wallThick, wallH, roomD, -roomW / 2, wallH / 2, 0);
-      // South Wall (Front with Door Gap)
-      addWall(5.5, wallH, wallThick, -5.25, wallH / 2, roomD / 2);
-      addWall(5.5, wallH, wallThick, 5.25, wallH / 2, roomD / 2);
-      addWall(5, 2.5, wallThick, 0, wallH - 1.25, roomD / 2);
+      // South Wall (Front Wall with Door Opening at middle)
+      // Left segment from -9 to -2
+      addWall(7.0, wallH, wallThick, -5.5, wallH / 2, roomD / 2);
+      // Right segment from 2 to 9
+      addWall(7.0, wallH, wallThick, 5.5, wallH / 2, roomD / 2);
+      // Top door header above door gap (y = 5.0 to 7.5)
+      addWall(4.0, 2.5, wallThick, 0, wallH - 1.25, roomD / 2);
 
-      // 3. Wall Photo Frames (Memories)
-      const texLoader = new THREE.TextureLoader();
-
+      // 9. Wall Photo Frames (5 Themed Memories)
       function createWallFrame(memory, x, y, z, rotY) {
         const frameGroup = new THREE.Group();
 
-        // Wooden frame border
         const frameBorderGeo = new THREE.BoxGeometry(3.6, 2.8, 0.16);
-        const frameBorderMat = new THREE.MeshStandardMaterial({ color: '#795548', roughness: 0.4 });
+        const frameBorderMat = new THREE.MeshStandardMaterial({ color: '#6d4c41', roughness: 0.4 });
         const frameBorder = new THREE.Mesh(frameBorderGeo, frameBorderMat);
         frameBorder.castShadow = true;
         frameGroup.add(frameBorder);
 
-        // Photo plane
         const photoGeo = new THREE.PlaneGeometry(3.2, 2.4);
         const photoMat = new THREE.MeshBasicMaterial({ color: '#ffffff' });
         texLoader.load(memory.img, (tex) => {
@@ -968,8 +1489,8 @@ Happy Anniversary / Birthday, my favorite player! Let's explore forever together
         photoMesh.position.z = 0.09;
         frameGroup.add(photoMesh);
 
-        // Cute gold star above frame
-        const starGeo = new THREE.OctahedronGeometry(0.24, 0);
+        // Golden spinning star indicator
+        const starGeo = new THREE.OctahedronGeometry(0.25, 0);
         const starMat = new THREE.MeshStandardMaterial({ color: '#ffea00', emissive: '#ffaa00', emissiveIntensity: 0.5 });
         const starMesh = new THREE.Mesh(starGeo, starMat);
         starMesh.position.set(0, 1.7, 0.1);
@@ -988,93 +1509,100 @@ Happy Anniversary / Birthday, my favorite player! Let's explore forever together
         });
       }
 
-      // Place 4 memory frames around the room walls
-      createWallFrame(CONFIG.memories[0], -4.2, 4.0, -roomD / 2 + 0.12, 0);
-      createWallFrame(CONFIG.memories[1], 4.2, 4.0, -roomD / 2 + 0.12, 0);
-      createWallFrame(CONFIG.memories[2], -roomW / 2 + 0.12, 4.0, -1.5, Math.PI / 2);
-      createWallFrame(CONFIG.memories[3], roomW / 2 - 0.12, 4.0, -1.5, -Math.PI / 2);
+      // Distribute 5 frames across the room walls
+      createWallFrame(CONFIG.memories[0], -4.5, 4.0, -roomD / 2 + 0.12, 0);
+      createWallFrame(CONFIG.memories[1], 4.5, 4.0, -roomD / 2 + 0.12, 0);
+      createWallFrame(CONFIG.memories[2], -roomW / 2 + 0.12, 4.0, 3.0, Math.PI / 2);
+      createWallFrame(CONFIG.memories[3], -roomW / 2 + 0.12, 4.0, -3.0, Math.PI / 2);
+      createWallFrame(CONFIG.memories[4], roomW / 2 - 0.12, 4.0, 3.0, -Math.PI / 2);
 
-      // 4. Center Birthday / Anniversary Cake Table
+      // 10. Center Birthday / Anniversary Cake & Dining Table (Right Side)
       const tableGroup = new THREE.Group();
-
-      // Table Legs & Top
-      const tableTopGeo = new THREE.CylinderGeometry(1.8, 1.8, 0.15, 24);
+      const tableTopGeo = new THREE.CylinderGeometry(2.0, 2.0, 0.18, 24);
       const tableMat = new THREE.MeshStandardMaterial({ color: '#8d6e63', roughness: 0.5 });
       const tableTop = new THREE.Mesh(tableTopGeo, tableMat);
       tableTop.position.y = 1.8;
       tableTop.castShadow = true;
       tableGroup.add(tableTop);
 
-      const tableLegGeo = new THREE.CylinderGeometry(0.2, 0.2, 1.8, 12);
-      const tableLeg = new THREE.Mesh(tableLegGeo, tableMat);
+      const tableLeg = new THREE.Mesh(new THREE.CylinderGeometry(0.24, 0.24, 1.8, 12), tableMat);
       tableLeg.position.y = 0.9;
       tableLeg.castShadow = true;
       tableGroup.add(tableLeg);
 
       // Cake Base
-      const cakeBaseGeo = new THREE.CylinderGeometry(0.9, 0.9, 0.5, 24);
-      const cakeBaseMat = new THREE.MeshStandardMaterial({ color: '#ff80ab', roughness: 0.3 });
-      const cakeBase = new THREE.Mesh(cakeBaseGeo, cakeBaseMat);
-      cakeBase.position.y = 2.15;
+      const cakeBase = new THREE.Mesh(new THREE.CylinderGeometry(1.0, 1.0, 0.6, 24), new THREE.MeshStandardMaterial({ color: '#ff80ab', roughness: 0.3 }));
+      cakeBase.position.y = 2.2;
       cakeBase.castShadow = true;
       tableGroup.add(cakeBase);
 
-      // Cake Icing Top
-      const icingGeo = new THREE.CylinderGeometry(0.92, 0.92, 0.15, 24);
-      const icingMat = new THREE.MeshStandardMaterial({ color: '#ffffff', roughness: 0.2 });
-      const icing = new THREE.Mesh(icingGeo, icingMat);
-      icing.position.y = 2.45;
-      tableGroup.add(icing);
+      // Cake Top Tier
+      const cakeTop = new THREE.Mesh(new THREE.CylinderGeometry(0.65, 0.65, 0.45, 24), new THREE.MeshStandardMaterial({ color: '#fff9c4', roughness: 0.2 }));
+      cakeTop.position.y = 2.7;
+      cakeTop.castShadow = true;
+      tableGroup.add(cakeTop);
 
-      // Lit Candle
-      const candleGeo = new THREE.CylinderGeometry(0.06, 0.06, 0.45, 8);
-      const candleMat = new THREE.MeshStandardMaterial({ color: '#ffeb3b' });
-      const candle = new THREE.Mesh(candleGeo, candleMat);
-      candle.position.y = 2.75;
+      // Candle
+      const candle = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 0.45, 8), new THREE.MeshStandardMaterial({ color: '#ffeb3b' }));
+      candle.position.y = 3.15;
       tableGroup.add(candle);
 
-      // Candle Flame Glow
-      const flameGeo = new THREE.SphereGeometry(0.09, 8, 8);
-      const flameMat = new THREE.MeshBasicMaterial({ color: '#ff9800' });
-      const flame = new THREE.Mesh(flameGeo, flameMat);
-      flame.position.y = 3.02;
+      // Candle Flame
+      const flame = new THREE.Mesh(new THREE.SphereGeometry(0.09, 8, 8), new THREE.MeshBasicMaterial({ color: '#ff9800' }));
+      flame.position.y = 3.42;
       tableGroup.add(flame);
 
-      tableGroup.position.set(0, 0, 0);
+      tableGroup.position.set(4.5, 0, -2.5);
       scene.add(tableGroup);
 
-      // Cake interaction
       interactiveObjects.push({
         type: 'cake',
-        position: new THREE.Vector3(0, 2, 0),
+        position: new THREE.Vector3(4.5, 2.2, -2.5),
         prompt: "🎂 Tiup Lilin Kue & Buat Doa!"
       });
 
-      // 5. Golden Secret Gift Chest
+      // 11. Arcade Machine / TV Console (Chemistry Quiz)
+      const arcadeGroup = new THREE.Group();
+      const arcadeBody = new THREE.Mesh(new THREE.BoxGeometry(1.6, 3.2, 1.4), new THREE.MeshStandardMaterial({ color: '#1a237e' }));
+      arcadeBody.position.y = 1.6;
+      arcadeBody.castShadow = true;
+      arcadeGroup.add(arcadeBody);
+
+      const arcadeScreen = new THREE.Mesh(new THREE.PlaneGeometry(1.2, 0.9), new THREE.MeshBasicMaterial({ color: '#00e5ff' }));
+      arcadeScreen.position.set(0, 2.2, 0.71);
+      arcadeGroup.add(arcadeScreen);
+
+      arcadeGroup.position.set(-8.1, 0, 0);
+      arcadeGroup.rotation.y = Math.PI / 2;
+      scene.add(arcadeGroup);
+
+      interactiveObjects.push({
+        type: 'arcade',
+        position: new THREE.Vector3(-7.5, 1.6, 0),
+        prompt: "🕹️ Mainkan Kuis Chemistry Pasangan!"
+      });
+
+      // 12. Golden Secret Treasure Chest (Corner)
       const chestGroup = new THREE.Group();
-      const chestBaseGeo = new THREE.BoxGeometry(1.6, 1.0, 1.1);
-      const chestMat = new THREE.MeshStandardMaterial({ color: '#ffc107', metalness: 0.5, roughness: 0.3 });
-      const chestBase = new THREE.Mesh(chestBaseGeo, chestMat);
+      const chestBase = new THREE.Mesh(new THREE.BoxGeometry(1.6, 1.0, 1.1), new THREE.MeshStandardMaterial({ color: '#ffc107', metalness: 0.5, roughness: 0.3 }));
       chestBase.position.y = 0.5;
       chestBase.castShadow = true;
       chestGroup.add(chestBase);
 
-      const chestLockGeo = new THREE.BoxGeometry(0.3, 0.3, 0.2);
-      const chestLockMat = new THREE.MeshStandardMaterial({ color: '#ffffff', metalness: 0.9 });
-      const chestLock = new THREE.Mesh(chestLockGeo, chestLockMat);
+      const chestLock = new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.3, 0.2), new THREE.MeshStandardMaterial({ color: '#ffffff', metalness: 0.9 }));
       chestLock.position.set(0, 0.6, 0.56);
       chestGroup.add(chestLock);
 
-      chestGroup.position.set(-6, 0, 5);
+      chestGroup.position.set(7.2, 0, -6.5);
       scene.add(chestGroup);
 
       interactiveObjects.push({
         type: 'chest',
-        position: new THREE.Vector3(-6, 0.5, 5),
-        prompt: "🎁 Buka Peti Surat Rahasia!"
+        position: new THREE.Vector3(7.2, 0.8, -6.5),
+        prompt: "🎁 Buka Peti Surat Cinta Rahasia!"
       });
 
-      // 6. Cozy Blocky Sofa
+      // 13. Cozy Living Room Sofa
       const sofaGroup = new THREE.Group();
       const sofaMat = new THREE.MeshStandardMaterial({ color: '#e91e63', roughness: 0.8 });
       const sofaSeat = new THREE.Mesh(new THREE.BoxGeometry(4.2, 0.7, 1.6), sofaMat);
@@ -1087,88 +1615,204 @@ Happy Anniversary / Birthday, my favorite player! Let's explore forever together
       sofaBack.castShadow = true;
       sofaGroup.add(sofaBack);
 
-      sofaGroup.position.set(6, 0, 0);
-      sofaGroup.rotation.y = -Math.PI / 2;
+      sofaGroup.position.set(-4.5, 0, 0);
       scene.add(sofaGroup);
     }
 
-    // --- Build Cute Roblox Character ---
+    // --- Build Cute Roblox Character & Modular Hats ---
     function buildCharacter() {
       player = new THREE.Group();
-
-      // Master Body Parent
       playerBody = new THREE.Group();
       player.add(playerBody);
 
-      // Materials
-      const skinMat = new THREE.MeshStandardMaterial({
-        color: '#ffd200',
-        roughness: 0.4
-      });
-      const faceMat = new THREE.MeshBasicMaterial({
-        map: createRobloxFaceTexture()
-      });
-      const shirtMat = new THREE.MeshStandardMaterial({
-        color: '#00b0ff',
-        roughness: 0.5
-      });
-      const pantsMat = new THREE.MeshStandardMaterial({
-        color: '#1e88e5',
-        roughness: 0.5
-      });
+      const skinMat = new THREE.MeshStandardMaterial({ color: '#ffd200', roughness: 0.4 });
+      const faceMat = new THREE.MeshBasicMaterial({ map: createRobloxFaceTexture() });
+      const shirtMat = new THREE.MeshStandardMaterial({ color: '#00b0ff', roughness: 0.5 });
+      const pantsMat = new THREE.MeshStandardMaterial({ color: '#1e88e5', roughness: 0.5 });
 
-      // Head (Cube) with multi-materials (Front is Face, others yellow)
-      const headMaterials = [
-        skinMat, skinMat, skinMat, skinMat, faceMat, skinMat
-      ];
-      const headGeo = new THREE.BoxGeometry(0.9, 0.9, 0.9);
-      head = new THREE.Mesh(headGeo, headMaterials);
+      // Head
+      const headMaterials = [skinMat, skinMat, skinMat, skinMat, faceMat, skinMat];
+      head = new THREE.Mesh(new THREE.BoxGeometry(0.9, 0.9, 0.9), headMaterials);
       head.position.y = 2.45;
       head.castShadow = true;
       playerBody.add(head);
 
+      // Hat Attachment Root
+      hatGroup = new THREE.Group();
+      head.add(hatGroup);
+      updateHatMesh();
+
       // Torso
-      const torsoGeo = new THREE.BoxGeometry(1.2, 1.3, 0.7);
-      const torso = new THREE.Mesh(torsoGeo, shirtMat);
+      const torso = new THREE.Mesh(new THREE.BoxGeometry(1.2, 1.3, 0.7), shirtMat);
       torso.position.y = 1.35;
       torso.castShadow = true;
       playerBody.add(torso);
 
-      // Left Arm
+      // Arms
       const armGeo = new THREE.BoxGeometry(0.48, 1.25, 0.5);
       leftArm = new THREE.Mesh(armGeo, shirtMat);
       leftArm.position.set(-0.88, 1.35, 0);
       leftArm.castShadow = true;
       playerBody.add(leftArm);
 
-      // Right Arm
       rightArm = new THREE.Mesh(armGeo, shirtMat);
       rightArm.position.set(0.88, 1.35, 0);
       rightArm.castShadow = true;
       playerBody.add(rightArm);
 
-      // Left Leg
+      // Legs
       const legGeo = new THREE.BoxGeometry(0.52, 1.25, 0.58);
       leftLeg = new THREE.Mesh(legGeo, pantsMat);
       leftLeg.position.set(-0.32, 0.45, 0);
       leftLeg.castShadow = true;
       playerBody.add(leftLeg);
 
-      // Right Leg
       rightLeg = new THREE.Mesh(legGeo, pantsMat);
       rightLeg.position.set(0.32, 0.45, 0);
       rightLeg.castShadow = true;
       playerBody.add(rightLeg);
 
-      // Initial Spawn inside room
-      player.position.set(0, 0, 5.5);
+      // INITIAL SPAWN POINT: OUTSIDE THE HOUSE IN FRONT YARD!
+      // Facing North towards the house (-Z)
+      player.position.set(0, 0, 23.5);
+      playerBody.rotation.y = Math.PI; // Face the house
       scene.add(player);
     }
+
+    // --- Hats Customizer ---
+    function updateHatMesh() {
+      // Clear previous hat
+      while (hatGroup.children.length > 0) {
+        hatGroup.remove(hatGroup.children[0]);
+      }
+
+      if (currentHatIndex === 1) {
+        // Party Cone Hat
+        const cone = new THREE.Mesh(new THREE.ConeGeometry(0.38, 0.75, 12), new THREE.MeshStandardMaterial({ color: '#ff3d71' }));
+        cone.position.set(0, 0.8, 0);
+        const pompom = new THREE.Mesh(new THREE.SphereGeometry(0.1, 8, 8), new THREE.MeshBasicMaterial({ color: '#ffea00' }));
+        pompom.position.set(0, 1.18, 0);
+        hatGroup.add(cone, pompom);
+      } else if (currentHatIndex === 2) {
+        // Flower Halo / Crown
+        const ring = new THREE.Mesh(new THREE.TorusGeometry(0.48, 0.08, 8, 16), new THREE.MeshStandardMaterial({ color: '#e91e63' }));
+        ring.rotation.x = Math.PI / 2;
+        ring.position.set(0, 0.55, 0);
+        hatGroup.add(ring);
+      } else if (currentHatIndex === 3) {
+        // Cat Ears
+        const earMat = new THREE.MeshStandardMaterial({ color: '#ffffff' });
+        const earL = new THREE.Mesh(new THREE.ConeGeometry(0.18, 0.35, 4), earMat);
+        earL.position.set(-0.32, 0.6, 0);
+        earL.rotation.z = 0.2;
+        const earR = new THREE.Mesh(new THREE.ConeGeometry(0.18, 0.35, 4), earMat);
+        earR.position.set(0.32, 0.6, 0);
+        earR.rotation.z = -0.2;
+        hatGroup.add(earL, earR);
+      } else if (currentHatIndex === 4) {
+        // Fedora Hat
+        const brim = new THREE.Mesh(new THREE.CylinderGeometry(0.7, 0.7, 0.06, 16), new THREE.MeshStandardMaterial({ color: '#5d4037' }));
+        brim.position.set(0, 0.48, 0);
+        const crown = new THREE.Mesh(new THREE.CylinderGeometry(0.46, 0.48, 0.38, 16), new THREE.MeshStandardMaterial({ color: '#4e342e' }));
+        crown.position.set(0, 0.68, 0);
+        hatGroup.add(brim, crown);
+      }
+    }
+
+    const hatBtn = document.getElementById('hat-toggle-btn');
+    const hatIcons = ['👒', '🎉', '🌸', '🐱', '🎩'];
+    const hatNames = ['Polos', 'Party', 'Halo', 'Kucing', 'Fedora'];
+    hatBtn.addEventListener('click', () => {
+      getAudioCtx();
+      currentHatIndex = (currentHatIndex + 1) % 5;
+      updateHatMesh();
+      document.getElementById('hat-btn-icon').textContent = hatIcons[currentHatIndex];
+      document.getElementById('hat-btn-label').textContent = hatNames[currentHatIndex];
+      playSoundTone(520, 'sine', 0.1, 0.1);
+    });
 
     buildWorld();
     buildCharacter();
 
-    // --- Controls & Physics State ---
+    // --- Third-Person Camera & Mouse Orbit System ---
+    let cameraYaw = 0; // 0: Camera behind player looking forward (-Z)
+    let cameraPitch = 0.32; // Elevation above player
+    let cameraDist = 8.0; // Distance
+    let isDragging = false;
+    let prevMouseX = 0;
+    let prevMouseY = 0;
+
+    window.addEventListener('mousedown', (e) => {
+      if (e.target.closest('.modal-overlay') || e.target.closest('.roblox-hud button') || e.target.closest('.chat-box-container')) return;
+      isDragging = true;
+      prevMouseX = e.clientX;
+      prevMouseY = e.clientY;
+      getAudioCtx();
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      const deltaX = e.clientX - prevMouseX;
+      const deltaY = e.clientY - prevMouseY;
+      prevMouseX = e.clientX;
+      prevMouseY = e.clientY;
+
+      cameraYaw -= deltaX * 0.006;
+      cameraPitch = Math.max(0.08, Math.min(1.2, cameraPitch + deltaY * 0.005));
+    });
+
+    window.addEventListener('mouseup', () => { isDragging = false; });
+
+    // Mouse Wheel Zoom
+    window.addEventListener('wheel', (e) => {
+      cameraDist = Math.max(4.0, Math.min(13.0, cameraDist + e.deltaY * 0.008));
+    }, { passive: true });
+
+    // Touch Swipe on Right-Half of Screen for Camera Look on Mobile
+    let touchLookId = null;
+    let prevTouchX = 0;
+    let prevTouchY = 0;
+
+    window.addEventListener('touchstart', (e) => {
+      for (let i = 0; i < e.touches.length; i++) {
+        const t = e.touches[i];
+        if (t.clientX > window.innerWidth * 0.4 && !t.target.closest('.mobile-action-btns') && !t.target.closest('.roblox-hud button')) {
+          touchLookId = t.identifier;
+          prevTouchX = t.clientX;
+          prevTouchY = t.clientY;
+          break;
+        }
+      }
+      getAudioCtx();
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (e) => {
+      if (touchLookId === null) return;
+      for (let i = 0; i < e.touches.length; i++) {
+        const t = e.touches[i];
+        if (t.identifier === touchLookId) {
+          const deltaX = t.clientX - prevTouchX;
+          const deltaY = t.clientY - prevTouchY;
+          prevTouchX = t.clientX;
+          prevTouchY = t.clientY;
+
+          cameraYaw -= deltaX * 0.008;
+          cameraPitch = Math.max(0.08, Math.min(1.2, cameraPitch + deltaY * 0.006));
+          break;
+        }
+      }
+    }, { passive: true });
+
+    window.addEventListener('touchend', (e) => {
+      for (let i = 0; i < e.changedTouches.length; i++) {
+        if (e.changedTouches[i].identifier === touchLookId) {
+          touchLookId = null;
+          break;
+        }
+      }
+    });
+
+    // --- Keyboard & Virtual Joystick Input ---
     const keys = {};
     window.addEventListener('keydown', (e) => {
       keys[e.code] = true;
@@ -1179,7 +1823,7 @@ Happy Anniversary / Birthday, my favorite player! Let's explore forever together
       keys[e.code] = false;
     });
 
-    // Touch Joystick for Mobile
+    // Virtual Joystick
     const joystickZone = document.getElementById('joystick-zone');
     const joystickKnob = document.getElementById('joystick-knob');
     let joystickActive = false;
@@ -1218,56 +1862,13 @@ Happy Anniversary / Birthday, my favorite player! Let's explore forever together
 
       joystickVector.x = (Math.cos(angle) * dist) / 45;
       joystickVector.y = (Math.sin(angle) * dist) / 45;
-
       joystickKnob.style.transform = `translate(calc(-50% + ${Math.cos(angle) * dist}px), calc(-50% + ${Math.sin(angle) * dist}px))`;
     }
 
-    // Mobile Action & Jump Buttons
-    const mobileJumpBtn = document.getElementById('mobile-jump-btn');
-    const mobileActionBtn = document.getElementById('mobile-action-btn');
-    mobileJumpBtn.addEventListener('click', () => { doJump(); getAudioCtx(); });
-    mobileActionBtn.addEventListener('click', () => { handleInteraction(); getAudioCtx(); });
-
-    // Camera Orbit Mouse Drag
-    let isDragging = false;
-    let prevMouseX = 0;
-    let cameraAngle = Math.PI; // Face forward initially
-    let cameraPitch = 0.35;
-    const cameraDist = 8.5;
-
-    window.addEventListener('mousedown', (e) => {
-      if (e.target.closest('.modal-overlay') || e.target.closest('.roblox-hud button')) return;
-      isDragging = true;
-      prevMouseX = e.clientX;
-      getAudioCtx();
-    });
-    window.addEventListener('mousemove', (e) => {
-      if (!isDragging) return;
-      const deltaX = e.clientX - prevMouseX;
-      cameraAngle -= deltaX * 0.006;
-      prevMouseX = e.clientX;
-    });
-    window.addEventListener('mouseup', () => { isDragging = false; });
-
-    // Touch swipe camera rotation on right side of screen
-    let touchStartX = 0;
-    window.addEventListener('touchstart', (e) => {
-      if (e.touches[0].clientX > window.innerWidth / 2) {
-        touchStartX = e.touches[0].clientX;
-      }
-    });
-    window.addEventListener('touchmove', (e) => {
-      if (e.touches[0].clientX > window.innerWidth / 2) {
-        const delta = e.touches[0].clientX - touchStartX;
-        cameraAngle -= delta * 0.006;
-        touchStartX = e.touches[0].clientX;
-      }
-    });
-
     // Jump Physics
-    let isGrounded = true;
     let yVelocity = 0;
     const gravity = -0.018;
+    let isGrounded = true;
 
     function doJump() {
       if (isGrounded) {
@@ -1277,124 +1878,224 @@ Happy Anniversary / Birthday, my favorite player! Let's explore forever together
       }
     }
 
-    // Interaction Check
+    document.getElementById('mobile-jump-btn').addEventListener('click', () => { doJump(); getAudioCtx(); });
+    document.getElementById('mobile-action-btn').addEventListener('click', () => { handleInteraction(); getAudioCtx(); });
+
+    // Emote / Dance Toggle
+    function toggleDance() {
+      isDancing = !isDancing;
+      if (isDancing) {
+        playSoundTone(660, 'sine', 0.15, 0.15);
+      }
+    }
+    document.getElementById('dance-hud-btn').addEventListener('click', toggleDance);
+    document.getElementById('mobile-dance-btn').addEventListener('click', toggleDance);
+
+    // --- In-Game 3D Speech Bubble System ---
+    const speechBubble = document.getElementById('speech-bubble');
+    let speechTimer = null;
+
+    function sendChatMessage(msg) {
+      if (!msg || !msg.trim()) return;
+      speechBubble.textContent = msg.trim();
+      speechBubble.style.display = 'block';
+      playSoundTone(440, 'triangle', 0.1, 0.12);
+
+      if (speechTimer) clearTimeout(speechTimer);
+      speechTimer = setTimeout(() => {
+        speechBubble.style.display = 'none';
+      }, 4000);
+    }
+
+    document.getElementById('chat-send-btn').addEventListener('click', () => {
+      const inp = document.getElementById('chat-input');
+      sendChatMessage(inp.value);
+      inp.value = '';
+    });
+    document.getElementById('chat-input').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        sendChatMessage(e.target.value);
+        e.target.value = '';
+      }
+    });
+
+    // --- Interactive Objects & Modals Logic ---
+    let activeNearObject = null;
     const promptEl = document.getElementById('interaction-prompt');
     const promptTextEl = document.getElementById('prompt-text');
-    let nearbyObject = null;
 
     function checkProximity() {
-      nearbyObject = null;
-      let minDistance = 3.6;
+      let nearest = null;
+      let minDist = 4.2;
 
       for (const obj of interactiveObjects) {
-        const dist = player.position.distanceTo(obj.position);
-        if (dist < minDistance) {
-          minDistance = dist;
-          nearbyObject = obj;
+        const d = player.position.distanceTo(obj.position);
+        if (d < minDist) {
+          minDist = d;
+          nearest = obj;
         }
       }
 
-      if (nearbyObject) {
-        promptEl.style.display = 'flex';
-        promptTextEl.textContent = nearbyObject.prompt;
+      if (nearest) {
+        activeNearObject = nearest;
+        promptTextEl.textContent = nearest.prompt;
+        promptEl.style.display = 'inline-flex';
       } else {
+        activeNearObject = null;
         promptEl.style.display = 'none';
       }
-    }
 
-    promptEl.addEventListener('click', () => {
-      handleInteraction();
-    });
-
-    function handleInteraction() {
-      if (!nearbyObject) return;
-      playInteractChime();
-
-      if (nearbyObject.type === 'photo') {
-        openPhotoModal(nearbyObject.data);
-        if (nearbyObject.starMesh) {
-          discoveredMemories.add(nearbyObject.data.id);
-          document.getElementById('star-count-text').textContent = `${discoveredMemories.size} / 4 Ditemukan`;
-        }
-      } else if (nearbyObject.type === 'cake') {
-        document.getElementById('cake-modal').classList.add('active');
-      } else if (nearbyObject.type === 'chest') {
-        document.getElementById('chest-modal').classList.add('active');
+      // Check if player entered the house through the doorway (z <= 8)
+      if (!isInsideHouse && player.position.z <= 8.2) {
+        isInsideHouse = true;
+        playInteractChime();
+        document.getElementById('mission-text').textContent = 'Misi 2: Buka 5 bingkai foto, tiup lilin kue & temukan peti rahasia! ⭐';
       }
     }
 
-    // --- Modal Logic ---
-    const photoModal = document.getElementById('photo-modal');
-    const photoModalClose = document.getElementById('photo-modal-close');
-    const modalTag = document.getElementById('modal-tag');
-    const modalTitle = document.getElementById('modal-title');
-    const modalImg = document.getElementById('modal-img');
-    const modalDesc = document.getElementById('modal-desc');
+    function handleInteraction() {
+      if (!activeNearObject) return;
+      playInteractChime();
 
-    function openPhotoModal(data) {
-      modalTag.textContent = data.tag;
-      modalTitle.textContent = data.title;
-      modalImg.src = data.img;
-      modalDesc.textContent = data.desc;
-      photoModal.classList.add('active');
+      if (activeNearObject.type === 'photo') {
+        const mem = activeNearObject.data;
+        document.getElementById('modal-tag').textContent = mem.tag;
+        document.getElementById('modal-title').textContent = mem.title;
+        document.getElementById('modal-img').src = mem.img;
+        document.getElementById('modal-desc').innerHTML = mem.desc;
+        openModal('photo-modal');
+        markDiscovered(mem.id);
+      } else if (activeNearObject.type === 'mailbox') {
+        openModal('mailbox-modal');
+        markDiscovered('mailbox');
+      } else if (activeNearObject.type === 'cake') {
+        openModal('cake-modal');
+        markDiscovered('cake');
+      } else if (activeNearObject.type === 'arcade') {
+        renderQuiz();
+        openModal('arcade-modal');
+        markDiscovered('arcade');
+      } else if (activeNearObject.type === 'chest') {
+        openModal('chest-modal');
+        markDiscovered('chest');
+      }
     }
 
-    photoModalClose.addEventListener('click', () => photoModal.classList.remove('active'));
-    document.getElementById('cake-modal-close').addEventListener('click', () => document.getElementById('cake-modal').classList.remove('active'));
-    document.getElementById('chest-modal-close').addEventListener('click', () => document.getElementById('chest-modal').classList.remove('active'));
+    promptEl.addEventListener('click', handleInteraction);
 
-    document.getElementById('like-memory-btn').addEventListener('click', () => {
-      playInteractChime();
-      launchConfetti();
-      alert("❤️ Kamu memberikan cinta pada kenangan ini! Player 1 sangat bahagia!");
-      photoModal.classList.remove('active');
+    function markDiscovered(key) {
+      discoveredMemories.add(key);
+      const count = Math.min(7, discoveredMemories.size);
+      document.getElementById('star-count-text').textContent = `${count} / 7 Eksplorasi`;
+      if (count >= 7) {
+        document.getElementById('mission-text').textContent = '🏆 SELAMAT! Semua kenangan & kejutan telah kamu buka! ❤️';
+        spawnConfettiBlast();
+      }
+    }
+
+    // Modal helpers
+    function openModal(id) {
+      document.getElementById(id).classList.add('active');
+    }
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('active');
+    }
+
+    document.querySelectorAll('.modal-close-btn').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        const overlay = e.target.closest('.modal-overlay');
+        if (overlay) overlay.classList.remove('active');
+      });
     });
 
+    document.getElementById('mailbox-continue-btn').addEventListener('click', () => {
+      closeModal('mailbox-modal');
+      // Gentle push towards house
+      player.position.set(0, 0, 16);
+    });
+
+    // Cake blow candle
     document.getElementById('blow-candle-btn').addEventListener('click', () => {
-      playInteractChime();
-      launchConfetti();
-      alert("🎉 WOOOHOOO! Lilin berhasil ditiup! Semoga semua doa dan harapan kalian terkabul! ❤️🎂✨");
-      document.getElementById('cake-modal').classList.remove('active');
+      spawnConfettiBlast();
+      playSoundTone(880, 'sine', 0.4, 0.2);
+      setTimeout(() => playSoundTone(1100, 'sine', 0.5, 0.2), 150);
+      closeModal('cake-modal');
     });
 
-    // --- 2D Confetti Explosion Canvas ---
-    const confettiCanvas = document.getElementById('confetti-canvas');
-    const confCtx = confettiCanvas.getContext('2d');
+    // Arcade Quiz
+    function renderQuiz() {
+      const container = document.getElementById('quiz-options-container');
+      const feedback = document.getElementById('quiz-feedback');
+      feedback.style.display = 'none';
+      container.innerHTML = `
+        <button type="button" class="quiz-opt-btn" onclick="handleQuizAnswer(this, true)">A. Dikasih makanan manis favorit + dipeluk erat ❤️</button>
+        <button type="button" class="quiz-opt-btn" onclick="handleQuizAnswer(this, true)">B. Diajak jalan-jalan hunting spot foto gemes ✨</button>
+        <button type="button" class="quiz-opt-btn" onclick="handleQuizAnswer(this, true)">C. Didengerin ceritanya sampai lega & tertawa lagi 😊</button>
+        <button type="button" class="quiz-opt-btn" onclick="handleQuizAnswer(this, true)">D. SEMUA JAWABAN BENAR! Karena kamu emang terbaik! 🏆</button>
+      `;
+    }
+
+    window.handleQuizAnswer = function(btn, isCorrect) {
+      btn.classList.add('correct');
+      document.getElementById('quiz-feedback').style.display = 'block';
+      playInteractChime();
+      spawnConfettiBlast();
+    };
+
+    // Roblox Menu & Respawn
+    document.getElementById('roblox-logo-btn').addEventListener('click', () => {
+      openModal('roblox-menu-modal');
+    });
+    document.getElementById('resume-game-btn').addEventListener('click', () => {
+      closeModal('roblox-menu-modal');
+    });
+    document.getElementById('respawn-btn').addEventListener('click', () => {
+      closeModal('roblox-menu-modal');
+      playOofSound();
+      player.position.set(0, 0, 23.5);
+      playerBody.rotation.y = Math.PI;
+      cameraYaw = 0;
+    });
+
+    // --- 2D / 3D Confetti Particle Explosion ---
+    const confCanvas = document.getElementById('confetti-canvas');
+    const confCtx = confCanvas.getContext('2d');
     let confettiParticles = [];
 
     function resizeConfetti() {
-      confettiCanvas.width = window.innerWidth;
-      confettiCanvas.height = window.innerHeight;
+      confCanvas.width = window.innerWidth;
+      confCanvas.height = window.innerHeight;
     }
     window.addEventListener('resize', resizeConfetti);
     resizeConfetti();
 
-    function launchConfetti() {
-      const colors = ['#ff4081', '#00e676', '#ffeb3b', '#00b0ff', '#e040fb', '#ffffff'];
+    function spawnConfettiBlast() {
+      const colors = ['#ff3d71', '#00e676', '#ffea00', '#00b0ff', '#e040fb', '#ffffff'];
       for (let i = 0; i < 90; i++) {
         confettiParticles.push({
-          x: confettiCanvas.width / 2,
-          y: confettiCanvas.height / 2,
+          x: window.innerWidth / 2,
+          y: window.innerHeight / 2,
           vx: (Math.random() - 0.5) * 16,
           vy: (Math.random() - 0.8) * 18,
-          size: Math.random() * 8 + 6,
+          size: Math.random() * 9 + 5,
           color: colors[Math.floor(Math.random() * colors.length)],
-          rot: Math.random() * Math.PI * 2,
-          vRot: (Math.random() - 0.5) * 0.2,
-          life: 1
+          rot: Math.random() * Math.PI,
+          vRot: (Math.random() - 0.5) * 0.25,
+          life: 1.0,
+          decay: Math.random() * 0.015 + 0.008
         });
       }
     }
 
     function updateConfetti() {
-      confCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+      confCtx.clearRect(0, 0, confCanvas.width, confCanvas.height);
       for (let i = confettiParticles.length - 1; i >= 0; i--) {
         const p = confettiParticles[i];
         p.x += p.vx;
         p.y += p.vy;
-        p.vy += 0.45; // gravity
+        p.vy += 0.4; // gravity
         p.rot += p.vRot;
-        p.life -= 0.012;
+        p.life -= p.decay;
 
         confCtx.save();
         confCtx.translate(p.x, p.y);
@@ -1426,7 +2127,7 @@ Happy Anniversary / Birthday, my favorite player! Let's explore forever together
       }
     });
 
-    // --- Main Game Animation Loop ---
+    // --- Main Game Loop (Physics, Collision, Animations, 3rd Person Follow) ---
     let walkCycle = 0;
 
     function animate() {
@@ -1436,14 +2137,12 @@ Happy Anniversary / Birthday, my favorite player! Let's explore forever together
       let moveX = 0;
       let moveZ = 0;
 
-      // Keyboard input
       if (keys['KeyW'] || keys['ArrowUp']) moveZ -= 1;
       if (keys['KeyS'] || keys['ArrowDown']) moveZ += 1;
       if (keys['KeyA'] || keys['ArrowLeft']) moveX -= 1;
       if (keys['KeyD'] || keys['ArrowRight']) moveX += 1;
       if (keys['Space']) doJump();
 
-      // Mobile Joystick input
       if (joystickActive) {
         moveX += joystickVector.x;
         moveZ += joystickVector.y;
@@ -1452,31 +2151,73 @@ Happy Anniversary / Birthday, my favorite player! Let's explore forever together
       const isMoving = Math.abs(moveX) > 0.05 || Math.abs(moveZ) > 0.05;
 
       if (isMoving) {
-        const forward = new THREE.Vector3(Math.sin(cameraAngle), 0, Math.cos(cameraAngle));
-        const right = new THREE.Vector3(Math.cos(cameraAngle), 0, -Math.sin(cameraAngle));
+        isDancing = false; // Cancel dance on move
+
+        // Standard Third-Person Movement relative to camera facing angle
+        // Forward is into the screen along camera yaw
+        const forward = new THREE.Vector3(-Math.sin(cameraYaw), 0, -Math.cos(cameraYaw));
+        const right = new THREE.Vector3(Math.cos(cameraYaw), 0, -Math.sin(cameraYaw));
         const moveDir = new THREE.Vector3()
-          .addScaledVector(forward, moveZ)
-          .addScaledVector(right, -moveX)
+          .addScaledVector(forward, -moveZ)
+          .addScaledVector(right, moveX)
           .normalize();
 
-        const speed = 0.14;
+        const speed = 0.16;
         const targetX = player.position.x + moveDir.x * speed;
         const targetZ = player.position.z + moveDir.z * speed;
 
-        // Room bounds collision check
-        if (targetX > -7.2 && targetX < 7.2) player.position.x = targetX;
-        if (targetZ > -7.2 && targetZ < 7.2) player.position.z = targetZ;
+        // Collision Bounds:
+        // Inside house bounds: x: [-8.4, 8.4], z: [-7.4, 7.8]
+        // Doorway gap between inside & outside: x: [-1.9, 1.9] at z = 8
+        // Outside yard bounds: x: [-15, 15], z: [8, 27]
+        let canMoveX = true;
+        let canMoveZ = true;
 
-        // Character rotation towards walking direction
+        // Check if moving into exterior walls
+        if (targetZ < 8 && player.position.z >= 8) {
+          // Attempting to enter house from outside
+          if (Math.abs(targetX) > 1.8) {
+            canMoveZ = false; // Blocked by front wall
+          }
+        } else if (targetZ > 8 && player.position.z <= 8) {
+          // Attempting to exit house to outside
+          if (Math.abs(targetX) > 1.8) {
+            canMoveZ = false; // Blocked by front wall
+          }
+        }
+
+        // Inside room perimeter walls
+        if (targetZ < 8) {
+          if (targetX < -8.4 || targetX > 8.4) canMoveX = false;
+          if (targetZ < -7.4) canMoveZ = false;
+        } else {
+          // Outside yard fences
+          if (targetX < -15.0 || targetX > 15.0) canMoveX = false;
+          if (targetZ > 26.5) canMoveZ = false;
+        }
+
+        if (canMoveX) player.position.x = targetX;
+        if (canMoveZ) player.position.z = targetZ;
+
+        // Face movement direction
         const targetAngle = Math.atan2(moveDir.x, moveDir.z);
         playerBody.rotation.y = targetAngle;
 
-        // Roblox Limbs Walk Cycle Animation
-        walkCycle += 0.22;
-        leftArm.rotation.x = Math.sin(walkCycle) * 0.7;
-        rightArm.rotation.x = -Math.sin(walkCycle) * 0.7;
-        leftLeg.rotation.x = -Math.sin(walkCycle) * 0.7;
-        rightLeg.rotation.x = Math.sin(walkCycle) * 0.7;
+        // Walk cycle animation (limbs swing)
+        walkCycle += 0.24;
+        leftArm.rotation.x = Math.sin(walkCycle) * 0.75;
+        rightArm.rotation.x = -Math.sin(walkCycle) * 0.75;
+        leftLeg.rotation.x = -Math.sin(walkCycle) * 0.75;
+        rightLeg.rotation.x = Math.sin(walkCycle) * 0.75;
+      } else if (isDancing) {
+        // Fun Roblox Dance animation
+        danceTimer += 0.12;
+        playerBody.rotation.y += 0.08;
+        leftArm.rotation.x = Math.sin(danceTimer * 2) * 1.2;
+        rightArm.rotation.x = -Math.sin(danceTimer * 2) * 1.2;
+        leftLeg.rotation.x = Math.sin(danceTimer) * 0.3;
+        rightLeg.rotation.x = -Math.sin(danceTimer) * 0.3;
+        player.position.y = Math.abs(Math.sin(danceTimer * 2)) * 0.25;
       } else {
         // Idle recovery
         leftArm.rotation.x *= 0.8;
@@ -1496,18 +2237,28 @@ Happy Anniversary / Birthday, my favorite player! Let's explore forever together
         }
       }
 
-      // Third-Person Camera Follow
-      const targetCamX = player.position.x + Math.sin(cameraAngle) * cameraDist;
-      const targetCamY = player.position.y + cameraDist * Math.sin(cameraPitch) + 1.2;
-      const targetCamZ = player.position.z + Math.cos(cameraAngle) * cameraDist;
+      // Third-Person Camera Orbit Position Follow
+      const camTargetX = player.position.x + cameraDist * Math.sin(cameraYaw) * Math.cos(cameraPitch);
+      const camTargetY = Math.max(0.6, player.position.y + cameraDist * Math.sin(cameraPitch) + 1.6);
+      const camTargetZ = player.position.z + cameraDist * Math.cos(cameraYaw) * Math.cos(cameraPitch);
 
-      camera.position.lerp(new THREE.Vector3(targetCamX, targetCamY, targetCamZ), 0.1);
-      camera.lookAt(player.position.x, player.position.y + 1.6, player.position.z);
+      camera.position.lerp(new THREE.Vector3(camTargetX, camTargetY, camTargetZ), 0.12);
+      camera.lookAt(player.position.x, player.position.y + 1.8, player.position.z);
 
       // Star meshes gentle rotation
       interactiveObjects.forEach((obj) => {
-        if (obj.starMesh) obj.starMesh.rotation.y += 0.03;
+        if (obj.starMesh) obj.starMesh.rotation.y += 0.035;
       });
+
+      // Update 3D Speech Bubble screen position
+      if (speechBubble.style.display !== 'none') {
+        const headWorldPos = new THREE.Vector3(player.position.x, player.position.y + 3.4, player.position.z);
+        headWorldPos.project(camera);
+        const sx = (headWorldPos.x * 0.5 + 0.5) * window.innerWidth;
+        const sy = (-(headWorldPos.y * 0.5) + 0.5) * window.innerHeight;
+        speechBubble.style.left = `${sx}px`;
+        speechBubble.style.top = `${sy}px`;
+      }
 
       checkProximity();
       updateConfetti();

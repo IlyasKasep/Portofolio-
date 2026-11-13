@@ -86,6 +86,24 @@ export default function DigitalGiftSection({
       previewColor: "bg-gradient-to-br from-cyan-500/10 via-transparent to-stone-900/60",
       previewLabel: "CYBERPUNK NEON",
     },
+    {
+      id: "roblox-house",
+      title: "Blox 3D Adventure",
+      subtitle: "Eksplorasi rumah virtual 3D interaktif ala Roblox dengan galeri foto kenangan.",
+      tag: "3D Game Edition",
+      strikePrice: "Rp 250.000",
+      promoPrice: "Rp 149.000",
+      demoUrl: "/templates/roblox-house/index.html",
+      imageUrl: "/templates/roblox-house/preview.png",
+      features: [
+        "Avatar 3D bisa jalan, eksplor & lompat",
+        "Bingkai foto dinding memori interaktif",
+        "Kue ulang tahun interaktif & tiup lilin",
+        "Peti rahasia surat cinta & kuis romantis",
+      ],
+      previewColor: "bg-gradient-to-br from-yellow-500/10 via-transparent to-stone-900/60",
+      previewLabel: "ROBLOX 3D GAME",
+    },
   ];
 
   // 2. DATA CARA PEMESANAN (HOW IT WORKS)
@@ -159,7 +177,7 @@ export default function DigitalGiftSection({
         {/* ======================================================== */}
         {/* 2. KATALOG CARDS (Clean Editorial Design)                */}
         {/* ======================================================== */}
-        <div className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4">
           {catalogItems.map((item) => (
             <div
               key={item.id}

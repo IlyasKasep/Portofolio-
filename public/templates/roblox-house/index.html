@@ -1,0 +1,1527 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Blox Memory House 🏡 | Roblox 3D Interactive Anniversary & Birthday Gift</title>
+
+  <!-- Google Fonts: Fredoka (Roblox style friendly font) & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Three.js r128 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    body, html {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #87ceeb;
+      font-family: 'Fredoka', 'Plus Jakarta Sans', sans-serif;
+    }
+
+    #webgl-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      z-index: 1;
+    }
+
+    /* ========================================================
+       ROBLOX STYLE HUD GUI
+       ======================================================== */
+    .roblox-hud {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 16px;
+    }
+
+    /* Top Bar */
+    .hud-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    /* Health & Player Badge */
+    .player-badge-card {
+      background: rgba(25, 27, 34, 0.85);
+      backdrop-filter: blur(8px);
+      border: 3px solid #3a3f50;
+      border-radius: 14px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+      pointer-events: auto;
+    }
+    .player-avatar-circle {
+      width: 38px;
+      height: 38px;
+      background: #ffcc00;
+      border: 3px solid #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.2);
+    }
+    .player-info {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .player-name {
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    .health-bar-container {
+      width: 120px;
+      height: 10px;
+      background: #11141a;
+      border-radius: 999px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .health-bar-fill {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, #00e676, #00c853);
+      border-radius: 999px;
+    }
+
+    /* Star Memory Quest Counter */
+    .star-counter-card {
+      background: rgba(25, 27, 34, 0.85);
+      backdrop-filter: blur(8px);
+      border: 3px solid #ffaa00;
+      border-radius: 14px;
+      padding: 8px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #ffcc00;
+      font-size: 14px;
+      font-weight: 700;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+      pointer-events: auto;
+    }
+
+    /* BGM floating button */
+    .bgm-btn {
+      background: rgba(25, 27, 34, 0.85);
+      border: 3px solid #3a3f50;
+      border-radius: 12px;
+      color: #fff;
+      font-family: inherit;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      pointer-events: auto;
+      transition: all 0.2s;
+    }
+    .bgm-btn:hover {
+      transform: translateY(-2px);
+      border-color: #00e676;
+    }
+
+    /* Center Interaction Prompt */
+    .interaction-prompt {
+      align-self: center;
+      margin-bottom: 24px;
+      background: rgba(15, 17, 24, 0.92);
+      border: 3px solid #00b0ff;
+      border-radius: 16px;
+      padding: 12px 24px;
+      display: none;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 8px 24px rgba(0, 176, 255, 0.4);
+      animation: bounce-prompt 1s infinite alternate ease-in-out;
+      pointer-events: auto;
+      cursor: pointer;
+    }
+    @keyframes bounce-prompt {
+      from { transform: translateY(0); }
+      to { transform: translateY(-8px); }
+    }
+    .prompt-key-badge {
+      background: #00b0ff;
+      color: #000;
+      font-size: 14px;
+      font-weight: 900;
+      padding: 4px 10px;
+      border-radius: 8px;
+      box-shadow: 0 3px 0 #0081cb;
+    }
+    .prompt-text {
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    /* Desktop Controls Helper */
+    .controls-hint {
+      position: absolute;
+      top: 80px;
+      left: 16px;
+      background: rgba(25, 27, 34, 0.75);
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      padding: 10px 14px;
+      color: #e0e6ed;
+      font-size: 11px;
+      line-height: 1.6;
+      max-width: 200px;
+      pointer-events: none;
+    }
+    .controls-hint strong {
+      color: #ffcc00;
+    }
+
+    /* Mobile Controls */
+    .mobile-controls {
+      display: none;
+      width: 100%;
+      justify-content: space-between;
+      align-items: flex-end;
+      pointer-events: none;
+      padding-bottom: 10px;
+    }
+    @media (pointer: coarse), (max-width: 900px) {
+      .mobile-controls { display: flex; }
+      .controls-hint { display: none; }
+    }
+
+    /* Virtual Joystick */
+    .joystick-zone {
+      width: 130px;
+      height: 130px;
+      background: rgba(255, 255, 255, 0.15);
+      border: 2px dashed rgba(255, 255, 255, 0.4);
+      border-radius: 50%;
+      position: relative;
+      pointer-events: auto;
+      touch-action: none;
+      backdrop-filter: blur(4px);
+    }
+    .joystick-knob {
+      width: 50px;
+      height: 50px;
+      background: #00b0ff;
+      border: 3px solid #fff;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Mobile Action Buttons (Jump & Action) */
+    .mobile-action-btns {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      align-items: flex-end;
+      pointer-events: auto;
+    }
+    .mobile-btn {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: 3px solid #ffffff;
+      color: #ffffff;
+      font-family: inherit;
+      font-weight: 800;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
+      touch-action: manipulation;
+    }
+    .mobile-btn:active {
+      transform: scale(0.92);
+    }
+    .jump-btn {
+      background: #29b6f6;
+      box-shadow: 0 5px 0 #0288d1;
+    }
+    .action-btn {
+      background: #00e676;
+      box-shadow: 0 5px 0 #00a152;
+    }
+
+    /* ========================================================
+       POPUP MODALS (Memories, Birthday Wish, Secret Letter)
+       ======================================================== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 12, 18, 0.85);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .roblox-modal-card {
+      background: #232733;
+      border: 4px solid #3d4458;
+      border-radius: 24px;
+      width: 100%;
+      max-width: 480px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 24px 20px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      position: relative;
+      animation: popup-scale 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    @keyframes popup-scale {
+      from { transform: scale(0.85); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 36px;
+      height: 36px;
+      background: #ff3d71;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 3px 0 #c2185b;
+      transition: transform 0.15s;
+    }
+    .modal-close-btn:hover {
+      transform: scale(1.1);
+    }
+
+    .modal-header-tag {
+      display: inline-block;
+      background: #ffaa00;
+      color: #000;
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+    .modal-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 12px;
+    }
+
+    .modal-photo-wrapper {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      background: #11141c;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 3px solid #3d4458;
+      margin-bottom: 16px;
+      position: relative;
+    }
+    .modal-photo-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .modal-desc-box {
+      background: #181b24;
+      border-radius: 14px;
+      padding: 14px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #d2d8e4;
+      font-size: 13px;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 10px;
+    }
+    .roblox-btn {
+      flex: 1;
+      background: #00e676;
+      border: 3px solid #ffffff;
+      border-radius: 14px;
+      color: #000000;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 800;
+      padding: 12px 16px;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      box-shadow: 0 4px 0 #00a152;
+      transition: all 0.15s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .roblox-btn:hover {
+      background: #66ffa6;
+      transform: translateY(-2px);
+    }
+    .roblox-btn:active {
+      transform: translateY(2px);
+      box-shadow: 0 1px 0 #00a152;
+    }
+
+    .roblox-btn-blue {
+      background: #29b6f6;
+      color: #fff;
+      box-shadow: 0 4px 0 #0288d1;
+    }
+    .roblox-btn-blue:hover {
+      background: #81d4fa;
+    }
+
+    /* Confetti Canvas */
+    #confetti-canvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 120;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 3D Three.js Render Target Canvas -->
+  <canvas id="webgl-canvas"></canvas>
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Audio Player -->
+  <audio id="bgm-audio" loop preload="auto">
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3?filename=cozy-lofi-song-10904.mp3" type="audio/mpeg" />
+  </audio>
+
+  <!-- ========================================================
+       ROBLOX HUD OVERLAY
+       ======================================================== -->
+  <div class="roblox-hud">
+    <!-- Top Bar -->
+    <header class="hud-topbar">
+      <!-- Player Badge -->
+      <div class="player-badge-card">
+        <div class="player-avatar-circle">😀</div>
+        <div class="player-info">
+          <span class="player-name" id="hud-player-name">Player 2 ❤️</span>
+          <div class="health-bar-container" title="Love Health Bar">
+            <div class="health-bar-fill"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Memory Quest Stars & BGM Button -->
+      <div style="display: flex; gap: 8px; align-items: center;">
+        <div class="star-counter-card">
+          <span>⭐</span>
+          <span id="star-count-text">0 / 4 Ditemukan</span>
+        </div>
+        <button type="button" class="bgm-btn" id="bgm-toggle-btn">
+          <span>🎵 Musik</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Controls Helper (Desktop) -->
+    <div class="controls-hint">
+      <strong>KONTROL DESKTOP:</strong><br>
+      • <strong>W, A, S, D</strong> / Panah: Jalan<br>
+      • <strong>Spasi</strong>: Lompat<br>
+      • <strong>Drag Mouse</strong>: Putar Kamera<br>
+      • <strong>E</strong>: Buka Kenangan / Interaksi
+    </div>
+
+    <!-- Center Interaction Prompt -->
+    <div class="interaction-prompt" id="interaction-prompt">
+      <span class="prompt-key-badge">E</span>
+      <span class="prompt-text" id="prompt-text">Lihat Kenangan 🖼️</span>
+    </div>
+
+    <!-- Mobile Virtual Controls -->
+    <div class="mobile-controls">
+      <!-- Left Joystick -->
+      <div class="joystick-zone" id="joystick-zone">
+        <div class="joystick-knob" id="joystick-knob"></div>
+      </div>
+
+      <!-- Right Action & Jump Buttons -->
+      <div class="mobile-action-btns">
+        <button type="button" class="mobile-btn action-btn" id="mobile-action-btn">
+          AKSI
+        </button>
+        <button type="button" class="mobile-btn jump-btn" id="mobile-jump-btn">
+          LOMPAT
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       MODAL 1: MEMORY PHOTO FRAME VIEWER
+       ======================================================== -->
+  <div class="modal-overlay" id="photo-modal">
+    <div class="roblox-modal-card">
+      <button type="button" class="modal-close-btn" id="photo-modal-close">✕</button>
+      <span class="modal-header-tag" id="modal-tag">MEMORI BINGKAI #1</span>
+      <h3 class="modal-title" id="modal-title">Pertemuan Pertama Kita</h3>
+
+      <div class="modal-photo-wrapper">
+        <img id="modal-img" src="" alt="Kenangan Manis" />
+      </div>
+
+      <div class="modal-desc-box" id="modal-desc">
+        Hari itu adalah momen pertama kita bertemu. Senyum manismu waktu itu langsung mengunci hatiku dan membuat hari-hariku terasa jauh lebih berwarna.
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="roblox-btn roblox-btn-blue" id="like-memory-btn">
+          <span>❤️ Kasih Love (+100 XP)</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       MODAL 2: BIRTHDAY / ANNIVERSARY CAKE & WISH
+       ======================================================== -->
+  <div class="modal-overlay" id="cake-modal">
+    <div class="roblox-modal-card">
+      <button type="button" class="modal-close-btn" id="cake-modal-close">✕</button>
+      <span class="modal-header-tag" style="background: #ff3d71; color: #fff;">SPECIAL CELEBRATION 🎂</span>
+      <h3 class="modal-title">Kue Kenangan &amp; Doa Indah</h3>
+
+      <div class="modal-photo-wrapper" style="aspect-ratio: 16 / 9;">
+        <img src="https://images.unsplash.com/photo-1535141192574-5d4897c13136?auto=format&fit=crop&w=800&q=80" alt="Birthday Cake" />
+      </div>
+
+      <div class="modal-desc-box">
+        Selamat hari spesial, kesayanganku! Semoga setiap langkahmu selalu dipenuhi senyum ceria, impian-impian indahmu tercapai, dan kita terus bersama melewati ribuan petualangan seru ke depan! 🎉❤️
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="roblox-btn" id="blow-candle-btn">
+          <span>🎂 Tiup Lilin &amp; Nyalakan Kembang Api!</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       MODAL 3: SECRET GIFT CHEST & SURAT CINTA
+       ======================================================== -->
+  <div class="modal-overlay" id="chest-modal">
+    <div class="roblox-modal-card">
+      <button type="button" class="modal-close-btn" id="chest-modal-close">✕</button>
+      <span class="modal-header-tag" style="background: #ffcc00; color: #000;">PETI RAHASIA DITEMUKAN 🎁</span>
+      <h3 class="modal-title">Surat Kecil dari Lubuk Hati</h3>
+
+      <div class="modal-desc-box" style="white-space: pre-wrap; font-size: 14px; line-height: 1.8;">
+Terima kasih ya sudah hadir dan jadi orang paling spesial di duniaku.
+
+Bersamamu, setiap hari biasa berubah jadi petualangan yang menyenangkan. Jangan pernah ragu sama dirimu sendiri, karena di mataku kamu selalu jadi manusia paling hebat, paling tulus, dan paling aku sayangi.
+
+Happy Anniversary / Birthday, my favorite player! Let's explore forever together! ❤️✨
+      </div>
+
+      <div class="modal-actions">
+        <a href="https://wa.me/6285722645928?text=Sayang%20aku%20sudah%20tamatkan%20game%20Roblox%20rumahnya!%20Keren%20dan%20terharu%20banget%20makasih%20yaaa%20%E2%9D%A4%EF%B8%8F" target="_blank" rel="noopener noreferrer" class="roblox-btn" style="background: #25d366; color: #fff;">
+          <span>💬 Balas Surat Ini di WhatsApp</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       THREE.JS ROBLOX GAME LOGIC SCRIPT
+       ======================================================== -->
+  <script>
+    // --- Configuration Data ---
+    const CONFIG = {
+      playerName: "Aulia Putri ❤️",
+      memories: [
+        {
+          id: 1,
+          tag: "MEMORI BINGKAI #1 • THE FIRST SPARK",
+          title: "Pertemuan Pertama Kita",
+          img: "https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=800&q=80",
+          desc: "Hari pertama kita bertatap muka. Masih ingat betul betapa groginya kita berdua, tapi senyuman manismu langsung bikin duniaku terasa tenang."
+        },
+        {
+          id: 2,
+          tag: "MEMORI BINGKAI #2 • GOLDEN SUNSET",
+          title: "Menatap Senja Berdua",
+          img: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=800&q=80",
+          desc: "Duduk santai di tepi pantai sambil menghitung ombak dan warna langit yang perlahan berubah keemasan. Salah satu sore terbaik dalam hidupku."
+        },
+        {
+          id: 3,
+          tag: "MEMORI BINGKAI #3 • FOOD HUNT QUEST",
+          title: "Petualangan Berburu Kuliner",
+          img: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=800&q=80",
+          desc: "Mencoba berbagai makanan baru, saling suap camilan favorit, dan tertawa bareng saat salah pilih menu pedas. Kebersamaan sederhana yang selalu kurindukan."
+        },
+        {
+          id: 4,
+          tag: "MEMORI BINGKAI #4 • TOGETHER FOREVER",
+          title: "Menatap Masa Depan",
+          img: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=800&q=80",
+          desc: "Membicarakan mimpi-mimpi besar kita di bawah taburan bintang malam. Bersamamu, aku yakin masa depan kita akan penuh tawa dan kebahagiaan."
+        }
+      ]
+    };
+
+    // --- Web Audio Synthesizer (Zero External Sound Assets Needed!) ---
+    let audioCtx = null;
+    function getAudioCtx() {
+      if (!audioCtx) {
+        const AudioClass = window.AudioContext || window.webkitAudioContext;
+        if (AudioClass) audioCtx = new AudioClass();
+      }
+      if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+      return audioCtx;
+    }
+
+    function playJumpSound() {
+      try {
+        const ctx = getAudioCtx();
+        if (!ctx) return;
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(160, now);
+        osc.frequency.exponentialRampToValueAtTime(380, now + 0.15);
+        gain.gain.setValueAtTime(0.2, now);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.15);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.16);
+      } catch (e) {}
+    }
+
+    function playInteractChime() {
+      try {
+        const ctx = getAudioCtx();
+        if (!ctx) return;
+        const now = ctx.currentTime;
+        [523.25, 659.25, 783.99, 1046.5].forEach((freq, i) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, now + i * 0.08);
+          gain.gain.setValueAtTime(0.12, now + i * 0.08);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.08 + 0.35);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now + i * 0.08);
+          osc.stop(now + i * 0.08 + 0.36);
+        });
+      } catch (e) {}
+    }
+
+    // --- Three.js Procedural Canvas Textures ---
+    function createWoodFloorTexture() {
+      const c = document.createElement('canvas');
+      c.width = 512;
+      c.height = 512;
+      const ctx = c.getContext('2d');
+      ctx.fillStyle = '#b57a48';
+      ctx.fillRect(0, 0, 512, 512);
+
+      // Draw planks
+      const plankHeight = 64;
+      for (let y = 0; y < 512; y += plankHeight) {
+        ctx.strokeStyle = '#6e431f';
+        ctx.lineWidth = 3;
+        ctx.strokeRect(0, y, 512, plankHeight);
+
+        // Sub planks
+        ctx.beginPath();
+        ctx.moveTo(180 + (y % 120), y);
+        ctx.lineTo(180 + (y % 120), y + plankHeight);
+        ctx.moveTo(380 - (y % 80), y);
+        ctx.lineTo(380 - (y % 80), y + plankHeight);
+        ctx.stroke();
+      }
+      const tex = new THREE.CanvasTexture(c);
+      tex.wrapS = THREE.RepeatWrapping;
+      tex.wrapT = THREE.RepeatWrapping;
+      tex.repeat.set(4, 4);
+      return tex;
+    }
+
+    function createWallpaperTexture() {
+      const c = document.createElement('canvas');
+      c.width = 512;
+      c.height = 512;
+      const ctx = c.getContext('2d');
+      ctx.fillStyle = '#fff9f0';
+      ctx.fillRect(0, 0, 512, 512);
+
+      // Cute pastel dots
+      ctx.fillStyle = '#ffd1dc';
+      for (let x = 32; x < 512; x += 64) {
+        for (let y = 32; y < 512; y += 64) {
+          ctx.beginPath();
+          ctx.arc(x, y, 6, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+      const tex = new THREE.CanvasTexture(c);
+      tex.wrapS = THREE.RepeatWrapping;
+      tex.wrapT = THREE.RepeatWrapping;
+      tex.repeat.set(3, 2);
+      return tex;
+    }
+
+    function createRobloxFaceTexture() {
+      const c = document.createElement('canvas');
+      c.width = 256;
+      c.height = 256;
+      const ctx = c.getContext('2d');
+      ctx.fillStyle = '#ffd200'; // Roblox yellow head
+      ctx.fillRect(0, 0, 256, 256);
+
+      // Eyes
+      ctx.fillStyle = '#111';
+      ctx.beginPath();
+      ctx.arc(80, 110, 18, 0, Math.PI * 2);
+      ctx.arc(176, 110, 18, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Eye shines
+      ctx.fillStyle = '#fff';
+      ctx.beginPath();
+      ctx.arc(86, 104, 6, 0, Math.PI * 2);
+      ctx.arc(182, 104, 6, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Blush
+      ctx.fillStyle = 'rgba(255, 99, 132, 0.45)';
+      ctx.beginPath();
+      ctx.ellipse(65, 135, 16, 10, 0, 0, Math.PI * 2);
+      ctx.ellipse(191, 135, 16, 10, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Big cute Roblox smile
+      ctx.lineWidth = 10;
+      ctx.strokeStyle = '#111';
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.arc(128, 140, 48, 0.15 * Math.PI, 0.85 * Math.PI, false);
+      ctx.stroke();
+
+      return new THREE.CanvasTexture(c);
+    }
+
+    function createCarpetTexture() {
+      const c = document.createElement('canvas');
+      c.width = 512;
+      c.height = 512;
+      const ctx = c.getContext('2d');
+      ctx.fillStyle = '#f48fb1';
+      ctx.fillRect(0, 0, 512, 512);
+
+      // Border
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineWidth = 16;
+      ctx.strokeRect(16, 16, 480, 480);
+
+      // Big heart in middle
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.moveTo(256, 360);
+      ctx.bezierCurveTo(256, 310, 150, 240, 150, 170);
+      ctx.bezierCurveTo(150, 120, 200, 120, 256, 170);
+      ctx.bezierCurveTo(312, 120, 362, 120, 362, 170);
+      ctx.bezierCurveTo(362, 240, 256, 310, 256, 360);
+      ctx.fill();
+
+      return new THREE.CanvasTexture(c);
+    }
+
+    // --- Scene Setup ---
+    let scene, camera, renderer;
+    let player, playerBody, head, leftArm, rightArm, leftLeg, rightLeg;
+    const colliders = [];
+    const interactiveObjects = [];
+    const discoveredMemories = new Set();
+
+    const canvas = document.getElementById('webgl-canvas');
+    renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+    scene = new THREE.Scene();
+    scene.background = new THREE.Color('#87ceeb');
+    scene.fog = new THREE.FogExp2('#b8e2f2', 0.025);
+
+    camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 100);
+
+    // --- Lighting ---
+    const ambientLight = new THREE.AmbientLight(0xfff5ea, 0.7);
+    scene.add(ambientLight);
+
+    const sunLight = new THREE.DirectionalLight(0xfffaed, 0.85);
+    sunLight.position.set(20, 35, 15);
+    sunLight.castShadow = true;
+    sunLight.shadow.mapSize.width = 1024;
+    sunLight.shadow.mapSize.height = 1024;
+    sunLight.shadow.camera.near = 0.5;
+    sunLight.shadow.camera.far = 60;
+    sunLight.shadow.camera.left = -25;
+    sunLight.shadow.camera.right = 25;
+    sunLight.shadow.camera.top = 25;
+    sunLight.shadow.camera.bottom = -25;
+    scene.add(sunLight);
+
+    // Cozy warm interior chandeliers / lights
+    const roomPointLight = new THREE.PointLight(0xffaa44, 1.2, 18);
+    roomPointLight.position.set(0, 6.5, 0);
+    roomPointLight.castShadow = true;
+    scene.add(roomPointLight);
+
+    // --- Build Roblox House & Environment ---
+    function buildWorld() {
+      // 1. Outside Yard / Grass
+      const grassGeo = new THREE.PlaneGeometry(80, 80);
+      const grassMat = new THREE.MeshLambertMaterial({ color: '#55b838' });
+      const grass = new THREE.Mesh(grassGeo, grassMat);
+      grass.rotation.x = -Math.PI / 2;
+      grass.receiveShadow = true;
+      scene.add(grass);
+
+      // Low poly cubic trees outside
+      for (let i = 0; i < 18; i++) {
+        const treeGroup = new THREE.Group();
+        const angle = Math.random() * Math.PI * 2;
+        const dist = 18 + Math.random() * 18;
+        const x = Math.cos(angle) * dist;
+        const z = Math.sin(angle) * dist;
+
+        // Trunk
+        const trunkGeo = new THREE.BoxGeometry(0.8, 3.5, 0.8);
+        const trunkMat = new THREE.MeshLambertMaterial({ color: '#6d4c41' });
+        const trunk = new THREE.Mesh(trunkGeo, trunkMat);
+        trunk.position.y = 1.75;
+        trunk.castShadow = true;
+        treeGroup.add(trunk);
+
+        // Leaves (Cubic blocky tree)
+        const leavesGeo = new THREE.BoxGeometry(3, 3, 3);
+        const leavesMat = new THREE.MeshLambertMaterial({ color: '#2e7d32' });
+        const leaves = new THREE.Mesh(leavesGeo, leavesMat);
+        leaves.position.y = 4.2;
+        leaves.castShadow = true;
+        treeGroup.add(leaves);
+
+        treeGroup.position.set(x, 0, z);
+        scene.add(treeGroup);
+      }
+
+      // 2. House Dimensions
+      const roomW = 16;
+      const roomD = 16;
+      const wallH = 7.5;
+      const wallThick = 0.5;
+
+      // Floor
+      const floorGeo = new THREE.BoxGeometry(roomW, 0.4, roomD);
+      const floorMat = new THREE.MeshStandardMaterial({
+        map: createWoodFloorTexture(),
+        roughness: 0.6,
+        metalness: 0.1
+      });
+      const floor = new THREE.Mesh(floorGeo, floorMat);
+      floor.position.set(0, 0.2, 0);
+      floor.receiveShadow = true;
+      scene.add(floor);
+
+      // Carpet in center
+      const carpetGeo = new THREE.PlaneGeometry(7.5, 7.5);
+      const carpetMat = new THREE.MeshStandardMaterial({
+        map: createCarpetTexture(),
+        roughness: 0.8
+      });
+      const carpet = new THREE.Mesh(carpetGeo, carpetMat);
+      carpet.rotation.x = -Math.PI / 2;
+      carpet.position.set(0, 0.41, 0);
+      carpet.receiveShadow = true;
+      scene.add(carpet);
+
+      // Ceiling / Roof
+      const ceilingGeo = new THREE.BoxGeometry(roomW + 1, 0.4, roomD + 1);
+      const ceilingMat = new THREE.MeshLambertMaterial({ color: '#ffffff' });
+      const ceiling = new THREE.Mesh(ceilingGeo, ceilingMat);
+      ceiling.position.set(0, wallH, 0);
+      scene.add(ceiling);
+
+      // Walls (North, South, East, West)
+      const wallMat = new THREE.MeshStandardMaterial({
+        map: createWallpaperTexture(),
+        roughness: 0.7
+      });
+
+      function addWall(w, h, d, x, y, z) {
+        const wallGeo = new THREE.BoxGeometry(w, h, d);
+        const wall = new THREE.Mesh(wallGeo, wallMat);
+        wall.position.set(x, y, z);
+        wall.receiveShadow = true;
+        wall.castShadow = true;
+        scene.add(wall);
+        colliders.push(new THREE.Box3().setFromObject(wall));
+        return wall;
+      }
+
+      // North Wall (Back)
+      addWall(roomW, wallH, wallThick, 0, wallH / 2, -roomD / 2);
+      // East Wall (Right)
+      addWall(wallThick, wallH, roomD, roomW / 2, wallH / 2, 0);
+      // West Wall (Left)
+      addWall(wallThick, wallH, roomD, -roomW / 2, wallH / 2, 0);
+      // South Wall (Front with Door Gap)
+      addWall(5.5, wallH, wallThick, -5.25, wallH / 2, roomD / 2);
+      addWall(5.5, wallH, wallThick, 5.25, wallH / 2, roomD / 2);
+      addWall(5, 2.5, wallThick, 0, wallH - 1.25, roomD / 2);
+
+      // 3. Wall Photo Frames (Memories)
+      const texLoader = new THREE.TextureLoader();
+
+      function createWallFrame(memory, x, y, z, rotY) {
+        const frameGroup = new THREE.Group();
+
+        // Wooden frame border
+        const frameBorderGeo = new THREE.BoxGeometry(3.6, 2.8, 0.16);
+        const frameBorderMat = new THREE.MeshStandardMaterial({ color: '#795548', roughness: 0.4 });
+        const frameBorder = new THREE.Mesh(frameBorderGeo, frameBorderMat);
+        frameBorder.castShadow = true;
+        frameGroup.add(frameBorder);
+
+        // Photo plane
+        const photoGeo = new THREE.PlaneGeometry(3.2, 2.4);
+        const photoMat = new THREE.MeshBasicMaterial({ color: '#ffffff' });
+        texLoader.load(memory.img, (tex) => {
+          photoMat.map = tex;
+          photoMat.needsUpdate = true;
+        });
+        const photoMesh = new THREE.Mesh(photoGeo, photoMat);
+        photoMesh.position.z = 0.09;
+        frameGroup.add(photoMesh);
+
+        // Cute gold star above frame
+        const starGeo = new THREE.OctahedronGeometry(0.24, 0);
+        const starMat = new THREE.MeshStandardMaterial({ color: '#ffea00', emissive: '#ffaa00', emissiveIntensity: 0.5 });
+        const starMesh = new THREE.Mesh(starGeo, starMat);
+        starMesh.position.set(0, 1.7, 0.1);
+        frameGroup.add(starMesh);
+
+        frameGroup.position.set(x, y, z);
+        frameGroup.rotation.y = rotY;
+        scene.add(frameGroup);
+
+        interactiveObjects.push({
+          type: 'photo',
+          data: memory,
+          position: new THREE.Vector3(x, y, z),
+          prompt: `Lihat: "${memory.title}" 🖼️`,
+          starMesh
+        });
+      }
+
+      // Place 4 memory frames around the room walls
+      createWallFrame(CONFIG.memories[0], -4.2, 4.0, -roomD / 2 + 0.12, 0);
+      createWallFrame(CONFIG.memories[1], 4.2, 4.0, -roomD / 2 + 0.12, 0);
+      createWallFrame(CONFIG.memories[2], -roomW / 2 + 0.12, 4.0, -1.5, Math.PI / 2);
+      createWallFrame(CONFIG.memories[3], roomW / 2 - 0.12, 4.0, -1.5, -Math.PI / 2);
+
+      // 4. Center Birthday / Anniversary Cake Table
+      const tableGroup = new THREE.Group();
+
+      // Table Legs & Top
+      const tableTopGeo = new THREE.CylinderGeometry(1.8, 1.8, 0.15, 24);
+      const tableMat = new THREE.MeshStandardMaterial({ color: '#8d6e63', roughness: 0.5 });
+      const tableTop = new THREE.Mesh(tableTopGeo, tableMat);
+      tableTop.position.y = 1.8;
+      tableTop.castShadow = true;
+      tableGroup.add(tableTop);
+
+      const tableLegGeo = new THREE.CylinderGeometry(0.2, 0.2, 1.8, 12);
+      const tableLeg = new THREE.Mesh(tableLegGeo, tableMat);
+      tableLeg.position.y = 0.9;
+      tableLeg.castShadow = true;
+      tableGroup.add(tableLeg);
+
+      // Cake Base
+      const cakeBaseGeo = new THREE.CylinderGeometry(0.9, 0.9, 0.5, 24);
+      const cakeBaseMat = new THREE.MeshStandardMaterial({ color: '#ff80ab', roughness: 0.3 });
+      const cakeBase = new THREE.Mesh(cakeBaseGeo, cakeBaseMat);
+      cakeBase.position.y = 2.15;
+      cakeBase.castShadow = true;
+      tableGroup.add(cakeBase);
+
+      // Cake Icing Top
+      const icingGeo = new THREE.CylinderGeometry(0.92, 0.92, 0.15, 24);
+      const icingMat = new THREE.MeshStandardMaterial({ color: '#ffffff', roughness: 0.2 });
+      const icing = new THREE.Mesh(icingGeo, icingMat);
+      icing.position.y = 2.45;
+      tableGroup.add(icing);
+
+      // Lit Candle
+      const candleGeo = new THREE.CylinderGeometry(0.06, 0.06, 0.45, 8);
+      const candleMat = new THREE.MeshStandardMaterial({ color: '#ffeb3b' });
+      const candle = new THREE.Mesh(candleGeo, candleMat);
+      candle.position.y = 2.75;
+      tableGroup.add(candle);
+
+      // Candle Flame Glow
+      const flameGeo = new THREE.SphereGeometry(0.09, 8, 8);
+      const flameMat = new THREE.MeshBasicMaterial({ color: '#ff9800' });
+      const flame = new THREE.Mesh(flameGeo, flameMat);
+      flame.position.y = 3.02;
+      tableGroup.add(flame);
+
+      tableGroup.position.set(0, 0, 0);
+      scene.add(tableGroup);
+
+      // Cake interaction
+      interactiveObjects.push({
+        type: 'cake',
+        position: new THREE.Vector3(0, 2, 0),
+        prompt: "🎂 Tiup Lilin Kue & Buat Doa!"
+      });
+
+      // 5. Golden Secret Gift Chest
+      const chestGroup = new THREE.Group();
+      const chestBaseGeo = new THREE.BoxGeometry(1.6, 1.0, 1.1);
+      const chestMat = new THREE.MeshStandardMaterial({ color: '#ffc107', metalness: 0.5, roughness: 0.3 });
+      const chestBase = new THREE.Mesh(chestBaseGeo, chestMat);
+      chestBase.position.y = 0.5;
+      chestBase.castShadow = true;
+      chestGroup.add(chestBase);
+
+      const chestLockGeo = new THREE.BoxGeometry(0.3, 0.3, 0.2);
+      const chestLockMat = new THREE.MeshStandardMaterial({ color: '#ffffff', metalness: 0.9 });
+      const chestLock = new THREE.Mesh(chestLockGeo, chestLockMat);
+      chestLock.position.set(0, 0.6, 0.56);
+      chestGroup.add(chestLock);
+
+      chestGroup.position.set(-6, 0, 5);
+      scene.add(chestGroup);
+
+      interactiveObjects.push({
+        type: 'chest',
+        position: new THREE.Vector3(-6, 0.5, 5),
+        prompt: "🎁 Buka Peti Surat Rahasia!"
+      });
+
+      // 6. Cozy Blocky Sofa
+      const sofaGroup = new THREE.Group();
+      const sofaMat = new THREE.MeshStandardMaterial({ color: '#e91e63', roughness: 0.8 });
+      const sofaSeat = new THREE.Mesh(new THREE.BoxGeometry(4.2, 0.7, 1.6), sofaMat);
+      sofaSeat.position.set(0, 0.55, 0);
+      sofaSeat.castShadow = true;
+      sofaGroup.add(sofaSeat);
+
+      const sofaBack = new THREE.Mesh(new THREE.BoxGeometry(4.2, 1.6, 0.5), sofaMat);
+      sofaBack.position.set(0, 1.4, -0.6);
+      sofaBack.castShadow = true;
+      sofaGroup.add(sofaBack);
+
+      sofaGroup.position.set(6, 0, 0);
+      sofaGroup.rotation.y = -Math.PI / 2;
+      scene.add(sofaGroup);
+    }
+
+    // --- Build Cute Roblox Character ---
+    function buildCharacter() {
+      player = new THREE.Group();
+
+      // Master Body Parent
+      playerBody = new THREE.Group();
+      player.add(playerBody);
+
+      // Materials
+      const skinMat = new THREE.MeshStandardMaterial({
+        color: '#ffd200',
+        roughness: 0.4
+      });
+      const faceMat = new THREE.MeshBasicMaterial({
+        map: createRobloxFaceTexture()
+      });
+      const shirtMat = new THREE.MeshStandardMaterial({
+        color: '#00b0ff',
+        roughness: 0.5
+      });
+      const pantsMat = new THREE.MeshStandardMaterial({
+        color: '#1e88e5',
+        roughness: 0.5
+      });
+
+      // Head (Cube) with multi-materials (Front is Face, others yellow)
+      const headMaterials = [
+        skinMat, skinMat, skinMat, skinMat, faceMat, skinMat
+      ];
+      const headGeo = new THREE.BoxGeometry(0.9, 0.9, 0.9);
+      head = new THREE.Mesh(headGeo, headMaterials);
+      head.position.y = 2.45;
+      head.castShadow = true;
+      playerBody.add(head);
+
+      // Torso
+      const torsoGeo = new THREE.BoxGeometry(1.2, 1.3, 0.7);
+      const torso = new THREE.Mesh(torsoGeo, shirtMat);
+      torso.position.y = 1.35;
+      torso.castShadow = true;
+      playerBody.add(torso);
+
+      // Left Arm
+      const armGeo = new THREE.BoxGeometry(0.48, 1.25, 0.5);
+      leftArm = new THREE.Mesh(armGeo, shirtMat);
+      leftArm.position.set(-0.88, 1.35, 0);
+      leftArm.castShadow = true;
+      playerBody.add(leftArm);
+
+      // Right Arm
+      rightArm = new THREE.Mesh(armGeo, shirtMat);
+      rightArm.position.set(0.88, 1.35, 0);
+      rightArm.castShadow = true;
+      playerBody.add(rightArm);
+
+      // Left Leg
+      const legGeo = new THREE.BoxGeometry(0.52, 1.25, 0.58);
+      leftLeg = new THREE.Mesh(legGeo, pantsMat);
+      leftLeg.position.set(-0.32, 0.45, 0);
+      leftLeg.castShadow = true;
+      playerBody.add(leftLeg);
+
+      // Right Leg
+      rightLeg = new THREE.Mesh(legGeo, pantsMat);
+      rightLeg.position.set(0.32, 0.45, 0);
+      rightLeg.castShadow = true;
+      playerBody.add(rightLeg);
+
+      // Initial Spawn inside room
+      player.position.set(0, 0, 5.5);
+      scene.add(player);
+    }
+
+    buildWorld();
+    buildCharacter();
+
+    // --- Controls & Physics State ---
+    const keys = {};
+    window.addEventListener('keydown', (e) => {
+      keys[e.code] = true;
+      if (e.code === 'KeyE') handleInteraction();
+      getAudioCtx();
+    });
+    window.addEventListener('keyup', (e) => {
+      keys[e.code] = false;
+    });
+
+    // Touch Joystick for Mobile
+    const joystickZone = document.getElementById('joystick-zone');
+    const joystickKnob = document.getElementById('joystick-knob');
+    let joystickActive = false;
+    let joystickVector = { x: 0, y: 0 };
+
+    joystickZone.addEventListener('touchstart', (e) => {
+      joystickActive = true;
+      updateJoystick(e.touches[0]);
+      getAudioCtx();
+    }, { passive: false });
+
+    window.addEventListener('touchmove', (e) => {
+      if (!joystickActive) return;
+      for (let i = 0; i < e.touches.length; i++) {
+        if (e.touches[i].target === joystickZone || joystickActive) {
+          updateJoystick(e.touches[i]);
+          break;
+        }
+      }
+    }, { passive: false });
+
+    window.addEventListener('touchend', () => {
+      joystickActive = false;
+      joystickVector = { x: 0, y: 0 };
+      joystickKnob.style.transform = 'translate(-50%, -50%)';
+    });
+
+    function updateJoystick(touch) {
+      const rect = joystickZone.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      const dx = touch.clientX - centerX;
+      const dy = touch.clientY - centerY;
+      const dist = Math.min(45, Math.hypot(dx, dy));
+      const angle = Math.atan2(dy, dx);
+
+      joystickVector.x = (Math.cos(angle) * dist) / 45;
+      joystickVector.y = (Math.sin(angle) * dist) / 45;
+
+      joystickKnob.style.transform = `translate(calc(-50% + ${Math.cos(angle) * dist}px), calc(-50% + ${Math.sin(angle) * dist}px))`;
+    }
+
+    // Mobile Action & Jump Buttons
+    const mobileJumpBtn = document.getElementById('mobile-jump-btn');
+    const mobileActionBtn = document.getElementById('mobile-action-btn');
+    mobileJumpBtn.addEventListener('click', () => { doJump(); getAudioCtx(); });
+    mobileActionBtn.addEventListener('click', () => { handleInteraction(); getAudioCtx(); });
+
+    // Camera Orbit Mouse Drag
+    let isDragging = false;
+    let prevMouseX = 0;
+    let cameraAngle = Math.PI; // Face forward initially
+    let cameraPitch = 0.35;
+    const cameraDist = 8.5;
+
+    window.addEventListener('mousedown', (e) => {
+      if (e.target.closest('.modal-overlay') || e.target.closest('.roblox-hud button')) return;
+      isDragging = true;
+      prevMouseX = e.clientX;
+      getAudioCtx();
+    });
+    window.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      const deltaX = e.clientX - prevMouseX;
+      cameraAngle -= deltaX * 0.006;
+      prevMouseX = e.clientX;
+    });
+    window.addEventListener('mouseup', () => { isDragging = false; });
+
+    // Touch swipe camera rotation on right side of screen
+    let touchStartX = 0;
+    window.addEventListener('touchstart', (e) => {
+      if (e.touches[0].clientX > window.innerWidth / 2) {
+        touchStartX = e.touches[0].clientX;
+      }
+    });
+    window.addEventListener('touchmove', (e) => {
+      if (e.touches[0].clientX > window.innerWidth / 2) {
+        const delta = e.touches[0].clientX - touchStartX;
+        cameraAngle -= delta * 0.006;
+        touchStartX = e.touches[0].clientX;
+      }
+    });
+
+    // Jump Physics
+    let isGrounded = true;
+    let yVelocity = 0;
+    const gravity = -0.018;
+
+    function doJump() {
+      if (isGrounded) {
+        yVelocity = 0.32;
+        isGrounded = false;
+        playJumpSound();
+      }
+    }
+
+    // Interaction Check
+    const promptEl = document.getElementById('interaction-prompt');
+    const promptTextEl = document.getElementById('prompt-text');
+    let nearbyObject = null;
+
+    function checkProximity() {
+      nearbyObject = null;
+      let minDistance = 3.6;
+
+      for (const obj of interactiveObjects) {
+        const dist = player.position.distanceTo(obj.position);
+        if (dist < minDistance) {
+          minDistance = dist;
+          nearbyObject = obj;
+        }
+      }
+
+      if (nearbyObject) {
+        promptEl.style.display = 'flex';
+        promptTextEl.textContent = nearbyObject.prompt;
+      } else {
+        promptEl.style.display = 'none';
+      }
+    }
+
+    promptEl.addEventListener('click', () => {
+      handleInteraction();
+    });
+
+    function handleInteraction() {
+      if (!nearbyObject) return;
+      playInteractChime();
+
+      if (nearbyObject.type === 'photo') {
+        openPhotoModal(nearbyObject.data);
+        if (nearbyObject.starMesh) {
+          discoveredMemories.add(nearbyObject.data.id);
+          document.getElementById('star-count-text').textContent = `${discoveredMemories.size} / 4 Ditemukan`;
+        }
+      } else if (nearbyObject.type === 'cake') {
+        document.getElementById('cake-modal').classList.add('active');
+      } else if (nearbyObject.type === 'chest') {
+        document.getElementById('chest-modal').classList.add('active');
+      }
+    }
+
+    // --- Modal Logic ---
+    const photoModal = document.getElementById('photo-modal');
+    const photoModalClose = document.getElementById('photo-modal-close');
+    const modalTag = document.getElementById('modal-tag');
+    const modalTitle = document.getElementById('modal-title');
+    const modalImg = document.getElementById('modal-img');
+    const modalDesc = document.getElementById('modal-desc');
+
+    function openPhotoModal(data) {
+      modalTag.textContent = data.tag;
+      modalTitle.textContent = data.title;
+      modalImg.src = data.img;
+      modalDesc.textContent = data.desc;
+      photoModal.classList.add('active');
+    }
+
+    photoModalClose.addEventListener('click', () => photoModal.classList.remove('active'));
+    document.getElementById('cake-modal-close').addEventListener('click', () => document.getElementById('cake-modal').classList.remove('active'));
+    document.getElementById('chest-modal-close').addEventListener('click', () => document.getElementById('chest-modal').classList.remove('active'));
+
+    document.getElementById('like-memory-btn').addEventListener('click', () => {
+      playInteractChime();
+      launchConfetti();
+      alert("❤️ Kamu memberikan cinta pada kenangan ini! Player 1 sangat bahagia!");
+      photoModal.classList.remove('active');
+    });
+
+    document.getElementById('blow-candle-btn').addEventListener('click', () => {
+      playInteractChime();
+      launchConfetti();
+      alert("🎉 WOOOHOOO! Lilin berhasil ditiup! Semoga semua doa dan harapan kalian terkabul! ❤️🎂✨");
+      document.getElementById('cake-modal').classList.remove('active');
+    });
+
+    // --- 2D Confetti Explosion Canvas ---
+    const confettiCanvas = document.getElementById('confetti-canvas');
+    const confCtx = confettiCanvas.getContext('2d');
+    let confettiParticles = [];
+
+    function resizeConfetti() {
+      confettiCanvas.width = window.innerWidth;
+      confettiCanvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeConfetti);
+    resizeConfetti();
+
+    function launchConfetti() {
+      const colors = ['#ff4081', '#00e676', '#ffeb3b', '#00b0ff', '#e040fb', '#ffffff'];
+      for (let i = 0; i < 90; i++) {
+        confettiParticles.push({
+          x: confettiCanvas.width / 2,
+          y: confettiCanvas.height / 2,
+          vx: (Math.random() - 0.5) * 16,
+          vy: (Math.random() - 0.8) * 18,
+          size: Math.random() * 8 + 6,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          rot: Math.random() * Math.PI * 2,
+          vRot: (Math.random() - 0.5) * 0.2,
+          life: 1
+        });
+      }
+    }
+
+    function updateConfetti() {
+      confCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+      for (let i = confettiParticles.length - 1; i >= 0; i--) {
+        const p = confettiParticles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.45; // gravity
+        p.rot += p.vRot;
+        p.life -= 0.012;
+
+        confCtx.save();
+        confCtx.translate(p.x, p.y);
+        confCtx.rotate(p.rot);
+        confCtx.fillStyle = p.color;
+        confCtx.globalAlpha = Math.max(0, p.life);
+        confCtx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.7);
+        confCtx.restore();
+
+        if (p.life <= 0) confettiParticles.splice(i, 1);
+      }
+    }
+
+    // --- BGM Audio Toggle ---
+    const bgmAudio = document.getElementById('bgm-audio');
+    const bgmBtn = document.getElementById('bgm-toggle-btn');
+    let isAudioPlaying = false;
+    bgmBtn.addEventListener('click', () => {
+      getAudioCtx();
+      if (isAudioPlaying) {
+        bgmAudio.pause();
+        isAudioPlaying = false;
+        bgmBtn.innerHTML = '<span>🎵 Musik</span>';
+      } else {
+        bgmAudio.play().then(() => {
+          isAudioPlaying = true;
+          bgmBtn.innerHTML = '<span>⏸ Pause</span>';
+        }).catch(() => {});
+      }
+    });
+
+    // --- Main Game Animation Loop ---
+    let walkCycle = 0;
+
+    function animate() {
+      requestAnimationFrame(animate);
+
+      // Movement Vector
+      let moveX = 0;
+      let moveZ = 0;
+
+      // Keyboard input
+      if (keys['KeyW'] || keys['ArrowUp']) moveZ -= 1;
+      if (keys['KeyS'] || keys['ArrowDown']) moveZ += 1;
+      if (keys['KeyA'] || keys['ArrowLeft']) moveX -= 1;
+      if (keys['KeyD'] || keys['ArrowRight']) moveX += 1;
+      if (keys['Space']) doJump();
+
+      // Mobile Joystick input
+      if (joystickActive) {
+        moveX += joystickVector.x;
+        moveZ += joystickVector.y;
+      }
+
+      const isMoving = Math.abs(moveX) > 0.05 || Math.abs(moveZ) > 0.05;
+
+      if (isMoving) {
+        const forward = new THREE.Vector3(Math.sin(cameraAngle), 0, Math.cos(cameraAngle));
+        const right = new THREE.Vector3(Math.cos(cameraAngle), 0, -Math.sin(cameraAngle));
+        const moveDir = new THREE.Vector3()
+          .addScaledVector(forward, moveZ)
+          .addScaledVector(right, -moveX)
+          .normalize();
+
+        const speed = 0.14;
+        const targetX = player.position.x + moveDir.x * speed;
+        const targetZ = player.position.z + moveDir.z * speed;
+
+        // Room bounds collision check
+        if (targetX > -7.2 && targetX < 7.2) player.position.x = targetX;
+        if (targetZ > -7.2 && targetZ < 7.2) player.position.z = targetZ;
+
+        // Character rotation towards walking direction
+        const targetAngle = Math.atan2(moveDir.x, moveDir.z);
+        playerBody.rotation.y = targetAngle;
+
+        // Roblox Limbs Walk Cycle Animation
+        walkCycle += 0.22;
+        leftArm.rotation.x = Math.sin(walkCycle) * 0.7;
+        rightArm.rotation.x = -Math.sin(walkCycle) * 0.7;
+        leftLeg.rotation.x = -Math.sin(walkCycle) * 0.7;
+        rightLeg.rotation.x = Math.sin(walkCycle) * 0.7;
+      } else {
+        // Idle recovery
+        leftArm.rotation.x *= 0.8;
+        rightArm.rotation.x *= 0.8;
+        leftLeg.rotation.x *= 0.8;
+        rightLeg.rotation.x *= 0.8;
+      }
+
+      // Vertical Gravity & Jump
+      if (!isGrounded) {
+        player.position.y += yVelocity;
+        yVelocity += gravity;
+        if (player.position.y <= 0) {
+          player.position.y = 0;
+          yVelocity = 0;
+          isGrounded = true;
+        }
+      }
+
+      // Third-Person Camera Follow
+      const targetCamX = player.position.x + Math.sin(cameraAngle) * cameraDist;
+      const targetCamY = player.position.y + cameraDist * Math.sin(cameraPitch) + 1.2;
+      const targetCamZ = player.position.z + Math.cos(cameraAngle) * cameraDist;
+
+      camera.position.lerp(new THREE.Vector3(targetCamX, targetCamY, targetCamZ), 0.1);
+      camera.lookAt(player.position.x, player.position.y + 1.6, player.position.z);
+
+      // Star meshes gentle rotation
+      interactiveObjects.forEach((obj) => {
+        if (obj.starMesh) obj.starMesh.rotation.y += 0.03;
+      });
+
+      checkProximity();
+      updateConfetti();
+      renderer.render(scene, camera);
+    }
+
+    animate();
+
+    // Window Resize Handler
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+  </script>
+</body>
+</html>

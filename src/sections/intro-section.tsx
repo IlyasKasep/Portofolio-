@@ -11,7 +11,6 @@ type IntroLinePart = {
   text: string;
   highlight: boolean;
   italic?: boolean;
-  gradientClass?: string;
 };
 
 const lines: IntroLinePart[][] = [
@@ -21,8 +20,6 @@ const lines: IntroLinePart[][] = [
       text: "antarmuka web yang hidup,",
       highlight: true,
       italic: true,
-      gradientClass:
-        "bg-gradient-to-r from-cyan-400 via-teal-300 to-emerald-400 bg-clip-text text-transparent",
     },
   ],
   [
@@ -30,16 +27,12 @@ const lines: IntroLinePart[][] = [
     {
       text: "desain responsif,",
       highlight: true,
-      gradientClass:
-        "bg-gradient-to-r from-amber-300 via-orange-400 to-rose-400 bg-clip-text text-transparent",
     },
   ],
   [
     {
       text: "serta performa kode yang optimal—",
       highlight: true,
-      gradientClass:
-        "bg-gradient-to-r from-sky-400 via-indigo-300 to-purple-400 bg-clip-text text-transparent",
     },
   ],
   [{ text: "menerjemahkan ide visual dari desain", highlight: false }],
@@ -49,28 +42,12 @@ const lines: IntroLinePart[][] = [
       text: "pengalaman digital yang bermakna.",
       highlight: true,
       italic: true,
-      gradientClass:
-        "bg-gradient-to-r from-violet-400 via-fuchsia-300 to-pink-400 bg-clip-text text-transparent",
     },
   ],
 ];
 
-function getSkillColor(skill: string) {
-  const s = skill.toLowerCase();
-  if (s.includes("react")) return "text-sky-400 hover:text-sky-300";
-  if (s.includes("next")) return "text-white hover:text-sky-200";
-  if (s.includes("tailwind")) return "text-cyan-400 hover:text-cyan-300";
-  if (s.includes("typescript")) return "text-blue-400 hover:text-blue-300";
-  if (s.includes("javascript")) return "text-amber-400 hover:text-amber-300";
-  if (s.includes("laravel")) return "text-rose-500 hover:text-rose-400";
-  if (s.includes("node")) return "text-emerald-400 hover:text-emerald-300";
-  if (s.includes("git")) return "text-orange-500 hover:text-orange-400";
-  if (s.includes("figma")) return "text-pink-400 hover:text-pink-300";
-  if (s.includes("redux")) return "text-purple-400 hover:text-purple-300";
-  if (s.includes("mysql")) return "text-sky-300 hover:text-sky-200";
-  if (s.includes("php")) return "text-indigo-400 hover:text-indigo-300";
-  if (s.includes("supabase")) return "text-emerald-400 hover:text-emerald-300";
-  return "text-indigo-300 hover:text-indigo-200";
+function getSkillColor(_skill?: string) {
+  return "text-white/70 hover:text-white";
 }
 
 export default function IntroSection({ skills }: { skills: string[] }) {
@@ -219,17 +196,15 @@ export default function IntroSection({ skills }: { skills: string[] }) {
                     <span
                       key={`${lineIndex}-${partIndex}-${wordIndex}`}
                       className={`
-                        mr-[0.14em] inline-block will-change-transform
+                        mr-[0.14em] inline-block will-change-transform text-white
                         ${
-                          part.gradientClass
-                            ? part.gradientClass
-                            : part.highlight
-                              ? "font-semibold text-white"
-                              : "font-normal text-white/45"
+                          part.highlight
+                            ? "font-semibold"
+                            : "font-normal text-white/50"
                         }
                         ${
                           part.italic
-                            ? "font-serif font-thin italic tracking-wide"
+                            ? "font-serif font-light italic tracking-wide"
                             : ""
                         }
                       `}

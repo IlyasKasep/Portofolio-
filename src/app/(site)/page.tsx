@@ -1,6 +1,5 @@
 import ExperienceSection from "@/sections/experience-section";
 import HeroSection from "@/sections/hero-section";
-import DigitalGiftSection from "@/sections/digital-gift-section";
 import IntroSection from "@/sections/intro-section";
 import ProjectsSection from "@/sections/projects-section";
 import GithubContributions from "@/sections/github-contributions";
@@ -89,9 +88,9 @@ const navigationItems = [
     link: "/projects",
   },
   {
-    label: "Kado Digital",
-    ariaLabel: "Go to digital gift service section",
-    link: "#kado-digital",
+    label: "Katalog Kado",
+    ariaLabel: "Lihat katalog website kado digital",
+    link: "/katalog",
   },
   { label: "Contact", ariaLabel: "Go to contact section", link: "#contact" },
 ];
@@ -135,7 +134,6 @@ export default async function Home() {
         <ExperienceSection experiences={content.experiences} />
         <ProjectsSection projects={content.featuredProjects} />
         <GithubContributions initialData={githubContributions} />
-        <DigitalGiftSection />
         <ContactSection />
       </main>
     </>

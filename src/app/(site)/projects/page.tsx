@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 
-import ProjectPageHeader from "@/components/ProjectPageHeader";
 import ProjectsExplorer from "@/components/ProjectsExplorer";
 import { getPublicProjects } from "@/data/content/public-content";
 import { siteConfig } from "@/lib/site";
@@ -26,9 +25,7 @@ export default async function ProjectsPage() {
   const projects = await getPublicProjects();
   return (
     <main className="min-h-dvh bg-background text-foreground">
-      <ProjectPageHeader />
-
-      <div className="mx-auto max-w-7xl px-6 pb-24 pt-16 sm:px-10 sm:pt-24 lg:px-12 lg:pb-32 lg:pt-28">
+      <div className="mx-auto max-w-7xl px-6 pb-24 pt-28 sm:px-10 sm:pt-36 lg:px-12 lg:pb-32 lg:pt-40">
         <section className="relative overflow-hidden pb-16 sm:pb-24 lg:pb-28">
           <p
             aria-hidden="true"

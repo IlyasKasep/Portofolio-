@@ -1,5 +1,6 @@
 import PageTransition from "@/components/PageTransition";
 import SmoothScroll from "@/components/SmoothScroll";
+import SiteNavigation from "@/components/SiteNavigation";
 
 export default function PublicSiteLayout({
   children,
@@ -8,7 +9,10 @@ export default function PublicSiteLayout({
 }>) {
   return (
     <PageTransition>
-      <SmoothScroll>{children}</SmoothScroll>
+      <SmoothScroll>
+        <SiteNavigation />
+        {children}
+      </SmoothScroll>
     </PageTransition>
   );
 }

@@ -4,7 +4,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import ProjectMediaCarousel from "@/components/ProjectMediaCarousel";
-import ProjectPageHeader from "@/components/ProjectPageHeader";
 import { getPublicProjects } from "@/data/content/public-content";
 import { formatProjectCategory } from "@/domain/content/format";
 import { siteConfig } from "@/lib/site";
@@ -64,10 +63,8 @@ export default async function ProjectDetailPage({
 
   return (
     <main className="min-h-dvh bg-background text-foreground">
-      <ProjectPageHeader />
-
       <article>
-        <header className="mx-auto max-w-7xl px-6 pb-12 pt-10 sm:px-10 sm:pb-16 sm:pt-14 lg:px-12">
+        <header className="mx-auto max-w-7xl px-6 pb-12 pt-28 sm:px-10 sm:pb-16 sm:pt-36 lg:px-12">
           <Link
             href="/projects"
             className="group inline-flex items-center gap-3 font-mono text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-foreground/50 transition-colors hover:text-foreground"

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import ProjectPageHeader from "@/components/ProjectPageHeader";
 import DigitalGiftSection from "@/sections/digital-gift-section";
 
 export const metadata: Metadata = {
@@ -19,8 +18,7 @@ export const revalidate = 3600;
 
 export default function KatalogPage() {
   return (
-    <main className="min-h-dvh bg-background text-foreground">
-      <ProjectPageHeader active="katalog" />
+    <main className="min-h-dvh bg-background text-foreground pt-14 sm:pt-20">
       <DigitalGiftSection />
     </main>
   );

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -281,6 +282,14 @@ export default function ContactSection() {
                 <span>Instagram</span>
                 <ArrowUpRight className="size-3 text-white/40 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-white" />
               </a>
+
+              <Link
+                href="/katalog"
+                className="group inline-flex items-center gap-2 rounded-lg border border-foreground/20 bg-foreground/5 px-3.5 py-2 font-mono text-[0.68rem] uppercase tracking-wider text-foreground/80 transition-all duration-200 hover:border-foreground/40 hover:bg-foreground/10 hover:text-foreground"
+              >
+                <span>Katalog Kado 🎁</span>
+                <ArrowUpRight className="size-3 text-foreground/40 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-foreground" />
+              </Link>
             </div>
           </div>
         </div>

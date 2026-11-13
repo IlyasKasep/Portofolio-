@@ -43,13 +43,26 @@ export const siteSocialItems: StaggeredMenuSocialItem[] = [
 
 export default function SiteNavigation() {
   const pathname = usePathname();
+  const isHome = pathname === "/";
+
+  const resolvedItems = siteNavigationItems.map((item) => {
+    // If not on home page, convert hash links (#about) into home-anchored links (/#about)
+    if (item.link.startsWith("#") && !isHome) {
+      return { ...item, link: `/${item.link}` };
+    }
+    // If on /katalog, make Katalog Kado link to top of the catalog section
+    if (pathname === "/katalog" && item.link === "/katalog") {
+      return { ...item, link: "#kado-digital" };
+    }
+    return item;
+  });
 
   return (
     <StaggeredMenu
       key={pathname}
       isFixed
       position="right"
-      items={siteNavigationItems}
+      items={resolvedItems}
       socialItems={siteSocialItems}
       colors={["#8b5cf6", "#06b6d4"]}
       accentColor="#38bdf8"

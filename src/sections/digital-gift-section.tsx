@@ -377,6 +377,26 @@ export default function DigitalGiftSection({
             })}
           </div>
         </div>
+
+        {/* ======================================================== */}
+        {/* 5. BOTTOM NAVIGATION & CTA                               */}
+        {/* ======================================================== */}
+        <div className="mt-16 flex flex-col items-center justify-center gap-4 border-t border-foreground/10 pt-10 text-center sm:mt-20 sm:flex-row sm:gap-6 sm:pt-12">
+          <a
+            href="/"
+            className="inline-flex items-center gap-2 rounded-full border border-foreground/20 bg-transparent px-6 py-3 font-mono text-xs font-semibold uppercase tracking-wider text-foreground transition-all hover:border-foreground hover:bg-foreground/5 active:scale-95"
+          >
+            ← Kembali ke Beranda Portfolio
+          </a>
+          <a
+            href="https://wa.me/6285722645928?text=Halo%20bro%2C%20mau%20tanya%20dan%20konsultasi%20website%20kado%20digital%20custom%20dong!"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 font-mono text-xs font-semibold uppercase tracking-wider text-background transition-all hover:opacity-90 active:scale-95"
+          >
+            Konsultasi Custom via WhatsApp →
+          </a>
+        </div>
       </div>
     </section>
   );

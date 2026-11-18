@@ -47,6 +47,7 @@ next-env.d.ts
 /backups/
 /.agents/
 /skills-lock.json
+*.bak
 
 # CocoIndex Code (ccc)
 /.cocoindex_code/
